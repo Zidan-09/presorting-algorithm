@@ -1,7 +1,8 @@
-import { test, swap } from "./utils.ts";
-import { insertionSort, mergeSort, quickSort } from "./sortingAlgoritms.ts";
+import { swap } from "../utils/swap.ts";
+import { test } from "../entities/test.ts";
+import { sortAlgoritm, type SortTypes } from "../utils/sortTypes.ts";
 
-function presortAlgoritm(array: number[]): void {
+function presortAlgoritm(array: number[], sortType: SortTypes): void {
   let leftPointer = 0;
   let rightPointer = array.length - 1;
 
@@ -17,7 +18,7 @@ function presortAlgoritm(array: number[]): void {
     rightPointer--;
   }
 
-  insertionSort(array);
+  sortAlgoritm[sortType](array);
 }
 
 export { presortAlgoritm };
