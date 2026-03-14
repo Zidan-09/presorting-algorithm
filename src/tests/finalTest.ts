@@ -9,7 +9,6 @@ export function finalTest(method: SortTypes) {
   const warmUpArray = generateRandomArray(1000, 1, 10000);
   sortAlgoritm[method]([...warmUpArray]);
   presortAlgoritm([...warmUpArray], method);
-  test.reset();
 
   console.log(`--- Iniciando Testes para: ${method} ---\n`);
 
