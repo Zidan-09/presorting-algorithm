@@ -3,7 +3,7 @@ import { testCustom } from "./tests/custom.ts";
 import type { SortTypes } from "./utils/sortTypes.ts";
 
 function main() {
-  const method: SortTypes = "INSERTION";
+  const method: SortTypes = "BUBBLE";
 
   finalTest(method);
   testCustom(method);
