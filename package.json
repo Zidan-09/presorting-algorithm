@@ -2,10 +2,13 @@
   "name": "tcc",
   "version": "1.0.0",
   "scripts": {
-    "dev": "ts-node src/index.ts"
+    "dev": "tsx src/index.ts",
+    "build": "npx tsc"
   },
   "type": "module",
   "devDependencies": {
-    "@types/node": "^25.3.3"
+    "@types/node": "^25.3.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }

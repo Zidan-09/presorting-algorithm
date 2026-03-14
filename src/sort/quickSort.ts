@@ -1,5 +1,4 @@
 import { test } from "../entities/test.ts";
-import { swap } from "../utils/swap.ts";
 
 function quickSort(array: number[]): void;
 function quickSort(array: number[], lowIdx: number, highIdx: number): void;
@@ -15,9 +14,7 @@ function quickSort(array: number[], lowIdx?: number, highIdx?: number): void {
   const pivotIdx = Math.floor(Math.random() * (highIdx - lowIdx + 1)) + lowIdx;
   const pivot = array[pivotIdx];
 
-  const aux = array[highIdx];
-  array[highIdx] = array[pivotIdx];
-  array[pivotIdx] = aux;
+  [array[highIdx], array[pivotIdx]] = [array[pivotIdx], array[highIdx]];
   test.trocas++;
 
   let leftPointer = lowIdx;
@@ -43,11 +40,13 @@ function quickSort(array: number[], lowIdx?: number, highIdx?: number): void {
     }
 
     if (leftPointer < rightPointer) {
-      swap(leftPointer, rightPointer, array);
+      [array[leftPointer], array[rightPointer]] = [array[rightPointer], array[leftPointer]];
+      test.trocas++;
     }
   }
 
-  swap(leftPointer, highIdx, array);
+  [array[leftPointer], array[highIdx]] = [array[highIdx], array[leftPointer]];
+  test.trocas++;
 
   quickSort(array, lowIdx, leftPointer - 1);
   quickSort(array, leftPointer + 1, highIdx);

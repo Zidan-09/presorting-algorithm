@@ -1,17 +1,12 @@
-import { testBubble } from "./tests/bubble.ts";
-import { testInsertion } from "./tests/insertion.ts";
-import { testMerge } from "./tests/merge.ts";
-import { testQuick } from "./tests/quick.ts";
-import { testSelection } from "./tests/selection.ts";
+import { finalTest } from "./tests/finalTest.ts";
+import { testCustom } from "./tests/custom.ts";
+import type { SortTypes } from "./utils/sortTypes.ts";
 
 function main() {
-  console.log("Iniciando testes de algoritmos de ordenação + método de pré-ordenação...\n\n");
+  const method: SortTypes = "QUICK";
 
-  testBubble(false);
-  testSelection(false);
-  testInsertion(false);
-  testMerge(false);
-  testQuick(false);
+  finalTest(method);
+  testCustom(method);
 }
 
 main();

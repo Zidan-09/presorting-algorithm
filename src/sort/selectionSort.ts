@@ -1,5 +1,4 @@
 import { test } from "../entities/test.ts";
-import { swap } from "../utils/swap.ts";
 
 export function selectionSort(array: number[]): void {
   for (let i = 0; i < array.length; i++) {
@@ -13,6 +12,9 @@ export function selectionSort(array: number[]): void {
       test.comparacoes++;
     }
 
-    if (minorNumberIdx !== i) swap(minorNumberIdx, i, array);
+    if (minorNumberIdx !== i) {
+      [array[minorNumberIdx], array[i]] = [array[i], array[minorNumberIdx]];
+      test.trocas++;
+    }
   }
 }
