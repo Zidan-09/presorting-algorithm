@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "tsx src/index.ts",
-    "build": "npx tsc"
+    "build": "if exist dir rmdir /s /q dir && npx tsc"
   },
   "type": "module",
   "devDependencies": {

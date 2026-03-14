@@ -1,8 +1,8 @@
-import { bubbleSort } from "../sort/bubbleSort.ts";
-import { insertionSort } from "../sort/insertionSort.ts";
-import { mergeSort } from "../sort/mergeSort.ts";
-import { quickSort } from "../sort/quickSort.ts";
-import { selectionSort } from "../sort/selectionSort.ts";
+import { bubbleSort } from "../sort/bubbleSort.js";
+import { insertionSort } from "../sort/insertionSort.js";
+import { mergeSort } from "../sort/mergeSort.js";
+import { quickSort } from "../sort/quickSort.js";
+import { selectionSort } from "../sort/selectionSort.js";
 
 type SortTypes = "BUBBLE" | "INSERTION" | "MERGE" | "QUICK" | "SELECTION";
 

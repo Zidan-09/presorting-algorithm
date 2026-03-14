@@ -1,7 +1,7 @@
-import { presortAlgoritm } from "../presort/presorting.ts";
-import { generateRandomArray } from "../utils/generateArray.ts";
-import { test } from "../entities/test.ts";
-import { sortAlgoritm, type SortTypes } from "../utils/sortTypes.ts";
+import { presortAlgoritm } from "../presort/presorting.js";
+import { generateRandomArray } from "../utils/generateArray.js";
+import { test } from "../entities/test.js";
+import { sortAlgoritm, type SortTypes } from "../utils/sortTypes.js";
 
 export function finalTest(method: SortTypes) {
   const sizes = [10000, 30000, 50000];

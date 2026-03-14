@@ -1,4 +1,4 @@
-import { test } from "../entities/test.ts";
+import { test } from "../entities/test.js";
 
 function quickSort(array: number[]): void;
 function quickSort(array: number[], lowIdx: number, highIdx: number): void;

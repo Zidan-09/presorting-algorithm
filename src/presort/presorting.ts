@@ -1,5 +1,5 @@
-import { test } from "../entities/test.ts";
-import { sortAlgoritm, type SortTypes } from "../utils/sortTypes.ts";
+import { test } from "../entities/test.js";
+import { sortAlgoritm, type SortTypes } from "../utils/sortTypes.js";
 
 function presortAlgoritm(array: number[], sortType: SortTypes): void {
   const last = array.length - 1;

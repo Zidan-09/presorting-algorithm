@@ -1,8 +1,8 @@
-import { presortAlgoritm } from "../presort/presorting.ts";
-import { test } from "../entities/test.ts";
-import type { SortTypes } from "../utils/sortTypes.ts";
-import { sortAlgoritm } from "../utils/sortTypes.ts";
-import { generateTestArray } from "../utils/generateArray.ts";
+import { presortAlgoritm } from "../presort/presorting.js";
+import { test } from "../entities/test.js";
+import type { SortTypes } from "../utils/sortTypes.js";
+import { sortAlgoritm } from "../utils/sortTypes.js";
+import { generateTestArray } from "../utils/generateArray.js";
 
 export function testCustom(sortType: SortTypes) {
   const sizes = [10000, 30000, 50000];

@@ -1,4 +1,4 @@
-import { test } from "../entities/test.ts";
+import { test } from "../entities/test.js";
 
 export function bubbleSort(array: number[]): void {
   let swapped: boolean = true;

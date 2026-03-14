@@ -1,4 +1,4 @@
-import { test } from "../entities/test.ts";
+import { test } from "../entities/test.js";
 
 export function selectionSort(array: number[]): void {
   for (let i = 0; i < array.length; i++) {

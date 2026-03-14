@@ -13,9 +13,7 @@
     "exactOptionalPropertyTypes": true,
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
-    "skipLibCheck": true,
-    "noEmit": true,
-    "allowImportingTsExtensions": true
+    "skipLibCheck": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "results"]
