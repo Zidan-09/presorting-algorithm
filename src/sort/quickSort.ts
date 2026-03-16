@@ -18,12 +18,12 @@ function quickSort(array: number[], lowIdx?: number, highIdx?: number): void {
   test.trocas++;
 
   let leftPointer = lowIdx;
-  let rightPointer = highIdx;
+  let rightPointer = highIdx - 1;
 
   while (leftPointer < rightPointer) {
     while (leftPointer < rightPointer) {
       test.comparacoes++;
-      if (array[leftPointer] <= pivot) {
+      if (array[leftPointer] < pivot) {
         leftPointer++;
       } else {
         break;
@@ -32,7 +32,7 @@ function quickSort(array: number[], lowIdx?: number, highIdx?: number): void {
 
     while (leftPointer < rightPointer) {
       test.comparacoes++;
-      if (array[rightPointer] >= pivot) {
+      if (array[rightPointer] > pivot) {
         rightPointer--;
       } else {
         break;
@@ -42,6 +42,9 @@ function quickSort(array: number[], lowIdx?: number, highIdx?: number): void {
     if (leftPointer < rightPointer) {
       [array[leftPointer], array[rightPointer]] = [array[rightPointer], array[leftPointer]];
       test.trocas++;
+      
+      leftPointer++;
+      rightPointer--;
     }
   }
 

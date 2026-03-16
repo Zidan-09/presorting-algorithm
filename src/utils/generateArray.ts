@@ -1,16 +1,17 @@
-export function generateRandomArray(size: number, min: number = 0, max: number = 1000): number[] {
-  return Array.from({ length: size }, () =>
-    Math.floor(Math.random() * (max - min + 1)) + min
-  );
-}
+import { ArrayTypes } from "./sortTypes.js";
 
-export function generateTestArray(size: number) {
-  return {
-    inverted: Array.from({ length: size }, (_, i) => size - i),
-    zigzag: Array.from({ length: size }, (_, i) => i % 2 === 0 ? i : size - i),
-    turtles: Array.from({ length: size }, (_, i) => i < size / 2 ? i + size : i % 10),
-    duplicates: Array.from({ length: size }, () => Math.floor(Math.random() * 3)),
-    almostSorted: (() => {
+export function generateTestArray(size: number, arrayType: ArrayTypes): number[] {
+  switch (arrayType) {
+    case ArrayTypes.INVERTED:
+      return Array.from({ length: size }, (_, i) => size - i);
+    case ArrayTypes.ZIGZAG:
+      return Array.from({ length: size }, (_, i) => i % 2 === 0 ? i : size - i);
+    case ArrayTypes.TURTLES:
+      return Array.from({ length: size }, (_, i) => i < size / 2 ? i + size : i % 10);
+    case ArrayTypes.DUPLICATES:
+      return Array.from({ length: size }, () => Math.floor(Math.random() * 3));
+    case ArrayTypes.ALMOSTSORTED:
+      return (() => {
       const arr = Array.from({ length: size }, (_, i) => i);
       for (let k = 0; k < size / 100; k++) {
         const i = Math.floor(Math.random() * size);
@@ -18,6 +19,11 @@ export function generateTestArray(size: number) {
         [arr[i], arr[j]] = [arr[j], arr[i]];
       }
       return arr;
-    })()
-  };
+    })();
+
+    default:
+      return Array.from({ length: size }, () =>
+        Math.floor(Math.random() * (1000000 - 1 + 1)) + 1
+      );
+  }
 }

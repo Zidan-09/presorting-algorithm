@@ -1,37 +1,34 @@
 import { presortAlgoritm } from "../presort/presorting.js";
-import { generateRandomArray } from "../utils/generateArray.js";
+import { generateTestArray } from "../utils/generateArray.js";
 import { test } from "../entities/test.js";
-import { sortAlgoritm, type SortTypes } from "../utils/sortTypes.js";
+import { ArrayTypes, sortAlgoritm, type SortTypes } from "../utils/sortTypes.js";
 
-export function finalTest(method: SortTypes) {
-  const sizes = [10000, 30000, 50000];
+export function finalTest(method: SortTypes, arrayType: ArrayTypes, size: number) {
 
-  const warmUpArray = generateRandomArray(1000, 1, 10000);
+  const warmUpArray = generateTestArray(1000, arrayType);
   sortAlgoritm[method]([...warmUpArray]);
   presortAlgoritm([...warmUpArray], method);
 
   console.log(`--- Iniciando Testes para: ${method} ---\n`);
 
-  sizes.forEach(size => {
-    test.reset();
-    const base = generateRandomArray(size, 1, 1000000);
+  test.reset();
+  const base = generateTestArray(size, arrayType);
 
-    const test_1 = [...base];
-    let start = performance.now();
-    sortAlgoritm[method](test_1);
-    let end = performance.now();
+  const test_1 = [...base];
+  let start = performance.now();
+  sortAlgoritm[method](test_1);
+  let end = performance.now();
 
-    console.log(`Sem pré-processamento com ${size} elementos: ${(end - start).toFixed(3)}ms | Comps: ${test.comparacoes} | Swaps: ${test.trocas}`);
-    
-    test.reset();
+  console.log(`Sem pré-processamento com ${size} elementos: ${(end - start).toFixed(3)}ms | Comps: ${test.comparacoes} | Swaps: ${test.trocas}`);
+  
+  test.reset();
 
-    const test_2 = [...base];
-    start = performance.now();
-    presortAlgoritm(test_2, method);
-    end = performance.now();
+  const test_2 = [...base];
+  start = performance.now();
+  presortAlgoritm(test_2, method);
+  end = performance.now();
 
-    console.log(`Com pré-processamento com ${size} elementos: ${(end - start).toFixed(3)}ms | Comps: ${test.comparacoes} | Swaps: ${test.trocas}\n`);
-    
-    test.reset();
-  });
+  console.log(`Com pré-processamento com ${size} elementos: ${(end - start).toFixed(3)}ms | Comps: ${test.comparacoes} | Swaps: ${test.trocas}\n`);
+  
+  test.reset();
 }

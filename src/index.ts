@@ -1,12 +1,24 @@
 import { finalTest } from "./tests/finalTest.js";
-import { testCustom } from "./tests/custom.js";
-import type { SortTypes } from "./utils/sortTypes.js";
+import { ArrayTypes, SortTypes } from "./utils/sortTypes.js";
 
 function main() {
-  const method: SortTypes = "BUBBLE";
+  let method = process.argv[2];
+  let arrayType = process.argv[3];
+  let size = Number(process.argv[4]);
 
-  finalTest(method);
-  testCustom(method);
+  if (!Object.values(SortTypes).includes(method as SortTypes)) {
+    method = SortTypes.BUBBLE;
+  }
+
+  if (!Object.values(ArrayTypes).includes(arrayType as ArrayTypes)) {
+    arrayType = ArrayTypes.RANDOM;
+  }
+
+  if (isNaN(size)) {
+    size = 10000;
+  }
+
+  finalTest(method as SortTypes, arrayType as ArrayTypes, size);
 }
 
 main();
