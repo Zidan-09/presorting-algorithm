@@ -21,11 +21,11 @@ enum ArrayTypes {
   ALMOSTSORTED = "almostsorted"
 }
 
-const sortAlgoritm: Record<SortTypes, (array: number[]) => void> = {
+const sortAlgorithm: Record<SortTypes, (array: number[]) => void> = {
   "bubble": bubbleSort,
   "insertion": insertionSort,
   "merge": mergeSort,
   "quick": quickSort,
   "selection": selectionSort
 }
-export { sortAlgoritm, SortTypes, ArrayTypes }
+export { sortAlgorithm, SortTypes, ArrayTypes }

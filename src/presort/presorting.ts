@@ -1,7 +1,7 @@
 import { test } from "../entities/test.js";
-import { sortAlgoritm, type SortTypes } from "../utils/sortTypes.js";
+import { sortAlgorithm, type SortTypes } from "../utils/sortTypes.js";
 
-function presortAlgoritm(array: number[], sortType: SortTypes): void {
+function presortAlgorithm(array: number[], sortType: SortTypes): void {
   const last = array.length - 1;
   const mid = array.length >> 1;
 
@@ -32,7 +32,7 @@ function presortAlgoritm(array: number[], sortType: SortTypes): void {
     }
   }
 
-  sortAlgoritm[sortType](array);
+  sortAlgorithm[sortType](array);
 }
 
-export { presortAlgoritm };
+export { presortAlgorithm };
