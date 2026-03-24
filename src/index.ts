@@ -1,4 +1,4 @@
-import { finalTest } from "./tests/finalTest.js";
+import { sortService } from "./service/sortService.js";
 import { ArrayTypes, SortTypes } from "./utils/sortTypes.js";
 
 function main() {
@@ -18,7 +18,7 @@ function main() {
     size = 10000;
   }
 
-  finalTest(method as SortTypes, arrayType as ArrayTypes, size);
+  sortService(method as SortTypes, arrayType as ArrayTypes, size);
 }
 
 main();

@@ -2,8 +2,9 @@ import { presortAlgoritm } from "../presort/presorting.js";
 import { generateTestArray } from "../utils/generateArray.js";
 import { test } from "../entities/test.js";
 import { ArrayTypes, sortAlgoritm, type SortTypes } from "../utils/sortTypes.js";
+import { logResult } from "../utils/resultLogger.js";
 
-export function finalTest(method: SortTypes, arrayType: ArrayTypes, size: number) {
+export function sortService(method: SortTypes, arrayType: ArrayTypes, size: number) {
 
   const warmUpArray = generateTestArray(1000, arrayType);
   sortAlgoritm[method]([...warmUpArray]);
@@ -20,6 +21,7 @@ export function finalTest(method: SortTypes, arrayType: ArrayTypes, size: number
   let end = performance.now();
 
   console.log(`Sem pré-processamento com ${size} elementos: ${(end - start).toFixed(3)}ms | Comps: ${test.comparacoes} | Swaps: ${test.trocas}`);
+  logResult(method, arrayType, size, false, `${(end - start).toFixed(3)}ms`, test.comparacoes, test.trocas);
   
   test.reset();
 
@@ -29,6 +31,7 @@ export function finalTest(method: SortTypes, arrayType: ArrayTypes, size: number
   end = performance.now();
 
   console.log(`Com pré-processamento com ${size} elementos: ${(end - start).toFixed(3)}ms | Comps: ${test.comparacoes} | Swaps: ${test.trocas}\n`);
-  
+  logResult(method, arrayType, size, true, `${(end - start).toFixed(3)}ms`, test.comparacoes, test.trocas);
+
   test.reset();
 }
