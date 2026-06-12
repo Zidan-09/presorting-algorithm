@@ -8,6 +8,12 @@ mod service;
 use tipos::{ArrayType, SortType};
 use service::BenchmarkService;
 
+use stats_alloc::StatsAlloc;
+use std::alloc::System;
+
+#[global_allocator]
+pub static GLOBAL: StatsAlloc<System> = StatsAlloc::system();
+
 #[derive(Parser, Debug)]
 #[command(author, version, about = "Benchmark para Artigo de Ordenação")]
 struct Args {
@@ -21,40 +27,51 @@ struct Args {
     sort: SortType,
 }
 
+
 fn main() {
     let args = Args::parse();
 
     println!("==================================================");
-    println!("🧪 INICIANDO EXPERIMENTO CIENTÍFICO");
+    println!("🧪 INICIANDO EXPERIMENTO CIENTÍFICO COMPLETO");
     println!("Tamanho do Vetor: {}", args.size);
     println!("Tipo de Array:    {:?}", args.array);
     println!("Algoritmo:        {:?}", args.sort);
     println!("==================================================");
 
-    let resultado = BenchmarkService::executar_teste(args.size, args.array, args.sort);
+    let res = BenchmarkService::executar_teste(args.size, args.array, args.sort);
 
-    println!("📊 RESULTADOS DO BENCHMARK:");
+    println!("📊 METRICAS COLETADAS:");
     println!("--------------------------------------------------");
     println!("Abordagem 1: Ordenação Pura");
-    println!("  -> Tempo de Execução:             {:?}", resultado.tempo_puro);
-    println!("  -> Status de Validação:           {}", if resultado.ordenacao_pura_valida { "OK ✅" } else { "FALHOU ❌" });
+    println!("  -> Tempo:                         {:?}", res.puro.tempo);
+    println!("  -> Memória Alocada na Heap:       {} bytes", res.puro.memoria_alocada_bytes);
+    if cfg!(target_os = "linux") {
+        println!("  -> Cache Misses:                  {}", res.puro.cache_misses);
+    } else {
+        println!("  -> Cache Misses:                  [Disponível apenas no Linux]");
+    }
+    println!("  -> Validação:                     {}", if res.puro.valido { "OK ✅" } else { "FALHOU ❌" });
+
     println!("--------------------------------------------------");
     println!("Abordagem 2: Com Pré-processamento Simétrico");
-    println!("  -> Tempo do Pré-processamento:    {:?}", resultado.tempo_pre_processamento);
-    println!("  -> Tempo da Ordenação Pós-Pré:    {:?}", resultado.tempo_ordenacao_com_pre);
-    println!("  -> Tempo Total Combinado:         {:?}", resultado.tempo_total_com_pre);
-    println!("  -> Status de Validação:           {}", if resultado.ordenacao_pre_valida { "OK ✅" } else { "FALHOU ❌" });
+    println!("  -> Tempo do Pré-Processamento:   {:?}", res.tempo_so_pre_processamento);
+    println!("  -> Tempo da Ordenação Pós-Pré:    {:?}", res.com_pre.tempo);
+    println!("  -> Tempo Total Combinado:         {:?}", res.tempo_so_pre_processamento + res.com_pre.tempo);
+    println!("  -> Memória Alocada na Heap:       {} bytes", res.com_pre.memoria_alocada_bytes);
+    if cfg!(target_os = "linux") {
+        println!("  -> Cache Misses:                  {}", res.com_pre.cache_misses);
+    }
+    println!("  -> Validação:                     {}", if res.com_pre.valido { "OK ✅" } else { "FALHOU ❌" });
     println!("==================================================");
 
-    let t_puro = resultado.tempo_puro.as_nanos() as f64;
-    let t_com_pre = resultado.tempo_total_com_pre.as_nanos() as f64;
-    
-    if t_com_pre < t_puro {
-        let ganho = ((t_puro - t_com_pre) / t_puro) * 100.0;
-        println!("🚀 O pré-processamento reduziu o tempo total em {:.2}%", ganho);
+    let t_puro = res.puro.tempo.as_nanos() as f64;
+    let t_total_pre = (res.tempo_so_pre_processamento + res.com_pre.tempo).as_nanos() as f64;
+    let diferenca = ((t_puro - t_total_pre) / t_puro) * 100.0;
+
+    if t_total_pre < t_puro {
+        println!("🚀 O algoritmo proposto reduziu o tempo em {:.2}%", diferenca);
     } else {
-        let perda = ((t_com_pre - t_puro) / t_puro) * 100.0;
-        println!("⚠️ O pré-processamento gerou um overhead de {:.2}% neste cenário.", perda);
+        println!("⚠️ O algoritmo proposto aumentou o tempo em {:.2}%", diferenca.abs());
     }
     println!("==================================================");
 }
