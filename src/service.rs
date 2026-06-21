@@ -1,11 +1,13 @@
 use std::time::{Duration, Instant};
 use stats_alloc::Region;
+use std::hint::black_box;
 
 use crate::tipos::{ArrayType, SortType};
 use crate::gerador::generate_test_array;
 use crate::algoritmos::{
     insertion::insertion_sort, bubble::bubble_sort, selection::selection_sort,
     quick::quick_sort, merge::merge_sort, pre_proc::pre_processamento_simetrico,
+    contar_inversoes::contar_inversoes
 };
 
 pub struct MetricasDados {
@@ -19,6 +21,8 @@ pub struct BenchmarkCompletoResult {
     pub puro: MetricasDados,
     pub com_pre: MetricasDados,
     pub tempo_so_pre_processamento: Duration,
+    pub inversoes_iniciais: u64,
+    pub inversoes_pos_pre_processamento: u64
 }
 
 pub struct BenchmarkService;
@@ -29,12 +33,16 @@ impl BenchmarkService {
         let mut vetor_puro = vetor_original.clone();
         let mut vetor_com_pre = vetor_original;
 
+        let inversoes_inicial = contar_inversoes(&vetor_puro);
+
         let regiao_memoria_pura = Region::new(&super::GLOBAL);
         let monitor_cache_puro = MonitorCache::iniciar();
         
         let inicio_puro = Instant::now();
         Self::aplicar_ordenacao(sort_type, &mut vetor_puro);
         let tempo_puro = inicio_puro.elapsed();
+
+        black_box(&vetor_puro);
         
         let cache_puro = monitor_cache_puro.finalizar();
         let memoria_pura = regiao_memoria_pura.change();
@@ -45,12 +53,18 @@ impl BenchmarkService {
         pre_processamento_simetrico(&mut vetor_com_pre);
         let tempo_so_pre = inicio_so_pre.elapsed();
 
+        let depois = contar_inversoes(&vetor_com_pre);
+
+        black_box(&vetor_com_pre);
+
         let regiao_memoria_pre = Region::new(&super::GLOBAL);
         let monitor_cache_pre = MonitorCache::iniciar();
 
         let inicio_sort_pre = Instant::now();
         Self::aplicar_ordenacao(sort_type, &mut vetor_com_pre);
         let tempo_sort_pre = inicio_sort_pre.elapsed();
+
+        black_box(&vetor_com_pre);
 
         let cache_pre = monitor_cache_pre.finalizar();
         let memoria_pre = regiao_memoria_pre.change();
@@ -71,6 +85,8 @@ impl BenchmarkService {
                 valido: pre_valido,
             },
             tempo_so_pre_processamento: tempo_so_pre,
+            inversoes_iniciais: inversoes_inicial,
+            inversoes_pos_pre_processamento: depois
         }
     }
 

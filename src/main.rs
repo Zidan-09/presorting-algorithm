@@ -1,18 +1,7 @@
 use clap::Parser;
 
-mod tipos;
-mod gerador;
-mod algoritmos;
-mod service;
-
-use tipos::{ArrayType, SortType};
-use service::BenchmarkService;
-
-use stats_alloc::StatsAlloc;
-use std::alloc::System;
-
-#[global_allocator]
-pub static GLOBAL: StatsAlloc<System> = StatsAlloc::system();
+use algoritmo::tipos::{ArrayType, SortType};
+use algoritmo::service::BenchmarkService;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about = "Benchmark para Artigo de Ordenação")]
@@ -42,6 +31,8 @@ fn main() {
 
     println!("📊 METRICAS COLETADAS:");
     println!("--------------------------------------------------");
+    println!("  -> Inversões Iniciais:            {}", res.inversoes_iniciais);
+    println!("--------------------------------------------------");
     println!("Abordagem 1: Ordenação Pura");
     println!("  -> Tempo:                         {:?}", res.puro.tempo);
     println!("  -> Memória Alocada na Heap:       {} bytes", res.puro.memoria_alocada_bytes);
@@ -61,6 +52,7 @@ fn main() {
     if cfg!(target_os = "linux") {
         println!("  -> Cache Misses:                  {}", res.com_pre.cache_misses);
     }
+    println!("  -> Inversões Pos-Pré:             {}", res.inversoes_pos_pre_processamento);
     println!("  -> Validação:                     {}", if res.com_pre.valido { "OK ✅" } else { "FALHOU ❌" });
     println!("==================================================");
 
