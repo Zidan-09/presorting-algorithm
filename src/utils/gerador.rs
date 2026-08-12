@@ -1,4 +1,4 @@
-use crate::tipos::ArrayType;
+use crate::utils::tipos::ArrayType;
 use rand::Rng;
 
 pub fn generate_test_array(size: usize, array_type: ArrayType) -> Vec<i32> {

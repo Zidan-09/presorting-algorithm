@@ -1,7 +1,7 @@
 use std::time::{Duration, Instant};
 use std::hint::black_box;
-use crate::tipos::SortType;
-use crate::algoritmos::{
+use crate::utils::tipos::SortType;
+use crate::core::sort::{
     insertion::insertion_sort, bubble::bubble_sort, selection::selection_sort,
     quick::quick_sort, merge::merge_sort, pre_proc::pre_processamento_simetrico,
 };

@@ -1,7 +1,6 @@
 use criterion::{black_box, criterion_group, criterion_main, BenchmarkId, Criterion, BatchSize};
-use algoritmo::servicebench::BenchmarkServiceBench;
-use algoritmo::gerador::generate_test_array;
-use algoritmo::tipos::{ArrayType, SortType};
+use algoritmo::services::BenchmarkServiceBench;
+use algoritmo::utils::{generate_test_array, ArrayType, SortType};
 
 fn executar_benchmarks_tcc(c: &mut Criterion) {
     let mut group = c.benchmark_group("Experimentos_Ordenacao");

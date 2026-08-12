@@ -1,8 +1,6 @@
-pub mod tipos;
-pub mod gerador;
-pub mod algoritmos;
-pub mod service;
-pub mod servicebench;
+pub mod core;
+pub mod services;
+pub mod utils;
 
 use stats_alloc::StatsAlloc;
 use std::alloc::System;

@@ -1,7 +1,7 @@
 use clap::Parser;
 
-use algoritmo::tipos::{ArrayType, SortType};
-use algoritmo::service::BenchmarkService;
+use algoritmo::utils::{ArrayType, SortType};
+use algoritmo::services::BenchmarkService;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about = "Benchmark para Artigo de Ordenação")]

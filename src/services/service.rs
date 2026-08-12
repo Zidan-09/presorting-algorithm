@@ -2,9 +2,9 @@ use std::time::{Duration, Instant};
 use stats_alloc::Region;
 use std::hint::black_box;
 
-use crate::tipos::{ArrayType, SortType};
-use crate::gerador::generate_test_array;
-use crate::algoritmos::{
+use crate::utils::tipos::{ArrayType, SortType};
+use crate::utils::gerador::generate_test_array;
+use crate::core::sort::{
     insertion::insertion_sort, bubble::bubble_sort, selection::selection_sort,
     quick::quick_sort, merge::merge_sort, pre_proc::pre_processamento_simetrico,
     contar_inversoes::contar_inversoes
@@ -35,7 +35,7 @@ impl BenchmarkService {
 
         let inversoes_inicial = contar_inversoes(&vetor_puro);
 
-        let regiao_memoria_pura = Region::new(&super::GLOBAL);
+        let regiao_memoria_pura = Region::new(&crate::GLOBAL);
         let monitor_cache_puro = MonitorCache::iniciar();
         
         let inicio_puro = Instant::now();
@@ -57,7 +57,7 @@ impl BenchmarkService {
 
         black_box(&vetor_com_pre);
 
-        let regiao_memoria_pre = Region::new(&super::GLOBAL);
+        let regiao_memoria_pre = Region::new(&crate::GLOBAL);
         let monitor_cache_pre = MonitorCache::iniciar();
 
         let inicio_sort_pre = Instant::now();
