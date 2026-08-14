@@ -20,6 +20,8 @@ dependencies = [
  "perf-event",
  "rand",
  "rand_chacha",
+ "serde",
+ "serde_json",
  "stats_alloc",
 ]
 
