@@ -1,0 +1,40 @@
+==================================================
+­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
+Tamanho do Vetor: 5000
+Tipo de Array:    Turtles
+Algoritmo:        Quick
+Seed:             42 (reproduz├¡vel)
+Repeti├º├Áes:       1
+==================================================
+­ƒôè METRICAS COLETADAS (m├®dia de 1 repeti├º├Áes):
+--------------------------------------------------
+  -> Invers├Áes Iniciais:            7650625
+  -> Invers├Áes P├│s-Pr├®:             4535625
+--------------------------------------------------
+Abordagem 1: Ordena├º├úo Pura (somente o sort)
+  -> Tempo m├®dio:                   647.5┬Ás
+  -> Tempo mediano:                 647.5┬Ás
+  -> Mem├│ria Alocada na Heap:       0 bytes
+  -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
+  -> Valida├º├úo:                     OK Ô£à
+--------------------------------------------------
+Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
+  -> Tempo do Pr├®-Processamento:   2.6┬Ás
+  -> Tempo Total (pr├® + sort):     202.3┬Ás
+  -> Tempo mediano:                202.3┬Ás
+  -> Mem├│ria Alocada na Heap:      0 bytes
+  -> Valida├º├úo:                     OK Ô£à
+==================================================
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 68.76%
+==================================================
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=1):
+rep	puro_ns	com_pre_ns	pre_ns
+1	647500	202300	2600
+==================================================
+CSV_PURO,647500
+CSV_COM_PRE,202300
+CSV_PRE_SOZINHO,2600
+CSV_MEMORIA_PURO,0
+CSV_MEMORIA_COM_PRE,0
+CSV_INVERSOES_INICIAIS,7650625
+CSV_INVERSOES_POS_PRE,4535625

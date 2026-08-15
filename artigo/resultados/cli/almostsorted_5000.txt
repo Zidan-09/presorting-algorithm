@@ -1,0 +1,40 @@
+==================================================
+­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
+Tamanho do Vetor: 5000
+Tipo de Array:    AlmostSorted
+Algoritmo:        Quick
+Seed:             42 (reproduz├¡vel)
+Repeti├º├Áes:       1
+==================================================
+­ƒôè METRICAS COLETADAS (m├®dia de 1 repeti├º├Áes):
+--------------------------------------------------
+  -> Invers├Áes Iniciais:            156506
+  -> Invers├Áes P├│s-Pr├®:             94435
+--------------------------------------------------
+Abordagem 1: Ordena├º├úo Pura (somente o sort)
+  -> Tempo m├®dio:                   88.8┬Ás
+  -> Tempo mediano:                 88.8┬Ás
+  -> Mem├│ria Alocada na Heap:       0 bytes
+  -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
+  -> Valida├º├úo:                     OK Ô£à
+--------------------------------------------------
+Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
+  -> Tempo do Pr├®-Processamento:   3.6┬Ás
+  -> Tempo Total (pr├® + sort):     104.6┬Ás
+  -> Tempo mediano:                104.6┬Ás
+  -> Mem├│ria Alocada na Heap:      0 bytes
+  -> Valida├º├úo:                     OK Ô£à
+==================================================
+ÔÜá´©Å O algoritmo proposto aumentou o tempo em 17.79%
+==================================================
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=1):
+rep	puro_ns	com_pre_ns	pre_ns
+1	88800	104600	3600
+==================================================
+CSV_PURO,88800
+CSV_COM_PRE,104600
+CSV_PRE_SOZINHO,3600
+CSV_MEMORIA_PURO,0
+CSV_MEMORIA_COM_PRE,0
+CSV_INVERSOES_INICIAIS,156506
+CSV_INVERSOES_POS_PRE,94435

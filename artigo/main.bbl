@@ -1,0 +1,51 @@
+\begin{thebibliography}{}
+
+\bibitem[Cormen et~al. 2022]{cormen_introduction_2022}
+Cormen, T.~H., Leiserson, C.~E., Rivest, R.~L., and Stein, C. (2022).
+\newblock {\em Introduction to Algorithms}.
+\newblock MIT Press, 4th edition.
+
+\bibitem[Estivill-Castro and Wood 1992]{estivill-castro_survey_1992}
+Estivill-Castro, V. and Wood, D. (1992).
+\newblock A survey of adaptive sorting algorithms.
+\newblock {\em ACM Computing Surveys}, 24(4):441--476.
+
+\bibitem[Gil 2019]{gil_metodos_2019}
+Gil, A.~C. (2019).
+\newblock {\em Métodos e técnicas de pesquisa social}.
+\newblock Editora Atlas Ltda.
+
+\bibitem[Hwang et~al. 2000]{hwang_presorting_2000}
+Hwang, H.-K., Yang, B.-Y., and Yeh, Y.-N. (2000).
+\newblock Presorting algorithms: {An} average-case point of view.
+\newblock {\em Theoretical Computer Science}, 242(1-2):29--40.
+
+\bibitem[Knuth 1973]{knuth_art_1973}
+Knuth, D.~E. (1973).
+\newblock {\em The Art of Computer Programming, Volume 3: Sorting and
+  Searching}.
+\newblock Addison-Wesley, Reading, MA.
+
+\bibitem[Mannila 1984]{mannila_measures_1984}
+Mannila, H. (1984).
+\newblock Measures of presortedness and optimal sorting algorithms: {Extended}
+  abstract.
+\newblock In Goos, G., Hartmanis, J., Barstow, D., Brauer, W., Brinch~Hansen,
+  P., Gries, D., Luckham, D., Moler, C., Pnueli, A., Seegmüller, G., Stoer,
+  J., Wirth, N., and Paredaens, J., editors, {\em Automata, {Languages} and
+  {Programming}}, volume 172, pages 324--336. Springer Berlin Heidelberg,
+  Berlin, Heidelberg.
+\newblock Series Editors: \_:n43 Series Title: Lecture Notes in Computer
+  Science.
+
+\bibitem[Sampieri et~al. 2021]{sampieri_metodologia_2021}
+Sampieri, R.~H., Collado, C.~F., and Lucio, M. d. P.~B. (2021).
+\newblock {\em Metodologia de pesquisa}.
+\newblock Penso.
+
+\bibitem[Sedgewick and Wayne 2011]{sedgewick_algorithms_2011}
+Sedgewick, R. and Wayne, K.~D. (2011).
+\newblock {\em Algorithms}.
+\newblock Addison-Wesley, Upper Saddle River, 4th edition.
+
+\end{thebibliography}

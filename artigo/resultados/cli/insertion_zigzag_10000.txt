@@ -1,0 +1,44 @@
+==================================================
+­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
+Tamanho do Vetor: 10000
+Tipo de Array:    Zigzag
+Algoritmo:        Insertion
+Seed:             42 (reproduz├¡vel)
+Repeti├º├Áes:       5
+==================================================
+­ƒôè METRICAS COLETADAS (m├®dia de 5 repeti├º├Áes):
+--------------------------------------------------
+  -> Invers├Áes Iniciais:            24997500
+  -> Invers├Áes P├│s-Pr├®:             2501
+--------------------------------------------------
+Abordagem 1: Ordena├º├úo Pura (somente o sort)
+  -> Tempo m├®dio:                   10.24868ms
+  -> Tempo mediano:                 10.036ms
+  -> Mem├│ria Alocada na Heap:       0 bytes
+  -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
+  -> Valida├º├úo:                     OK Ô£à
+--------------------------------------------------
+Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
+  -> Tempo do Pr├®-Processamento:   4.96┬Ás
+  -> Tempo Total (pr├® + sort):     10.08┬Ás
+  -> Tempo mediano:                10┬Ás
+  -> Mem├│ria Alocada na Heap:      0 bytes
+  -> Valida├º├úo:                     OK Ô£à
+==================================================
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 99.90%
+==================================================
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=5):
+rep	puro_ns	com_pre_ns	pre_ns
+1	10686800	10300	5100
+2	10036000	9900	4900
+3	10024000	10000	4900
+4	10020600	9900	4800
+5	10476000	10300	5100
+==================================================
+CSV_PURO,10686800,10036000,10024000,10020600,10476000
+CSV_COM_PRE,10300,9900,10000,9900,10300
+CSV_PRE_SOZINHO,5100,4900,4900,4800,5100
+CSV_MEMORIA_PURO,0
+CSV_MEMORIA_COM_PRE,0
+CSV_INVERSOES_INICIAIS,24997500
+CSV_INVERSOES_POS_PRE,2501

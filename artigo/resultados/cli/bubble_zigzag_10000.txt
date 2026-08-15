@@ -1,0 +1,44 @@
+==================================================
+­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
+Tamanho do Vetor: 10000
+Tipo de Array:    Zigzag
+Algoritmo:        Bubble
+Seed:             42 (reproduz├¡vel)
+Repeti├º├Áes:       5
+==================================================
+­ƒôè METRICAS COLETADAS (m├®dia de 5 repeti├º├Áes):
+--------------------------------------------------
+  -> Invers├Áes Iniciais:            24997500
+  -> Invers├Áes P├│s-Pr├®:             2501
+--------------------------------------------------
+Abordagem 1: Ordena├º├úo Pura (somente o sort)
+  -> Tempo m├®dio:                   17.827ms
+  -> Tempo mediano:                 17.7986ms
+  -> Mem├│ria Alocada na Heap:       0 bytes
+  -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
+  -> Valida├º├úo:                     OK Ô£à
+--------------------------------------------------
+Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
+  -> Tempo do Pr├®-Processamento:   4.94┬Ás
+  -> Tempo Total (pr├® + sort):     15.78┬Ás
+  -> Tempo mediano:                16.4┬Ás
+  -> Mem├│ria Alocada na Heap:      0 bytes
+  -> Valida├º├úo:                     OK Ô£à
+==================================================
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 99.91%
+==================================================
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=5):
+rep	puro_ns	com_pre_ns	pre_ns
+1	18247500	17100	5200
+2	17770700	16400	4800
+3	17798600	15000	5100
+4	17486200	14000	4800
+5	17832000	16400	4800
+==================================================
+CSV_PURO,18247500,17770700,17798600,17486200,17832000
+CSV_COM_PRE,17100,16400,15000,14000,16400
+CSV_PRE_SOZINHO,5200,4800,5100,4800,4800
+CSV_MEMORIA_PURO,0
+CSV_MEMORIA_COM_PRE,0
+CSV_INVERSOES_INICIAIS,24997500
+CSV_INVERSOES_POS_PRE,2501

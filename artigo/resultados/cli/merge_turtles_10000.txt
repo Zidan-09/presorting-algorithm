@@ -1,0 +1,44 @@
+==================================================
+­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
+Tamanho do Vetor: 10000
+Tipo de Array:    Turtles
+Algoritmo:        Merge
+Seed:             42 (reproduz├¡vel)
+Repeti├º├Áes:       5
+==================================================
+­ƒôè METRICAS COLETADAS (m├®dia de 5 repeti├º├Áes):
+--------------------------------------------------
+  -> Invers├Áes Iniciais:            30613750
+  -> Invers├Áes P├│s-Pr├®:             18133750
+--------------------------------------------------
+Abordagem 1: Ordena├º├úo Pura (somente o sort)
+  -> Tempo m├®dio:                   124.84┬Ás
+  -> Tempo mediano:                 127.9┬Ás
+  -> Mem├│ria Alocada na Heap:       40000 bytes
+  -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
+  -> Valida├º├úo:                     OK Ô£à
+--------------------------------------------------
+Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
+  -> Tempo do Pr├®-Processamento:   4.96┬Ás
+  -> Tempo Total (pr├® + sort):     139.54┬Ás
+  -> Tempo mediano:                138.8┬Ás
+  -> Mem├│ria Alocada na Heap:      40000 bytes
+  -> Valida├º├úo:                     OK Ô£à
+==================================================
+ÔÜá´©Å O algoritmo proposto aumentou o tempo em 11.78%
+==================================================
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=5):
+rep	puro_ns	com_pre_ns	pre_ns
+1	130100	136100	4600
+2	119500	145700	6000
+3	129600	138800	4500
+4	117100	143800	5100
+5	127900	133300	4600
+==================================================
+CSV_PURO,130100,119500,129600,117100,127900
+CSV_COM_PRE,136100,145700,138800,143800,133300
+CSV_PRE_SOZINHO,4600,6000,4500,5100,4600
+CSV_MEMORIA_PURO,40000
+CSV_MEMORIA_COM_PRE,40000
+CSV_INVERSOES_INICIAIS,30613750
+CSV_INVERSOES_POS_PRE,18133750

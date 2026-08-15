@@ -1,0 +1,44 @@
+==================================================
+­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
+Tamanho do Vetor: 10000
+Tipo de Array:    Turtles
+Algoritmo:        Bubble
+Seed:             42 (reproduz├¡vel)
+Repeti├º├Áes:       5
+==================================================
+­ƒôè METRICAS COLETADAS (m├®dia de 5 repeti├º├Áes):
+--------------------------------------------------
+  -> Invers├Áes Iniciais:            30613750
+  -> Invers├Áes P├│s-Pr├®:             18133750
+--------------------------------------------------
+Abordagem 1: Ordena├º├úo Pura (somente o sort)
+  -> Tempo m├®dio:                   18.46832ms
+  -> Tempo mediano:                 18.2475ms
+  -> Mem├│ria Alocada na Heap:       0 bytes
+  -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
+  -> Valida├º├úo:                     OK Ô£à
+--------------------------------------------------
+Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
+  -> Tempo do Pr├®-Processamento:   4.72┬Ás
+  -> Tempo Total (pr├® + sort):     13.15642ms
+  -> Tempo mediano:                13.0921ms
+  -> Mem├│ria Alocada na Heap:      0 bytes
+  -> Valida├º├úo:                     OK Ô£à
+==================================================
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 28.76%
+==================================================
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=5):
+rep	puro_ns	com_pre_ns	pre_ns
+1	17850400	13092100	4800
+2	18247500	13520800	4600
+3	18759800	13232000	5200
+4	19561700	12978500	4500
+5	17922200	12958700	4500
+==================================================
+CSV_PURO,17850400,18247500,18759800,19561700,17922200
+CSV_COM_PRE,13092100,13520800,13232000,12978500,12958700
+CSV_PRE_SOZINHO,4800,4600,5200,4500,4500
+CSV_MEMORIA_PURO,0
+CSV_MEMORIA_COM_PRE,0
+CSV_INVERSOES_INICIAIS,30613750
+CSV_INVERSOES_POS_PRE,18133750
