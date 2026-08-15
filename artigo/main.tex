@@ -85,16 +85,16 @@ A eficiência prática dos algoritmos de ordenação tradicionais frequentemente
 
 \begin{figure}[htbp]
   \centering
-  \begin{tikzpicture}[scale=3]
-    \node[draw, minimum size=2cm] (0) at (0,0) {3};
-    \node[draw, minimum size=2cm] (1) at (1,0) {1};
-    \node[draw, minimum size=2cm] (2) at (2,0) {4};
-    \node[draw, minimum size=2cm] (3) at (3,0) {2};
+  \begin{tikzpicture}[scale=1.7]
+    \node[draw, minimum size=1.5cm] (0) at (0,0) {3};
+    \node[draw, minimum size=1.5cm] (1) at (1,0) {1};
+    \node[draw, minimum size=1.5cm] (2) at (2,0) {4};
+    \node[draw, minimum size=1.5cm] (3) at (3,0) {2};
 
-    \node[below=1.5cm of 0, font=\small] {$i=0$};
-    \node[below=1.5cm of 1, font=\small] {$i=1$};
-    \node[below=1.5cm of 2, font=\small] {$i=2$};
-    \node[below=1.5cm of 3, font=\small] {$i=3$};
+    \node[below=1cm of 0, font=\small] {$i=0$};
+    \node[below=1cm of 1, font=\small] {$i=1$};
+    \node[below=1cm of 2, font=\small] {$i=2$};
+    \node[below=1cm of 3, font=\small] {$i=3$};
 
     \draw[blue, thick, ->] (0.north) to[out=45,in=135] node[above, font=\small] {Inversão (3,1)} (1.north);
     \draw[blue, thick, ->] (0.north) to[out=60,in=120] node[above=0.3cm, font=\small] {Inversão (3,2)} (3.north);
@@ -106,20 +106,19 @@ A eficiência prática dos algoritmos de ordenação tradicionais frequentemente
 
 A relação entre o volume de inversões $I$ e a complexidade de execução dá origem à propriedade de \emph{adaptabilidade} em algoritmos de ordenação \cite{estivill-castro_survey_1992}. Um algoritmo é considerado adaptativo quando sua complexidade temporal melhora sensivelmente na presença de um ordenamento prévio parcial na entrada \cite{mannila_measures_1984}. Um exemplo clássico é a ordenação por inserção (\emph{insertion sort}), cuja execução consome $O(n + I)$ operações. Em um vetor estritamente ordenado ($I = 0$), o algoritmo atinge tempo linear $O(n)$, enquanto, no pior caso ($I = O(n^2)$), degrada para tempo quadrático \cite{cormen_introduction_2022, knuth_art_1973}.
 
-\raggedbottom
 \subsection{Algoritmos Avaliados}
 
-Para avaliar o impacto do pré-processamento simétrico sobre diferentes paradigmas de ordenação, selecionou-se um conjunto representativo de algoritmos:
+Para avaliar o impacto do pré-processamento simétrico sobre diferentes paradigmas de ordenação, selecionou-se um conjunto representativo de algoritmos com características distintas quanto à complexidade temporal, adaptabilidade e sensibilidade à ordem inicial dos elementos. A seleção foi realizada de modo a contemplar tanto algoritmos cuja eficiência pode ser diretamente influenciada pela quantidade de desordem presente na entrada quanto métodos cujo comportamento é menos dependente dessa propriedade.
 
-No grupo dos algoritmos \emph{quadráticos} ($O(n^2)$ no pior caso), incluem-se o \emph{bubblesort} e o \emph{insertion sort} (ambos adaptativos) e o \emph{selection sort} (puramente não adaptativo, realizando invariavelmente $\frac{n(n-1)}{2}$ comparações).
+No grupo dos algoritmos de complexidade quadrática, com complexidade temporal de $O(n^2)$ no pior caso, foram avaliados o \emph{bubble sort}, o \emph{insertion sort} e o \emph{selection sort}. Os dois primeiros apresentam comportamento adaptativo, uma vez que podem reduzir o número de operações realizadas quando a entrada apresenta algum grau de ordenamento prévio. Essa característica os torna particularmente relevantes para a investigação proposta, pois a redução do número de inversões pode produzir efeitos diretos sobre seu comportamento durante a ordenação. Em contrapartida, o \emph{selection sort} apresenta comportamento essencialmente não adaptativo em relação à disposição inicial dos elementos, realizando, independentemente da configuração da entrada, $\frac{n(n-1)}{2}$ comparações para um vetor de tamanho $n$. Sua inclusão permite, portanto, estabelecer um contraste entre algoritmos potencialmente sensíveis ao pré-processamento e um algoritmo cujo número de comparações permanece invariável.
 
-No grupo dos algoritmos de complexidade \emph{quasilinear} ($O(n \log n)$), avaliam-se o \emph{merge sort} e o \emph{quicksort}. Na implementação avaliada do \emph{quicksort}, emprega-se a técnica da \emph{mediana de três} para atenuar o impacto de vetores já ordenados ou invertidos sobre a partição do algoritmo.
+No grupo dos algoritmos de complexidade quasilinear, com complexidade temporal média de $O(n \log n)$, foram avaliados o \emph{merge sort} e o \emph{quicksort}. A inclusão desses métodos permite verificar se os efeitos observados nos algoritmos quadráticos permanecem relevantes quando o custo assintótico da ordenação é inferior. Dessa forma, o experimento não se restringe a algoritmos diretamente relacionados à contagem de inversões, permitindo analisar também a influência do pré-processamento em métodos cuja estratégia de ordenação apresenta características distintas.
+
+Assim, o conjunto avaliado contempla três dimensões relevantes para a análise experimental: algoritmos quadráticos adaptativos (\emph{bubble sort} e \emph{insertion sort}), um algoritmo quadrático não adaptativo (\emph{selection sort}) e algoritmos quasilineares baseados em estratégias distintas de ordenação (\emph{merge sort} e \emph{quicksort}). Essa composição permite verificar não apenas se o pré-processamento simétrico reduz a quantidade de inversões da entrada, mas também em que medida essa redução se converte em ganhos de desempenho para algoritmos com diferentes graus de dependência em relação à ordem inicial dos dados.
 
 \subsection{Pré-processamento Simétrico e Formalização}
 
 O pré-processamento simétrico proposto (Representado formalmente no Algoritmo~\ref{alg:preproc}) atua como uma etapa preparatória de varredura única sobre o conjunto de dados, projetado para rearranjar a estrutura global do vetor antes da execução do algoritmo de ordenação principal. O algoritmo percorre a metade esquerda do vetor $a$ de tamanho $n$, identificando para cada índice $i$ a sua posição simétrica correspondente à direita, dada por $j = n - 1 - i$. Quando se detecta que $a[i] > a[j]$, efetua-se a troca direta dos elementos. Adicionalmente, para suavizar descontinuidades locais decorrentes dessa troca simétrica, aplicam-se duas correções adjacentes complementares: uma à esquerda entre $a[i]$ e $a[i+1]$ (se $a[i] > a[i+1]$), e outra à direita entre $a[j]$ e $a[j-1]$ (se $a[j] < a[j-1]$), desde que os índices adjacentes sejam válidos.
-
-A principal vantagem teórica deste pré-processamento reside na sua estrita eficiência computacional: executa exatamente uma passada sobre a entrada, incorrendo em uma complexidade temporal rigorosamente linear $O(n)$ em termos de comparações e trocas, enquanto mantém consumo de memória extra constante $O(1)$. Por operar diretamente sobre o vetor original sem requerer alocação dinâmica de estruturas auxiliares, a abordagem preserva a localidade de referência e minimiza o overhead de execução, tornando-a especialmente adequada como etapa preliminar para algoritmos adaptativos. Em termos de arquitetura de hardware, essa varredura sequencial favorece a preditividade do pré-carregamento em memória cache e reduz falhas de página. Essa reestruturação inicial redistribui os elementos de maior magnitude e atenua a variância do tempo de execução, garantindo um comportamento mais previsível antes do disparo da etapa principal de ordenação.
 
 \begin{algorithm}[htbp]
 \caption{Pré-processamento Simétrico para Redução de Inversões}
@@ -161,6 +160,8 @@ $meio \gets \lfloor n/2 \rfloor$\;
 }
 
 \end{algorithm}
+
+A principal vantagem teórica deste pré-processamento reside na sua estrita eficiência computacional: executa exatamente uma passada sobre a entrada, incorrendo em uma complexidade temporal rigorosamente linear $O(n)$ em termos de comparações e trocas, enquanto mantém consumo de memória extra constante $O(1)$. Por operar diretamente sobre o vetor original sem requerer alocação dinâmica de estruturas auxiliares, a abordagem preserva a localidade de referência e minimiza o overhead de execução, tornando-a especialmente adequada como etapa preliminar para algoritmos adaptativos. Em termos de arquitetura de hardware, essa varredura sequencial favorece a preditividade do pré-carregamento em memória cache e reduz falhas de página. Essa reestruturação inicial redistribui os elementos de maior magnitude e atenua a variância do tempo de execução, garantindo um comportamento mais previsível antes do disparo da etapa principal de ordenação.
 
 \section{Metodologia}\label{sec:met}
 
@@ -244,7 +245,7 @@ A Figura~\ref{fig:inversoespos} ilustra a variação das inversões observadas n
     },
     xtick=data,
     ymajorgrids,
-    width=0.95\textwidth, height=6.0cm,
+    width=0.95\textwidth, height=6cm,
     ylabel={Número de inversões (log)},
     x tick label style={font=\footnotesize, rotate=20, anchor=east},
     legend style={
