@@ -385,7 +385,13 @@ coordinates {
 
 \subsection{Tempo Total de Ordenação e Análise de Localidade de Caches}
 
-A Figura~\ref{fig:tempos} compara o tempo médio \emph{puro} e \emph{com pré-processamento} para os algoritmos avaliados sob vetores de 10.000 elementos.
+A avaliação do tempo total de execução revela uma acentuada dicotomia no impacto do pré-processamento, cujo êxito está diretamente correlacionado à complexidade nativa e à adaptabilidade estrutural dos métodos avaliados. Nos algoritmos adaptativos de classe quadrática, notadamente o \emph{InsertionSort} e o \emph{BubbleSort}, a drástica eliminação prévia das inversões resulta em ganhos substanciais de desempenho (variando entre $30\%$ e $99,9\%$). Esse comportamento é justificado pela matemática do algoritmo: o modesto custo linear da varredura simétrica ($\approx 1{,}2\text{ ns/elemento}$) é vastamente amortizado pela supressão das operações de trocas locais, altamente custosas na ordem $O(n^2)$.
+
+Por outro lado, métodos com complexidade estrutural inerente de $O(n \log n)$, a exemplo do \emph{Quicksort} operando sobre vetores puramente aleatórios, exibem uma leve degradação de desempenho na abordagem híbrida. Embora a etapa simétrica efetivamente reduza o número absoluto de inversões, esse ganho teórico não se converte em aceleração prática, uma vez que a divisão e conquista já lida de forma otimizada com a desordem inicial. A principal justificativa arquitetural para esse \emph{overhead} reside na localidade espacial de caches. 
+
+Ao acessar e manipular simultaneamente posições nas duas extremidades do vetor, o pré-processamento simétrico impõe um padrão de acesso bifronte à memória principal. Esse comportamento diverge da varredura sequencial tradicional, o que reduz a eficácia dos mecanismos de pré-busca (\emph{prefetching}) de hardware e introduz latências adicionais decorrentes de possíveis \emph{cache misses} \cite{patterson_computer_2012}. Consequentemente, em cenários onde o ganho proporcionado pela redução de inversões é marginal, os custos arquiteturais de acesso à memória superam os benefícios lógicos da etapa. 
+
+Toda essa dinâmica — o contraste entre o expressivo aproveitamento lógicos dos métodos quadráticos e a limitação de \emph{hardware} nos algoritmos $O(n \log n)$ — encontra-se visualmente consolidada na Figura~\ref{fig:tempos}, que detalha o tempo médio de execução puro contraposto ao cenário com pré-processamento para todos os perfis de desordem sob $n=10.000$.
 
 \begin{figure}[!ht]
 \centering
@@ -456,10 +462,6 @@ A Figura~\ref{fig:tempos} compara o tempo médio \emph{puro} e \emph{com pré-pr
 \caption{Comparação temporal entre a ordenação pura e com pré-processamento simétrico ($n=10.000$).}
 \label{fig:tempos}
 \end{figure}
-
-Nos algoritmos adaptativos quadráticos (InsertionSort e BubbleSort), a redução drástica das inversões resulta em ganhos substanciais de desempenho ($30\%$ a $99,9\%$), uma vez que o custo linear do pré-processamento ($\approx 1{,}2\text{ ns/elemento}$) é largamente amortizado pela supressão das custosas trocas locais $O(n^2)$.
-
-Por outro lado, a análise dos algoritmos de complexidade $O(n \log n)$, como o Quicksort em vetores puramente aleatórios, revela uma ligeira perda de desempenho na abordagem híbrida. Embora o número de inversões seja reduzido pelo pré-processamento, essa redução não necessariamente se traduz em ganho de desempenho quando a ordenação já apresenta comportamento favorável. Uma possível explicação para a perda observada está relacionada ao padrão de acesso à memória introduzido pelo pré-processamento. Ao acessar simultaneamente posições próximas às duas extremidades do vetor, a operação simétrica apresenta um padrão de acesso distinto da varredura sequencial convencional, o que pode reduzir os benefícios de mecanismos de pré-busca de hardware e introduzir custos adicionais de acesso à memória \cite{patterson_computer_2012}. Em algoritmos como o Quicksort, nos quais o ganho proporcionado pela redução de inversões pode ser pequeno em entradas aleatórias, esse custo adicional pode superar os benefícios obtidos pelo pré-processamento.
 
 \section{Considerações Finais}
 
