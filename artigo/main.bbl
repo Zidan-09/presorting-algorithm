@@ -5,10 +5,19 @@ Cormen, T.~H., Leiserson, C.~E., Rivest, R.~L., and Stein, C. (2022).
 \newblock {\em Introduction to Algorithms}.
 \newblock MIT Press, 4th edition.
 
+\bibitem[Drepper 2007]{drepper_what_2007}
+Drepper, U. (2007).
+\newblock What {Every} {Programmer} {Should} {Know} {About} {Memory}.
+
 \bibitem[Estivill-Castro and Wood 1992]{estivill-castro_survey_1992}
 Estivill-Castro, V. and Wood, D. (1992).
 \newblock A survey of adaptive sorting algorithms.
 \newblock {\em ACM Computing Surveys}, 24(4):441--476.
+
+\bibitem[Fenwick 1994]{Fenwick1994AND}
+Fenwick, P.~M. (1994).
+\newblock A new data structure for cumulative frequency tables.
+\newblock {\em Software: Practice and Experience}, 24.
 
 \bibitem[Gil 2019]{gil_metodos_2019}
 Gil, A.~C. (2019).
@@ -26,17 +35,35 @@ Knuth, D.~E. (1973).
   Searching}.
 \newblock Addison-Wesley, Reading, MA.
 
+\bibitem[LaMarca and Ladner 1999]{lamarca_influence_1999}
+LaMarca, A. and Ladner, R.~E. (1999).
+\newblock The {Influence} of {Caches} on the {Performance} of {Sorting}.
+\newblock {\em Journal of Algorithms}, 31(1):66--104.
+
 \bibitem[Mannila 1984]{mannila_measures_1984}
 Mannila, H. (1984).
-\newblock Measures of presortedness and optimal sorting algorithms: {Extended}
+\newblock Measures of presortedness and optimal sorting algorithms: Extended
   abstract.
 \newblock In Goos, G., Hartmanis, J., Barstow, D., Brauer, W., Brinch~Hansen,
-  P., Gries, D., Luckham, D., Moler, C., Pnueli, A., Seegmüller, G., Stoer,
-  J., Wirth, N., and Paredaens, J., editors, {\em Automata, {Languages} and
-  {Programming}}, volume 172, pages 324--336. Springer Berlin Heidelberg,
-  Berlin, Heidelberg.
-\newblock Series Editors: \_:n43 Series Title: Lecture Notes in Computer
-  Science.
+  P., Gries, D., Luckham, D., Moler, C., Pnueli, A., Seegm{\"u}ller, G., Stoer,
+  J., Wirth, N., and Paredaens, J., editors, {\em Automata, Languages and
+  Programming}, volume 172 of {\em Lecture Notes in Computer Science}, pages
+  324--336. Springer Berlin Heidelberg, Berlin, Heidelberg.
+
+\bibitem[Nascimento 2026]{nascimento_repositorio_2026}
+Nascimento, S. d.~P. (2026).
+\newblock Presorting algorithm.
+\newblock Disponível em:
+  \url{https://github.com/Zidan-09/presorting-algorithm}.
+\newblock Repositório de código-fonte e dados experimentais.
+
+\bibitem[Patterson and Hennessy 2012]{patterson_computer_2012}
+Patterson, D.~A. and Hennessy, J.~L. (2012).
+\newblock {\em Computer organization and design: the hardware/software
+  interface}.
+\newblock The {Morgan} {Kaufmann} series in computer architecture and design.
+  Elsevier/Morgan Kaufmann, Amsterdam Boston Heidelberg, revised fourth edition
+  edition.
 
 \bibitem[Sampieri et~al. 2021]{sampieri_metodologia_2021}
 Sampieri, R.~H., Collado, C.~F., and Lucio, M. d. P.~B. (2021).
@@ -47,5 +74,11 @@ Sampieri, R.~H., Collado, C.~F., and Lucio, M. d. P.~B. (2021).
 Sedgewick, R. and Wayne, K.~D. (2011).
 \newblock {\em Algorithms}.
 \newblock Addison-Wesley, Upper Saddle River, 4th edition.
+
+\bibitem[Ziviani 2021]{ziviani_projeto_2021}
+Ziviani, N. (2021).
+\newblock {\em Projeto {De} {Algoritmos} {Com} {Implementações} {Em} {Java}
+  {E} {C}++}.
+\newblock Cengage Learning.
 
 \end{thebibliography}
