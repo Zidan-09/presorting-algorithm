@@ -116,52 +116,13 @@ No grupo dos algoritmos de complexidade quasilinear, foram avaliados o \emph{mer
 
 Assim, o conjunto avaliado contempla três dimensões relevantes para a análise experimental: algoritmos quadráticos adaptativos (\emph{bubble sort} e \emph{insertion sort}), um algoritmo quadrático não adaptativo (\emph{selection sort}) e algoritmos quasilineares baseados em estratégias distintas de ordenação (\emph{merge sort} e \emph{quicksort}). Essa composição permite verificar não apenas se o pré-processamento simétrico reduz a quantidade de inversões da entrada, mas também em que medida essa redução se converte em ganhos de desempenho para algoritmos com diferentes graus de dependência em relação à ordem inicial dos dados.
 
-\subsection{Pré-processamento Simétrico e Formalização}
+\subsection{Pré-Processamento Simétrico}
 
-O pré-processamento simétrico proposto (Representado formalmente no Algoritmo~\ref{alg:preproc}) atua como uma etapa preparatória de varredura única sobre o conjunto de dados, projetado para rearranjar a estrutura global do vetor antes da execução do algoritmo de ordenação principal. O algoritmo percorre a metade esquerda do vetor $a$ de tamanho $n$, identificando para cada índice $i$ a sua posição simétrica correspondente à direita, dada por $j = n - 1 - i$. Quando se detecta que $a[i] > a[j]$, efetua-se a troca direta dos elementos. Adicionalmente, para suavizar descontinuidades locais decorrentes dessa troca simétrica, aplicam-se duas correções adjacentes complementares: uma à esquerda entre $a[i]$ e $a[i+1]$ (se $a[i] > a[i+1]$), e outra à direita entre $a[j]$ e $a[j-1]$ (se $a[j] < a[j-1]$), desde que os índices adjacentes sejam válidos.
+O conceito de pré-processamento, no contexto do projeto e análise de algoritmos, refere-se a uma etapa preliminar de transformação ou reestruturação dos dados de entrada realizada antes da execução do algoritmo principal \cite{cormen_introduction_2022}. O propósito dessa fase preparatória é alterar a disposição ou as propriedades da instância do problema, tornando a resolução subsequente mais simples ou computacionalmente mais eficiente. De forma conceitual e intuitiva, o pré-processamento atua de maneira análoga à organização prévia de um ambiente ou material de trabalho antes da execução de uma tarefa complexa: embora a etapa de preparação exija um custo computacional inicial, a redução no esforço exigido no processamento principal compensa esse investimento prévio.
 
-\begin{algorithm}[htbp]
-\caption{Pré-processamento Simétrico para Redução de Inversões}
-\label{alg:preproc}
+Para que uma etapa de pré-processamento seja viável em problemas de ordenação, seu custo temporal deve ser estritamente dominado pela complexidade do algoritmo de ordenação que o sucede \cite{cormen_introduction_2022, sedgewick_algorithms_2011}. Dessa forma, um pré-processamento ideal deve apresentar complexidade temporal linear $O(n)$, garantindo que o \emph{overhead} introduzido seja assintoticamente desprezível em relação ao custo total da ordenação — seja em algoritmos quasilineares $O(n \log n)$ no caso médio ou quadráticos $O(n^2)$ no pior caso \cite{knuth_art_1973}.
 
-\SetAlgoLined
-
-\KwIn{Vetor $A$ de tamanho $n$}
-\KwOut{Vetor $A$ parcialmente reorganizado}
-
-$n \gets$ tamanho de $A$\;
-
-\If{$n < 2$}{
-    \Return\;
-}
-
-$ultimo \gets n - 1$\;
-$meio \gets \lfloor n/2 \rfloor$\;
-
-\For{$i \gets 0$ \KwTo $meio - 1$}{
-
-    $j \gets ultimo - i$\;
-
-    \If{$A[i] > A[j]$}{
-        trocar($A[i], A[j]$)\;
-    }
-
-    \If{$i + 1 < meio$}{
-        \If{$A[i] > A[i+1]$}{
-            trocar($A[i], A[i+1]$)\;
-        }
-    }
-
-    \If{$j > 0$ \textbf{e} $j - 1 > meio$}{
-        \If{$A[j] < A[j-1]$}{
-            trocar($A[j], A[j-1]$)\;
-        }
-    }
-}
-
-\end{algorithm}
-
-A principal vantagem teórica deste pré-processamento reside na sua estrita eficiência computacional: executa exatamente uma passada sobre a entrada, incorrendo em uma complexidade temporal rigorosamente linear $O(n)$ em termos de comparações e trocas, enquanto mantém consumo de memória extra constante $O(1)$. Por operar diretamente sobre o vetor original sem requerer alocação dinâmica de estruturas auxiliares, a abordagem preserva a localidade de referência e minimiza o \emph{overhead} de execução, tornando-a especialmente adequada como etapa preliminar para algoritmos adaptativos. Em termos de arquitetura de hardware, essa varredura sequencial favorece a preditividade do pré-carregamento em memória cache e reduz falhas de página \cite{lamarca_influence_1999,drepper_what_2007}. Essa reestruturação inicial redistribui os elementos de maior magnitude e atenua a variância do tempo de execução, garantindo um comportamento mais previsível antes do disparo da etapa principal de ordenação.
+Especificamente nesta pesquisa, a etapa de pré-processamento é denominada \emph{simétrica} por aplicar uma varredura bidirecional e espelhada a partir das extremidades do vetor. Essa reestruturação visa reduzir o número total de inversões $I$ da entrada ao mover elementos discrepantes para posições mais próximas de seus destinos finais em um único passe de complexidade $O(n)$. Como resultado, ao fornecer uma estrutura parcialmente reordenada para os algoritmos subsequentes, busca-se mitigar o número de comparações e trocas operadas tanto por métodos adaptativos quanto por métodos não adaptativos.
 
 \section{Metodologia}\label{sec:met}
 
@@ -213,7 +174,66 @@ Invertido & Valores arranjados em ordem estritamente decrescente (pior caso) \\
 
 O protocolo de medição empírica empregou a biblioteca \emph{Criterion} para obter médias, medianas e intervalos de confiança de 95\% sob entradas pareadas. O tempo da abordagem híbrida contabiliza rigorosamente a soma $C_{\text{pre}} + C_{\text{sort}}$.
 
-Adicionalmente, na quantificação experimental do número exato de inversões $I$, os testes preliminares adotaram uma rotina de checagem direta $O(n^2)$. Todavia, reconhece-se o gargalo metodológico associado a essa contagem no processo experimental estendido. O raciocínio computacional para contagem de inversões pode ser otimizado para complexidade $O(n \log n)$ por meio do algoritmo MergeSort modificado \cite{cormen_introduction_2022} ou da utilização de uma Árvore Fenwick (\emph{Binary Indexed Tree} -- BIT) \cite{Fenwick1994AND}. Na abordagem por MergeSort, durante a etapa de intercalação de dois subvetores ordenados $L$ e $R$, quando um elemento $R[j]$ é menor que $L[i]$, adiciona-se exatamente $|L| - i$ ao contador de inversões \cite{cormen_introduction_2022}. Essa substituição metodológica remove o gargalo quadrático associado à contagem de inversões, ampliando significativamente a capacidade do benchmark de validação e possibilitando, em trabalhos futuros, a avaliação de vetores com ordens de grandeza de $10^5$ a $10^6$ elementos.
+Adicionalmente, na quantificação experimental do número exato de inversões $I$, os testes preliminares adotaram uma rotina de checagem direta $O(n^2)$. Todavia, reconhece-se o gargalo metodológico associado a essa contagem no processo experimental estendido. O raciocínio computacional para contagem de inversões pode ser otimizado para complexidade $O(n \log n)$ por meio do algoritmo MergeSort modificado \cite{cormen_introduction_2022} ou da utilização de uma Árvore Fenwick (\emph{Binary Indexed Tree} -- BIT) \cite{Fenwick1994AND}. 
+
+Na abordagem por MergeSort, durante a etapa de intercalação de dois subvetores ordenados $L$ e $R$, quando um elemento $R[j]$ é menor que $L[i]$, adiciona-se exatamente $|L| - i$ ao contador de inversões \cite{cormen_introduction_2022}. Essa substituição metodológica remove o gargalo quadrático associado à contagem de inversões, ampliando significativamente a capacidade do benchmark de validação e possibilitando, em trabalhos futuros, a avaliação de vetores com ordens de grandeza de $10^5$ a $10^6$ elementos.
+
+\subsection{Formalização do Pré-Processamento Simétrico}
+
+O procedimento de pré-processamento simétrico proposto opera como uma etapa determinística de varredura única sobre o vetor de entrada $A$ de tamanho $n$. O objetivo desta etapa é reestruturar a disposição dos elementos através de trocas espelhadas e ajustes locais, antecedendo a execução dos algoritmos de ordenação avaliados. A estrutura procedural e as regras de controle do algoritmo estão formalizadas no Algoritmo~\ref{alg:preproc}.
+
+\begin{algorithm}[H]
+\caption{Algoritmo de Pré-Processamento Simétrico}
+\label{alg:preproc}
+
+\SetAlgoLined
+
+\KwIn{Vetor $A$ de tamanho $n$}
+\KwOut{Vetor $A$ parcialmente reorganizado}
+
+$n \gets$ tamanho de $A$\;
+
+\If{$n < 2$}{
+    \Return\;
+}
+
+$ultimo \gets n - 1$\;
+$meio \gets \lfloor n/2 \rfloor$\;
+
+\For{$i \gets 0$ \KwTo $meio - 1$}{
+
+    $j \gets ultimo - i$\;
+
+    \If{$A[i] > A[j]$}{
+        trocar($A[i], A[j]$)\;
+    }
+
+    \If{$i + 1 < meio$}{
+        \If{$A[i] > A[i+1]$}{
+            trocar($A[i], A[i+1]$)\;
+        }
+    }
+
+    \If{$j > 0$ \textbf{e} $j - 1 > meio$}{
+        \If{$A[j] < A[j-1]$}{
+            trocar($A[j], A[j-1]$)\;
+        }
+    }
+}
+
+\end{algorithm}
+
+O algoritmo itera sobre a primeira metade do vetor, varrendo os índices $i \in [0, \lfloor n/2 \rfloor - 1]$. A cada iteração, calcula-se o índice simétrico correspondente no extremo oposto do vetor, dado por $j = (n - 1) - i$. A execução do laço é composta por três verificações condicionais estruturadas:
+
+\begin{enumerate}
+    \item \textbf{Troca Simétrica Extrema:} Avalia-se a relação de ordem entre as extremidades opostas. Se $A[i] > A[j]$, efetua-se a troca direta dos elementos, posicionando o menor elemento no segmento esquerdo e o maior no segmento direito.
+    \item \textbf{Ajuste Adjacente Esquerdo:} Para os índices em que $(i + 1) < \lfloor n/2 \rfloor$, verifica-se a ordenação local na metade esquerda. Se $A[i] > A[i+1]$, realiza-se a troca entre os elementos adjacentes.
+    \item \textbf{Ajuste Adjacente Direito:} Para os índices em que $(j - 1) > \lfloor n/2 \rfloor$ e $j > 0$, verifica-se a ordenação local na metade direita. Se $A[j] < A[j-1]$, executa-se a troca entre os elementos adjacentes.
+\end{enumerate}
+
+As condições de contorno garantem que as trocas adjacentes operem estritamente dentro de seus respectivos subdomínios (esquerdo e direito), sem ultrapassar o ponto médio do vetor.
+
+Em termos de complexidade computacional, o algoritmo executa exatamente $\lfloor n/2 \rfloor$ iterações. Em cada passo do laço, realiza-se um número constante de comparações (no máximo 3) e trocas (no máximo 3), resultando em uma complexidade temporal de pior caso $T(n) = O(n)$. Como a reestruturação dos dados é realizada \emph{in-place} no próprio vetor $A$, a complexidade espacial auxiliar é estritamente $O(1)$.
 
 \subsection{Ameaças à Validade}
 
