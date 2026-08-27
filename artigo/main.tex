@@ -353,7 +353,7 @@ Seleção & Invertido & 17686,34 $\pm$ 120,06 & 19780,12 $\pm$ 54,58 & -11,8\% \
 \end{tabular}
 \end{table}
 
-A viabilidade prática dessa abordagem fundamenta-se no baixo e altamente previsível custo computacional da etapa simétrica. Conforme demonstrado na Tabela~\ref{tab:precusto}, o tempo de execução do pré-processamento apresenta um comportamento estritamente linear $O(n)$ em relação ao tamanho do vetor, evoluindo de $1,42\,\mu s$ para $n=1.000$ até $24,00\,\mu s$ para $n=20.000$. Notadamente, a métrica de tempo unitário reduz-se de $1,42\text{ ns}$ para estabilizar-se na faixa de $1,20$ a $1,24\text{ ns}$ por elemento a partir de $n \ge 5.000$. Esse padrão indica a ausência de gargalos de localidade de referência na memória e confirma que a varredura linear impõe um \emph{overhead} irrisório — da ordem de apenas $12,17\,\mu s$ em vetores de 10.000 elementos —, perfeitamente compensado pela economia de milissegundos obtida na fase de ordenação de algoritmos adaptativos.
+A viabilidade prática dessa abordagem fundamenta-se no baixo e altamente previsível custo computacional da etapa simétrica. Conforme demonstrado na Tabela~\ref{tab:precusto}, o tempo de execução do pré-processamento apresenta um comportamento estritamente linear $O(n)$ em relação ao tamanho do vetor, variando de $1,42\,\mu s$ ($n=1.000$) a $24,00\,\mu s$ ($n=20.000$). O tempo unitário estabiliza-se entre $1,20$ e $1,24\text{ ns}$ por elemento para $n \ge 5.000$, indicando ausência de gargalos de localidade de memória. Assim, a varredura impõe um \emph{overhead} irrisório — apenas $12,17\,\mu s$ para $10.000$ elementos —, amplamente compensado pela economia de milissegundos na ordenação adaptativa.
 
 \begin{figure}[ht]
 \centering
