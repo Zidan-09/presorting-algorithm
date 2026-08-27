@@ -130,7 +130,11 @@ Esta seção detalha a abordagem metodológica adotada para a realização deste
 
 \subsection{Tipo de Pesquisa e Configuração}
 
-O presente estudo caracteriza-se como uma pesquisa aplicada, explicativa e experimental \cite{gil_metodos_2019, sampieri_metodologia_2021}. Os experimentos foram executados em uma estação de trabalho sob o sistema operacional Windows 11 Pro, equipada com processador AMD Ryzen 7 8700G (8 núcleos e 16 threads) e 15,1\,GB de RAM. Todo o ecossistema do projeto foi codificado e compilado em Rust 1.96.0 em perfil de \emph{release}. A Tabela~\ref{tab:ambiente} sintetiza as especificações.
+O presente estudo caracteriza-se como uma pesquisa aplicada, quantitativa, explicativa e experimental \cite{gil_metodos_2019, sampieri_metodologia_2021}. A caracterização apoia-se no isolamento e na manipulação controlada da topologia das entradas para medir a variação no tempo de execução e na contagem de inversões.
+
+Os experimentos foram executados em ambiente controlado sob o sistema operacional Windows 11 Pro (64-bit, build 10.0.26200), em estação de trabalho equipada com processador AMD Ryzen 7 8700G (8 núcleos, 16 threads, \emph{clock} base de 4,2\,GHz) e 16\,GB de memória RAM DDR5 a 5600MT/s. Durante os testes, o plano de energia do sistema operacional permaneceu fixado em alto desempenho, com os processos de segundo plano minimizados para mitigar ruídos de escalonamento do sistema.
+
+Todo o ecossistema foi desenvolvido utilizando a linguagem Rust 1.96.0 (\emph{target} \texttt{x86\_64-pc-windows-msvc}), compilado com a flag de otimização máxima (\emph{release profile}, \texttt{opt-level = 3}). A tabela~\ref{tab:ambiente} detalha o ambiente e os parâmetros operacionais.
 
 \begin{table}[!ht]
 \centering
@@ -142,7 +146,7 @@ O presente estudo caracteriza-se como uma pesquisa aplicada, explicativa e exper
 \hline
 Sistema operacional & Windows 11 Pro (build 10.0.26200) \\
 Processador & AMD Ryzen 7 8700G (8 núcleos / 16 threads) \\
-Memória & 15,1 GB disponíveis \\
+Memória & 16 GB DDR5 5600MT/s \\
 Linguagem & Rust 1.96.0 (perfil \emph{release}) \\
 Ferramentas de Medição & Criterion 0.5 e Ferramenta CLI do Projeto \\
 Geração de dados & Seed 42 (\texttt{ChaCha8Rng}), entradas pareadas \\
@@ -150,29 +154,29 @@ Geração de dados & Seed 42 (\texttt{ChaCha8Rng}), entradas pareadas \\
 \end{tabular}
 \end{table}
 
-Para avaliar o comportamento sob diferentes topologias de desordem, foram projetados seis tipos de vetores de entrada (Tabela~\ref{tab:datasets}), testados em amplitudes de $n \in \{1.000, 5.000, 10.000, 20.000\}$.
+Para avaliar a resiliência e a adaptabilidade dos algoritmos sob diferentes graus de entropia, foram projetados seis padrões estruturais de vetores de entrada (Tabela~\ref{tab:datasets}), avaliados nas instâncias de tamanho $n \in \{1.000, 5.000, 10.000, 20.000\}$. A aleatoriedade determinística foi assegurada pelo pareamento rigoroso das sementes de geração entre as abordagens.
 
 \begin{table}[!ht]
 \centering
-\caption{Conjuntos de dados utilizados nos experimentos.}
+\caption{Conjuntos de dados e caracterização das topologias de entrada.}
 \label{tab:datasets}
 \begin{tabular}{ll}
 \hline
-\textbf{Tipo} & \textbf{Descrição do Padrão Estrutural} \\
+\textbf{Topologia} & \textbf{Descrição do Padrão Estrutural} \\
 \hline
-Aleatório & Permutação aleatória de valores distintos (sem colisões) \\
-Tartarugas & Metade inicial com valores altos; metade final com valores pequenos ($0$--$9$) \\
-Zigue-zague & Alternância sistemática de subconjuntos crescentes e decrescentes \\
-Quase ordenado & Vetor originalmente ordenado submetido a $n/100$ trocas aleatórias \\
-Duplicados & Vetor com alta densidade de valores repetidos no intervalo $0$--$2$ \\
-Invertido & Valores arranjados em ordem estritamente decrescente (pior caso) \\
+Aleatório & Permutação aleatória uniforme de $n$ valores distintos \\
+Tartarugas & Primeira metade com valores elevados; segunda metade com valores baixos \\
+Zigue-zague & Alternância sistemática de blocos crescentes e decrescentes \\
+Quase ordenado & Vetor ordenado submetido a $n/100$ trocas aleatórias de pares \\
+Duplicados & Vetor com baixa cardinalidade de chaves (valores inteiros no intervalo $0$--$2$) \\
+Invertido & Vetor arranjado em ordem estritamente decrescente (pior caso teórico) \\
 \hline
 \end{tabular}
 \end{table}
 
 \subsection{Protocolo Experimental e Raciocínio de Cálculo de Inversões}
 
-O protocolo de medição empírica empregou a biblioteca \emph{Criterion} para obter médias, medianas e intervalos de confiança de 95\% sob entradas pareadas. O tempo da abordagem híbrida contabiliza rigorosamente a soma $C_{\text{pre}} + C_{\text{sort}}$.
+O protocolo de medição empírica foi desenhado para isolar interferências do ambiente e garantir a reprodutibilidade estatística das métricas temporais. A quantificação do tempo de execução utilizou o arcabouço \emph{Criterion.rs}, que executa ciclos automatizados de aquecimento de memória cache (\emph{warm-up}) e realiza reamostragens estatísticas (\emph{bootstrapping}) para mitigar o impacto de interrupções de hardware. Para cada combinação de algoritmo, topologia e tamanho de vetor $n$, foram calculados o tempo médio, a mediana e os intervalos de confiança de 95\%. A medição temporal das abordagens submetidas ao pré-processamento contabilizou rigorosamente o custo composto $C_{\text{total}} = C_{\text{pre}} + C_{\text{sort}}$, garantindo a aferição transparente da condição de viabilidade prática $C_{\text{pre}} + C_{\text{sort}} < C_{\text{original}}$.
 
 Adicionalmente, na quantificação experimental do número exato de inversões $I$, os testes preliminares adotaram uma rotina de checagem direta $O(n^2)$. Todavia, reconhece-se o gargalo metodológico associado a essa contagem no processo experimental estendido. O raciocínio computacional para contagem de inversões pode ser otimizado para complexidade $O(n \log n)$ por meio do algoritmo MergeSort modificado \cite{cormen_introduction_2022} ou da utilização de uma Árvore Fenwick (\emph{Binary Indexed Tree} -- BIT) \cite{Fenwick1994AND}. 
 
@@ -231,9 +235,7 @@ O algoritmo itera sobre a primeira metade do vetor, varrendo os índices $i \in 
     \item \textbf{Ajuste Adjacente Direito:} Para os índices em que $(j - 1) > \lfloor n/2 \rfloor$ e $j > 0$, verifica-se a ordenação local na metade direita. Se $A[j] < A[j-1]$, executa-se a troca entre os elementos adjacentes.
 \end{enumerate}
 
-As condições de contorno garantem que as trocas adjacentes operem estritamente dentro de seus respectivos subdomínios (esquerdo e direito), sem ultrapassar o ponto médio do vetor.
-
-Em termos de complexidade computacional, o algoritmo executa exatamente $\lfloor n/2 \rfloor$ iterações. Em cada passo do laço, realiza-se um número constante de comparações (no máximo 3) e trocas (no máximo 3), resultando em uma complexidade temporal de pior caso $T(n) = O(n)$. Como a reestruturação dos dados é realizada \emph{in-place} no próprio vetor $A$, a complexidade espacial auxiliar é estritamente $O(1)$.
+As condições de contorno garantem que as trocas adjacentes operem estritamente dentro de seus respectivos subdomínios (esquerdo e direito), sem ultrapassar o ponto médio do vetor. Em termos de complexidade computacional, o algoritmo executa exatamente $\lfloor n/2 \rfloor$ iterações. Em cada passo do laço, realiza-se um número constante de comparações (no máximo 3) e trocas (no máximo 3), resultando em uma complexidade temporal de pior caso $T(n) = O(n)$. Como a reestruturação dos dados é realizada \emph{in-place} no próprio vetor $A$, a complexidade espacial auxiliar é estritamente $O(1)$.
 
 \subsection{Ameaças à Validade}
 
@@ -485,9 +487,11 @@ Toda essa dinâmica — o contraste entre o expressivo aproveitamento lógicos d
 
 \section{Considerações Finais}
 
-Este trabalho apresentou e avaliou um pré-processamento simétrico de complexidade $O(n)$ destinado à redução do número de inversões em sequências de entrada para algoritmos de ordenação. Os resultados demonstraram que a abordagem pode proporcionar ganhos relevantes em algoritmos adaptativos de complexidade quadrática quando aplicada a entradas com padrões estruturados de desordem ou em ordem inversa, especialmente quando a redução do custo de ordenação supera o custo adicional introduzido pelo pré-processamento, satisfazendo a condição $C_{\text{pre}} + C_{\text{sort}} < C_{\text{original}}$. Por outro lado, nos algoritmos de complexidade $O(n \log n)$ avaliados, particularmente em entradas aleatórias, o custo adicional do pré-processamento e seus possíveis efeitos sobre a localidade de cache não compensaram os benefícios obtidos com a redução de inversões, indicando que sua aplicação deve ser condicionada às características da entrada e do algoritmo utilizado.
+Este trabalho apresentou e avaliou um pré-processamento simétrico de complexidade $O(n)$ destinado à redução do número de inversões em sequências de entrada para algoritmos de ordenação. Os resultados demonstraram que a abordagem pode proporcionar ganhos relevantes em algoritmos adaptativos de complexidade quadrática quando aplicada a entradas com padrões estruturados de desordem ou em ordem inversa. Esse ganho é expressivo especialmente quando a redução do custo de ordenação supera o custo adicional introduzido pela etapa preliminar, satisfazendo a condição $C_{\text{pre}} + C_{\text{sort}} < C_{\text{original}}$.
 
-Como trabalhos futuros, propõe-se substituir a estratégia experimental utilizada para a contagem de inversões por uma estrutura de árvore Fenwick, de complexidade $O(n \log n)$, permitindo ampliar significativamente a escala dos experimentos e avaliar entradas com mais de $1.000.000$ de elementos. Adicionalmente, recomenda-se a realização de experimentos em ambiente Linux com ferramentas de monitoramento de desempenho, possibilitando a análise direta de eventos de hardware, como \emph{cache misses} e \emph{branch mispredictions}, por meio da infraestrutura disponibilizada pelo \texttt{perf\_event}. Essas extensões permitiriam investigar com maior precisão os mecanismos de desempenho associados ao pré-processamento, especialmente os efeitos sobre a hierarquia de memória e a execução especulativa, contribuindo para uma caracterização mais abrangente de seus benefícios e limitações.
+Por outro lado, nos algoritmos de complexidade $O(n \log n)$ avaliados, a aplicação do método revelou limitações importantes. Particularmente em entradas aleatórias, o custo adicional do pré-processamento e seus possíveis efeitos adversos sobre a localidade de cache não compensaram os benefícios obtidos com a redução de inversões. Tal constatação indica que a viabilidade prática da técnica deve ser estritamente condicionada às características da distribuição da entrada e à classe do algoritmo de ordenação empregado.
+
+Como trabalhos futuros, propõe-se substituir a estratégia experimental utilizada para a contagem de inversões por uma estrutura baseada em árvore Fenwick, de complexidade $O(n \log n)$, o que permitirá ampliar a escala dos experimentos para entradas superiores a $1.000.000$ de elementos. Adicionalmente, recomenda-se a realização de testes em ambiente Linux com a infraestrutura \texttt{perf\_event}, viabilizando a análise direta de eventos de hardware, como \emph{cache misses} e \emph{branch mispredictions}. Essas extensões possibilitarão investigar detalhadamente os impactos da técnica sobre a hierarquia de memória e a execução especulativa.
 
 \bibliographystyle{sbc}
 \bibliography{referencias}
