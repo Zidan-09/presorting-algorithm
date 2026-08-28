@@ -10,11 +10,6 @@ Estivill-Castro, V. and Wood, D. (1992).
 \newblock A survey of adaptive sorting algorithms.
 \newblock {\em ACM Computing Surveys}, 24(4):441--476.
 
-\bibitem[Fenwick 1994]{Fenwick1994AND}
-Fenwick, P.~M. (1994).
-\newblock A new data structure for cumulative frequency tables.
-\newblock {\em Software: Practice and Experience}, 24.
-
 \bibitem[Gil 2019]{gil_metodos_2019}
 Gil, A.~C. (2019).
 \newblock {\em Métodos e técnicas de pesquisa social}.

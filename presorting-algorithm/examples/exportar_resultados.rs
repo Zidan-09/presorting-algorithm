@@ -7,7 +7,7 @@ const RAIZ_CLI: &str = "artigo/resultados/cli";
 
 const SORTS: [&str; 5] = ["merge", "quick", "insertion", "bubble", "selection"];
 const TIPOS: [&str; 6] = ["random", "turtles", "zigzag", "almostsorted", "duplicates", "inverted"];
-const TAMANHOS: [usize; 3] = [1000, 5000, 10000];
+const TAMANHOS: [usize; 5] = [1000, 5000, 10000, 100000, 1000000];
 
 #[derive(Deserialize)]
 struct Estimates {
@@ -200,7 +200,7 @@ fn principal() {
     let mut linhas_t3 = Vec::new();
     let mut inv_10k: HashMap<String, (f64, f64)> = HashMap::new();
     for tipo in TIPOS {
-        for &tamanho in &[1000usize, 5000, 10000, 20000] {
+        for &tamanho in &[1000usize, 5000, 10000, 20000, 100000, 1000000] {
             let arquivo = format!("{tipo}_{tamanho}.txt");
             let ini = ler_cli(&arquivo, "CSV_INVERSOES_INICIAIS,");
             let pos = ler_cli(&arquivo, "CSV_INVERSOES_POS_PRE,");

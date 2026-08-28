@@ -6,41 +6,53 @@ pub fn quick_sort(array: &mut [i32]) {
 
 fn quick_sort_recursivo(array: &mut [i32], inicio: i32, fim: i32) {
     if inicio < fim {
-        let p = particao(array, inicio, fim);
-        quick_sort_recursivo(array, inicio, p - 1);
-        quick_sort_recursivo(array, p + 1, fim);
+        let (lt, gt) = particao_tres_vias(array, inicio, fim);
+        quick_sort_recursivo(array, inicio, lt - 1);
+        quick_sort_recursivo(array, gt + 1, fim);
     }
 }
 
-fn particao(array: &mut [i32], inicio: i32, fim: i32) -> i32 {
+fn mediana_de_tres(array: &[i32], inicio: usize, meio: usize, fim: usize) -> usize {
+    let a = array[inicio];
+    let b = array[meio];
+    let c = array[fim];
+
+    if (a <= b && b <= c) || (c <= b && b <= a) {
+        meio
+    } else if (b <= a && a <= c) || (c <= a && a <= b) {
+        inicio
+    } else {
+        fim
+    }
+}
+
+fn particao_tres_vias(array: &mut [i32], inicio: i32, fim: i32) -> (i32, i32) {
     let inicio_u = inicio as usize;
     let fim_u = fim as usize;
     let meio_u = inicio_u + ((fim_u - inicio_u) >> 1);
 
-    let a = array[inicio_u];
-    let b = array[meio_u];
-    let c = array[fim_u];
-
-    let indice_pivo = if (a <= b && b <= c) || (c <= b && b <= a) {
-        meio_u
-    } else if (b <= a && a <= c) || (c <= a && a <= b) {
-        inicio_u
-    } else {
-        fim_u
-    };
-
+    let indice_pivo = mediana_de_tres(array, inicio_u, meio_u, fim_u);
     array.swap(indice_pivo, fim_u);
 
     let pivo = array[fim_u];
-    let mut i = inicio - 1;
+    let mut lt = inicio;
+    let mut i = inicio;
+    let mut gt = fim - 1;
 
-    for j in inicio..fim {
-        if array[j as usize] <= pivo {
+    while i <= gt {
+        let val = array[i as usize];
+        if val < pivo {
+            array.swap(lt as usize, i as usize);
+            lt += 1;
             i += 1;
-            array.swap(i as usize, j as usize);
+        } else if val > pivo {
+            array.swap(i as usize, gt as usize);
+            gt -= 1;
+        } else {
+            i += 1;
         }
     }
 
-    array.swap((i + 1) as usize, fim_u);
-    i + 1
+    array.swap(i as usize, fim_u);
+    (lt, gt)
 }

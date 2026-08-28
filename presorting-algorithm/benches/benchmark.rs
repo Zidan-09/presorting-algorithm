@@ -11,7 +11,7 @@ const AMOSTRAS_POR_POOL: usize = 50;
 fn executar_benchmarks_tcc(c: &mut Criterion) {
     let mut group = c.benchmark_group("Experimentos_Ordenacao");
 
-    let tamanhos: [usize; 3] = [1000, 5000, 10000];
+    let tamanhos: [usize; 5] = [1000, 5000, 10000, 100000, 1000000];
     let tipos_array = [ArrayType::Random, ArrayType::Turtles, ArrayType::Zigzag, ArrayType::AlmostSorted, ArrayType::Duplicates, ArrayType::Inverted];
     let algoritmos = [SortType::Merge, SortType::Quick, SortType::Insertion, SortType::Bubble, SortType::Selection];
 
