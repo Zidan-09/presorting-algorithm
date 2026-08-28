@@ -52,12 +52,18 @@ Parnaíba, Piauí - Brasil
 \maketitle
 
 \begin{abstract}
-  In resource-constrained systems, quadratic sorting algorithms remain essential due to low memory footprint, yet high inversion counts severely degrade their physical hardware performance. This paper investigates if a low-cost pre-processing technique can reduce inversions such that $C_{pre} + C_{sort} < C_{original}$. We analyze a linear-time $O(n)$ method based on symmetric swaps and adjacent corrections. Five algorithms were benchmarked across six vector topologies ($n \leq 20,000$). The technique reduced inversions by up to 100\% at $\approx 1.2$ ns/element, achieving speedups up to 99.9\% in adaptive algorithms while remaining ineffective for quasi-linear methods, outlining its practical viability limits.
+
+In resource-constrained systems, quadratic sorting algorithms remain relevant due to their low memory footprint, but high inversion counts can degrade their performance. This paper investigates a low-cost \(O(n)\) pre-processing technique based on symmetric swaps and adjacent corrections. Five algorithms were benchmarked across six vector topologies (\(n \leq 20.000\)). The technique reduced inversions by up to 100\% at approximately 1.2 ns/element, achieving speedups of up to 99.9\% in adaptive algorithms, while producing mixed effects on \(O(n\log n)\) methods, with substantial gains for Quicksort on structured inputs and marginal effects on Merge Sort. These results delimit its practical applicability.
+
 \end{abstract}
 
+
 \begin{resumo}
-  Em sistemas de recursos restritos, algoritmos quadráticos são vitais pelo baixo consumo de memória, mas a alta quantidade de inversões degrada seu desempenho no hardware. Este trabalho investiga se um pré-processamento de baixo custo reduz inversões, viabilizando $C_{pre} + C_{sort} < C_{original}$. Avalia-se um método linear $O(n)$ de trocas simétricas e correções adjacentes. Foram comparados cinco algoritmos em seis topologias de vetores ($n \leq 20.000$). O método reduziu inversões em até 100\% a $\approx 1,2$ ns/elemento, gerando ganhos de até 99,9\% em algoritmos adaptativos e impacto marginal nos quasilineares, delimitando sua viabilidade prática.
+
+Em sistemas com recursos restritos, algoritmos quadráticos permanecem relevantes pelo baixo consumo de memória, mas altas quantidades de inversões podem degradar seu desempenho. Este trabalho investiga uma técnica de pré-processamento \(O(n)\) baseada em trocas simétricas e correções adjacentes. Foram comparados cinco algoritmos em seis topologias de vetores (\(n \leq 20.000\)). O método reduziu inversões em até 100\% a aproximadamente 1,2 ns/elemento, gerando ganhos de até 99,9\% em algoritmos adaptativos, enquanto produziu efeitos distintos nos métodos \(O(n\log n)\), com ganhos expressivos no Quicksort em entradas estruturadas e impacto marginal no Merge Sort. Esses resultados delimitam sua aplicabilidade prática.
+
 \end{resumo}
+
 
 \section{Introdução}
 
@@ -96,8 +102,8 @@ A eficiência prática dos algoritmos de ordenação tradicionais frequentemente
     \node[below=1cm of 2, font=\small] {$i=2$};
     \node[below=1cm of 3, font=\small] {$i=3$};
 
-    \draw[blue, thick, ->] (0.north) to[out=45,in=135] node[above, font=\small] {Inversão (3,1)} (1.north);
-    \draw[blue, thick, ->] (0.north) to[out=60,in=120] node[above=0.3cm, font=\small] {Inversão (3,2)} (3.north);
+    \draw[blue, thick, ->] (0.north) to[out=45,in=135] node[above, font=\small] {} (1.north);
+    \draw[blue, thick, ->] (0.north) to[out=60,in=120] node[above=0.3cm, font=\small] {Inversão (3,1) e (3,2)} (3.north);
     \draw[teal, thick, ->] (2.south) to[out=-45,in=-135] node[below, font=\small] {Inversão (4,2)} (3.south);
   \end{tikzpicture}
   \caption{Representação visual do conceito de inversão em um vetor $a = [3, 1, 4, 2]$. O número total de inversões é $I=3$, correspondente aos pares ordenados onde elementos maiores antecedem elementos menores em posições anteriores.}
@@ -111,6 +117,8 @@ A relação entre o volume de inversões $I$ e a complexidade de execução dá 
 Para avaliar o impacto do pré-processamento simétrico sobre diferentes paradigmas de ordenação, selecionou-se um conjunto representativo de algoritmos com características distintas quanto à complexidade temporal, adaptabilidade e sensibilidade à ordem inicial dos elementos. A seleção foi realizada de modo a contemplar tanto algoritmos cuja eficiência pode ser diretamente influenciada pela quantidade de desordem presente na entrada quanto métodos cujo comportamento é menos dependente dessa propriedade.
 
 No grupo de algoritmos com complexidade temporal $O(n^2)$ no pior caso, foram avaliados o \emph{bubble sort}, o \emph{insertion sort} e o \emph{selection sort} \cite{cormen_introduction_2022}. Os dois primeiros apresentam comportamento adaptativo, reduzindo o número de operações conforme o grau de ordenamento prévio da entrada \cite{estivill-castro_survey_1992}, o que os torna relevantes para analisar os impactos da redução de inversões. Em contrapartida, o \emph{selection sort} é não adaptativo e mantém um número fixo de comparações independentemente da configuração inicial \cite{estivill-castro_survey_1992}, servindo como contraponto aos algoritmos sensíveis ao pré-processamento.
+
+No grupo dos algoritmos de complexidade quasilinear, foram avaliados o \emph{merge sort}, cuja complexidade temporal é $O(n\log n)$, e o \emph{quicksort}, cujo desempenho médio é $O(n\log n)$, embora seu pior caso seja $O(n^2)$ \cite{cormen_introduction_2022}. A implementação do \emph{quicksort} utiliza o esquema de particionamento de Lomuto, com seleção do pivô pela estratégia de mediana de três. Após a seleção, o pivô é deslocado para a posição final do subvetor e a partição é realizada por comparações com seu valor. A inclusão desses métodos permite verificar se os efeitos observados nos algoritmos quadráticos permanecem relevantes quando o custo assintótico da ordenação é inferior. Dessa forma, o experimento não se restringe a algoritmos diretamente relacionados à contagem de inversões, permitindo analisar também a influência do pré-processamento em métodos cuja estratégia de ordenação apresenta características distintas.
 
 No grupo dos algoritmos de complexidade quasilinear, foram avaliados o \emph{merge sort}, cuja complexidade temporal é $O(n\log n)$, e o \emph{quicksort}, cujo desempenho médio é $O(n\log n)$, embora seu pior caso seja $O(n^2)$ \cite{cormen_introduction_2022}. A inclusão desses métodos permite verificar se os efeitos observados nos algoritmos quadráticos permanecem relevantes quando o custo assintótico da ordenação é inferior. Dessa forma, o experimento não se restringe a algoritmos diretamente relacionados à contagem de inversões, permitindo analisar também a influência do pré-processamento em métodos cuja estratégia de ordenação apresenta características distintas.
 
@@ -245,7 +253,7 @@ As medições de tempo físico foram protegidas contra ruídos por meio do aquec
 
 Esta seção apresenta a análise e discussão dos resultados experimentais obtidos, avaliando o impacto do pré-processamento simétrico sobre a estrutura dos dados e o tempo de execução dos algoritmos. A discussão segue uma estrutura analítica que parte do impacto direto na redução de inversões e da interpretação do viés geométrico observado no cenário invertido, avança para a mensuração do tempo total de ordenação em algoritmos quadráticos e quasilineares, e culmina na interpretação dos efeitos microarquiteturais, como a localidade de referência e o comportamento das caches de CPU. O objetivo é demonstrar de forma consolidada os cenários em que a técnica oferece ganhos reais de desempenho e entender as limitações físicas e algorítmicas envolvidas.
 
-\subsection{Redução de Inversões e Viés Estrutural do Caso Invertido}
+\subsection{Redução de Inversões e Viés Estrutural das Entradas}
 
 A Figura~\ref{fig:inversoespos} ilustra a variação das inversões observadas nos vetores de 10.000 elementos, cujos valores quantitativos exatos e porcentagens de redução estão detalhados na Tabela~\ref{tab:inversoes}. Observa-se que o pré-processamento é capaz de mitigar expressivamente a desordem em múltiplos cenários. Contudo, a interpretação da eliminação total das inversões ($100\%$) no cenário \emph{Invertido} exige sobriedade teórica e analítica.
 
@@ -305,6 +313,11 @@ Invertido & 49.995.000 & 0 & 100,0\% \\
 \end{table}
 
 Como o Algoritmo~\ref{alg:preproc} executa a troca direta entre $a[i]$ e $a[n-1-i]$, um vetor estritamente invertido (onde $a[i] > a[n-1-i]$ para todo $i < n/2$) sofre uma reversão geométrica completa da sua sequência em $O(n)$ operações. A resolução do caso Invertido decorre da geometria da transformação do pré-processamento, configurando um caso ideal onde a topologia da desordem coincide perfeitamente com a simetria aplicada.
+
+O comportamento observado no cenário \emph{Zigue-zague} também pode ser interpretado à luz dessa propriedade estrutural do pré-processamento. Embora sua topologia não corresponda a uma inversão global como no caso \emph{Invertido}, a alternância sistemática entre blocos com orientações distintas produz relações de desordem que são parcialmente capturadas pelas comparações entre posições simétricas. Dessa forma, a troca direta entre $a[i]$ e $a[n-1-i]$ corrige simultaneamente um grande número de relações fora de ordem, reduzindo as inversões de 24.997.500 para apenas 2.501, uma redução de 99,9\%. 
+
+O resultado evidencia que a eficácia do pré-processamento não se restringe ao caso de reversão completa: ela também se manifesta em topologias cuja estrutura apresenta forte alinhamento com a simetria utilizada pela transformação, ainda que de maneira parcial. Essa característica ajuda a explicar os ganhos particularmente elevados observados posteriormente nos algoritmos de Inserção e Bubble Sort para essa entrada.
+
 
 \subsection{Impacto no Tempo de Execução e Custo do Pré-processamento}
 
@@ -405,15 +418,19 @@ coordinates {
 \end{tabular}
 \end{table}
 
-\subsection{Tempo Total de Ordenação e Análise de Localidade de Caches}
+\subsection{Tempo Total de Ordenação e Análise Individual dos Algoritmos}
 
-A avaliação do tempo total de execução revela uma acentuada dicotomia no impacto do pré-processamento, cujo êxito está diretamente correlacionado à complexidade nativa e à adaptabilidade estrutural dos métodos avaliados. Nos algoritmos adaptativos de classe quadrática, notadamente o \emph{InsertionSort} e o \emph{BubbleSort}, a drástica eliminação prévia das inversões resulta em ganhos substanciais de desempenho (variando entre $30\%$ e $99,9\%$). Esse comportamento é justificado pela matemática do algoritmo: o modesto custo linear da varredura simétrica ($\approx 1{,}2\text{ ns/elemento}$) é vastamente amortizado pela supressão das operações de trocas locais, altamente custosas na ordem $O(n^2)$.
+A avaliação do tempo total de execução revela uma dicotomia no impacto do pré-processamento: nos algoritmos adaptativos de classe quadrática, notadamente o InsertionSort e o BubbleSort, a drástica eliminação prévia das inversões resulta em ganhos substanciais de desempenho (variando entre $30\%$ e $99,9\%$), justificados pela matemática do algoritmo — o modesto custo linear da varredura simétrica ($\approx 1{,}2\text{ ns/elemento}$) é vastamente amortizado pela supressão das operações de trocas locais. Em contraste, os métodos de complexidade $O(n\log n)$ apresentam respostas qualitativamente distintas. 
 
-Por outro lado, métodos com complexidade estrutural inerente de $O(n \log n)$, a exemplo do \emph{Quicksort} operando sobre vetores puramente aleatórios, exibem uma leve degradação de desempenho na abordagem híbrida. Embora a etapa simétrica efetivamente reduza o número absoluto de inversões, esse ganho teórico não se converte em aceleração prática, uma vez que a divisão e conquista já lida de forma otimizada com a desordem inicial. A principal justificativa arquitetural para esse \emph{overhead} reside na localidade espacial de caches. 
+O Merge Sort exibe variações marginais (entre $-14,0\%$ e $+14,5\%$) em todas as topologias, indicando que sua estratégia de divisão e conquista já lida de forma otimizada com a desordem, e o custo do pré-processamento tende a suplantar quaisquer ganhos marginais. O Quicksort, por sua vez, obtém ganhos expressivos em entradas estruturadas (Tartarugas: $+75,3\%$, Zigue-zague: $+53,7\%$, Invertido: $+48,9\%$), porém sofre leve degradação sobre vetores puramente aleatórios ($-5,0\%$) e quase ordenados ($-9,6\%$).
+
+O comportamento do Selection Sort merece uma análise específica, pois seus resultados apresentam variações temporais apesar de o algoritmo ser não adaptativo quanto ao número de comparações. Na implementação utilizada, o laço interno percorre sempre as mesmas posições para um dado tamanho $n$, mantendo, portanto, o número de comparações fixo independentemente da configuração inicial do vetor. Entretanto, a implementação realiza a troca somente quando o menor elemento encontrado está em uma posição diferente daquela atualmente processada, por meio da condição \texttt{indice\_minimo != i}. Assim, embora o pré-processamento não reduza o número de comparações, ele pode alterar a quantidade de trocas e a disposição dos dados durante a ordenação. 
+
+Esse efeito é particularmente evidente no cenário \emph{Invertido}, no qual o pré-processamento produz uma sequência ordenada e o Selection Sort não necessita realizar trocas. Ainda assim, o tempo total apresentou redução de desempenho de $11,8\%$, indicando que a economia das trocas evitadas não compensou o custo adicional do pré-processamento. Também foram observados ganho de $22,1\%$ em \emph{Zigue-zague} e perda de $8,3\%$ em \emph{Duplicados}. Como as medições não separaram comparações, trocas e acessos à memória, não é possível atribuir essas variações a um mecanismo microarquitetural específico. Os resultados, portanto, não contradizem a caracterização teórica do Selection Sort: o número de comparações permanece fixo, enquanto o tempo observado também depende das operações realizadas durante a execução.
 
 Ao acessar e manipular simultaneamente posições nas duas extremidades do vetor, o pré-processamento simétrico impõe um padrão de acesso bifronte à memória principal. Esse comportamento diverge da varredura sequencial tradicional, o que reduz a eficácia dos mecanismos de pré-busca (\emph{prefetching}) de hardware e introduz latências adicionais decorrentes de possíveis \emph{cache misses} \cite{patterson_computer_2012}. Consequentemente, em cenários onde o ganho proporcionado pela redução de inversões é marginal, os custos arquiteturais de acesso à memória superam os benefícios lógicos da etapa. 
 
-Toda essa dinâmica — marcada pelo contraste entre o expressivo aproveitamento lógico nos métodos quadráticos e a limitação de \emph{hardware} nos algoritmos de ordem $O(n \log n)$ — encontra-se visualmente consolidada na Figura~\ref{fig:tempos}, que detalha o tempo médio de execução puro contraposto ao cenário com pré-processamento para todos os perfis de desordem sob $n=10.000$.
+Toda essa dinâmica — marcada pelo expressivo aproveitamento lógico nos métodos quadráticos adaptativos, pelos ganhos substanciais do Quicksort em entradas estruturadas, pela resposta marginal do Merge Sort e pelas variações temporais do Selection Sort apesar de seu número fixo de comparações — encontra-se visualmente consolidada na Figura~\ref{fig:tempos}, que detalha o tempo médio de execução puro contraposto ao cenário com pré-processamento para todos os perfis de desordem sob $n=10.000$.
 
 \begin{figure}[!ht]
 \centering
@@ -451,7 +468,7 @@ Toda essa dinâmica — marcada pelo contraste entre o expressivo aproveitamento
         bar width=3.8pt
     },
     legend style={
-        at={(1.87,-0.35)},
+        at={(1.87,-0)},
         anchor=north,
         legend columns=1,
         font=\footnotesize
