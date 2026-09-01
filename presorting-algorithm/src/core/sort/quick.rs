@@ -4,11 +4,17 @@ pub fn quick_sort(array: &mut [i32]) {
     quick_sort_recursivo(array, 0, (len - 1) as i32);
 }
 
-fn quick_sort_recursivo(array: &mut [i32], inicio: i32, fim: i32) {
-    if inicio < fim {
+fn quick_sort_recursivo(array: &mut [i32], mut inicio: i32, mut fim: i32) {
+    while inicio < fim {
         let (lt, gt) = particao_tres_vias(array, inicio, fim);
-        quick_sort_recursivo(array, inicio, lt - 1);
-        quick_sort_recursivo(array, gt + 1, fim);
+
+        if (lt - 1 - inicio) < (fim - (gt + 1)) {
+            quick_sort_recursivo(array, inicio, lt - 1);
+            inicio = gt + 1;
+        } else {
+            quick_sort_recursivo(array, gt + 1, fim);
+            fim = lt - 1;
+        }
     }
 }
 
@@ -32,20 +38,19 @@ fn particao_tres_vias(array: &mut [i32], inicio: i32, fim: i32) -> (i32, i32) {
     let meio_u = inicio_u + ((fim_u - inicio_u) >> 1);
 
     let indice_pivo = mediana_de_tres(array, inicio_u, meio_u, fim_u);
-    array.swap(indice_pivo, fim_u);
+    array.swap(indice_pivo, inicio_u);
 
-    let pivo = array[fim_u];
+    let pivo = array[inicio_u];
     let mut lt = inicio;
-    let mut i = inicio;
-    let mut gt = fim - 1;
+    let mut i = inicio + 1;
+    let mut gt = fim;
 
     while i <= gt {
-        let val = array[i as usize];
-        if val < pivo {
+        if array[i as usize] < pivo {
             array.swap(lt as usize, i as usize);
             lt += 1;
             i += 1;
-        } else if val > pivo {
+        } else if array[i as usize] > pivo {
             array.swap(i as usize, gt as usize);
             gt -= 1;
         } else {
@@ -53,6 +58,5 @@ fn particao_tres_vias(array: &mut [i32], inicio: i32, fim: i32) -> (i32, i32) {
         }
     }
 
-    array.swap(i as usize, fim_u);
     (lt, gt)
 }

@@ -1,0 +1,75 @@
+%%
+%% Tabela 3: redução de inversões (tamanho 10.000)
+%%
+\begin{table}[ht]
+\centering
+\caption{Redução de inversões proporcionada pelo pré-processamento simétrico em vetores de 10.000 elementos.}
+\label{tab:inversoes}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Tipo} & \textbf{Inversões} & \textbf{Pós-pré} & \textbf{Redução} \\
+\hline
+
+\hline
+\end{tabular}
+\end{table}
+%%
+%% Tabela 4: tempos médios e ganho (tamanho 10.000)
+%%
+\begin{table}[ht]
+\centering
+\caption{Tempo médio por execução (em \textmu{}s, média $\pm$ meia-largura do IC 95\%) e ganho do pré-processamento para vetores de 10.000 elementos. Fonte: Criterion, seed 42.}
+\label{tab:tempos}
+\small
+\begin{tabular}{llrrr}
+\hline
+\textbf{Algoritmo} & \textbf{Tipo} & \textbf{Puro} & \textbf{Com pré} & \textbf{Ganho} \\
+\hline
+Merge & Aleatório & 416,90 $\pm$ 7,82 & 429,00 $\pm$ 5,30 & -2,9\% \\
+Merge & Tartarugas & 116,11 $\pm$ 1,92 & 132,34 $\pm$ 1,79 & -14,0\% \\
+Merge & Zigue-zague & 128,08 $\pm$ 1,88 & 109,53 $\pm$ 2,08 & +14,5\% \\
+Merge & Quase ordenado & 128,72 $\pm$ 2,66 & 134,03 $\pm$ 1,86 & -4,1\% \\
+Merge & Duplicados & 191,41 $\pm$ 2,89 & 193,68 $\pm$ 3,84 & -1,2\% \\
+Merge & Invertido & 121,78 $\pm$ 2,87 & 108,17 $\pm$ 2,56 & +11,2\% \\
+Quicksort & Aleatório & 334,51 $\pm$ 6,68 & 351,30 $\pm$ 5,57 & -5,0\% \\
+Quicksort & Tartarugas & 3240,29 $\pm$ 19,06 & 801,36 $\pm$ 16,53 & +75,3\% \\
+Quicksort & Zigue-zague & 683,60 $\pm$ 16,17 & 316,25 $\pm$ 5,13 & +53,7\% \\
+Quicksort & Quase ordenado & 242,49 $\pm$ 4,45 & 265,87 $\pm$ 5,23 & -9,6\% \\
+Quicksort & Duplicados & 9815,64 $\pm$ 76,56 & 9929,86 $\pm$ 43,56 & -1,2\% \\
+Quicksort & Invertido & 144,62 $\pm$ 3,38 & 73,87 $\pm$ 1,51 & +48,9\% \\
+Inserção & Aleatório & 5065,81 $\pm$ 37,71 & 2881,55 $\pm$ 26,64 & +43,1\% \\
+Inserção & Tartarugas & 6131,06 $\pm$ 37,49 & 3643,55 $\pm$ 16,46 & +40,6\% \\
+Inserção & Zigue-zague & 5062,86 $\pm$ 17,57 & 11,98 $\pm$ 0,29 & +99,8\% \\
+Inserção & Quase ordenado & 219,59 $\pm$ 5,18 & 152,59 $\pm$ 2,39 & +30,5\% \\
+Inserção & Duplicados & 3354,86 $\pm$ 20,24 & 1408,90 $\pm$ 48,91 & +58,0\% \\
+Inserção & Invertido & 9943,20 $\pm$ 39,46 & 11,15 $\pm$ 0,20 & +99,9\% \\
+Bubblesort & Aleatório & 29011,57 $\pm$ 96,34 & 24958,26 $\pm$ 55,31 & +14,0\% \\
+Bubblesort & Tartarugas & 19917,67 $\pm$ 88,28 & 15009,86 $\pm$ 57,43 & +24,6\% \\
+Bubblesort & Zigue-zague & 19829,76 $\pm$ 57,13 & 17,48 $\pm$ 0,46 & +99,9\% \\
+Bubblesort & Quase ordenado & 20518,06 $\pm$ 54,61 & 17571,95 $\pm$ 32,00 & +14,4\% \\
+Bubblesort & Duplicados & 25626,62 $\pm$ 79,13 & 21119,02 $\pm$ 40,00 & +17,6\% \\
+Bubblesort & Invertido & 19816,65 $\pm$ 84,20 & 9,17 $\pm$ 0,22 & +100,0\% \\
+Seleção & Aleatório & 24484,27 $\pm$ 851,48 & 23492,52 $\pm$ 772,67 & +4,1\% \\
+Seleção & Tartarugas & 24705,38 $\pm$ 895,32 & 24664,67 $\pm$ 739,03 & +0,2\% \\
+Seleção & Zigue-zague & 25396,38 $\pm$ 827,27 & 19792,89 $\pm$ 57,95 & +22,1\% \\
+Seleção & Quase ordenado & 25505,03 $\pm$ 847,40 & 24613,47 $\pm$ 813,60 & +3,5\% \\
+Seleção & Duplicados & 23435,17 $\pm$ 852,87 & 25383,85 $\pm$ 833,81 & -8,3\% \\
+Seleção & Invertido & 17686,34 $\pm$ 120,06 & 19780,12 $\pm$ 54,58 & -11,8\% \\
+\hline
+\end{tabular}
+\end{table}
+%%
+%% Tabela 5: custo do pré-processamento (escala)
+%%
+\begin{table}[ht]
+\centering
+\caption{Custo médio do pré-processamento simétrico em função do tamanho do vetor (média sobre os seis tipos).}
+\label{tab:precusto}
+\begin{tabular}{rrr}
+\hline
+\textbf{Tamanho} & \textbf{Pré (\textmu{}s)} & \textbf{ns/elemento} \\
+\hline
+
+\hline
+\end{tabular}
+\end{table}
