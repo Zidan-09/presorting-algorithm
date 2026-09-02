@@ -53,14 +53,14 @@ Parnaíba, Piauí - Brasil
 
 \begin{abstract}
 
-In resource-constrained systems, quadratic sorting algorithms remain relevant due to their low memory footprint, but high inversion counts can degrade their performance. This paper investigates a low-cost \(O(n)\) pre-processing technique based on symmetric swaps and adjacent corrections. Five algorithms were benchmarked across six vector topologies with sizes up to \(10^6\) elements. The technique reduced inversions by up to 100\% at approximately 1.2 ns/element, achieving speedups of up to 99.9\% in adaptive algorithms, while producing mixed effects on \(O(n\log n)\) methods, with substantial gains for Quicksort on structured inputs and mixed results on Merge Sort. These results delimit its practical applicability.
+In resource-constrained systems, quadratic sorting algorithms remain relevant due to their low memory footprint, but high inversion counts can degrade their performance. This paper investigates a low-cost \(O(n)\) pre-processing technique based on symmetric swaps and adjacent corrections. Five algorithms were benchmarked across six vector topologies with sizes up to \(10^6\) elements. The technique reduced inversions by up to 100\% at approximately 1,2 ns/element, generating speedups of up to 99.9\% for the adaptive quadratic algorithms (Insertion and Bubble Sort) on structured inputs. For the non-adaptive Selection Sort no significant change was observed, whereas the \(O(n\log n)\) methods did not benefit: Merge Sort showed mixed results and the three-way Quicksort consistently degraded. These results delimit the practical applicability of the technique to adaptive sorting methods.
 
 \end{abstract}
 
 
 \begin{resumo}
 
-Em sistemas com recursos restritos, algoritmos quadráticos permanecem relevantes pelo baixo consumo de memória, mas altas quantidades de inversões podem degradar seu desempenho. Este trabalho investiga uma técnica de pré-processamento \(O(n)\) baseada em trocas simétricas e correções adjacentes. Foram comparados cinco algoritmos em seis topologias de vetores com tamanhos até \(10^6\) elementos. O método reduziu inversões em até 100\% a aproximadamente 1,2 ns/elemento, gerando ganhos de até 99,9\% em algoritmos adaptativos, enquanto produziu efeitos mistos nos métodos \(O(n\log n)\), com ganhos expressivos no Quicksort em entradas estruturadas e resultados mistos no Merge Sort. Esses resultados delimitam sua aplicabilidade prática.
+Em sistemas com recursos restritos, algoritmos quadráticos permanecem relevantes pelo baixo consumo de memória, mas altas quantidades de inversões podem degradar seu desempenho. Este trabalho investiga uma técnica de pré-processamento \(O(n)\) baseada em trocas simétricas e correções adjacentes. Foram comparados cinco algoritmos em seis topologias de vetores com tamanhos até \(10^6\) elementos. O método reduziu inversões em até 100\% a aproximadamente 1,2 ns/elemento, gerando ganhos de até 99,9\% para os algoritmos quadráticos adaptativos (Inserção e Bubblesort) em entradas estruturadas. Para o Selection Sort não adaptativo não foi observada mudança significativa, ao passo que os métodos \(O(n\log n)\) não se beneficiaram da técnica: o Merge Sort apresentou resultados mistos e o Quicksort de três vias degradou de forma sistemática. Esses resultados delimitam sua aplicabilidade prática aos métodos de ordenação adaptativos.
 
 \end{resumo}
 
@@ -170,7 +170,9 @@ Geração de dados & Seed 42 (\texttt{ChaCha8Rng}), entradas pareadas \\
 \end{tabular}
 \end{table}
 
-Para avaliar a resiliência e a adaptabilidade dos algoritmos sob diferentes graus de entropia, foram projetados seis padrões estruturais de vetores de entrada (Tabela~\ref{tab:datasets}), avaliados nas instâncias de tamanho $n \in \{1.000, 5.000, 10.000, 100.000, 1.000.000\}$. A aleatoriedade determinística foi assegurada pelo pareamento rigoroso das sementes de geração entre as abordagens.
+Para avaliar a resiliência e a adaptabilidade dos algoritmos sob diferentes graus de entropia, foram projetados seis padrões estruturais de vetores de entrada (Tabela~\ref{tab:datasets}). A aleatoriedade determinística foi assegurada pelo pareamento rigoroso das sementes de geração entre as abordagens: para cada combinação de topologia e tamanho, um conjunto fixo de 50 vetores é gerado com a semente $42 \oplus n \oplus \text{tipo}$ e compartilhado por todos os algoritmos e pelas duas variantes (pura e com pré-processamento), garantindo a comparabilidade pareada das medições.
+
+Os algoritmos quasilineares (\emph{Merge Sort} e \emph{Quicksort}) foram medidos nas instâncias de tamanho $n \in \{1.000, 5.000, 10.000, 100.000, 1.000.000\}$. Para os algoritmos quadráticos (\emph{Insertion}, \emph{Bubble} e \emph{Selection Sort}), as medições foram restritas a $n \le 100.000$: em $n = 10^6$, cada execução desses métodos demandaria tempo da ordem de minutos, inviabilizando a coleta sistemática de um número estatisticamente significativo de amostras. Essa restrição é documentada e não compromete a comparação, pois a ordem de grandeza dos ganhos desses métodos já se estabiliza em $n = 100.000$.
 
 \begin{table}[!ht]
 \centering
@@ -216,7 +218,9 @@ Em todas as implementações, verificações preliminares de contorno (\emph{ear
 
 \subsection{Protocolo Experimental e Raciocínio de Cálculo de Inversões}
 
-O protocolo de medição empírica foi desenhado para isolar interferências do ambiente e garantir a reprodutibilidade estatística das métricas temporais. A quantificação do tempo de execução utilizou o arcabouço \emph{Criterion.rs}, que executa ciclos automatizados de aquecimento de memória cache (\emph{warm-up}) e realiza reamostragens estatísticas (\emph{bootstrapping}) para mitigar o impacto de interrupções de hardware. Para cada combinação de algoritmo, topologia e tamanho de vetor $n$, foram calculados o tempo médio, a mediana e os intervalos de confiança de 95\%. A medição temporal das abordagens submetidas ao pré-processamento contabilizou rigorosamente o custo composto $C_{\text{total}} = C_{\text{pre}} + C_{\text{sort}}$, garantindo a aferição transparente da condição de viabilidade prática $C_{\text{pre}} + C_{\text{sort}} < C_{\text{original}}$.
+O protocolo de medição empírica foi desenhado para isolar interferências do ambiente e garantir a reprodutibilidade estatística das métricas temporais. A quantificação do tempo de execução utilizou o arcabouço \emph{Criterion.rs}, que executa ciclos automatizados de aquecimento de memória cache (\emph{warm-up}) e realiza reamostragens estatísticas (\emph{bootstrapping}) para mitigar o impacto de interrupções de hardware. Para cada combinação de algoritmo, topologia e tamanho de vetor $n$, foram calculados o tempo médio, a mediana e os intervalos de confiança de 95\%. A configuração de medição foi ajustada por perfil: 50 amostras com aquecimento de 2\,s e janela de medição de 5\,s para a maioria dos cenários; para os algoritmos quadráticos em $n=100.000$ (cada iteração dura frações de segundo), 30 amostras com aquecimento de 1\,s e janela de 5\,s; e, para os métodos quasilineares em $n=10^6$, 50 amostras com aquecimento de 2\,s e janela de 10\,s. A medição temporal das abordagens submetidas ao pré-processamento contabilizou rigorosamente o custo composto $C_{\text{total}} = C_{\text{pre}} + C_{\text{sort}}$, garantindo a aferição transparente da condição de viabilidade prática $C_{\text{pre}} + C_{\text{sort}} < C_{\text{original}}$.
+
+Além das métricas temporais, a corretude de cada cenário foi verificada fora da região cronometrada: para todo (algoritmo, topologia, tamanho), confirma-se que a saída é uma permutação ordenada da entrada (comparação com \texttt{sort\_unstable}) tanto na variante pura quanto na com pré-processamento. O número de inversões de cada vetor do conjunto compartilhado, antes e depois do pré-processamento, é registrado em arquivos auxiliares (\emph{companion}) do harness, garantindo que as tabelas de inversões deste artigo derivam exatamente dos mesmos vetores cronometrados.
 
 A quantificação experimental do número exato de inversões $I$ utiliza uma implementação baseada no algoritmo MergeSort modificado, com complexidade temporal $O(n \log n)$ \cite{cormen_introduction_2022}. Durante a etapa de intercalação de dois subvetores ordenados $L$ e $R$, quando um elemento $R[j]$ é menor que $L[i]$, adiciona-se exatamente $|L| - i$ ao contador de inversões. Essa abordagem elimina o gargalo quadrático da contagem direta $O(n^2)$, permitindo a avaliação de vetores com ordens de grandeza de $10^5$ a $10^6$ elementos dentro do protocolo experimental.
 
@@ -332,11 +336,11 @@ A Figura~\ref{fig:inversoespos} ilustra a variação das inversões observadas n
 \hline
 \textbf{Tipo} & \textbf{Inversões} & \textbf{Pós-pré} & \textbf{Redução} \\
 \hline
-Aleatório & 24.993.860 & 13.586.692 & 45,6\% \\
+Aleatório & 24.960.120 & 13.681.366 & 45,2\% \\
 Tartarugas & 30.613.750 & 18.133.750 & 40,8\% \\
-Zigue-zague & 24.997.500 & 2.501 & 99,9\% \\
-Quase ordenado & 705.478 & 402.318 & 43,0\% \\
-Duplicados & 16.678.243 & 6.166.988 & 63,0\% \\
+Zigue-zague & 24.997.500 & 2.501 & 100,0\% \\
+Quase ordenado & 654.922 & 377.149 & 42,4\% \\
+Duplicados & 16.633.993 & 6.300.346 & 62,1\% \\
 Invertido & 49.995.000 & 0 & 100,0\% \\
 \hline
 \end{tabular}
@@ -344,14 +348,14 @@ Invertido & 49.995.000 & 0 & 100,0\% \\
 
 Como o Algoritmo~\ref{alg:preproc} executa a troca direta entre $a[i]$ e $a[n-1-i]$, um vetor estritamente invertido (onde $a[i] > a[n-1-i]$ para todo $i < n/2$) sofre uma reversão geométrica completa da sua sequência em $O(n)$ operações. A resolução do caso Invertido decorre da geometria da transformação do pré-processamento, configurando um caso ideal onde a topologia da desordem coincide perfeitamente com a simetria aplicada.
 
-O comportamento observado no cenário \emph{Zigue-zague} também pode ser interpretado à luz dessa propriedade estrutural do pré-processamento. Embora sua topologia não corresponda a uma inversão global como no caso \emph{Invertido}, a alternância sistemática entre blocos com orientações distintas produz relações de desordem que são parcialmente capturadas pelas comparações entre posições simétricas. Dessa forma, a troca direta entre $a[i]$ e $a[n-1-i]$ corrige simultaneamente um grande número de relações fora de ordem, reduzindo as inversões de 24.997.500 para apenas 2.501, uma redução de 99,9\%. 
+O comportamento observado no cenário \emph{Zigue-zague} também pode ser interpretado à luz dessa propriedade estrutural do pré-processamento. Embora sua topologia não corresponda a uma inversão global como no caso \emph{Invertido}, a alternância sistemática entre blocos com orientações distintas produz relações de desordem que são parcialmente capturadas pelas comparações entre posições simétricas. Dessa forma, a troca direta entre $a[i]$ e $a[n-1-i]$ corrige simultaneamente um grande número de relações fora de ordem, reduzindo as inversões de 24.997.500 para apenas 2.501, uma redução de aproximadamente $100\%$ (99,99\%). 
 
 O resultado evidencia que a eficácia do pré-processamento não se restringe ao caso de reversão completa: ela também se manifesta em topologias cuja estrutura apresenta forte alinhamento com a simetria utilizada pela transformação, ainda que de maneira parcial. Essa característica ajuda a explicar os ganhos particularmente elevados observados posteriormente nos algoritmos de Inserção e Bubble Sort para essa entrada.
 
 
 \subsection{Impacto no Tempo de Execução e Custo do Pré-processamento}
 
-A Tabela~\ref{tab:tempos} apresenta o tempo médio de execução e o ganho relativo obtido por cada algoritmo sob vetores de 10.000 elementos, evidenciando como a eficiência do pré-processamento é condicionada pela complexidade e adaptabilidade nativas de cada método. Os algoritmos quadráticos sensíveis à ordenação (como \emph{Inserção} e \emph{Bubblesort}) obtiveram os maiores benefícios práticos: no cenário \emph{Zigue-zague}, o pré-processamento reduziu o tempo do \emph{Inserção} de $5.062,86\,\mu s$ para $11,98\,\mu s$ ($+99,8\%$) e do \emph{Bubblesort} de $19.829,76\,\mu s$ para $17,48\,\mu s$ ($+99,9\%$), refletindo a eliminação drástica das inversões. Em contrapartida, métodos de complexidade assintótica $O(n \log n)$, como o \emph{Merge}, apresentaram resultados mistos (com degradação de até 14,0\% e ganhos de até 14,5\%). Como a estrutura de divisão e conquista já garante alta eficiência nativa, o custo computacional da etapa prévia tende a suplantar eventuais ganhos em distribuições de baixa estrutura.
+A Tabela~\ref{tab:tempos} apresenta o tempo médio de execução e o ganho relativo obtido por cada algoritmo sob vetores de 10.000 elementos, evidenciando como a eficiência do pré-processamento é condicionada pela complexidade e adaptabilidade nativas de cada método. Os algoritmos quadráticos sensíveis à ordenação (como \emph{Inserção} e \emph{Bubblesort}) obtiveram os maiores benefícios práticos: no cenário \emph{Zigue-zague}, o pré-processamento reduziu o tempo do \emph{Inserção} de $5.535,18\,\mu s$ para $16,44\,\mu s$ ($+99,7\%$) e do \emph{Bubblesort} de $19.147,42\,\mu s$ para $17,67\,\mu s$ ($+99,9\%$), refletindo a eliminação drástica das inversões. Em contrapartida, métodos de complexidade assintótica $O(n \log n)$, como o \emph{Merge}, apresentaram resultados mistos (com degradação de até 17,8\% e ganhos de até 14,8\%). Como a estrutura de divisão e conquista já garante alta eficiência nativa, o custo computacional da etapa prévia tende a suplantar eventuais ganhos em distribuições de baixa estrutura.
 
 \begin{table}[ht]
 \centering
@@ -362,41 +366,41 @@ A Tabela~\ref{tab:tempos} apresenta o tempo médio de execução e o ganho relat
 \hline
 \textbf{Algoritmo} & \textbf{Tipo} & \textbf{Puro} & \textbf{Com pré} & \textbf{Ganho} \\
 \hline
-Merge & Aleatório & 416,90 $\pm$ 7,82 & 429,00 $\pm$ 5,30 & -2,9\% \\
-Merge & Tartarugas & 116,11 $\pm$ 1,92 & 132,34 $\pm$ 1,79 & -14,0\% \\
-Merge & Zigue-zague & 128,08 $\pm$ 1,88 & 109,53 $\pm$ 2,08 & +14,5\% \\
-Merge & Quase ordenado & 128,72 $\pm$ 2,66 & 134,03 $\pm$ 1,86 & -4,1\% \\
-Merge & Duplicados & 191,41 $\pm$ 2,89 & 193,68 $\pm$ 3,84 & -1,2\% \\
-Merge & Invertido & 121,78 $\pm$ 2,87 & 108,17 $\pm$ 2,56 & +11,2\% \\
-Quicksort & Aleatório & 334,51 $\pm$ 6,68 & 351,30 $\pm$ 5,57 & -5,0\% \\
-Quicksort & Tartarugas & 3240,29 $\pm$ 19,06 & 801,36 $\pm$ 16,53 & +75,3\% \\
-Quicksort & Zigue-zague & 683,60 $\pm$ 16,17 & 316,25 $\pm$ 5,13 & +53,7\% \\
-Quicksort & Quase ordenado & 242,49 $\pm$ 4,45 & 265,87 $\pm$ 5,23 & -9,6\% \\
-Quicksort & Duplicados & 9815,64 $\pm$ 76,56 & 9929,86 $\pm$ 43,56 & -1,2\% \\
-Quicksort & Invertido & 144,62 $\pm$ 3,38 & 73,87 $\pm$ 1,51 & +48,9\% \\
-Inserção & Aleatório & 5065,81 $\pm$ 37,71 & 2881,55 $\pm$ 26,64 & +43,1\% \\
-Inserção & Tartarugas & 6131,06 $\pm$ 37,49 & 3643,55 $\pm$ 16,46 & +40,6\% \\
-Inserção & Zigue-zague & 5062,86 $\pm$ 17,57 & 11,98 $\pm$ 0,29 & +99,8\% \\
-Inserção & Quase ordenado & 219,59 $\pm$ 5,18 & 152,59 $\pm$ 2,39 & +30,5\% \\
-Inserção & Duplicados & 3354,86 $\pm$ 20,24 & 1408,90 $\pm$ 48,91 & +58,0\% \\
-Inserção & Invertido & 9943,20 $\pm$ 39,46 & 11,15 $\pm$ 0,20 & +99,9\% \\
-Bubblesort & Aleatório & 29011,57 $\pm$ 96,34 & 24958,26 $\pm$ 55,31 & +14,0\% \\
-Bubblesort & Tartarugas & 19917,67 $\pm$ 88,28 & 15009,86 $\pm$ 57,43 & +24,6\% \\
-Bubblesort & Zigue-zague & 19829,76 $\pm$ 57,13 & 17,48 $\pm$ 0,46 & +99,9\% \\
-Bubblesort & Quase ordenado & 20518,06 $\pm$ 54,61 & 17571,95 $\pm$ 32,00 & +14,4\% \\
-Bubblesort & Duplicados & 25626,62 $\pm$ 79,13 & 21119,02 $\pm$ 40,00 & +17,6\% \\
-Bubblesort & Invertido & 19816,65 $\pm$ 84,20 & 9,17 $\pm$ 0,22 & +100,0\% \\
-Seleção & Aleatório & 24484,27 $\pm$ 851,48 & 23492,52 $\pm$ 772,67 & +4,1\% \\
-Seleção & Tartarugas & 24705,38 $\pm$ 895,32 & 24664,67 $\pm$ 739,03 & +0,2\% \\
-Seleção & Zigue-zague & 25396,38 $\pm$ 827,27 & 19792,89 $\pm$ 57,95 & +22,1\% \\
-Seleção & Quase ordenado & 25505,03 $\pm$ 847,40 & 24613,47 $\pm$ 813,60 & +3,5\% \\
-Seleção & Duplicados & 23435,17 $\pm$ 852,87 & 25383,85 $\pm$ 833,81 & -8,3\% \\
-Seleção & Invertido & 17686,34 $\pm$ 120,06 & 19780,12 $\pm$ 54,58 & -11,8\% \\
+Merge & Aleatório & 429,35 $\pm$ 1,95 & 444,49 $\pm$ 5,94 & -3,5\% \\
+Merge & Tartarugas & 125,17 $\pm$ 2,00 & 147,49 $\pm$ 4,30 & -17,8\% \\
+Merge & Zigue-zague & 136,82 $\pm$ 1,30 & 116,63 $\pm$ 1,30 & +14,8\% \\
+Merge & Quase ordenado & 135,04 $\pm$ 0,97 & 143,12 $\pm$ 1,31 & -6,0\% \\
+Merge & Duplicados & 199,19 $\pm$ 1,70 & 201,32 $\pm$ 1,47 & -1,1\% \\
+Merge & Invertido & 129,15 $\pm$ 2,41 & 112,21 $\pm$ 0,91 & +13,1\% \\
+Quicksort & Aleatório & 367,27 $\pm$ 2,03 & 382,50 $\pm$ 1,25 & -4,1\% \\
+Quicksort & Tartarugas & 197,67 $\pm$ 2,55 & 207,13 $\pm$ 2,41 & -4,8\% \\
+Quicksort & Zigue-zague & 540,28 $\pm$ 9,78 & 562,13 $\pm$ 8,28 & -4,0\% \\
+Quicksort & Quase ordenado & 306,46 $\pm$ 2,16 & 315,72 $\pm$ 2,55 & -3,0\% \\
+Quicksort & Duplicados & 44,92 $\pm$ 0,43 & 59,00 $\pm$ 0,47 & -31,3\% \\
+Quicksort & Invertido & 471,18 $\pm$ 3,96 & 644,59 $\pm$ 5,75 & -36,8\% \\
+Inserção & Aleatório & 5506,86 $\pm$ 73,84 & 3181,76 $\pm$ 63,63 & +42,2\% \\
+Inserção & Tartarugas & 6618,39 $\pm$ 79,22 & 4037,39 $\pm$ 76,08 & +39,0\% \\
+Inserção & Zigue-zague & 5535,18 $\pm$ 57,97 & 16,44 $\pm$ 0,73 & +99,7\% \\
+Inserção & Quase ordenado & 182,82 $\pm$ 3,93 & 130,58 $\pm$ 2,05 & +28,6\% \\
+Inserção & Duplicados & 3662,06 $\pm$ 39,36 & 1488,72 $\pm$ 26,80 & +59,3\% \\
+Inserção & Invertido & 10897,85 $\pm$ 160,40 & 13,04 $\pm$ 0,26 & +99,9\% \\
+Bubblesort & Aleatório & 23676,19 $\pm$ 117,13 & 20530,09 $\pm$ 203,74 & +13,3\% \\
+Bubblesort & Tartarugas & 19428,15 $\pm$ 133,43 & 14094,37 $\pm$ 94,62 & +27,5\% \\
+Bubblesort & Zigue-zague & 19147,42 $\pm$ 117,96 & 17,67 $\pm$ 0,43 & +99,9\% \\
+Bubblesort & Quase ordenado & 16466,39 $\pm$ 83,51 & 13943,78 $\pm$ 141,98 & +15,3\% \\
+Bubblesort & Duplicados & 20376,82 $\pm$ 100,35 & 17055,89 $\pm$ 97,02 & +16,3\% \\
+Bubblesort & Invertido & 21307,46 $\pm$ 255,90 & 10,28 $\pm$ 0,40 & +100,0\% \\
+Seleção & Aleatório & 21487,72 $\pm$ 137,81 & 21390,89 $\pm$ 106,85 & +0,5\% \\
+Seleção & Tartarugas & 21429,88 $\pm$ 171,35 & 20717,84 $\pm$ 122,11 & +3,3\% \\
+Seleção & Zigue-zague & 21382,51 $\pm$ 180,13 & 20975,92 $\pm$ 90,55 & +1,9\% \\
+Seleção & Quase ordenado & 21226,00 $\pm$ 116,05 & 21457,09 $\pm$ 279,79 & -1,1\% \\
+Seleção & Duplicados & 20626,01 $\pm$ 77,19 & 20788,64 $\pm$ 142,61 & -0,8\% \\
+Seleção & Invertido & 18262,67 $\pm$ 121,85 & 20515,49 $\pm$ 49,68 & -12,3\% \\
 \hline
 \end{tabular}
 \end{table}
 
-A viabilidade prática dessa abordagem fundamenta-se no baixo e altamente previsível custo computacional da etapa simétrica. Conforme demonstrado na Tabela~\ref{tab:precusto} e na Figura~\ref{fig:precusto_linear}, o tempo de execução do pré-processamento apresenta um comportamento estritamente linear $O(n)$ em relação ao tamanho do vetor, com tempo unitário estabilizado entre $1,20$ e $1,24\text{ ns}$ por elemento para $n \ge 5.000$, indicando ausência de gargalos de localidade de memória mesmo em escalas de $10^6$ elementos. Assim, a varredura impõe um \emph{overhead} irrisório — apenas $12,17\,\mu s$ para $10.000$ elementos —, amplamente compensado pela economia de milissegundos na ordenação adaptativa.
+A viabilidade prática dessa abordagem fundamenta-se no baixo e altamente previsível custo computacional da etapa simétrica. Conforme demonstrado na Tabela~\ref{tab:precusto} e na Figura~\ref{fig:precusto_linear}, o tempo de execução do pré-processamento apresenta um comportamento estritamente linear $O(n)$ em relação ao tamanho do vetor, com tempo unitário entre $1,18$ e $1,36\text{ ns}$ por elemento, que decai monotonicamente com o crescimento de $n$ e estabiliza em $\approx 1{,}18\text{ ns}$ para $10^6$ elementos, indicando ausência de gargalos de localidade de memória mesmo em escala. Assim, a varredura impõe um \emph{overhead} irrisório — apenas $12,44\,\mu s$ para $10.000$ elementos —, amplamente compensado pela economia de milissegundos na ordenação adaptativa.
 
 \begin{figure}[ht]
 \centering
@@ -422,11 +426,11 @@ A viabilidade prática dessa abordagem fundamenta-se no baixo e altamente previs
     thick
 ]
 coordinates {
-    (1000,1.417)
-    (5000,6.200)
-    (10000,12.167)
-    (100000,121.67)
-    (1000000,1216.7)
+    (1000,1.357)
+    (5000,6.250)
+    (10000,12.443)
+    (100000,121.893)
+    (1000000,1181.843)
 };
 \end{axis}
 \end{tikzpicture}
@@ -442,28 +446,29 @@ coordinates {
 \hline
 \textbf{Tamanho} & \textbf{Pré (\textmu{}s)} & \textbf{ns/elemento} \\
 \hline
-1.000 & 1,42 & 1,42 \\
-5.000 & 6,20 & 1,24 \\
-10.000 & 12,17 & 1,22 \\
-100.000 & 121,67 & 1,22 \\
-1.000.000 & 1216,70 & 1,22 \\
+1.000 & 1,36 & 1,36 \\
+5.000 & 6,25 & 1,25 \\
+10.000 & 12,44 & 1,24 \\
+20.000 & 24,56 & 1,23 \\
+100.000 & 121,89 & 1,22 \\
+1.000.000 & 1181,84 & 1,18 \\
 \hline
 \end{tabular}
 \end{table}
 
 \subsection{Tempo Total de Ordenação e Análise Individual dos Algoritmos}
 
-A avaliação do tempo total de execução revela uma dicotomia no impacto do pré-processamento: nos algoritmos adaptativos de classe quadrática, notadamente o InsertionSort e o BubbleSort, a drástica eliminação prévia das inversões resulta em ganhos substanciais de desempenho (variando entre $30\%$ e $99,9\%$), justificados pela matemática do algoritmo — o modesto custo linear da varredura simétrica ($\approx 1{,}2\text{ ns/elemento}$) é vastamente amortizado pela supressão das operações de trocas locais. Em contraste, os métodos de complexidade $O(n\log n)$ apresentam respostas qualitativamente distintas. 
+A avaliação do tempo total de execução revela uma dicotomia no impacto do pré-processamento: nos algoritmos adaptativos de classe quadrática, notadamente o InsertionSort e o BubbleSort, a drástica eliminação prévia das inversões resulta em ganhos substanciais de desempenho (variando entre $13\%$ e $100\%$), justificados pela matemática do algoritmo — o modesto custo linear da varredura simétrica ($\approx 1{,}2\text{ ns/elemento}$) é vastamente amortizado pela supressão das operações de trocas locais. Em contraste, os métodos de complexidade $O(n\log n)$ apresentam respostas qualitativamente distintas.
 
-O Merge Sort exibe resultados mistos (com degradação de até 14,0\% e ganhos de até 14,5\%) em todas as topologias, indicando que sua estratégia de divisão e conquista já lida de forma otimizada com a desordem, e o custo do pré-processamento tende a suplantar quaisquer ganhos marginais. O Quicksort, por sua vez, obtém ganhos expressivos em entradas estruturadas (Tartarugas: $+75,3\%$, Zigue-zague: $+53,7\%$, Invertido: $+48,9\%$), porém sofre leve degradação sobre vetores puramente aleatórios ($-5,0\%$) e quase ordenados ($-9,6\%$).
+O Merge Sort exibe resultados mistos (com degradação de até 17,8\% e ganhos de até 14,8\%): o ganho concentra-se precisamente nas topologias em que o pré-processamento elimina a desordem estrutural (\emph{Invertido}: $+13,1\%$, \emph{Zigue-zague}: $+14,8\%$ em $n=10.000$; ganhos crescentes até $\approx +18\%$ em $n=10^6$), enquanto em \emph{Aleatório}, \emph{Tartarugas} e \emph{Quase ordenado} o overhead da etapa preliminar superpõe-se a um custo de ordenação que já é baixo, resultando em degradação. O Quicksort implementado com particionamento de três vias e mediana de três, por sua vez, apresenta degradação sistemática sob o pré-processamento: leve na maioria das topologias ($-3\%$ a $-5\%$ em \emph{Aleatório}, \emph{Tartarugas}, \emph{Zigue-zague} e \emph{Quase ordenado}), e acentuada em \emph{Duplicados} ($-31,3\%$) e \emph{Invertido} ($-36,8\%$). Esse comportamento é coerente com a natureza não adaptativa dessa implementação: seu custo é dominado pelo número de varreduras de particionamento, que a reestruturação moderada das inversões praticamente não altera. Em \emph{Invertido}, a conversão da entrada em sequência estritamente ordenada remove a alternância de padrões que a seleção de pivô por mediana de três explora, adicionando varreduras sem vantagem alguma em comparações; em \emph{Duplicados}, a reorganização das chaves em blocos adjacentes destroi parcialmente o agrupamento que tornava o particionamento de três vias particularmente eficiente (o cenário puro é o mais rápido de todos: $44,92\,\mu s$). Assim, para a classe $O(n\log n)$, a técnica não se mostra benéfica na implementação avaliada, com raras exceções pontuais (ex.: \emph{Quase ordenado} em $n=10^6$, $+11,1\%$), o que delimita sua aplicabilidade.
 
-O comportamento do Selection Sort merece uma análise específica, pois seus resultados apresentam variações temporais apesar de o algoritmo ser não adaptativo quanto ao número de comparações. Na implementação utilizada, o laço interno percorre sempre as mesmas posições para um dado tamanho $n$, mantendo, portanto, o número de comparações fixo independentemente da configuração inicial do vetor. Entretanto, a implementação realiza a troca somente quando o menor elemento encontrado está em uma posição diferente daquela atualmente processada, por meio da condição \texttt{indice\_minimo != i}. Assim, embora o pré-processamento não reduza o número de comparações, ele pode alterar a quantidade de trocas e a disposição dos dados durante a ordenação. 
+O comportamento do Selection Sort confirma sua natureza não adaptativa: como o número de comparações é fixo ($n(n-1)/2$) independentemente da configuração inicial, a redução das inversões não se traduz em ganho algorítmico. De fato, nas medições o algoritmo permaneceu praticamente inalterado na maioria das topologias ($-1,1\%$ a $+3,3\%$), com um aparente decréscimo de $12,3\%$ apenas no cenário \emph{Invertido} em $n=10.000$ (também reproduzido em $n=100.000$, $-12,8\%$). 
 
-Esse efeito é particularmente evidente no cenário \emph{Invertido}, no qual o pré-processamento produz uma sequência ordenada e o Selection Sort não necessita realizar trocas. Ainda assim, o tempo total apresentou redução de desempenho de $11,8\%$, indicando que a economia das trocas evitadas não compensou o custo adicional do pré-processamento. Também foram observados ganho de $22,1\%$ em \emph{Zigue-zague} e perda de $8,3\%$ em \emph{Duplicados}. No entanto, é plausível inferir que a disparidade temporal observada (ex: $17.686 \mu s$ no Invertido contra $24.484 \mu s$ no Aleatório) decorre fortemente do comportamento do preditor de desvios (branch predictor) da CPU. Em vetores pré-estruturados, a condição central de busca pelo mínimo torna-se altamente previsível, evitando penalidades de pipeline flush, enquanto em entradas aleatórias a taxa de falha de previsão degrada o tempo físico, mesmo que a complexidade algorítmica $O(n^2)$ se mantenha intocada.
+Como o pré-processamento transforma a entrada invertida em uma sequência ordenada, a busca do mínimo em cada varredura passa a encontrar o menor elemento já na primeira posição candidata; o ganho esperado seria apenas evitar uma troca por iteração, o que não justifica a degradação observada. A divergência, portanto, parece decorrer de fatores microarquiteturais — especificamente do preditor de desvios (\emph{branch predictor}) da CPU. Em vetores pré-estruturados, a condição central de atualização do índice mínimo torna-se sistematicamente falsa para uma sequência ordenada, gerando um padrão de desvios altamente enviesado que pode acarretar penalidades de \emph{pipeline} distintas das observadas na sequência invertida original. O importante para a análise é que a magnitude dessas variações é pequena (no máximo $\approx 12\%$), não apresentando tendência sistemática de ganho — consistente com a previsão teórica de que um algoritmo não adaptativo não explora a redução de inversões.
 
 Ao acessar simultaneamente posições nas extremidades do vetor, o pré-processamento simétrico introduz dependências adicionais de controle e aumenta o número de instruções executadas por elemento. Em instâncias aleatórias, as condições internas de troca (\texttt{if A[i] > A[j]}) tornam-se difíceis de prever para o branch predictor do processador. Consequentemente, em cenários onde a redução de inversões é marginal, as penalidades arquiteturais decorrentes de erros de previsão de desvio (branch mispredictions) e o custo extra de instruções superam os benefícios lógicos da reestruturação.
 
-Toda essa dinâmica — marcada pelo expressivo aproveitamento lógico nos métodos quadráticos adaptativos, pelos ganhos substanciais do Quicksort em entradas estruturadas, pela resposta mista do Merge Sort e pelas variações temporais do Selection Sort apesar de seu número fixo de comparações — encontra-se visualmente consolidada na Figura~\ref{fig:tempos}, que detalha o tempo médio de execução puro contraposto ao cenário com pré-processamento para todos os perfis de desordem sob $n=10.000$.
+Toda essa dinâmica — marcada pelo expressivo aproveitamento lógico nos métodos quadráticos adaptativos, pela resposta mista do Merge Sort, pela degradação sistemática do Quicksort de três vias e pela neutralidade do Selection Sort não adaptativo — encontra-se visualmente consolidada na Figura~\ref{fig:tempos}, que detalha o tempo médio de execução puro contraposto ao cenário com pré-processamento para todos os perfis de desordem sob $n=10.000$.
 
 \begin{figure}[!ht]
 \centering
@@ -539,7 +544,7 @@ Toda essa dinâmica — marcada pelo expressivo aproveitamento lógico nos méto
 
 Este trabalho apresentou e avaliou um pré-processamento simétrico de complexidade $O(n)$ destinado à redução do número de inversões em sequências de entrada para algoritmos de ordenação. Os resultados demonstraram que a abordagem pode proporcionar ganhos relevantes em algoritmos adaptativos de complexidade quadrática quando aplicada a entradas com padrões estruturados de desordem ou em ordem inversa. Esse ganho é expressivo especialmente quando a redução do custo de ordenação supera o custo adicional introduzido pela etapa preliminar, satisfazendo a condição $C_{\text{pre}} + C_{\text{sort}} < C_{\text{original}}$.
 
-Por outro lado, nos algoritmos de complexidade $O(n \log n)$ avaliados, a aplicação do método revelou limitações importantes. Particularmente em entradas aleatórias, o custo adicional do pré-processamento e seus possíveis efeitos adversos sobre a localidade de cache não compensaram os benefícios obtidos com a redução de inversões. Tal constatação indica que a viabilidade prática da técnica deve ser estritamente condicionada às características da distribuição da entrada e à classe do algoritmo de ordenação empregado.
+Por outro lado, nos algoritmos de complexidade $O(n \log n)$ avaliados, a aplicação do método revelou limitações importantes. Com a implementação de Quicksort utilizada (particionamento de três vias e mediana de três), o pré-processamento causou degradação sistemática de desempenho — de $3\%$ a $5\%$ na maioria das topologias e de $31\%$ a $37\%$ em \emph{Duplicados} e \emph{Invertido} — pois o custo desse método é dominado pelo número de varreduras de particionamento, pouco alterado pela redução de inversões. No Merge Sort os efeitos foram mistos, com ganhos restritos às topologias estruturalmente mais afetadas pela varredura simétrica. Tal constatação indica que a viabilidade prática da técnica deve ser estritamente condicionada a algoritmos quadráticos adaptativos e a entradas com alta desordem estrutural.
 
 Como trabalhos futuros, recomenda-se a realização de testes em ambiente Linux com a infraestrutura \texttt{perf\_event}, viabilizando a análise direta de eventos de hardware, como \emph{cache misses} e \emph{branch mispredictions}. Essa extensão possibilitará investigar detalhadamente os impactos da técnica sobre a hierarquia de memória e a execução especulativa.
 

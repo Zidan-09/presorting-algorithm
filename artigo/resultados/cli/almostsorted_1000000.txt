@@ -1,0 +1,46 @@
+﻿==================================================
+­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
+Tamanho do Vetor: 1000000
+Tipo de Array:    AlmostSorted
+Algoritmo:        Merge
+Seed:             42 (reproduz├¡vel)
+Repeti├º├Áes:       7
+==================================================
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
+--------------------------------------------------
+  -> Invers├Áes Iniciais:            6574125002
+  -> Invers├Áes P├│s-Pr├®:             3938450458
+--------------------------------------------------
+Abordagem 1: Ordena├º├úo Pura (somente o sort)
+  -> Tempo m├®dio:                   18.676385ms
+  -> Tempo mediano:                 18.5462ms
+  -> Mem├│ria Alocada na Heap:       4000000 bytes
+  -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
+  -> Valida├º├úo:                     OK Ô£à
+--------------------------------------------------
+Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
+  -> Tempo do Pr├®-Processamento:   623.928┬Ás
+  -> Tempo Total (pr├® + sort):     19.963985ms
+  -> Tempo mediano:                19.9609ms
+  -> Mem├│ria Alocada na Heap:      4000000 bytes
+  -> Valida├º├úo:                     OK Ô£à
+==================================================
+ÔÜá´©Å O algoritmo proposto aumentou o tempo em 6.89%
+==================================================
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
+rep	puro_ns	com_pre_ns	pre_ns
+1	18342600	20549700	621300
+2	18257000	22326400	612800
+3	18855500	20644000	622000
+4	19832700	19960900	638700
+5	18029500	18997400	619200
+6	18871200	18663300	619000
+7	18546200	18606200	634500
+==================================================
+CSV_PURO,18342600,18257000,18855500,19832700,18029500,18871200,18546200
+CSV_COM_PRE,20549700,22326400,20644000,19960900,18997400,18663300,18606200
+CSV_PRE_SOZINHO,621300,612800,622000,638700,619200,619000,634500
+CSV_MEMORIA_PURO,4000000
+CSV_MEMORIA_COM_PRE,4000000
+CSV_INVERSOES_INICIAIS,6574125002
+CSV_INVERSOES_POS_PRE,3938450458

@@ -1,40 +1,46 @@
-==================================================
+﻿==================================================
 ­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
 Tamanho do Vetor: 20000
 Tipo de Array:    Turtles
-Algoritmo:        Quick
+Algoritmo:        Merge
 Seed:             42 (reproduz├¡vel)
-Repeti├º├Áes:       1
+Repeti├º├Áes:       7
 ==================================================
-­ƒôè METRICAS COLETADAS (m├®dia de 1 repeti├º├Áes):
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
 --------------------------------------------------
   -> Invers├Áes Iniciais:            122477500
   -> Invers├Áes P├│s-Pr├®:             72517500
 --------------------------------------------------
 Abordagem 1: Ordena├º├úo Pura (somente o sort)
-  -> Tempo m├®dio:                   12.0256ms
-  -> Tempo mediano:                 12.0256ms
-  -> Mem├│ria Alocada na Heap:       0 bytes
+  -> Tempo m├®dio:                   249.214┬Ás
+  -> Tempo mediano:                 243.8┬Ás
+  -> Mem├│ria Alocada na Heap:       80000 bytes
   -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
   -> Valida├º├úo:                     OK Ô£à
 --------------------------------------------------
 Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
-  -> Tempo do Pr├®-Processamento:   9.7┬Ás
-  -> Tempo Total (pr├® + sort):     2.5396ms
-  -> Tempo mediano:                2.5396ms
-  -> Mem├│ria Alocada na Heap:      0 bytes
+  -> Tempo do Pr├®-Processamento:   9.914┬Ás
+  -> Tempo Total (pr├® + sort):     282.857┬Ás
+  -> Tempo mediano:                278.1┬Ás
+  -> Mem├│ria Alocada na Heap:      80000 bytes
   -> Valida├º├úo:                     OK Ô£à
 ==================================================
-­ƒÜÇ O algoritmo proposto reduziu o tempo em 78.88%
+ÔÜá´©Å O algoritmo proposto aumentou o tempo em 13.50%
 ==================================================
-­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=1):
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
 rep	puro_ns	com_pre_ns	pre_ns
-1	12025600	2539600	9700
+1	277000	278100	9200
+2	243800	274400	9100
+3	243400	274600	9100
+4	243600	279200	9100
+5	243200	273400	9100
+6	244800	318300	14600
+7	248700	282000	9200
 ==================================================
-CSV_PURO,12025600
-CSV_COM_PRE,2539600
-CSV_PRE_SOZINHO,9700
-CSV_MEMORIA_PURO,0
-CSV_MEMORIA_COM_PRE,0
+CSV_PURO,277000,243800,243400,243600,243200,244800,248700
+CSV_COM_PRE,278100,274400,274600,279200,273400,318300,282000
+CSV_PRE_SOZINHO,9200,9100,9100,9100,9100,14600,9200
+CSV_MEMORIA_PURO,80000
+CSV_MEMORIA_COM_PRE,80000
 CSV_INVERSOES_INICIAIS,122477500
 CSV_INVERSOES_POS_PRE,72517500

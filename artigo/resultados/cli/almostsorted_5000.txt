@@ -1,40 +1,46 @@
-==================================================
+﻿==================================================
 ­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
 Tamanho do Vetor: 5000
 Tipo de Array:    AlmostSorted
-Algoritmo:        Quick
+Algoritmo:        Merge
 Seed:             42 (reproduz├¡vel)
-Repeti├º├Áes:       1
+Repeti├º├Áes:       7
 ==================================================
-­ƒôè METRICAS COLETADAS (m├®dia de 1 repeti├º├Áes):
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
 --------------------------------------------------
   -> Invers├Áes Iniciais:            156506
   -> Invers├Áes P├│s-Pr├®:             94435
 --------------------------------------------------
 Abordagem 1: Ordena├º├úo Pura (somente o sort)
-  -> Tempo m├®dio:                   88.8┬Ás
-  -> Tempo mediano:                 88.8┬Ás
-  -> Mem├│ria Alocada na Heap:       0 bytes
+  -> Tempo m├®dio:                   69.385┬Ás
+  -> Tempo mediano:                 67.1┬Ás
+  -> Mem├│ria Alocada na Heap:       20000 bytes
   -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
   -> Valida├º├úo:                     OK Ô£à
 --------------------------------------------------
 Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
-  -> Tempo do Pr├®-Processamento:   3.6┬Ás
-  -> Tempo Total (pr├® + sort):     104.6┬Ás
-  -> Tempo mediano:                104.6┬Ás
-  -> Mem├│ria Alocada na Heap:      0 bytes
+  -> Tempo do Pr├®-Processamento:   3.814┬Ás
+  -> Tempo Total (pr├® + sort):     67.471┬Ás
+  -> Tempo mediano:                66.4┬Ás
+  -> Mem├│ria Alocada na Heap:      20000 bytes
   -> Valida├º├úo:                     OK Ô£à
 ==================================================
-ÔÜá´©Å O algoritmo proposto aumentou o tempo em 17.79%
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 2.76%
 ==================================================
-­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=1):
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
 rep	puro_ns	com_pre_ns	pre_ns
-1	88800	104600	3600
+1	67300	63900	3400
+2	61400	68200	3600
+3	69500	64100	3700
+4	61700	71400	4400
+5	95600	66400	3600
+6	63100	73100	3700
+7	67100	65200	4300
 ==================================================
-CSV_PURO,88800
-CSV_COM_PRE,104600
-CSV_PRE_SOZINHO,3600
-CSV_MEMORIA_PURO,0
-CSV_MEMORIA_COM_PRE,0
+CSV_PURO,67300,61400,69500,61700,95600,63100,67100
+CSV_COM_PRE,63900,68200,64100,71400,66400,73100,65200
+CSV_PRE_SOZINHO,3400,3600,3700,4400,3600,3700,4300
+CSV_MEMORIA_PURO,20000
+CSV_MEMORIA_COM_PRE,20000
 CSV_INVERSOES_INICIAIS,156506
 CSV_INVERSOES_POS_PRE,94435

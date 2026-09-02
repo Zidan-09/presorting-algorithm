@@ -1,43 +1,45 @@
-==================================================
+﻿==================================================
 ­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
 Tamanho do Vetor: 10000
 Tipo de Array:    Zigzag
 Algoritmo:        Insertion
 Seed:             42 (reproduz├¡vel)
-Repeti├º├Áes:       5
+Repeti├º├Áes:       7
 ==================================================
-­ƒôè METRICAS COLETADAS (m├®dia de 5 repeti├º├Áes):
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
 --------------------------------------------------
   -> Invers├Áes Iniciais:            24997500
   -> Invers├Áes P├│s-Pr├®:             2501
 --------------------------------------------------
 Abordagem 1: Ordena├º├úo Pura (somente o sort)
-  -> Tempo m├®dio:                   10.24868ms
-  -> Tempo mediano:                 10.036ms
+  -> Tempo m├®dio:                   10.148771ms
+  -> Tempo mediano:                 10.1507ms
   -> Mem├│ria Alocada na Heap:       0 bytes
   -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
   -> Valida├º├úo:                     OK Ô£à
 --------------------------------------------------
 Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
-  -> Tempo do Pr├®-Processamento:   4.96┬Ás
-  -> Tempo Total (pr├® + sort):     10.08┬Ás
+  -> Tempo do Pr├®-Processamento:   5.042┬Ás
+  -> Tempo Total (pr├® + sort):     10.128┬Ás
   -> Tempo mediano:                10┬Ás
   -> Mem├│ria Alocada na Heap:      0 bytes
   -> Valida├º├úo:                     OK Ô£à
 ==================================================
 ­ƒÜÇ O algoritmo proposto reduziu o tempo em 99.90%
 ==================================================
-­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=5):
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
 rep	puro_ns	com_pre_ns	pre_ns
-1	10686800	10300	5100
-2	10036000	9900	4900
-3	10024000	10000	4900
-4	10020600	9900	4800
-5	10476000	10300	5100
+1	10189500	10100	4900
+2	10108600	10000	4900
+3	10199900	10900	5700
+4	10232300	9900	4900
+5	10089500	10200	5100
+6	10150700	9900	4900
+7	10070900	9900	4900
 ==================================================
-CSV_PURO,10686800,10036000,10024000,10020600,10476000
-CSV_COM_PRE,10300,9900,10000,9900,10300
-CSV_PRE_SOZINHO,5100,4900,4900,4800,5100
+CSV_PURO,10189500,10108600,10199900,10232300,10089500,10150700,10070900
+CSV_COM_PRE,10100,10000,10900,9900,10200,9900,9900
+CSV_PRE_SOZINHO,4900,4900,5700,4900,5100,4900,4900
 CSV_MEMORIA_PURO,0
 CSV_MEMORIA_COM_PRE,0
 CSV_INVERSOES_INICIAIS,24997500

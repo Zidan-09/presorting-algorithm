@@ -1,15 +1,20 @@
 %%
-%% Tabela 3: redução de inversões (tamanho 10.000)
+%% Tabela 3: redução de inversões (tamanho 10.000; média dos 50 vetores do pool)
 %%
 \begin{table}[ht]
 \centering
-\caption{Redução de inversões proporcionada pelo pré-processamento simétrico em vetores de 10.000 elementos.}
+\caption{Redução de inversões proporcionada pelo pré-processamento simétrico em vetores de 10.000 elementos (média dos 50 vetores usados no benchmark).}
 \label{tab:inversoes}
 \begin{tabular}{lrrr}
 \hline
 \textbf{Tipo} & \textbf{Inversões} & \textbf{Pós-pré} & \textbf{Redução} \\
 \hline
-
+Aleatório & 24.960.120 & 13.681.366 & 45,2\% \\
+Tartarugas & 30.613.750 & 18.133.750 & 40,8\% \\
+Zigue-zague & 24.997.500 & 2.501 & 100,0\% \\
+Quase ordenado & 654.922 & 377.149 & 42,4\% \\
+Duplicados & 16.633.993 & 6.300.346 & 62,1\% \\
+Invertido & 49.995.000 & 0 & 100,0\% \\
 \hline
 \end{tabular}
 \end{table}
@@ -18,58 +23,63 @@
 %%
 \begin{table}[ht]
 \centering
-\caption{Tempo médio por execução (em \textmu{}s, média $\pm$ meia-largura do IC 95\%) e ganho do pré-processamento para vetores de 10.000 elementos. Fonte: Criterion, seed 42.}
+\caption{Tempo médio por execução (em \textmu{}s, média $\pm$ meia-largura do IC 95\%) e ganho do pré-processamento para vetores de 10.000 elementos. Fonte: Criterion, 50 amostras por cenário.}
 \label{tab:tempos}
 \small
 \begin{tabular}{llrrr}
 \hline
 \textbf{Algoritmo} & \textbf{Tipo} & \textbf{Puro} & \textbf{Com pré} & \textbf{Ganho} \\
 \hline
-Merge & Aleatório & 416,90 $\pm$ 7,82 & 429,00 $\pm$ 5,30 & -2,9\% \\
-Merge & Tartarugas & 116,11 $\pm$ 1,92 & 132,34 $\pm$ 1,79 & -14,0\% \\
-Merge & Zigue-zague & 128,08 $\pm$ 1,88 & 109,53 $\pm$ 2,08 & +14,5\% \\
-Merge & Quase ordenado & 128,72 $\pm$ 2,66 & 134,03 $\pm$ 1,86 & -4,1\% \\
-Merge & Duplicados & 191,41 $\pm$ 2,89 & 193,68 $\pm$ 3,84 & -1,2\% \\
-Merge & Invertido & 121,78 $\pm$ 2,87 & 108,17 $\pm$ 2,56 & +11,2\% \\
-Quicksort & Aleatório & 334,51 $\pm$ 6,68 & 351,30 $\pm$ 5,57 & -5,0\% \\
-Quicksort & Tartarugas & 3240,29 $\pm$ 19,06 & 801,36 $\pm$ 16,53 & +75,3\% \\
-Quicksort & Zigue-zague & 683,60 $\pm$ 16,17 & 316,25 $\pm$ 5,13 & +53,7\% \\
-Quicksort & Quase ordenado & 242,49 $\pm$ 4,45 & 265,87 $\pm$ 5,23 & -9,6\% \\
-Quicksort & Duplicados & 9815,64 $\pm$ 76,56 & 9929,86 $\pm$ 43,56 & -1,2\% \\
-Quicksort & Invertido & 144,62 $\pm$ 3,38 & 73,87 $\pm$ 1,51 & +48,9\% \\
-Inserção & Aleatório & 5065,81 $\pm$ 37,71 & 2881,55 $\pm$ 26,64 & +43,1\% \\
-Inserção & Tartarugas & 6131,06 $\pm$ 37,49 & 3643,55 $\pm$ 16,46 & +40,6\% \\
-Inserção & Zigue-zague & 5062,86 $\pm$ 17,57 & 11,98 $\pm$ 0,29 & +99,8\% \\
-Inserção & Quase ordenado & 219,59 $\pm$ 5,18 & 152,59 $\pm$ 2,39 & +30,5\% \\
-Inserção & Duplicados & 3354,86 $\pm$ 20,24 & 1408,90 $\pm$ 48,91 & +58,0\% \\
-Inserção & Invertido & 9943,20 $\pm$ 39,46 & 11,15 $\pm$ 0,20 & +99,9\% \\
-Bubblesort & Aleatório & 29011,57 $\pm$ 96,34 & 24958,26 $\pm$ 55,31 & +14,0\% \\
-Bubblesort & Tartarugas & 19917,67 $\pm$ 88,28 & 15009,86 $\pm$ 57,43 & +24,6\% \\
-Bubblesort & Zigue-zague & 19829,76 $\pm$ 57,13 & 17,48 $\pm$ 0,46 & +99,9\% \\
-Bubblesort & Quase ordenado & 20518,06 $\pm$ 54,61 & 17571,95 $\pm$ 32,00 & +14,4\% \\
-Bubblesort & Duplicados & 25626,62 $\pm$ 79,13 & 21119,02 $\pm$ 40,00 & +17,6\% \\
-Bubblesort & Invertido & 19816,65 $\pm$ 84,20 & 9,17 $\pm$ 0,22 & +100,0\% \\
-Seleção & Aleatório & 24484,27 $\pm$ 851,48 & 23492,52 $\pm$ 772,67 & +4,1\% \\
-Seleção & Tartarugas & 24705,38 $\pm$ 895,32 & 24664,67 $\pm$ 739,03 & +0,2\% \\
-Seleção & Zigue-zague & 25396,38 $\pm$ 827,27 & 19792,89 $\pm$ 57,95 & +22,1\% \\
-Seleção & Quase ordenado & 25505,03 $\pm$ 847,40 & 24613,47 $\pm$ 813,60 & +3,5\% \\
-Seleção & Duplicados & 23435,17 $\pm$ 852,87 & 25383,85 $\pm$ 833,81 & -8,3\% \\
-Seleção & Invertido & 17686,34 $\pm$ 120,06 & 19780,12 $\pm$ 54,58 & -11,8\% \\
+Merge & Aleatório & 429,35 $\pm$ 1,95 & 444,49 $\pm$ 5,94 & -3,5\% \\
+Merge & Tartarugas & 125,17 $\pm$ 2,00 & 147,49 $\pm$ 4,30 & -17,8\% \\
+Merge & Zigue-zague & 136,82 $\pm$ 1,30 & 116,63 $\pm$ 1,30 & +14,8\% \\
+Merge & Quase ordenado & 135,04 $\pm$ 0,97 & 143,12 $\pm$ 1,31 & -6,0\% \\
+Merge & Duplicados & 199,19 $\pm$ 1,70 & 201,32 $\pm$ 1,47 & -1,1\% \\
+Merge & Invertido & 129,15 $\pm$ 2,41 & 112,21 $\pm$ 0,91 & +13,1\% \\
+Quicksort & Aleatório & 367,27 $\pm$ 2,03 & 382,50 $\pm$ 1,25 & -4,1\% \\
+Quicksort & Tartarugas & 197,67 $\pm$ 2,55 & 207,13 $\pm$ 2,41 & -4,8\% \\
+Quicksort & Zigue-zague & 540,28 $\pm$ 9,78 & 562,13 $\pm$ 8,28 & -4,0\% \\
+Quicksort & Quase ordenado & 306,46 $\pm$ 2,16 & 315,72 $\pm$ 2,55 & -3,0\% \\
+Quicksort & Duplicados & 44,92 $\pm$ 0,43 & 59,00 $\pm$ 0,47 & -31,3\% \\
+Quicksort & Invertido & 471,18 $\pm$ 3,96 & 644,59 $\pm$ 5,75 & -36,8\% \\
+Inserção & Aleatório & 5506,86 $\pm$ 73,84 & 3181,76 $\pm$ 63,63 & +42,2\% \\
+Inserção & Tartarugas & 6618,39 $\pm$ 79,22 & 4037,39 $\pm$ 76,08 & +39,0\% \\
+Inserção & Zigue-zague & 5535,18 $\pm$ 57,97 & 16,44 $\pm$ 0,73 & +99,7\% \\
+Inserção & Quase ordenado & 182,82 $\pm$ 3,93 & 130,58 $\pm$ 2,05 & +28,6\% \\
+Inserção & Duplicados & 3662,06 $\pm$ 39,36 & 1488,72 $\pm$ 26,80 & +59,3\% \\
+Inserção & Invertido & 10897,85 $\pm$ 160,40 & 13,04 $\pm$ 0,26 & +99,9\% \\
+Bubblesort & Aleatório & 23676,19 $\pm$ 117,13 & 20530,09 $\pm$ 203,74 & +13,3\% \\
+Bubblesort & Tartarugas & 19428,15 $\pm$ 133,43 & 14094,37 $\pm$ 94,62 & +27,5\% \\
+Bubblesort & Zigue-zague & 19147,42 $\pm$ 117,96 & 17,67 $\pm$ 0,43 & +99,9\% \\
+Bubblesort & Quase ordenado & 16466,39 $\pm$ 83,51 & 13943,78 $\pm$ 141,98 & +15,3\% \\
+Bubblesort & Duplicados & 20376,82 $\pm$ 100,35 & 17055,89 $\pm$ 97,02 & +16,3\% \\
+Bubblesort & Invertido & 21307,46 $\pm$ 255,90 & 10,28 $\pm$ 0,40 & +100,0\% \\
+Seleção & Aleatório & 21487,72 $\pm$ 137,81 & 21390,89 $\pm$ 106,85 & +0,5\% \\
+Seleção & Tartarugas & 21429,88 $\pm$ 171,35 & 20717,84 $\pm$ 122,11 & +3,3\% \\
+Seleção & Zigue-zague & 21382,51 $\pm$ 180,13 & 20975,92 $\pm$ 90,55 & +1,9\% \\
+Seleção & Quase ordenado & 21226,00 $\pm$ 116,05 & 21457,09 $\pm$ 279,79 & -1,1\% \\
+Seleção & Duplicados & 20626,01 $\pm$ 77,19 & 20788,64 $\pm$ 142,61 & -0,8\% \\
+Seleção & Invertido & 18262,67 $\pm$ 121,85 & 20515,49 $\pm$ 49,68 & -12,3\% \\
 \hline
 \end{tabular}
 \end{table}
 %%
-%% Tabela 5: custo do pré-processamento (escala)
+%% Tabela 5: custo do pré-processamento (escala; medido via CLI, seed 42)
 %%
 \begin{table}[ht]
 \centering
-\caption{Custo médio do pré-processamento simétrico em função do tamanho do vetor (média sobre os seis tipos).}
+\caption{Custo médio do pré-processamento simétrico em função do tamanho do vetor (média sobre os seis tipos; medido com a ferramenta CLI do projeto, seed 42).}
 \label{tab:precusto}
 \begin{tabular}{rrr}
 \hline
 \textbf{Tamanho} & \textbf{Pré (\textmu{}s)} & \textbf{ns/elemento} \\
 \hline
-
+1.000 & 1,36 & 1,36 \\
+5.000 & 6,25 & 1,25 \\
+10.000 & 12,44 & 1,24 \\
+20.000 & 24,56 & 1,23 \\
+100.000 & 121,89 & 1,22 \\
+1.000.000 & 1181,84 & 1,18 \\
 \hline
 \end{tabular}
 \end{table}

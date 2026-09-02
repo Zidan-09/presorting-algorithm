@@ -1,43 +1,45 @@
-==================================================
+﻿==================================================
 ­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
 Tamanho do Vetor: 10000
 Tipo de Array:    Random
 Algoritmo:        Bubble
 Seed:             42 (reproduz├¡vel)
-Repeti├º├Áes:       5
+Repeti├º├Áes:       7
 ==================================================
-­ƒôè METRICAS COLETADAS (m├®dia de 5 repeti├º├Áes):
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
 --------------------------------------------------
   -> Invers├Áes Iniciais:            24993860
   -> Invers├Áes P├│s-Pr├®:             13586692
 --------------------------------------------------
 Abordagem 1: Ordena├º├úo Pura (somente o sort)
-  -> Tempo m├®dio:                   22.97694ms
-  -> Tempo mediano:                 22.945ms
+  -> Tempo m├®dio:                   22.422071ms
+  -> Tempo mediano:                 22.4571ms
   -> Mem├│ria Alocada na Heap:       0 bytes
   -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
   -> Valida├º├úo:                     OK Ô£à
 --------------------------------------------------
 Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
-  -> Tempo do Pr├®-Processamento:   27.28┬Ás
-  -> Tempo Total (pr├® + sort):     19.27608ms
-  -> Tempo mediano:                18.7208ms
+  -> Tempo do Pr├®-Processamento:   27.328┬Ás
+  -> Tempo Total (pr├® + sort):     19.120914ms
+  -> Tempo mediano:                19.0208ms
   -> Mem├│ria Alocada na Heap:      0 bytes
   -> Valida├º├úo:                     OK Ô£à
 ==================================================
-­ƒÜÇ O algoritmo proposto reduziu o tempo em 16.11%
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 14.72%
 ==================================================
-­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=5):
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
 rep	puro_ns	com_pre_ns	pre_ns
-1	24081400	18686600	27200
-2	22728000	19983000	26800
-3	23298300	20506900	27400
-4	22945000	18483100	27800
-5	21832000	18720800	27200
+1	22911200	20409200	27000
+2	22767000	19020800	27800
+3	22402500	18231900	27400
+4	22186900	18723600	27700
+5	22589100	19204400	27100
+6	22457100	19753200	27100
+7	21640700	18503300	27200
 ==================================================
-CSV_PURO,24081400,22728000,23298300,22945000,21832000
-CSV_COM_PRE,18686600,19983000,20506900,18483100,18720800
-CSV_PRE_SOZINHO,27200,26800,27400,27800,27200
+CSV_PURO,22911200,22767000,22402500,22186900,22589100,22457100,21640700
+CSV_COM_PRE,20409200,19020800,18231900,18723600,19204400,19753200,18503300
+CSV_PRE_SOZINHO,27000,27800,27400,27700,27100,27100,27200
 CSV_MEMORIA_PURO,0
 CSV_MEMORIA_COM_PRE,0
 CSV_INVERSOES_INICIAIS,24993860

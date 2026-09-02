@@ -1,40 +1,46 @@
-==================================================
+﻿==================================================
 ­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
 Tamanho do Vetor: 5000
 Tipo de Array:    Turtles
-Algoritmo:        Quick
+Algoritmo:        Merge
 Seed:             42 (reproduz├¡vel)
-Repeti├º├Áes:       1
+Repeti├º├Áes:       7
 ==================================================
-­ƒôè METRICAS COLETADAS (m├®dia de 1 repeti├º├Áes):
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
 --------------------------------------------------
   -> Invers├Áes Iniciais:            7650625
   -> Invers├Áes P├│s-Pr├®:             4535625
 --------------------------------------------------
 Abordagem 1: Ordena├º├úo Pura (somente o sort)
-  -> Tempo m├®dio:                   647.5┬Ás
-  -> Tempo mediano:                 647.5┬Ás
-  -> Mem├│ria Alocada na Heap:       0 bytes
+  -> Tempo m├®dio:                   58.8┬Ás
+  -> Tempo mediano:                 60.7┬Ás
+  -> Mem├│ria Alocada na Heap:       20000 bytes
   -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
   -> Valida├º├úo:                     OK Ô£à
 --------------------------------------------------
 Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
-  -> Tempo do Pr├®-Processamento:   2.6┬Ás
-  -> Tempo Total (pr├® + sort):     202.3┬Ás
-  -> Tempo mediano:                202.3┬Ás
-  -> Mem├│ria Alocada na Heap:      0 bytes
+  -> Tempo do Pr├®-Processamento:   2.3┬Ás
+  -> Tempo Total (pr├® + sort):     66.185┬Ás
+  -> Tempo mediano:                66.7┬Ás
+  -> Mem├│ria Alocada na Heap:      20000 bytes
   -> Valida├º├úo:                     OK Ô£à
 ==================================================
-­ƒÜÇ O algoritmo proposto reduziu o tempo em 68.76%
+ÔÜá´©Å O algoritmo proposto aumentou o tempo em 12.56%
 ==================================================
-­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=1):
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
 rep	puro_ns	com_pre_ns	pre_ns
-1	647500	202300	2600
+1	61200	66700	2300
+2	56500	68700	2300
+3	60700	64200	2300
+4	55800	68100	2300
+5	60900	63900	2300
+6	55800	68000	2300
+7	60700	63700	2300
 ==================================================
-CSV_PURO,647500
-CSV_COM_PRE,202300
-CSV_PRE_SOZINHO,2600
-CSV_MEMORIA_PURO,0
-CSV_MEMORIA_COM_PRE,0
+CSV_PURO,61200,56500,60700,55800,60900,55800,60700
+CSV_COM_PRE,66700,68700,64200,68100,63900,68000,63700
+CSV_PRE_SOZINHO,2300,2300,2300,2300,2300,2300,2300
+CSV_MEMORIA_PURO,20000
+CSV_MEMORIA_COM_PRE,20000
 CSV_INVERSOES_INICIAIS,7650625
 CSV_INVERSOES_POS_PRE,4535625

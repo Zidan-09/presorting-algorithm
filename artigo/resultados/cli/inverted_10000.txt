@@ -1,40 +1,46 @@
-==================================================
+﻿==================================================
 ­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
 Tamanho do Vetor: 10000
 Tipo de Array:    Inverted
-Algoritmo:        Quick
+Algoritmo:        Merge
 Seed:             42 (reproduz├¡vel)
-Repeti├º├Áes:       1
+Repeti├º├Áes:       7
 ==================================================
-­ƒôè METRICAS COLETADAS (m├®dia de 1 repeti├º├Áes):
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
 --------------------------------------------------
   -> Invers├Áes Iniciais:            49995000
   -> Invers├Áes P├│s-Pr├®:             0
 --------------------------------------------------
 Abordagem 1: Ordena├º├úo Pura (somente o sort)
-  -> Tempo m├®dio:                   136.4┬Ás
-  -> Tempo mediano:                 136.4┬Ás
-  -> Mem├│ria Alocada na Heap:       0 bytes
+  -> Tempo m├®dio:                   132.028┬Ás
+  -> Tempo mediano:                 131.2┬Ás
+  -> Mem├│ria Alocada na Heap:       40000 bytes
   -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
   -> Valida├º├úo:                     OK Ô£à
 --------------------------------------------------
 Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
-  -> Tempo do Pr├®-Processamento:   4.6┬Ás
-  -> Tempo Total (pr├® + sort):     64.4┬Ás
-  -> Tempo mediano:                64.4┬Ás
-  -> Mem├│ria Alocada na Heap:      0 bytes
+  -> Tempo do Pr├®-Processamento:   4.542┬Ás
+  -> Tempo Total (pr├® + sort):     119.242┬Ás
+  -> Tempo mediano:                119.1┬Ás
+  -> Mem├│ria Alocada na Heap:      40000 bytes
   -> Valida├º├úo:                     OK Ô£à
 ==================================================
-­ƒÜÇ O algoritmo proposto reduziu o tempo em 52.79%
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 9.68%
 ==================================================
-­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=1):
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
 rep	puro_ns	com_pre_ns	pre_ns
-1	136400	64400	4600
+1	132800	119300	4600
+2	132800	119100	4600
+3	131200	122600	4500
+4	130500	117700	4500
+5	136100	118700	4600
+6	130400	118000	4500
+7	130400	119300	4500
 ==================================================
-CSV_PURO,136400
-CSV_COM_PRE,64400
-CSV_PRE_SOZINHO,4600
-CSV_MEMORIA_PURO,0
-CSV_MEMORIA_COM_PRE,0
+CSV_PURO,132800,132800,131200,130500,136100,130400,130400
+CSV_COM_PRE,119300,119100,122600,117700,118700,118000,119300
+CSV_PRE_SOZINHO,4600,4600,4500,4500,4600,4500,4500
+CSV_MEMORIA_PURO,40000
+CSV_MEMORIA_COM_PRE,40000
 CSV_INVERSOES_INICIAIS,49995000
 CSV_INVERSOES_POS_PRE,0

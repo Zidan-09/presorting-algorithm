@@ -1,0 +1,46 @@
+﻿==================================================
+­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
+Tamanho do Vetor: 1000000
+Tipo de Array:    Turtles
+Algoritmo:        Merge
+Seed:             42 (reproduz├¡vel)
+Repeti├º├Áes:       7
+==================================================
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
+--------------------------------------------------
+  -> Invers├Áes Iniciais:            306248875000
+  -> Invers├Áes P├│s-Pr├®:             181250875000
+--------------------------------------------------
+Abordagem 1: Ordena├º├úo Pura (somente o sort)
+  -> Tempo m├®dio:                   16.8885ms
+  -> Tempo mediano:                 16.8861ms
+  -> Mem├│ria Alocada na Heap:       4000000 bytes
+  -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
+  -> Valida├º├úo:                     OK Ô£à
+--------------------------------------------------
+Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
+  -> Tempo do Pr├®-Processamento:   485.314┬Ás
+  -> Tempo Total (pr├® + sort):     18.030442ms
+  -> Tempo mediano:                17.7355ms
+  -> Mem├│ria Alocada na Heap:      4000000 bytes
+  -> Valida├º├úo:                     OK Ô£à
+==================================================
+ÔÜá´©Å O algoritmo proposto aumentou o tempo em 6.76%
+==================================================
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
+rep	puro_ns	com_pre_ns	pre_ns
+1	16431800	17735500	476300
+2	17845300	17533600	461200
+3	15742200	18382600	545100
+4	16886100	17733100	460900
+5	17065400	17593900	535800
+6	16379800	18029100	455200
+7	17868900	19205300	462700
+==================================================
+CSV_PURO,16431800,17845300,15742200,16886100,17065400,16379800,17868900
+CSV_COM_PRE,17735500,17533600,18382600,17733100,17593900,18029100,19205300
+CSV_PRE_SOZINHO,476300,461200,545100,460900,535800,455200,462700
+CSV_MEMORIA_PURO,4000000
+CSV_MEMORIA_COM_PRE,4000000
+CSV_INVERSOES_INICIAIS,306248875000
+CSV_INVERSOES_POS_PRE,181250875000
