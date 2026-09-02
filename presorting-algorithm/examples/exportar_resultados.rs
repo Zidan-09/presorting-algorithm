@@ -285,12 +285,14 @@ fn principal() {
                     ));
                     if tamanho == 10000 {
                         inv_10k.insert(tipo.to_string(), (ini, pos));
+                        // Usar 2 casas para distinguir 99,99% (Zigue-zague, 2.501 restantes) de 100,00% (Invertido, 0)
+                        let casas = if tipo == "zigzag" || tipo == "inverted" { 2 } else { 2 };
                         linhas_t3.push(format!(
                             "{} & {} & {} & {}\\% \\\\",
                             nome_tipo(tipo),
                             mil(ini),
                             mil(pos),
-                            decimal(reducao, 1)
+                            decimal(reducao, casas)
                         ));
                     }
                 }
