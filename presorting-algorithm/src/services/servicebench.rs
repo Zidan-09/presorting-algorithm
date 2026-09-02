@@ -31,7 +31,7 @@ impl BenchmarkServiceBench {
         tempo
     }
 
-    fn aplicar_ordenacao(sort_type: SortType, array: &mut [i32]) {
+    pub fn aplicar_ordenacao(sort_type: SortType, array: &mut [i32]) {
         match sort_type {
             SortType::Insertion => insertion_sort(array),
             SortType::Bubble => bubble_sort(array),

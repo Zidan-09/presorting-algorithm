@@ -1,43 +1,45 @@
-==================================================
+﻿==================================================
 ­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
 Tamanho do Vetor: 10000
 Tipo de Array:    Duplicates
 Algoritmo:        Insertion
 Seed:             42 (reproduz├¡vel)
-Repeti├º├Áes:       5
+Repeti├º├Áes:       7
 ==================================================
-­ƒôè METRICAS COLETADAS (m├®dia de 5 repeti├º├Áes):
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
 --------------------------------------------------
   -> Invers├Áes Iniciais:            16678243
   -> Invers├Áes P├│s-Pr├®:             6166988
 --------------------------------------------------
 Abordagem 1: Ordena├º├úo Pura (somente o sort)
-  -> Tempo m├®dio:                   6.72492ms
-  -> Tempo mediano:                 6.6347ms
+  -> Tempo m├®dio:                   7.0645ms
+  -> Tempo mediano:                 6.7585ms
   -> Mem├│ria Alocada na Heap:       0 bytes
   -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
   -> Valida├º├úo:                     OK Ô£à
 --------------------------------------------------
 Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
-  -> Tempo do Pr├®-Processamento:   24.26┬Ás
-  -> Tempo Total (pr├® + sort):     2.57958ms
-  -> Tempo mediano:                2.5825ms
+  -> Tempo do Pr├®-Processamento:   25.171┬Ás
+  -> Tempo Total (pr├® + sort):     2.726828ms
+  -> Tempo mediano:                2.5892ms
   -> Mem├│ria Alocada na Heap:      0 bytes
   -> Valida├º├úo:                     OK Ô£à
 ==================================================
-­ƒÜÇ O algoritmo proposto reduziu o tempo em 61.64%
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 61.40%
 ==================================================
-­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=5):
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
 rep	puro_ns	com_pre_ns	pre_ns
-1	6716400	2524800	24400
-2	6612600	2621700	24800
-3	6634700	2582500	24200
-4	6520700	2542900	23700
-5	7140200	2626000	24200
+1	6686100	2568000	26700
+2	6826000	2578500	24400
+3	6753200	2758500	25400
+4	9052700	3420700	24300
+5	6614400	2589200	26300
+6	6760600	2625300	24500
+7	6758500	2547600	24600
 ==================================================
-CSV_PURO,6716400,6612600,6634700,6520700,7140200
-CSV_COM_PRE,2524800,2621700,2582500,2542900,2626000
-CSV_PRE_SOZINHO,24400,24800,24200,23700,24200
+CSV_PURO,6686100,6826000,6753200,9052700,6614400,6760600,6758500
+CSV_COM_PRE,2568000,2578500,2758500,3420700,2589200,2625300,2547600
+CSV_PRE_SOZINHO,26700,24400,25400,24300,26300,24500,24600
 CSV_MEMORIA_PURO,0
 CSV_MEMORIA_COM_PRE,0
 CSV_INVERSOES_INICIAIS,16678243

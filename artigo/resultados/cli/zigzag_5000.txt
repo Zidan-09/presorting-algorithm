@@ -1,40 +1,46 @@
-==================================================
+﻿==================================================
 ­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
 Tamanho do Vetor: 5000
 Tipo de Array:    Zigzag
-Algoritmo:        Quick
+Algoritmo:        Merge
 Seed:             42 (reproduz├¡vel)
-Repeti├º├Áes:       1
+Repeti├º├Áes:       7
 ==================================================
-­ƒôè METRICAS COLETADAS (m├®dia de 1 repeti├º├Áes):
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
 --------------------------------------------------
   -> Invers├Áes Iniciais:            6248750
   -> Invers├Áes P├│s-Pr├®:             1251
 --------------------------------------------------
 Abordagem 1: Ordena├º├úo Pura (somente o sort)
-  -> Tempo m├®dio:                   199.3┬Ás
-  -> Tempo mediano:                 199.3┬Ás
-  -> Mem├│ria Alocada na Heap:       0 bytes
+  -> Tempo m├®dio:                   67.142┬Ás
+  -> Tempo mediano:                 67.4┬Ás
+  -> Mem├│ria Alocada na Heap:       20000 bytes
   -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
   -> Valida├º├úo:                     OK Ô£à
 --------------------------------------------------
 Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
-  -> Tempo do Pr├®-Processamento:   2.5┬Ás
-  -> Tempo Total (pr├® + sort):     122┬Ás
-  -> Tempo mediano:                122┬Ás
-  -> Mem├│ria Alocada na Heap:      0 bytes
+  -> Tempo do Pr├®-Processamento:   2.471┬Ás
+  -> Tempo Total (pr├® + sort):     55.3┬Ás
+  -> Tempo mediano:                53.6┬Ás
+  -> Mem├│ria Alocada na Heap:      20000 bytes
   -> Valida├º├úo:                     OK Ô£à
 ==================================================
-­ƒÜÇ O algoritmo proposto reduziu o tempo em 38.79%
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 17.64%
 ==================================================
-­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=1):
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
 rep	puro_ns	com_pre_ns	pre_ns
-1	199300	122000	2500
+1	71700	53500	2500
+2	63800	58500	2600
+3	67400	53600	2400
+4	63000	57600	2400
+5	66700	52700	2500
+6	69500	57900	2400
+7	67900	53300	2500
 ==================================================
-CSV_PURO,199300
-CSV_COM_PRE,122000
-CSV_PRE_SOZINHO,2500
-CSV_MEMORIA_PURO,0
-CSV_MEMORIA_COM_PRE,0
+CSV_PURO,71700,63800,67400,63000,66700,69500,67900
+CSV_COM_PRE,53500,58500,53600,57600,52700,57900,53300
+CSV_PRE_SOZINHO,2500,2600,2400,2400,2500,2400,2500
+CSV_MEMORIA_PURO,20000
+CSV_MEMORIA_COM_PRE,20000
 CSV_INVERSOES_INICIAIS,6248750
 CSV_INVERSOES_POS_PRE,1251

@@ -1,43 +1,45 @@
-==================================================
+﻿==================================================
 ­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
 Tamanho do Vetor: 10000
 Tipo de Array:    Turtles
 Algoritmo:        Quick
 Seed:             42 (reproduz├¡vel)
-Repeti├º├Áes:       5
+Repeti├º├Áes:       7
 ==================================================
-­ƒôè METRICAS COLETADAS (m├®dia de 5 repeti├º├Áes):
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
 --------------------------------------------------
   -> Invers├Áes Iniciais:            30613750
   -> Invers├Áes P├│s-Pr├®:             18133750
 --------------------------------------------------
 Abordagem 1: Ordena├º├úo Pura (somente o sort)
-  -> Tempo m├®dio:                   3.01748ms
-  -> Tempo mediano:                 3.1057ms
+  -> Tempo m├®dio:                   150.1┬Ás
+  -> Tempo mediano:                 148.8┬Ás
   -> Mem├│ria Alocada na Heap:       0 bytes
   -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
   -> Valida├º├úo:                     OK Ô£à
 --------------------------------------------------
 Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
-  -> Tempo do Pr├®-Processamento:   4.52┬Ás
-  -> Tempo Total (pr├® + sort):     698.88┬Ás
-  -> Tempo mediano:                692.6┬Ás
+  -> Tempo do Pr├®-Processamento:   4.557┬Ás
+  -> Tempo Total (pr├® + sort):     157┬Ás
+  -> Tempo mediano:                155.3┬Ás
   -> Mem├│ria Alocada na Heap:      0 bytes
   -> Valida├º├úo:                     OK Ô£à
 ==================================================
-­ƒÜÇ O algoritmo proposto reduziu o tempo em 76.84%
+ÔÜá´©Å O algoritmo proposto aumentou o tempo em 4.60%
 ==================================================
-­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=5):
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
 rep	puro_ns	com_pre_ns	pre_ns
-1	3281800	726300	4500
-2	2519700	690500	4500
-3	3074100	697100	4600
-4	3105700	692600	4500
-5	3106100	687900	4500
+1	151200	166800	4600
+2	158100	158200	4500
+3	148900	155300	4600
+4	148800	154200	4600
+5	148300	158200	4600
+6	147500	152900	4500
+7	147900	153400	4500
 ==================================================
-CSV_PURO,3281800,2519700,3074100,3105700,3106100
-CSV_COM_PRE,726300,690500,697100,692600,687900
-CSV_PRE_SOZINHO,4500,4500,4600,4500,4500
+CSV_PURO,151200,158100,148900,148800,148300,147500,147900
+CSV_COM_PRE,166800,158200,155300,154200,158200,152900,153400
+CSV_PRE_SOZINHO,4600,4500,4600,4600,4600,4500,4500
 CSV_MEMORIA_PURO,0
 CSV_MEMORIA_COM_PRE,0
 CSV_INVERSOES_INICIAIS,30613750

@@ -1,43 +1,45 @@
-==================================================
+﻿==================================================
 ­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
 Tamanho do Vetor: 10000
 Tipo de Array:    Zigzag
 Algoritmo:        Quick
 Seed:             42 (reproduz├¡vel)
-Repeti├º├Áes:       5
+Repeti├º├Áes:       7
 ==================================================
-­ƒôè METRICAS COLETADAS (m├®dia de 5 repeti├º├Áes):
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
 --------------------------------------------------
   -> Invers├Áes Iniciais:            24997500
   -> Invers├Áes P├│s-Pr├®:             2501
 --------------------------------------------------
 Abordagem 1: Ordena├º├úo Pura (somente o sort)
-  -> Tempo m├®dio:                   631.66┬Ás
-  -> Tempo mediano:                 626.4┬Ás
+  -> Tempo m├®dio:                   422.157┬Ás
+  -> Tempo mediano:                 419.8┬Ás
   -> Mem├│ria Alocada na Heap:       0 bytes
   -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
   -> Valida├º├úo:                     OK Ô£à
 --------------------------------------------------
 Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
-  -> Tempo do Pr├®-Processamento:   7.62┬Ás
-  -> Tempo Total (pr├® + sort):     313.84┬Ás
-  -> Tempo mediano:                311.7┬Ás
+  -> Tempo do Pr├®-Processamento:   4.871┬Ás
+  -> Tempo Total (pr├® + sort):     422.9┬Ás
+  -> Tempo mediano:                422.3┬Ás
   -> Mem├│ria Alocada na Heap:      0 bytes
   -> Valida├º├úo:                     OK Ô£à
 ==================================================
-­ƒÜÇ O algoritmo proposto reduziu o tempo em 50.32%
+ÔÜá´©Å O algoritmo proposto aumentou o tempo em 0.18%
 ==================================================
-­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=5):
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
 rep	puro_ns	com_pre_ns	pre_ns
-1	649600	326900	18900
-2	635100	310400	4800
-3	626400	311700	4800
-4	623700	312200	4800
-5	623500	308000	4800
+1	419800	426600	4900
+2	419500	416500	5000
+3	424800	438200	4900
+4	446700	419000	4900
+5	426000	424900	4800
+6	414200	412800	4800
+7	404100	422300	4800
 ==================================================
-CSV_PURO,649600,635100,626400,623700,623500
-CSV_COM_PRE,326900,310400,311700,312200,308000
-CSV_PRE_SOZINHO,18900,4800,4800,4800,4800
+CSV_PURO,419800,419500,424800,446700,426000,414200,404100
+CSV_COM_PRE,426600,416500,438200,419000,424900,412800,422300
+CSV_PRE_SOZINHO,4900,5000,4900,4900,4800,4800,4800
 CSV_MEMORIA_PURO,0
 CSV_MEMORIA_COM_PRE,0
 CSV_INVERSOES_INICIAIS,24997500

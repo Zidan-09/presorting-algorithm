@@ -16,7 +16,7 @@ pub fn pre_processamento_simetrico(array: &mut [i32]) {
                 array.swap(i, i + 1);
             }
         }
-        if j > 0 && (j - 1) > meio {
+        if (j - 1) > meio {
             if array[j] < array[j - 1] {
                 array.swap(j, j - 1);
             }

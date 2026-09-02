@@ -1,40 +1,46 @@
-==================================================
+﻿==================================================
 ­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
 Tamanho do Vetor: 5000
 Tipo de Array:    Random
-Algoritmo:        Quick
+Algoritmo:        Merge
 Seed:             42 (reproduz├¡vel)
-Repeti├º├Áes:       1
+Repeti├º├Áes:       7
 ==================================================
-­ƒôè METRICAS COLETADAS (m├®dia de 1 repeti├º├Áes):
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
 --------------------------------------------------
   -> Invers├Áes Iniciais:            6227128
   -> Invers├Áes P├│s-Pr├®:             3414123
 --------------------------------------------------
 Abordagem 1: Ordena├º├úo Pura (somente o sort)
-  -> Tempo m├®dio:                   157.5┬Ás
-  -> Tempo mediano:                 157.5┬Ás
-  -> Mem├│ria Alocada na Heap:       0 bytes
+  -> Tempo m├®dio:                   224.714┬Ás
+  -> Tempo mediano:                 207.9┬Ás
+  -> Mem├│ria Alocada na Heap:       20000 bytes
   -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
   -> Valida├º├úo:                     OK Ô£à
 --------------------------------------------------
 Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
-  -> Tempo do Pr├®-Processamento:   13.7┬Ás
-  -> Tempo Total (pr├® + sort):     160.1┬Ás
-  -> Tempo mediano:                160.1┬Ás
-  -> Mem├│ria Alocada na Heap:      0 bytes
+  -> Tempo do Pr├®-Processamento:   14.042┬Ás
+  -> Tempo Total (pr├® + sort):     216.742┬Ás
+  -> Tempo mediano:                215.9┬Ás
+  -> Mem├│ria Alocada na Heap:      20000 bytes
   -> Valida├º├úo:                     OK Ô£à
 ==================================================
-ÔÜá´©Å O algoritmo proposto aumentou o tempo em 1.65%
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 3.55%
 ==================================================
-­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=1):
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
 rep	puro_ns	com_pre_ns	pre_ns
-1	157500	160100	13700
+1	319300	227900	13700
+2	207000	219400	15000
+3	212000	215500	13600
+4	205700	216600	14200
+5	215900	210200	13800
+6	205200	215900	13800
+7	207900	211700	14200
 ==================================================
-CSV_PURO,157500
-CSV_COM_PRE,160100
-CSV_PRE_SOZINHO,13700
-CSV_MEMORIA_PURO,0
-CSV_MEMORIA_COM_PRE,0
+CSV_PURO,319300,207000,212000,205700,215900,205200,207900
+CSV_COM_PRE,227900,219400,215500,216600,210200,215900,211700
+CSV_PRE_SOZINHO,13700,15000,13600,14200,13800,13800,14200
+CSV_MEMORIA_PURO,20000
+CSV_MEMORIA_COM_PRE,20000
 CSV_INVERSOES_INICIAIS,6227128
 CSV_INVERSOES_POS_PRE,3414123

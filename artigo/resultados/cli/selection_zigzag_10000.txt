@@ -1,43 +1,45 @@
-==================================================
+﻿==================================================
 ­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
 Tamanho do Vetor: 10000
 Tipo de Array:    Zigzag
 Algoritmo:        Selection
 Seed:             42 (reproduz├¡vel)
-Repeti├º├Áes:       5
+Repeti├º├Áes:       7
 ==================================================
-­ƒôè METRICAS COLETADAS (m├®dia de 5 repeti├º├Áes):
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
 --------------------------------------------------
   -> Invers├Áes Iniciais:            24997500
   -> Invers├Áes P├│s-Pr├®:             2501
 --------------------------------------------------
 Abordagem 1: Ordena├º├úo Pura (somente o sort)
-  -> Tempo m├®dio:                   20.24066ms
-  -> Tempo mediano:                 19.8477ms
+  -> Tempo m├®dio:                   20.435971ms
+  -> Tempo mediano:                 20.3126ms
   -> Mem├│ria Alocada na Heap:       0 bytes
   -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
   -> Valida├º├úo:                     OK Ô£à
 --------------------------------------------------
 Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
-  -> Tempo do Pr├®-Processamento:   5.06┬Ás
-  -> Tempo Total (pr├® + sort):     20.41514ms
-  -> Tempo mediano:                19.8456ms
+  -> Tempo do Pr├®-Processamento:   5.228┬Ás
+  -> Tempo Total (pr├® + sort):     20.283871ms
+  -> Tempo mediano:                20.2664ms
   -> Mem├│ria Alocada na Heap:      0 bytes
   -> Valida├º├úo:                     OK Ô£à
 ==================================================
-ÔÜá´©Å O algoritmo proposto aumentou o tempo em 0.86%
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 0.74%
 ==================================================
-­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=5):
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
 rep	puro_ns	com_pre_ns	pre_ns
-1	19784700	21829700	5400
-2	20774900	19795200	4900
-3	19797100	19739000	5000
-4	19847700	20866200	4900
-5	20998900	19845600	5100
+1	20312600	20334800	5100
+2	20743100	20273700	4900
+3	20174400	20107500	5500
+4	20327000	20148700	4900
+5	21023700	20266400	5300
+6	20269100	20647800	5200
+7	20201900	20208200	5700
 ==================================================
-CSV_PURO,19784700,20774900,19797100,19847700,20998900
-CSV_COM_PRE,21829700,19795200,19739000,20866200,19845600
-CSV_PRE_SOZINHO,5400,4900,5000,4900,5100
+CSV_PURO,20312600,20743100,20174400,20327000,21023700,20269100,20201900
+CSV_COM_PRE,20334800,20273700,20107500,20148700,20266400,20647800,20208200
+CSV_PRE_SOZINHO,5100,4900,5500,4900,5300,5200,5700
 CSV_MEMORIA_PURO,0
 CSV_MEMORIA_COM_PRE,0
 CSV_INVERSOES_INICIAIS,24997500

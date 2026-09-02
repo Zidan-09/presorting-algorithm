@@ -1,9 +1,21 @@
 \begin{thebibliography}{}
 
+\bibitem[Auger et~al. 2018]{auger_timsort_2018}
+Auger, N., Jug{\'e}, V., Nicaud, C., and Pivoteau, C. (2018).
+\newblock On the worst-case complexity of timsort.
+\newblock In {\em Proceedings of the 26th Annual European Symposium on
+  Algorithms (ESA 2018)}, volume 112 of {\em LIPIcs}, pages 4:1--4:13.
+
 \bibitem[Cormen et~al. 2022]{cormen_introduction_2022}
 Cormen, T.~H., Leiserson, C.~E., Rivest, R.~L., and Stein, C. (2022).
 \newblock {\em Introduction to Algorithms}.
 \newblock MIT Press, 4th edition.
+
+\bibitem[Edelkamp and Wei{\ss} 2016]{edelkamp_blockquicksort_2016}
+Edelkamp, S. and Wei{\ss}, A. (2016).
+\newblock Blockquicksort: Avoiding branch mispredictions in quicksort.
+\newblock In {\em Proceedings of the 24th Annual European Symposium on
+  Algorithms (ESA 2016)}, volume~57 of {\em LIPIcs}, pages 38:1--38:16.
 
 \bibitem[Estivill-Castro and Wood 1992]{estivill-castro_survey_1992}
 Estivill-Castro, V. and Wood, D. (1992).
@@ -15,10 +27,22 @@ Gil, A.~C. (2019).
 \newblock {\em Métodos e técnicas de pesquisa social}.
 \newblock Editora Atlas Ltda.
 
+\bibitem[Hennessy and Patterson 2019]{hennessy_computer_2019}
+Hennessy, J.~L. and Patterson, D.~A. (2019).
+\newblock {\em Computer architecture: a quantitative approach}.
+\newblock Elsevier, Cambridge, Massachusetts, sixth edition edition.
+\newblock OCLC: 1196175914.
+
 \bibitem[Hwang et~al. 2000]{hwang_presorting_2000}
 Hwang, H.-K., Yang, B.-Y., and Yeh, Y.-N. (2000).
 \newblock Presorting algorithms: {An} average-case point of view.
 \newblock {\em Theoretical Computer Science}, 242(1-2):29--40.
+
+\bibitem[Kaligosi and Sanders 2006]{kaligosi_branch_2006}
+Kaligosi, K. and Sanders, P. (2006).
+\newblock How branch mispredictions affect quicksort.
+\newblock {\em Journal of Experimental Algorithmics}, 11.
+\newblock Também apresentado em ESA 2006.
 
 \bibitem[Knuth 1973]{knuth_art_1973}
 Knuth, D.~E. (1973).
@@ -26,15 +50,17 @@ Knuth, D.~E. (1973).
   Searching}.
 \newblock Addison-Wesley, Reading, MA.
 
-\bibitem[Mannila 1984]{mannila_measures_1984}
-Mannila, H. (1984).
-\newblock Measures of presortedness and optimal sorting algorithms: Extended
-  abstract.
-\newblock In Goos, G., Hartmanis, J., Barstow, D., Brauer, W., Brinch~Hansen,
-  P., Gries, D., Luckham, D., Moler, C., Pnueli, A., Seegm{\"u}ller, G., Stoer,
-  J., Wirth, N., and Paredaens, J., editors, {\em Automata, Languages and
-  Programming}, volume 172 of {\em Lecture Notes in Computer Science}, pages
-  324--336. Springer Berlin Heidelberg, Berlin, Heidelberg.
+\bibitem[LaMarca and Ladner 1999]{lamarca_influence_1999}
+LaMarca, A. and Ladner, R.~E. (1999).
+\newblock The {Influence} of {Caches} on the {Performance} of {Sorting}.
+\newblock {\em Journal of Algorithms}, 31(1):66--104.
+
+\bibitem[Mannila 1985]{mannila_measures_1984}
+Mannila, H. (1985).
+\newblock Measures of presortedness and optimal sorting algorithms.
+\newblock {\em IEEE Transactions on Computers}, C-34(4):318--325.
+\newblock Versão estendida publicada originalmente como resumo no ICALP~1984
+  (LNCS~172, pp.~324--336).
 
 \bibitem[Nascimento 2026]{nascimento_repositorio_2026}
 Nascimento, S. d.~P. (2026).

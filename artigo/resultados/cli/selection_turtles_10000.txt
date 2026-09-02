@@ -1,43 +1,45 @@
-==================================================
+﻿==================================================
 ­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
 Tamanho do Vetor: 10000
 Tipo de Array:    Turtles
 Algoritmo:        Selection
 Seed:             42 (reproduz├¡vel)
-Repeti├º├Áes:       5
+Repeti├º├Áes:       7
 ==================================================
-­ƒôè METRICAS COLETADAS (m├®dia de 5 repeti├º├Áes):
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
 --------------------------------------------------
   -> Invers├Áes Iniciais:            30613750
   -> Invers├Áes P├│s-Pr├®:             18133750
 --------------------------------------------------
 Abordagem 1: Ordena├º├úo Pura (somente o sort)
-  -> Tempo m├®dio:                   20.77732ms
-  -> Tempo mediano:                 20.3002ms
+  -> Tempo m├®dio:                   20.558ms
+  -> Tempo mediano:                 20.374ms
   -> Mem├│ria Alocada na Heap:       0 bytes
   -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
   -> Valida├º├úo:                     OK Ô£à
 --------------------------------------------------
 Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
-  -> Tempo do Pr├®-Processamento:   4.76┬Ás
-  -> Tempo Total (pr├® + sort):     19.95262ms
-  -> Tempo mediano:                19.56ms
+  -> Tempo do Pr├®-Processamento:   5.328┬Ás
+  -> Tempo Total (pr├® + sort):     19.923642ms
+  -> Tempo mediano:                19.7893ms
   -> Mem├│ria Alocada na Heap:      0 bytes
   -> Valida├º├úo:                     OK Ô£à
 ==================================================
-­ƒÜÇ O algoritmo proposto reduziu o tempo em 3.97%
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 3.09%
 ==================================================
-­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=5):
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
 rep	puro_ns	com_pre_ns	pre_ns
-1	23009100	19249700	4700
-2	20144100	19560000	4500
-3	20302400	20276500	5000
-4	20300200	19493700	4500
-5	20130800	21183200	5100
+1	20374000	19613800	4800
+2	20364700	20412100	4600
+3	20419700	19595300	5600
+4	20369200	20221300	6400
+5	20875200	19789300	6100
+6	20249100	20129700	4700
+7	21254100	19704000	5100
 ==================================================
-CSV_PURO,23009100,20144100,20302400,20300200,20130800
-CSV_COM_PRE,19249700,19560000,20276500,19493700,21183200
-CSV_PRE_SOZINHO,4700,4500,5000,4500,5100
+CSV_PURO,20374000,20364700,20419700,20369200,20875200,20249100,21254100
+CSV_COM_PRE,19613800,20412100,19595300,20221300,19789300,20129700,19704000
+CSV_PRE_SOZINHO,4800,4600,5600,6400,6100,4700,5100
 CSV_MEMORIA_PURO,0
 CSV_MEMORIA_COM_PRE,0
 CSV_INVERSOES_INICIAIS,30613750

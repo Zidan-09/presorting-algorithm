@@ -1,0 +1,46 @@
+﻿==================================================
+­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
+Tamanho do Vetor: 1000000
+Tipo de Array:    Inverted
+Algoritmo:        Merge
+Seed:             42 (reproduz├¡vel)
+Repeti├º├Áes:       7
+==================================================
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
+--------------------------------------------------
+  -> Invers├Áes Iniciais:            499999500000
+  -> Invers├Áes P├│s-Pr├®:             0
+--------------------------------------------------
+Abordagem 1: Ordena├º├úo Pura (somente o sort)
+  -> Tempo m├®dio:                   15.675128ms
+  -> Tempo mediano:                 15.7176ms
+  -> Mem├│ria Alocada na Heap:       4000000 bytes
+  -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
+  -> Valida├º├úo:                     OK Ô£à
+--------------------------------------------------
+Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
+  -> Tempo do Pr├®-Processamento:   457.642┬Ás
+  -> Tempo Total (pr├® + sort):     14.684771ms
+  -> Tempo mediano:                14.505ms
+  -> Mem├│ria Alocada na Heap:      4000000 bytes
+  -> Valida├º├úo:                     OK Ô£à
+==================================================
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 6.32%
+==================================================
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
+rep	puro_ns	com_pre_ns	pre_ns
+1	15412000	16159200	459400
+2	15717600	13903400	459400
+3	15237300	14481200	457200
+4	15744600	13571000	454600
+5	15822800	14849300	460300
+6	16198000	14505000	455000
+7	15593600	15324300	457600
+==================================================
+CSV_PURO,15412000,15717600,15237300,15744600,15822800,16198000,15593600
+CSV_COM_PRE,16159200,13903400,14481200,13571000,14849300,14505000,15324300
+CSV_PRE_SOZINHO,459400,459400,457200,454600,460300,455000,457600
+CSV_MEMORIA_PURO,4000000
+CSV_MEMORIA_COM_PRE,4000000
+CSV_INVERSOES_INICIAIS,499999500000
+CSV_INVERSOES_POS_PRE,0

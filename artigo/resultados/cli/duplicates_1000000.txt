@@ -1,0 +1,46 @@
+﻿==================================================
+­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
+Tamanho do Vetor: 1000000
+Tipo de Array:    Duplicates
+Algoritmo:        Merge
+Seed:             42 (reproduz├¡vel)
+Repeti├º├Áes:       7
+==================================================
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
+--------------------------------------------------
+  -> Invers├Áes Iniciais:            166760975903
+  -> Invers├Áes P├│s-Pr├®:             62911762404
+--------------------------------------------------
+Abordagem 1: Ordena├º├úo Pura (somente o sort)
+  -> Tempo m├®dio:                   25.676257ms
+  -> Tempo mediano:                 25.4579ms
+  -> Mem├│ria Alocada na Heap:       4000000 bytes
+  -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
+  -> Valida├º├úo:                     OK Ô£à
+--------------------------------------------------
+Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
+  -> Tempo do Pr├®-Processamento:   2.348085ms
+  -> Tempo Total (pr├® + sort):     24.362585ms
+  -> Tempo mediano:                24.4836ms
+  -> Mem├│ria Alocada na Heap:      4000000 bytes
+  -> Valida├º├úo:                     OK Ô£à
+==================================================
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 5.12%
+==================================================
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
+rep	puro_ns	com_pre_ns	pre_ns
+1	25070600	24060100	2331800
+2	25457900	24601300	2333400
+3	25173300	24251300	2348800
+4	27547100	24574600	2352500
+5	25539600	24061400	2385400
+6	25048900	24505800	2344300
+7	25896400	24483600	2340400
+==================================================
+CSV_PURO,25070600,25457900,25173300,27547100,25539600,25048900,25896400
+CSV_COM_PRE,24060100,24601300,24251300,24574600,24061400,24505800,24483600
+CSV_PRE_SOZINHO,2331800,2333400,2348800,2352500,2385400,2344300,2340400
+CSV_MEMORIA_PURO,4000000
+CSV_MEMORIA_COM_PRE,4000000
+CSV_INVERSOES_INICIAIS,166760975903
+CSV_INVERSOES_POS_PRE,62911762404
