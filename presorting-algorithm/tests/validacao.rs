@@ -6,24 +6,31 @@ use algoritmo::core::sort::pre_proc::pre_processamento_simetrico;
 use algoritmo::core::sort::contar_inversoes::contar_inversoes;
 use algoritmo::core::sort::{
     bubble::bubble_sort, insertion::insertion_sort, selection::selection_sort,
-    quick::quick_sort, merge::merge_sort,
+    quick::quick_sort, merge::merge_sort, baselines::desc_reverse_insertion,
 };
 
-const TIPOS: [ArrayType; 6] = [
+const TIPOS: [ArrayType; 10] = [
     ArrayType::Random,
     ArrayType::Turtles,
     ArrayType::Zigzag,
     ArrayType::AlmostSorted,
     ArrayType::Duplicates,
     ArrayType::Inverted,
+    ArrayType::Sawtooth,
+    ArrayType::OrganPipe,
+    ArrayType::FewRuns,
+    ArrayType::Real,
 ];
 
-const SORTS: [SortType; 5] = [
+const SORTS: [SortType; 8] = [
     SortType::Merge,
     SortType::Quick,
     SortType::Insertion,
     SortType::Bubble,
     SortType::Selection,
+    SortType::StdUnstable,
+    SortType::StdStable,
+    SortType::DescReverse,
 ];
 
 fn ordenar(sort_type: SortType, array: &mut [i32]) {
@@ -33,6 +40,9 @@ fn ordenar(sort_type: SortType, array: &mut [i32]) {
         SortType::Selection => selection_sort(array),
         SortType::Quick => quick_sort(array),
         SortType::Merge => merge_sort(array),
+        SortType::StdUnstable => array.sort_unstable(),
+        SortType::StdStable => array.sort(),
+        SortType::DescReverse => desc_reverse_insertion(array),
     }
 }
 

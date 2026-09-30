@@ -11,10 +11,21 @@ use std::time::Duration;
 use algoritmo::core::sort::contar_inversoes::contar_inversoes;
 use algoritmo::core::sort::pre_proc::pre_processamento_simetrico;
 use algoritmo::services::BenchmarkServiceBench;
+use algoritmo::utils::gerador::REAL_NATIVE_LEN;
 use algoritmo::utils::{generate_test_array, ArrayType, SortType};
 
-const SEED: u64 = 42;
+const SEED_PADRAO: u64 = 42;
 const AMOSTRAS_POR_POOL: usize = 50;
+
+/// F3 (docs/plan2.md): semente parametrizável para multi-seed.
+/// `BN_SEED=43` gera pools independentes; default 42 (matriz principal).
+/// Companions de inversões só são gerados na seed 42 (ver abaixo).
+fn seed_base() -> u64 {
+    std::env::var("BN_SEED")
+        .ok()
+        .and_then(|v| v.trim().parse::<u64>().ok())
+        .unwrap_or(SEED_PADRAO)
+}
 const MAX_VALIDACAO_CARA: usize = 5;
 
 const RAIZ_COMPANION: &str = "target/criterion/experimentos_ordenacao/_companion";
@@ -27,6 +38,9 @@ fn nome_sort(s: SortType) -> &'static str {
         SortType::Insertion => "insertion",
         SortType::Bubble => "bubble",
         SortType::Selection => "selection",
+        SortType::StdUnstable => "stdunstable",
+        SortType::StdStable => "stdstable",
+        SortType::DescReverse => "descreverse",
     }
 }
 
@@ -38,18 +52,39 @@ fn nome_tipo(t: ArrayType) -> &'static str {
         ArrayType::AlmostSorted => "almostsorted",
         ArrayType::Duplicates => "duplicates",
         ArrayType::Inverted => "inverted",
+        ArrayType::Sawtooth => "sawtooth",
+        ArrayType::OrganPipe => "organpipe",
+        ArrayType::FewRuns => "fewruns",
+        ArrayType::Real => "real",
     }
 }
 
 fn e_quadratico(s: SortType) -> bool {
-    matches!(s, SortType::Insertion | SortType::Bubble | SortType::Selection)
+    matches!(
+        s,
+        SortType::Insertion | SortType::Bubble | SortType::Selection | SortType::DescReverse
+    )
 }
 
 /// Matriz de medição: algoritmos O(n²) não são medidos em n = 1.000.000
-/// (a unidade de execução é de minutos — impraticável para 36 células
-/// independentes); a classe O(n²) é coberta até n = 100.000.
-fn celula_planejada(s: SortType, tamanho: usize) -> bool {
-    !(e_quadratico(s) && tamanho >= 1_000_000)
+/// (a unidade de execução é de minutos — impraticável); a classe O(n²)
+/// é coberta até n = 100.000. O tipo Real só participa até seu tamanho
+/// nativo (sem tiling). n = 10.000.000: só Merge/Quick/Std (fora da cache;
+/// quadráticos excluídos; Real excluído pelo cap nativo).
+fn celula_planejada(s: SortType, tipo: ArrayType, tamanho: usize) -> bool {
+    if e_quadratico(s) && tamanho >= 1_000_000 {
+        return false;
+    }
+    if tamanho >= 10_000_000 {
+        return matches!(
+            s,
+            SortType::Merge | SortType::Quick | SortType::StdUnstable | SortType::StdStable
+        );
+    }
+    if tipo == ArrayType::Real && tamanho > REAL_NATIVE_LEN {
+        return false;
+    }
+    true
 }
 
 /// (amostras, warm_up, tempo de medição por amostra)
@@ -104,7 +139,13 @@ fn validar_ordenacao(sort: SortType, array: &mut Vec<i32>) -> bool {
 
 /// Escreve (uma vez) o companion de inversões por (tipo, tamanho), fora de
 /// qualquer região cronometrada, usando exatamente os arrays do pool.
-fn gerar_companion_inversoes(tipo: ArrayType, tamanho: usize, pool: &[Vec<i32>]) {
+fn gerar_companion_inversoes(seed: u64, tipo: ArrayType, tamanho: usize, pool: &[Vec<i32>]) {
+    // F3 multi-seed: companions alimentam as tabelas de inversões da matriz
+    // principal (seed 42). Seeds auxiliares pulam a escrita para não
+    // contaminar os dados da seed 42 com pools diferentes.
+    if seed != SEED_PADRAO {
+        return;
+    }
     fs::create_dir_all(RAIZ_COMPANION).unwrap();
     let path = format!("{RAIZ_COMPANION}/inversoes_{}_{}.csv", nome_tipo(tipo), tamanho);
     if fs::metadata(&path).is_ok() {
@@ -154,12 +195,16 @@ fn validar_cenario(sort: SortType, tipo: ArrayType, tamanho: usize, pool: &[Vec<
 
 fn executar_benchmarks_tcc(c: &mut Criterion) {
     let (filtro_sorts, filtro_tipos, filtro_tamanhos) = filtros_env();
+    let seed = seed_base();
+    eprintln!("[BENCH] seed={seed}");
 
     let mut group = c.benchmark_group("Experimentos_Ordenacao");
     group.confidence_level(0.95);
     group.significance_level(0.05);
 
-    let tamanhos: [usize; 5] = [1_000, 5_000, 10_000, 100_000, 1_000_000];
+    let tamanhos: [usize; 12] = [
+        16, 32, 64, 128, 256, 512, 1_000, 5_000, 10_000, 100_000, 1_000_000, 10_000_000,
+    ];
 
     let tipos_array = [
         ArrayType::Random,
@@ -168,6 +213,10 @@ fn executar_benchmarks_tcc(c: &mut Criterion) {
         ArrayType::AlmostSorted,
         ArrayType::Duplicates,
         ArrayType::Inverted,
+        ArrayType::Sawtooth,
+        ArrayType::OrganPipe,
+        ArrayType::FewRuns,
+        ArrayType::Real,
     ];
 
     let algoritmos = [
@@ -176,6 +225,9 @@ fn executar_benchmarks_tcc(c: &mut Criterion) {
         SortType::Insertion,
         SortType::Bubble,
         SortType::Selection,
+        SortType::StdUnstable,
+        SortType::StdStable,
+        SortType::DescReverse,
     ];
 
     for tamanho in tamanhos {
@@ -187,18 +239,61 @@ if !filtro_tipos.is_empty() && !filtro_tipos.contains(nome_tipo(tipo)) {
                     continue;
                 }
 
+            // Real só existe até seu tamanho nativo (sem tiling): pula o
+            // par (tipo, tamanho) inteiro — pool, companion, braço Cpre e
+            // todas as células de sort (ver celula_planejada).
+            if tipo == ArrayType::Real && tamanho > REAL_NATIVE_LEN {
+                continue;
+            }
+
             // Pool único por (tipo, tamanho): mesmas 50 entradas para todos os
             // algoritmas e para as duas variantes (puro e com pré-processamento).
             let mut rng =
-                ChaCha8Rng::seed_from_u64(SEED ^ (tamanho as u64) ^ (tipo as u64));
+                ChaCha8Rng::seed_from_u64(seed ^ (tamanho as u64) ^ (tipo as u64));
             let pool: Vec<Vec<i32>> = (0..AMOSTRAS_POR_POOL)
                 .map(|_| generate_test_array(tamanho, tipo, &mut rng))
                 .collect();
 
-            gerar_companion_inversoes(tipo, tamanho, &pool);
+            gerar_companion_inversoes(seed, tipo, tamanho, &pool);
+
+            // Braço Cpre (F1): cronometra SOMENTE o pré-processamento, uma
+            // vez por (tipo, tamanho) — independe do algoritmo. Diretório:
+            // `Pre_{Tipo:?}/Tamanho_{n}_So_Pre` (ver exportar_resultados.rs).
+            {
+                let batch_size = if tamanho >= 100_000 {
+                    BatchSize::LargeInput
+                } else {
+                    BatchSize::SmallInput
+                };
+                // Mesmo perfil de amostras do braço principal da célula.
+                group.sample_size(50);
+                group.warm_up_time(Duration::from_secs(2));
+                group.measurement_time(Duration::from_secs(5));
+                let id_pre = format!("Pre_{:?}", tipo);
+                let parametro_pre = format!("Tamanho_{}_So_Pre", tamanho);
+                group.bench_with_input(
+                    BenchmarkId::new(&id_pre, &parametro_pre),
+                    &pool,
+                    |b, pool| {
+                        let contador = Cell::new(0usize);
+                        b.iter_batched(
+                            || {
+                                let i = contador.get() % pool.len();
+                                contador.set(contador.get() + 1);
+                                pool[i].clone()
+                            },
+                            |mut vetor| {
+                                let tempo = BenchmarkServiceBench::medir_pre(&mut vetor);
+                                black_box(tempo);
+                            },
+                            batch_size,
+                        );
+                    },
+                );
+            }
 
             for algoritmo in &algoritmos {
-                if !celula_planejada(*algoritmo, tamanho) {
+                if !celula_planejada(*algoritmo, tipo, tamanho) {
                     continue;
                 }
                 if !filtro_sorts.is_empty() && !filtro_sorts.contains(nome_sort(*algoritmo)) {
@@ -209,7 +304,8 @@ if !filtro_tipos.is_empty() && !filtro_tipos.contains(nome_tipo(tipo)) {
 
                 let (amostras, warm_up, medicao) = config_mediacao(*algoritmo, tamanho);
                 eprintln!(
-                    "[BENCH] {} {} n={} amostras={} warm_up={:?} medicao={:?}",
+                    "[BENCH] seed={} {} {} n={} amostras={} warm_up={:?} medicao={:?}",
+                    seed,
                     nome_sort(*algoritmo),
                     nome_tipo(tipo),
                     tamanho,

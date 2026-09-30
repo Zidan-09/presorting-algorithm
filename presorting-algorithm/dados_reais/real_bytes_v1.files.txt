@@ -1,0 +1,41 @@
+commit: c3b0bbe68756a1d1eb1cef6ef00ab197dcab4f74
+AGENTS.md
+artigo/main.tex
+artigo/modelos/TBench_template_6.24/TBench-template.cls
+artigo/modelos/TBench_template_6.24/TBench-template.tex
+artigo/modelos/TBench_template_6.24/TBench.bst
+artigo/modelos/TBench_template_6.24/reference.bib
+artigo/modelos/Template_SBC/template-latex/sbc-template.bib
+artigo/modelos/Template_SBC/template-latex/sbc-template.tex
+artigo/modelos/Template_SBC/template-latex/sbc.bst
+artigo/parecer_artigo.md
+artigo/referencias.bib
+artigo/sbc-template.bib
+artigo/sbc.bst
+docs/Bench 2026 - Calls for Papers.md
+docs/Submission Guidelines.md
+docs/plan.md
+docs/plan2.md
+docs/temp.md
+presorting-algorithm/Cargo.toml
+presorting-algorithm/benches/benchmark.rs
+presorting-algorithm/examples/exportar_resultados.rs
+presorting-algorithm/rust-toolchain.toml
+presorting-algorithm/src/core/mod.rs
+presorting-algorithm/src/core/sort/bubble.rs
+presorting-algorithm/src/core/sort/contar_inversoes.rs
+presorting-algorithm/src/core/sort/insertion.rs
+presorting-algorithm/src/core/sort/merge.rs
+presorting-algorithm/src/core/sort/mod.rs
+presorting-algorithm/src/core/sort/pre_proc.rs
+presorting-algorithm/src/core/sort/quick.rs
+presorting-algorithm/src/core/sort/selection.rs
+presorting-algorithm/src/lib.rs
+presorting-algorithm/src/main.rs
+presorting-algorithm/src/services/mod.rs
+presorting-algorithm/src/services/service.rs
+presorting-algorithm/src/services/servicebench.rs
+presorting-algorithm/src/utils/gerador.rs
+presorting-algorithm/src/utils/mod.rs
+presorting-algorithm/src/utils/tipos.rs
+presorting-algorithm/tests/validacao.rs

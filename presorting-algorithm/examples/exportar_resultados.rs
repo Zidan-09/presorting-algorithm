@@ -2,6 +2,8 @@ use serde::Deserialize;
 use std::fs;
 use std::path::Path;
 
+use algoritmo::utils::gerador::REAL_NATIVE_LEN;
+
 // ---------------------------------------------------------------------------
 // Caminhos reais do Criterion (diretório gerado pelo harness, minúsculo).
 // O harness escreve os companions de inversões ("_companion") e os marcadores
@@ -13,10 +15,44 @@ const GRUPO_CRITERION: &str = "experimentos_ordenacao";
 const RAIZ_SAIDA: &str = "../artigo/resultados";
 const RAIZ_CLI: &str = "../artigo/resultados/cli";
 
-const SORTS: [&str; 5] = ["merge", "quick", "insertion", "bubble", "selection"];
-const TIPOS: [&str; 6] = ["random", "turtles", "zigzag", "almostsorted", "duplicates", "inverted"];
-const TAMANHOS: [usize; 5] = [1000, 5000, 10000, 100000, 1000000];
+const SORTS: [&str; 8] = [
+    "merge",
+    "quick",
+    "insertion",
+    "bubble",
+    "selection",
+    "stdunstable",
+    "stdstable",
+    "descreverse",
+];
+const TIPOS: [&str; 10] = [
+    "random",
+    "turtles",
+    "zigzag",
+    "almostsorted",
+    "duplicates",
+    "inverted",
+    "sawtooth",
+    "organpipe",
+    "fewruns",
+    "real",
+];
+const TAMANHOS: [usize; 12] = [
+    16, 32, 64, 128, 256, 512, 1000, 5000, 10000, 100000, 1000000, 10000000,
+];
 const TAMANHOS_CLI: [usize; 6] = [1000, 5000, 10000, 20000, 100000, 1000000];
+// Cobertura da ferramenta CLI (curva de custo + cruzamento): matriz original.
+// Células novas (baselines, topologias F1) não têm série CLI — ficam fora de
+// `cli_cross.csv` até a F3 decidir a cobertura CLI.
+const SORTS_CLI: [&str; 5] = ["merge", "quick", "insertion", "bubble", "selection"];
+const TIPOS_CLI: [&str; 6] = [
+    "random",
+    "turtles",
+    "zigzag",
+    "almostsorted",
+    "duplicates",
+    "inverted",
+];
 
 #[derive(Deserialize)]
 struct Estimates {
@@ -57,6 +93,9 @@ fn nome_sorte(s: &str) -> &'static str {
         "insertion" => "Inserção",
         "bubble" => "Bubblesort",
         "selection" => "Seleção",
+        "stdunstable" => "StdInstável",
+        "stdstable" => "StdEstável",
+        "descreverse" => "DescReversão",
         _ => "?",
     }
 }
@@ -69,17 +108,50 @@ fn nome_tipo(t: &str) -> &'static str {
         "almostsorted" => "Quase ordenado",
         "duplicates" => "Duplicados",
         "inverted" => "Invertido",
+        "sawtooth" => "Serra",
+        "organpipe" => "Tubo",
+        "fewruns" => "Runs",
+        "real" => "Real",
         _ => "?",
     }
 }
 
-/// Matriz planejada: O(n²) não é medido em n = 1.000.000 (ver docs/plan.md).
-fn celula_planejada(sort: &str, tamanho: usize) -> bool {
-    if tamanho >= 1_000_000 {
-        matches!(sort, "merge" | "quick")
-    } else {
-        true
+/// Nome Debug do ArrayType usado no id do braço Cpre
+/// (`Pre_{Tipo:?}/Tamanho_{n}_So_Pre` — ver benches/benchmark.rs).
+fn debug_tipo(t: &str) -> &'static str {
+    match t {
+        "random" => "Random",
+        "turtles" => "Turtles",
+        "zigzag" => "Zigzag",
+        "almostsorted" => "AlmostSorted",
+        "duplicates" => "Duplicates",
+        "inverted" => "Inverted",
+        "sawtooth" => "Sawtooth",
+        "organpipe" => "OrganPipe",
+        "fewruns" => "FewRuns",
+        "real" => "Real",
+        _ => "?",
     }
+}
+
+/// Matriz planejada — espelho de `celula_planejada` em benches/benchmark.rs:
+/// O(n²) não é medido em n = 1.000.000; n = 10.000.000 só Merge/Quick/Std;
+/// Real só até seu tamanho nativo.
+fn celula_planejada(sort: &str, tipo: &str, tamanho: usize) -> bool {
+    if tamanho >= 1_000_000 {
+        if !matches!(sort, "merge" | "quick" | "stdunstable" | "stdstable") {
+            return false;
+        }
+    }
+    if tamanho >= 10_000_000 {
+        if !matches!(sort, "merge" | "quick" | "stdunstable" | "stdstable") {
+            return false;
+        }
+    }
+    if tipo == "real" && tamanho > REAL_NATIVE_LEN {
+        return false;
+    }
+    true
 }
 
 /// Escrita atômica: grava em arquivo temporário e depois renomeia.
@@ -211,7 +283,7 @@ fn principal() {
         for tipo in TIPOS {
             let dir_base = format!("{dir_grupo}/{sort}_{tipo}");
             for tamanho in TAMANHOS {
-                if !celula_planejada(sort, tamanho) {
+                if !celula_planejada(sort, tipo, tamanho) {
                     continue;
                 }
                 let dir_puro = format!("{dir_base}/tamanho_{tamanho}_puro");
@@ -276,7 +348,11 @@ fn principal() {
     let mut linhas_t3 = Vec::new();
     let mut inv_10k: HashMap<String, (f64, f64)> = HashMap::new();
     for tipo in TIPOS {
-        for &tamanho in &[1000usize, 5000, 10000, 100000, 1000000] {
+        for &tamanho in &[1000usize, 5000, 10000, 100000, 1000000, 10000000] {
+            // Real não gera companion acima do nativo (ver bench).
+            if tipo == "real" && tamanho > REAL_NATIVE_LEN {
+                continue;
+            }
             match ler_companion_inversoes(tipo, tamanho) {
                 Some((ini, pos)) => {
                     let reducao = if ini > 0.0 { (ini - pos) / ini * 100.0 } else { 0.0 };
@@ -297,7 +373,7 @@ fn principal() {
                     }
                 }
                 None => {
-                    if celula_planejada("merge", tamanho) {
+                    if celula_planejada("merge", tipo, tamanho) {
                         panic!("COMPANION DE INVERSÕES AUSENTE para tipo={tipo} tamanho={tamanho}");
                     }
                 }
@@ -340,11 +416,47 @@ fn principal() {
     }
 
     // ---------------------------------------------------------------
+    // 1b) Custo isolado do pré-processamento (braço So_Pre do Criterion)
+    // ---------------------------------------------------------------
+    let mut csv_cpre =
+        String::from("tipo,tamanho,pre_only_ns,ci_lo_ns,ci_hi_ns,median_ns\n");
+    let mut cpre_faltando: Vec<String> = Vec::new();
+    for tipo in TIPOS {
+        for tamanho in TAMANHOS {
+            if tipo == "real" && tamanho > REAL_NATIVE_LEN {
+                continue;
+            }
+            let dir_pre = format!(
+                "{dir_grupo}/Pre_{}/Tamanho_{tamanho}_So_Pre",
+                debug_tipo(tipo)
+            );
+            match ler_estimates(&dir_pre) {
+                Some(e) => csv_cpre.push_str(&format!(
+                    "{tipo},{tamanho},{:.0},{:.0},{:.0},{:.0}\n",
+                    e.mean.valor,
+                    e.mean.ic.inferior,
+                    e.mean.ic.superior,
+                    e.median.valor
+                )),
+                None => cpre_faltando.push(format!("pre_{tipo}_{tamanho}")),
+            }
+        }
+    }
+    if !cpre_faltando.is_empty() {
+        panic!(
+            "BRAÇO Cpre AUSENTE no Criterion — {} célula(s): {}",
+            cpre_faltando.len(),
+            cpre_faltando.join(", ")
+        );
+    }
+
+    // ---------------------------------------------------------------
     // 4) Cruzamento CLI (sort @ 10.000; médias das repetições)
+    // Cobertura CLI = matriz original (SORTS_CLI x TIPOS_CLI).
     // ---------------------------------------------------------------
     let mut csv_cross = String::from("sort,tipo,tamanho,puro_ns,com_pre_ns,pre_ns\n");
-    for sort in SORTS {
-        for tipo in TIPOS {
+    for sort in SORTS_CLI {
+        for tipo in TIPOS_CLI {
             let arquivo = format!("{sort}_{tipo}_10000.txt");
             let puro = ler_cli_serie(&arquivo, "CSV_PURO,");
             let com = ler_cli_serie(&arquivo, "CSV_COM_PRE,");
@@ -403,6 +515,7 @@ fn principal() {
     gravar(&format!("{RAIZ_SAIDA}/fig_ganho.csv"), &csv_fig_ganho);
     gravar(&format!("{RAIZ_SAIDA}/fig_precusto.csv"), &csv_fig_precusto);
     gravar(&format!("{RAIZ_SAIDA}/benchmark_consolidado.csv"), &csv_bench);
+    gravar(&format!("{RAIZ_SAIDA}/cpre_consolidado.csv"), &csv_cpre);
     gravar(&format!("{RAIZ_SAIDA}/ganho.csv"), &csv_ganho);
     gravar(&format!("{RAIZ_SAIDA}/inversoes.csv"), &csv_inversoes);
     gravar(&format!("{RAIZ_SAIDA}/pre_custo.csv"), &csv_pre_custo);

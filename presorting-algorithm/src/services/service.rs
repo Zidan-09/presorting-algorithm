@@ -9,7 +9,7 @@ use crate::utils::gerador::generate_test_array;
 use crate::core::sort::{
     insertion::insertion_sort, bubble::bubble_sort, selection::selection_sort,
     quick::quick_sort, merge::merge_sort, pre_proc::pre_processamento_simetrico,
-    contar_inversoes::contar_inversoes
+    baselines::desc_reverse_insertion, contar_inversoes::contar_inversoes
 };
 
 pub struct MetricasDados {
@@ -205,6 +205,9 @@ impl BenchmarkService {
             SortType::Selection => selection_sort(array),
             SortType::Quick => quick_sort(array),
             SortType::Merge => merge_sort(array),
+            SortType::StdUnstable => array.sort_unstable(),
+            SortType::StdStable => array.sort(),
+            SortType::DescReverse => desc_reverse_insertion(array),
         }
     }
 }
