@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99e
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+The style file: TBench.bst
+Reallocating 'name_of_file' (item size: 1) to 10 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Database file #1: reference.bib
+Warning--edition ordinal word "Sixth edition" may be too high (or improper) for conversion in hennessy_computer_2019
+You've used 15 entries,
+            4040 wiz_defined-function locations,
+            908 strings with 9940 characters,
+and the built_in function-call counts, 10136 in all, are:
+= -- 828
+> -- 188
+< -- 74
++ -- 94
+- -- 30
+* -- 543
+:= -- 1607
+add.period$ -- 32
+call.type$ -- 15
+change.case$ -- 15
+chr.to.int$ -- 171
+cite$ -- 16
+duplicate$ -- 719
+empty$ -- 909
+format.name$ -- 40
+if$ -- 2312
+int.to.chr$ -- 0
+int.to.str$ -- 15
+missing$ -- 121
+newline$ -- 83
+num.names$ -- 14
+pop$ -- 300
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 805
+stack$ -- 0
+substring$ -- 372
+swap$ -- 556
+text.length$ -- 17
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 15
+warning$ -- 1
+while$ -- 40
+width$ -- 17
+write$ -- 184
+(There was 1 warning)

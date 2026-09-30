@@ -1,0 +1,461 @@
+%% Bench 2026 / PEvaluation submission version (anonymized).
+%% Adapted from artigo/main.tex (SBC format, Portuguese) to TBench-template.
+%% Content preserved; translated to academic English; double-blind anonymized.
+\documentclass[namedate,webpdf,contemporary,large]{TBench-template}%
+\usepackage[english]{babel}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\usetikzlibrary{arrows.meta,positioning}
+\pgfplotsset{compat=1.18, table/col sep=comma}
+\makeatletter
+\AtBeginDocument{
+    \renewcommand*{\citenumfont}{\color{jnlclr}}
+}
+\makeatother
+
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%
+\newtheorem{proposition}[theorem]{Proposition}%
+\theoremstyle{thmstyletwo}%
+\newtheorem{example}{Example}%
+\newtheorem{remark}{Remark}%
+\theoremstyle{thmstylethree}%
+\newtheorem{definition}{Definition}
+
+\begin{document}
+
+\journaltitle{BenchCouncil Transactions on Benchmarks, Standards and Evaluations}
+\DOI{DOI HERE}
+\copyrightyear{2026}
+\pubyear{2026}
+\appnotes{Original Article}
+
+\firstpage{1}
+
+\title[Symmetric Preprocessing for Sorting Algorithms]{Impact of $O(n)$ Symmetric Preprocessing on Inversion Reduction and Sorting Algorithm Efficiency: An Experimental Evaluation Across Adaptive and Non-Adaptive Methods}
+
+% Anonymized for double-blind review: no author, address, or corresp info included.
+
+\received{30}{9}{2026}
+\accepted{1}{11}{2026}
+
+\abstract{Quadratic sorting algorithms remain relevant in resource-constrained systems but are sensitive to inversion counts. This study investigates the impact of inversions on sorting performance and their reduction through preprocessing. The objective is to assess the effectiveness of this technique for adaptive and non-adaptive algorithms. Five algorithms were compared across six input topologies, using vectors of up to $10^6$ elements and $O(n)$ preprocessing. The technique reduced inversions by up to 100\% at 1.2 ns per element and achieved gains of up to 99.9\% in adaptive methods, while $O(n \log n)$ algorithms showed inconsistent results.}
+\keywords{Sorting algorithms, Adaptive sorting, Presorting, Benchmarking, Performance evaluation, Experimental methodology}
+
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+Sorting is a fundamental operation in computer science, essential in search systems, databases, and real-time applications \cite{knuth_art_1973,sedgewick_algorithms_2011}. Although methods with $O(n \log n)$ asymptotic complexity, such as Merge Sort and Quicksort, are preferable for large data volumes, quadratic $O(n^2)$ algorithms such as Insertion Sort, Selection Sort, and Bubble Sort remain relevant in specific scenarios \cite{cormen_introduction_2022}. This persistence relates to structural simplicity, low memory consumption through in-place operation, and practical efficiency on small or partially ordered datasets \cite{cormen_introduction_2022,ziviani_projeto_2021}.
+
+The practical efficiency of a sorting algorithm does not depend exclusively on its asymptotic complexity; it is also influenced by properties of the input sequence \cite{estivill-castro_survey_1992}. In this context, an inversion, defined as a pair satisfying $A[i] > A[j]$ for $i < j$, constitutes a quantitative measure of the disorder degree of an array \cite{knuth_art_1973,mannila_measures_1984}. The inversion count characterizes different levels of presortedness, since sequences with more inversions exhibit greater disorder relative to the final order \cite{mannila_measures_1984}. This characteristic can significantly influence execution cost, especially for algorithms whose operation count depends on input disorder \cite{estivill-castro_survey_1992}.
+
+Despite this relation between input disorder and execution cost, quadratic algorithms may exhibit limited adaptability to initial data conditions \cite{mannila_measures_1984,estivill-castro_survey_1992}. In particular, inputs with many inversions can increase required movements during sorting, degrading performance of methods such as Insertion Sort \cite{cormen_introduction_2022}. In this scenario, a preliminary step capable of reducing input disorder may decrease the subsequent work of the sorting algorithm. The research question is therefore: to what extent does a preprocessing step aimed at inversion reduction impact the practical performance of quadratic and quasilinear sorting algorithms?
+
+Formally, let $C_{\text{original}}$ denote the temporal cost of directly sorting the input. By introducing symmetric preprocessing with cost $C_{\text{pre}}$, the subsequent sorting algorithm operates on a modified vector, spending a reduced time $C_{\text{sort}}$. The objective of this work is to propose, implement, and evaluate a low-cost $O(n)$ symmetric preprocessing algorithm designed to reduce the inversion count of an input vector. We experimentally verify whether the hybrid approach is more time-efficient than directly applying conventional algorithms, rigorously identifying the theoretical and practical conditions under which $C_{\text{pre}} + C_{\text{sort}} < C_{\text{original}}$ holds.
+
+The relevance of this study lies in investigating a strategy capable of improving practical sorting behavior without modifying fundamental structure or introducing high additional cost. Reducing disorder before the main sort may decrease operations on unfavorable inputs, especially in methods sensitive to inversion counts \cite{estivill-castro_survey_1992,hwang_presorting_2000}. The study also contributes to adaptive-algorithm analysis by investigating conditions under which preprocessing cost is compensated by reduced sorting work \cite{mannila_measures_1984,hwang_presorting_2000}.
+
+The research adopts a quantitative, applied, and experimental approach \cite{gil_metodos_2019,sampieri_metodologia_2021}. The study comprises formal modeling of the preprocessing algorithm and its implementation in Rust. Experimental evaluation used automated benchmarks with the Criterion library, employing synthetic vectors ranging from 1,000 to 1,000,000 elements with controlled inversion levels, covering worst cases, partial ordering, and adversarial structured topologies inspired by classical sorting-test patterns. Experiments compared execution time of the hybrid approach against directly applied sorting algorithms on the same inputs.
+
+This article is structured as follows. Section~\ref{sec:background} presents theoretical background. Section~\ref{sec:method} describes methodology, formalization of the proposed preprocessing algorithm, evaluated sorting algorithms, and experimental procedures. Section~\ref{sec:results} presents and discusses results. Finally, Section~\ref{sec:conclusion} presents conclusions.
+
+\section{Background and Related Work}\label{sec:background}
+This section presents the theoretical foundations: inversions as a disorder measure, adaptive-sorting principles, characteristics of evaluated algorithms including quadratic and quasilinear methods, preprocessing concepts and symmetric-preprocessing principles, and related work situating this contribution.
+
+\subsection{Inversions and Adaptive Sorting}
+Practical efficiency of traditional sorting algorithms often depends on initial element disposition \cite{cormen_introduction_2022,estivill-castro_survey_1992}. To formalize the disorder degree, the classical concept of \emph{inversion} is used \cite{knuth_art_1973}. Given a vector $a$ of $n$ elements, an inversion is formally a pair $(i,j)$ such that $i < j$ and $a[i] > a[j]$ \cite{knuth_art_1973,sedgewick_algorithms_2011}. The total inversion count $I$ measures input disorder and relates directly to effort required to sort via local operations \cite{mannila_measures_1984}.
+
+The relation between inversion volume $I$ and execution complexity gives rise to \emph{adaptivity} \cite{estivill-castro_survey_1992}. An algorithm is adaptive when its time complexity improves markedly in the presence of partial presortedness \cite{mannila_measures_1984}. A classical example is \emph{Insertion Sort}, consuming $O(n+I)$ operations. On a strictly ordered vector ($I=0$) it reaches linear $O(n)$ time, while in the worst case ($I=O(n^2)$) it degrades to quadratic time \cite{cormen_introduction_2022,knuth_art_1973}.
+
+\subsection{Evaluated Algorithms}
+To evaluate symmetric-preprocessing impact across sorting paradigms, a representative set with distinct time complexity, adaptivity, and sensitivity to initial order was selected, covering both methods whose efficiency may be directly influenced by disorder and methods less dependent on it.
+
+In the quadratic $O(n^2)$ worst-case group, \emph{Bubble Sort}, \emph{Insertion Sort}, and \emph{Selection Sort} were evaluated \cite{cormen_introduction_2022}. The first two are adaptive, reducing operations with presortedness \cite{estivill-castro_survey_1992}, relevant for analyzing inversion-reduction impacts. In contrast, \emph{Selection Sort} is non-adaptive and maintains fixed comparisons regardless of initial configuration \cite{estivill-castro_survey_1992}, serving as a counterpoint.
+
+In the quasilinear group, \emph{Merge Sort} with $O(n \log n)$ time and \emph{Quicksort} with $O(n \log n)$ average performance (though $O(n^2)$ worst case) were evaluated \cite{cormen_introduction_2022}. Their inclusion verifies whether effects observed in quadratic algorithms remain relevant at lower asymptotic cost, extending analysis beyond inversion-count-related algorithms.
+
+Thus the set covers three relevant dimensions: adaptive quadratic algorithms (\emph{Bubble Sort} and \emph{Insertion Sort}), a non-adaptive quadratic algorithm (\emph{Selection Sort}), and quasilinear algorithms based on distinct strategies (\emph{Merge Sort} and \emph{Quicksort}). This composition verifies not only whether symmetric preprocessing reduces inversions, but to what extent this reduction converts into gains for algorithms with different dependence on initial order.
+
+\subsection{Symmetric Preprocessing Concept}
+Preprocessing, in algorithm design and analysis, refers to a preliminary transformation of input data before the main algorithm \cite{cormen_introduction_2022}. Its purpose is to alter instance disposition, making subsequent resolution simpler or more efficient. Conceptually, preprocessing acts analogously to prior organization of a work environment: although preparation requires initial cost, reduced main-processing effort compensates it.
+
+For viability in sorting, preprocessing temporal cost must be strictly dominated by the succeeding sorting complexity \cite{cormen_introduction_2022,sedgewick_algorithms_2011}. An ideal preprocessing should exhibit linear $O(n)$ time, ensuring overhead is asymptotically negligible relative to total sorting cost---whether $O(n \log n)$ average quasilinear or $O(n^2)$ worst-case quadratic \cite{knuth_art_1973}.
+
+In this research, preprocessing is termed \emph{symmetric} because it applies a bidirectional mirrored scan from vector ends. This restructuring aims to reduce total inversions $I$ by moving discrepant elements closer to final destinations in a single $O(n)$ pass. By providing a partially reordered structure, it seeks to mitigate comparisons and swaps in both adaptive and non-adaptive methods.
+
+\subsection{Related Work}
+Literature presents different approaches to characterize sequence sortedness and exploit it. Mannila \cite{mannila_measures_1984} studied presortedness and established measures quantifying disorder forms. The author defined general properties for presortedness measures and introduced optimal sorting relative to a measure. Among measures is inversion count $Inv(X)$. The work presented optimal algorithms for different measures and showed \emph{Insertion Sort} optimal for three natural measures, establishing foundations for adaptive algorithms. The work appeared as an extended abstract at ICALP 1984 and journal version in \emph{IEEE Transactions on Computers} in 1985~\cite{mannila_measures_1984}; the reference adopted here is the 1985 journal version (vol.~C-34, pp.~318--325).
+
+Estivill-Castro and Wood \cite{estivill-castro_survey_1992} surveyed adaptive sorting, considering input disorder degree. The work presented main concepts, disorder measures, and established results on \emph{adaptive sorting}, synthesizing theoretical and practical results including relations between disorder measures and algorithms exploiting presortedness. The survey records that several algorithms exhibit complexity dependent on both input size and disorder, and that certain adaptive algorithms perform competitively on random sequences with significant gains on nearly sorted inputs.
+
+In an approach directly related to preliminary transformations, Hwang, Yang, and Yeh \cite{hwang_presorting_2000} investigated \emph{presorting} algorithms from an average-case perspective, using inversion-count reduction as performance measure. The authors formulated quantification of preliminary-step effects via average inversion reduction, analyzing steps of known algorithms including \emph{Shellsort} and \emph{Quicksort}. Results included expectation and variance of inversion reduction and associated generating functions. The study also investigated employing \emph{presorting} steps before sorting, providing an analytical framework. Hwang et al.'s framework would in principle allow deriving expected reduction of symmetric preprocessing under uniform random input: under random permutation, $\Pr[A[i]>A[n{-}1{-}i]]=0.5$, so expected symmetric swaps is $n/4$; each swap eliminates at least the pair inversion $(i,n{-}1{-}i)$ and on average affects $O(n)$ other relations, suggesting linear gain whose exact quantification requires the paper's generating function. A rigorous closed-form derivation is left as future work; empirically, average reduction on random input was $\sim$45\% (Table~\ref{tab:inversions}), compatible with predicted order of magnitude.
+
+Recent literature reinforces practical relevance of microarchitectural effects. Edelkamp and Weiss~\cite{edelkamp_blockquicksort_2016} showed branch mispredictions can dominate Quicksort cost and proposed \emph{BlockQuicksort}, providing basis for degradation hypotheses for \emph{Selection Sort} and Quicksort in this work. Auger et al.~\cite{auger_timsort_2018} analyzed \emph{Timsort} worst-case complexity, showing exploitation of pre-existing runs remains an active sorting-engineering theme. LaMarca and Ladner~\cite{lamarca_influence_1999} showed cache influence on sorting performance, also discussed by Kaligosi and Sanders~\cite{kaligosi_branch_2006} when quantifying branch-misprediction impact. These works position the present low-cost technique as a preprocessing-heuristic instance whose trade-off must be jointly evaluated at logical (inversions) and microarchitectural levels.
+
+Differing from mapped approaches, this research evaluates a Symmetric Preprocessing algorithm acting on direct inversion mitigation in linear time, filling a low-cost optimization gap for sorting algorithms.
+
+\section{Experimental Methodology}\label{sec:method}
+This research is classified as applied in nature. According to \cite{gil_metodos_2019}, applied research generates knowledge for practical application directed at specific problems. Here, the study evaluates low-cost symmetric preprocessing capable of reducing inversion impact and improving sorting performance.
+
+The approach is quantitative. According to \cite{sampieri_metodologia_2021}, quantitative approaches rely on numerical measurement and statistical analysis to test hypotheses and establish behavior patterns. The work measures execution time and inversion counts with and without preprocessing, via statistical metrics from the \emph{Criterion} library.
+
+Objectives are explanatory. According to \cite{gil_metodos_2019}, explanatory research identifies factors determining phenomena. The study clarifies how and why input topology (disorder degree, duplicates, structural patterns) and symmetric preprocessing influence execution time and inversions.
+
+Procedures are experimental. According to \cite{gil_metodos_2019}, experimental design determines study object, selects influencing variables, and defines control and observation. The work controllably manipulates topology and input size (independent variables) and observes time and inversions (dependent variables), under fixed seed, paired vector generation, and standardized environment.
+
+\subsection{Experimental Configuration}
+Experiments ran in a controlled environment whose hardware, OS, and tool specifications appear in Table~\ref{tab:environment}. To reduce variability, power plan was kept at high performance and background processes minimized. Code was compiled in \emph{release} mode with maximum optimization (\texttt{opt-level = 3}). Input generation used a fixed seed, ensuring reproducibility and correspondence across experimental conditions.
+
+\begin{table}[!t]
+\caption{Experimental environment and tools.\label{tab:environment}}%
+\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}ll@{\extracolsep\fill}}
+\toprule
+Component & Configuration / Specification\\
+\midrule
+Operating system & Windows 11 Pro (build 10.0.26200)\\
+Processor & AMD Ryzen 7 8700G (8 cores / 16 threads)\\
+Memory & 16 GB DDR5 5600MT/s (dual channel)\\
+Language & Rust 1.96.0 (release profile)\\
+Measurement tools & Criterion 0.5 and Project CLI Tool\\
+Data generation & Seed 42 (\texttt{ChaCha8Rng}), paired inputs\\
+\botrule
+\end{tabular*}
+\end{table}
+
+To evaluate resilience under different entropy degrees, six structural input patterns were designed (Table~\ref{tab:datasets}). Deterministic randomness was ensured by rigorous seed pairing: for each topology-size combination, a fixed pool of 50 vectors is generated with seed $42 \oplus n \oplus \text{type}$ (via \texttt{ChaCha8Rng}) and shared by all algorithms and both variants (pure and preprocessed), ensuring paired comparability. Deterministic vectors (Reversed, Zigzag, Turtles) are identical across the 50 pool replicas; stochastic vectors (Random, Duplicates, Almost Sorted) vary across replicas by seed but are identical across algorithms for the same replica.
+
+Quasilinear algorithms (\emph{Merge Sort} and \emph{Quicksort}) were measured at $n \in \{1{,}000, 5{,}000, 10{,}000, 100{,}000, 1{,}000{,}000\}$. For quadratic algorithms (\emph{Insertion Sort}, \emph{Bubble Sort}, \emph{Selection Sort}), measurements were restricted to $n \le 100{,}000$: at $n=10^6$ each execution would take minutes, precluding systematic collection of statistically significant samples. This restriction is documented and does not compromise comparison, as gain orders of magnitude already stabilize at $n=100{,}000$.
+
+Isolated preprocessing cost ($C_{\text{pre}}$) was additionally characterized at $n \in \{1{,}000, 5{,}000, 10{,}000, 20{,}000, 100{,}000, 1{,}000{,}000\}$ (Table~\ref{tab:precost} and Fig.~\ref{fig:precost}) to evidence linearity; the $n{=}20{,}000$ point was collected exclusively for this cost curve via CLI tool (\texttt{seed} 42), under the same paired-generation protocol, and is not part of the main sorting-time comparison matrix.
+
+\begin{table}[!t]
+\caption{Datasets and input-topology characterization.\label{tab:datasets}}%
+\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}ll@{\extracolsep\fill}}
+\toprule
+Topology & Structural Pattern Description\\
+\midrule
+Random & Uniform permutation of $[0,n{-}1]$ via \texttt{shuffle} with \texttt{ChaCha8Rng}\\
+Turtles & Elevated increasing upper half; low cyclic lower half\\
+Zigzag & Element-wise alternation; deterministic\\
+Almost Sorted & $[0,n{-}1]$ ordered with $n/100$ uniform pair swaps $(i,j)$, $i\neq j$\\
+Duplicates & $a[i]\sim\mathcal{U}\{0,1,2\}$ i.i.d.\ (no intentional spatial clustering)\\
+Reversed & Strictly decreasing order; deterministic worst case\\
+\botrule
+\end{tabular*}
+\end{table}
+
+\subsection{Evaluated Algorithm Specifications}
+To ensure internal validity, timing stability, and reproducibility, all sorting algorithms were implemented in Rust (version 1.96.0), operating directly on mutable slices of 32-bit integers (\texttt{\&mut [i32]}). Implementations avoided high-level external abstractions, standardizing memory handling and adopting idiomatic instruction-level optimizations.
+
+\subsubsection{Quadratic Algorithms}
+\begin{itemize}
+\item \textbf{Bubble Sort:} Optimized adaptive version. Successive scans reduce upper bound each iteration ($n-1-i$). Adaptivity is ensured by a boolean flag (\texttt{swapped}) monitoring swaps per pass; if a scan completes with no element permutation, execution halts early, ensuring $O(n)$ on presorted vectors.
+\item \textbf{Insertion Sort:} Traditional direct-insertion by shifting. For each element of the unordered sub-slice, current value is stored in a temporary variable and strictly greater antecedents are shifted right. Search and shifting end once correct position is found or left bound ($j=0$) is reached, minimizing write overhead versus successive-swap implementations.
+\item \textbf{Selection Sort:} Classical non-adaptive in-place form. At each outer iteration $i$, the algorithm scans unordered segment $[i+1,n-1]$ to identify minimum-element index. Swap with position $i$ executes conditionally only if minimum resides at a distinct index. Comparison cost remains strict $O(n^2)$, regardless of presortedness.
+\end{itemize}
+
+\subsubsection{Quasilinear Algorithms}
+\begin{itemize}
+\item \textbf{Merge Sort:} Top-down divide-and-conquer with stable ordering guarantee. To eliminate continuous dynamic-allocation overhead distorting timings, implementation allocates a single temporary auxiliary vector of size $n$ at function entry, passed by mutable reference through recursive calls. Sub-slice midpoints use right bit-shifting ($(\text{end}-\text{start}) \gg 1$), avoiding integer division. Merge copies current-slice data to auxiliary buffer and rebuilds ordered segment with three index pointers.
+\item \textbf{Quicksort:} Recursive implementation using three-way partitioning (\emph{Dutch National Flag} / Dijkstra's algorithm) with median-of-three pivot selection. Pivot is median among initial, central, and final subvector elements. Three-way partitioning rearranges into three contiguous regions: less than, equal to, and greater than pivot, maintaining \texttt{lt}, \texttt{i}, \texttt{gt} indices. This ensures $O(n \log n)$ even with many duplicate keys, avoiding Lomuto-partitioning quadratic degradation. Recursion applies only to less-than (\texttt{[start, lt-1]}) and greater-than (\texttt{[gt+1, end]}) regions.
+\end{itemize}
+In all implementations, preliminary boundary checks (\emph{early returns}) ensure slices with $n<2$ return immediately without function calls or unnecessary allocations.
+
+\subsection{Experimental Protocol and Inversion Counting}
+Empirical measurement isolated environmental interference and ensured statistical reproducibility. Timing used the \emph{Criterion.rs} framework, executing automated cache warm-up cycles and statistical resampling (\emph{bootstrapping}) to mitigate hardware-interruption impact. For each algorithm-topology-size combination, mean time, median, and 95\% confidence intervals were computed (\texttt{confidence\_level=0.95}, \texttt{significance\_level=0.05}). Measurement configuration was profile-adjusted: 50 samples with 2\,s warm-up and 5\,s measurement window for most scenarios; for quadratic algorithms at $n=100{,}000$ (each iteration lasting fractions of a second), 30 samples with 1\,s warm-up and 5\,s window; and for quasilinear methods at $n=10^6$, 50 samples with 2\,s warm-up and 10\,s window. Timing of preprocessed approaches rigorously included composite cost $C_{\text{total}} = C_{\text{pre}} + C_{\text{sort}}$, transparently assessing viability condition $C_{\text{pre}} + C_{\text{sort}} < C_{\text{original}}$.
+
+Statistical criterion: a variation was considered relevant when 95\% confidence intervals of the two conditions (pure vs.\ preprocessed) do not overlap. When CIs overlap, variation was treated as non-significant regardless of point percentage difference. This criterion was uniformly applied throughout Section~\ref{sec:results} to qualify expressions such as ``consistent gain,'' ``systematic degradation,'' and ``mixed results.''
+
+Beyond timing, correctness of each scenario was verified outside the timed region: for every (algorithm, topology, size), output is confirmed as an ordered permutation of input (comparison with \texttt{sort\_unstable}) in both pure and preprocessed variants. Inversion counts of each shared-pool vector, before and after preprocessing, are recorded in harness companion files, ensuring inversion tables derive from exactly the same timed vectors.
+
+Exact inversion-count quantification uses a modified-MergeSort-based $O(n \log n)$ implementation \cite{cormen_introduction_2022}. During merging of two ordered subvectors $L$ and $R$, when $R[j]$ is less than $L[i]$, exactly $|L|-i$ is added to the counter. This eliminates $O(n^2)$ direct-counting bottleneck, enabling evaluation of $10^5$--$10^6$-element vectors.
+
+\subsection{Symmetric Preprocessing Formalization}
+The proposed symmetric preprocessing operates as a deterministic single-pass scan over input vector $A$ of size $n$. Its goal is restructuring via mirrored swaps and local adjustments before evaluated sorting algorithms. Procedural structure is formalized in Algorithm~\ref{alg:preproc}.
+
+\begin{algorithm}[!t]
+\caption{Symmetric Preprocessing Algorithm}\label{alg:preproc}
+\begin{algorithmic}[1]
+\Require Vector $A$ of size $n$
+\Ensure Partially reorganized vector $A$
+\State $n \gets$ size of $A$
+\If{$n < 2$}
+\State \Return
+\EndIf
+\State $last \gets n-1$
+\State $mid \gets \lfloor n/2 \rfloor$
+\For{$i \gets 0$ \textbf{to} $mid-1$}
+\State $j \gets last-i$
+\If{$A[i] > A[j]$}
+\State swap($A[i], A[j]$)
+\EndIf
+\If{$i+1 < mid$}
+\If{$A[i] > A[i+1]$}
+\State swap($A[i], A[i+1]$)
+\EndIf
+\EndIf
+\If{$j-1 > mid$}
+\If{$A[j] < A[j-1]$}
+\State swap($A[j], A[j-1]$)
+\EndIf
+\EndIf
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+The algorithm iterates over the first half, scanning $i \in [0, \lfloor n/2 \rfloor - 1]$. Each iteration computes the symmetric index at the opposite end, $j=(n-1)-i$. Loop execution comprises three structured conditionals: (1) \textbf{Extreme symmetric swap:} if $A[i] > A[j]$, direct swap places smaller element in left segment and larger in right; (2) \textbf{Left adjacent adjustment:} for $(i+1) < \lfloor n/2 \rfloor$, if $A[i] > A[i+1]$, swap adjacent elements; (3) \textbf{Right adjacent adjustment:} for $(j-1) > \lfloor n/2 \rfloor$, if $A[j] < A[j-1]$, swap adjacent elements.
+
+Boundary conditions ensure adjacent swaps operate strictly within respective subdomains without crossing the midpoint. Computationally, the algorithm executes exactly $\lfloor n/2 \rfloor$ iterations. Each step performs at most 3 comparisons and 3 swaps, yielding $T(n)=O(n)$ worst-case time. Since restructuring is in-place, auxiliary space is strictly $O(1)$.
+
+\subsection{Threats to Validity}
+Physical-time measurements were protected against noise via CPU warm-up and execution-order alternation. Absence of low-level hardware statistics such as \emph{cache misses} stems from unavailability of the Linux-specific \texttt{perf\_event\_open} interface in the Windows environment used. All experiments are reproducible via \texttt{cargo bench} and routines in the project repository \cite{anonymous_repository_2026}.
+
+\section{Results and Discussion}\label{sec:results}
+This section analyzes experimental results, evaluating symmetric-preprocessing impact on data structure and algorithm execution time. Discussion follows an analytical structure from direct inversion-reduction impact and geometric-bias interpretation in the reversed scenario, through total sorting-time measurement in quadratic and quasilinear algorithms, to microarchitectural effects such as locality and CPU caches. The goal is consolidating scenarios with real gains and understanding physical and algorithmic limitations.
+
+\subsection{Inversion Reduction and Structural Bias}
+Fig.~\ref{fig:inversions} illustrates inversion variation on 10,000-element vectors, with exact quantitative values and reduction percentages in Table~\ref{tab:inversions}. Preprocessing expressively mitigates disorder in multiple scenarios. However, total elimination (100\%) in the \emph{Reversed} scenario requires theoretical sobriety.
+
+\begin{figure}[!t]%
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    bar width=8pt,
+    ymode=log,
+    ymin=100,
+    symbolic x coords={Random,Turtles,Zigzag,AlmostSorted,Duplicates,Reversed},
+    xtick=data,
+    ymajorgrids,
+    width=0.95\columnwidth, height=6cm,
+    ylabel={Inversion count (log)},
+    x tick label style={font=\footnotesize, rotate=20, anchor=east},
+    legend style={at={(0.5,-0.35)}, anchor=north, legend columns=1, font=\footnotesize},
+]
+\addplot[draw=black, fill=black!55] table[x=tipo, y=iniciais] {resultados/fig_inversoes.csv};
+\addplot[draw=black, fill=black!20] table[x=tipo, y=pospre] {resultados/fig_inversoes.csv};
+\legend{Initial, After preprocessing}
+\end{axis}
+\end{tikzpicture}
+\caption{Inversion counts before and after symmetric preprocessing for 10,000-element vectors (log scale; in Reversed scenario post value is zero and does not appear on log scale).}\label{fig:inversions}
+\end{figure}
+
+\begin{table}[!t]
+\caption{Inversion reduction by symmetric preprocessing on 10,000-element vectors (mean of 50 paired-pool vectors; same seed as Table~\ref{tab:times}).\label{tab:inversions}}%
+\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}lrrr@{\extracolsep\fill}}
+\toprule
+Type & Inversions & Post-pre & Reduction\\
+\midrule
+Random & 24,960,120 & 13,681,366 & 45.19\%\\
+Turtles & 30,613,750 & 18,133,750 & 40.77\%\\
+Zigzag & 24,997,500 & 2,501 & 99.99\%$^{*}$\\
+Almost Sorted & 654,922 & 377,149 & 42.41\%\\
+Duplicates & 16,633,993 & 6,300,346 & 62.12\%\\
+Reversed & 49,995,000 & 0 & 100.00\%$^{**}$\\
+\botrule
+\end{tabular*}
+\begin{tablenotes}%
+\item $^{*}$~99.99\% (2,501 remaining); $^{**}$~100.00\% exact (zero remaining). Rounding difference precludes equivalence interpretation.
+\end{tablenotes}
+\end{table}
+
+Since Algorithm~\ref{alg:preproc} directly swaps $a[i]$ and $a[n-1-i]$, a strictly reversed vector (where $a[i] > a[n-1-i]$ for all $i<n/2$) undergoes complete geometric reversal in $O(n)$ operations. Resolving Reversed stems from preprocessing-transformation geometry, an ideal case where disorder topology perfectly matches applied symmetry.
+
+Behavior in \emph{Zigzag} can also be interpreted via this structural property. Although its topology is not a global reversal like \emph{Reversed}, systematic alternation between differently oriented blocks produces disorder relations partially captured by symmetric-position comparisons. Direct swapping between $a[i]$ and $a[n-1-i]$ thus simultaneously corrects many out-of-order relations, reducing inversions from 24,997,500 to only 2,501, approximately 100\% (99.99\%) reduction.
+
+The result shows preprocessing efficacy is not restricted to complete reversal: it also manifests in topologies strongly aligned with transformation symmetry, even partially. This helps explain particularly high gains later observed in Insertion Sort and Bubble Sort for this input.
+
+\subsection{Execution-Time Impact and Preprocessing Cost}
+Table~\ref{tab:times} presents mean execution time and relative gain per algorithm on 10,000-element vectors, showing how preprocessing efficiency is conditioned by native complexity and adaptivity. Order-sensitive quadratic algorithms (\emph{Insertion Sort} and \emph{Bubble Sort}) obtained largest practical benefits: in \emph{Zigzag}, preprocessing reduced \emph{Insertion Sort} time from $5{,}535.18\,\mu s$ to $16.44\,\mu s$ ($+99.7\%$) and \emph{Bubble Sort} from $19{,}147.42\,\mu s$ to $17.67\,\mu s$ ($+99.9\%$), reflecting drastic inversion elimination (24,997,500 to 2,501). In contrast, $O(n \log n)$ methods such as \emph{Merge Sort} showed mixed results (degradation up to 17.8\% and gains up to 14.8\% at $n{=}10{,}000$; gains up to $18.5\%$ at $n{=}10^6$, Table~\ref{tab:times1M}). Since divide-and-conquer already ensures high native efficiency, preliminary-step cost tends to outweigh benefits in low-structure distributions. Variations were judged relevant by non-overlapping 95\% CIs (Section~3.4).
+
+\begin{table*}[!t]
+\caption{Mean time per execution (in $\mu$s, mean $\pm$ 95\% CI half-width) and preprocessing gain for 10,000-element vectors. Source: Criterion, seed 42. Relevance: non-overlapping 95\% CIs.\label{tab:times}}%
+\begin{tabular*}{\textwidth}{@{\extracolsep\fill}llrrr@{\extracolsep\fill}}
+\toprule
+Algorithm & Type & Pure & With pre & Gain\\
+\midrule
+Merge Sort & Random & 429.35 $\pm$ 1.95 & 444.49 $\pm$ 5.94 & -3.5\%\\
+Merge Sort & Turtles & 125.17 $\pm$ 2.00 & 147.49 $\pm$ 4.30 & -17.8\%\\
+Merge Sort & Zigzag & 136.82 $\pm$ 1.30 & 116.63 $\pm$ 1.30 & +14.8\%\\
+Merge Sort & Almost Sorted & 135.04 $\pm$ 0.97 & 143.12 $\pm$ 1.31 & -6.0\%\\
+Merge Sort & Duplicates & 199.19 $\pm$ 1.70 & 201.32 $\pm$ 1.47 & -1.1\%\\
+Merge Sort & Reversed & 129.15 $\pm$ 2.41 & 112.21 $\pm$ 0.91 & +13.1\%\\
+Quicksort & Random & 367.27 $\pm$ 2.03 & 382.50 $\pm$ 1.25 & -4.1\%\\
+Quicksort & Turtles & 197.67 $\pm$ 2.55 & 207.13 $\pm$ 2.41 & -4.8\%\\
+Quicksort & Zigzag & 540.28 $\pm$ 9.78 & 562.13 $\pm$ 8.28 & -4.0\%\\
+Quicksort & Almost Sorted & 306.46 $\pm$ 2.16 & 315.72 $\pm$ 2.55 & -3.0\%\\
+Quicksort & Duplicates & 44.92 $\pm$ 0.43 & 59.00 $\pm$ 0.47 & -31.3\%\\
+Quicksort & Reversed & 471.18 $\pm$ 3.96 & 644.59 $\pm$ 5.75 & -36.8\%\\
+Insertion Sort & Random & 5506.86 $\pm$ 73.84 & 3181.76 $\pm$ 63.63 & +42.2\%\\
+Insertion Sort & Turtles & 6618.39 $\pm$ 79.22 & 4037.39 $\pm$ 76.08 & +39.0\%\\
+Insertion Sort & Zigzag & 5535.18 $\pm$ 57.97 & 16.44 $\pm$ 0.73 & +99.7\%\\
+Insertion Sort & Almost Sorted & 182.82 $\pm$ 3.93 & 130.58 $\pm$ 2.05 & +28.6\%\\
+Insertion Sort & Duplicates & 3662.06 $\pm$ 39.36 & 1488.72 $\pm$ 26.80 & +59.3\%\\
+Insertion Sort & Reversed & 10897.85 $\pm$ 160.40 & 13.04 $\pm$ 0.26 & +99.9\%\\
+Bubble Sort & Random & 23676.19 $\pm$ 117.13 & 20530.09 $\pm$ 203.74 & +13.3\%\\
+Bubble Sort & Turtles & 19428.15 $\pm$ 133.43 & 14094.37 $\pm$ 94.62 & +27.5\%\\
+Bubble Sort & Zigzag & 19147.42 $\pm$ 117.96 & 17.67 $\pm$ 0.43 & +99.9\%\\
+Bubble Sort & Almost Sorted & 16466.39 $\pm$ 83.51 & 13943.78 $\pm$ 141.98 & +15.3\%\\
+Bubble Sort & Duplicates & 20376.82 $\pm$ 100.35 & 17055.89 $\pm$ 97.02 & +16.3\%\\
+Bubble Sort & Reversed & 21307.46 $\pm$ 255.90 & 10.28 $\pm$ 0.40 & +100.0\%\\
+Selection Sort & Random & 21487.72 $\pm$ 137.81 & 21390.89 $\pm$ 106.85 & +0.5\%\\
+Selection Sort & Turtles & 21429.88 $\pm$ 171.35 & 20717.84 $\pm$ 122.11 & +3.3\%\\
+Selection Sort & Zigzag & 21382.51 $\pm$ 180.13 & 20975.92 $\pm$ 90.55 & +1.9\%\\
+Selection Sort & Almost Sorted & 21226.00 $\pm$ 116.05 & 21457.09 $\pm$ 279.79 & -1.1\%\\
+Selection Sort & Duplicates & 20626.01 $\pm$ 77.19 & 20788.64 $\pm$ 142.61 & -0.8\%\\
+Selection Sort & Reversed & 18262.67 $\pm$ 121.85 & 20515.49 $\pm$ 49.68 & -12.3\%\\
+\botrule
+\end{tabular*}
+\end{table*}
+
+Practical viability rests on low, highly predictable symmetric-step cost. As shown in Table~\ref{tab:precost} and Fig.~\ref{fig:precost}, preprocessing execution time is strictly linear $O(n)$ in vector size, with unit time between $1.18$ and $1.36$~ns per element, decaying monotonically with $n$ and stabilizing at $\approx 1.18$~ns for $10^6$ elements, indicating no memory-locality bottlenecks at scale. The scan thus imposes negligible overhead---only $12.44\,\mu s$ for 10,000 elements---amply compensated by millisecond savings in adaptive sorting.
+
+\begin{figure}[!t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Vector Size ($n$)},
+    ylabel={Execution Time ($\mu s$)},
+    xmode=log,
+    ymode=log,
+    log basis x=10,
+    log basis y=10,
+    xmin=800,
+    xmax=1200000,
+    ymin=1,
+    ymax=2000,
+    xtick={1000,10000,100000,1000000},
+    xticklabels={1,000,10,000,100,000,1,000,000},
+    ytick={1,10,100,1000},
+    yticklabels={1,10,100,1,000},
+    grid=major,
+    grid style={dashed,gray!30},
+    width=0.85\columnwidth,
+    height=0.55\columnwidth,
+    thick
+]
+\addplot[color=blue!70!black, mark=*, mark size=2pt, thick]
+coordinates {(1000,1.357) (10000,12.443) (100000,121.893) (1000000,1181.843)};
+\end{axis}
+\end{tikzpicture}
+\caption{Mean preprocessing execution time vs.\ vector size ($n$), log-log scale evidencing $O(n)$ linear behavior. Means over six input types, CLI tool seed 42.}\label{fig:precost}
+\end{figure}
+
+\begin{table}[!t]
+\caption{Mean symmetric-preprocessing cost vs.\ vector size (mean over six types; CLI tool, seed 42). Point $n{=}20{,}000$ included exclusively for linearity characterization.\label{tab:precost}}%
+\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}rrr@{\extracolsep\fill}}
+\toprule
+Size & Pre ($\mu$s) & ns/element\\
+\midrule
+1,000 & 1.36 & 1.36\\
+5,000 & 6.25 & 1.25\\
+10,000 & 12.44 & 1.24\\
+20,000 & 24.56 & 1.23\\
+100,000 & 121.89 & 1.22\\
+1,000,000 & 1,181.84 & 1.18\\
+\botrule
+\end{tabular*}
+\end{table}
+
+\subsection{Total Sorting Time and Per-Algorithm Analysis}
+Total-time evaluation reveals a dichotomy: in adaptive quadratic algorithms, notably \emph{Insertion Sort} and \emph{Bubble Sort}, drastic prior inversion elimination yields substantial gains (13\%--100\% at $n{=}10{,}000$), justified mathematically---modest linear symmetric-scan cost ($\approx 1.2$~ns/element) is vastly amortized by suppressed local-swap operations. In contrast, $O(n\log n)$ methods respond qualitatively distinctly.
+
+\emph{Merge Sort} shows mixed results by non-overlapping-CI criterion. Gain concentrates in topologies where preprocessing eliminates structural disorder: \emph{Reversed} ($+13.1\%$) and \emph{Zigzag} ($+14.8\%$) at $n=10{,}000$, with increasing gains to $+18.5\%$ at $n=10^6$ (Table~\ref{tab:times1M}). In \emph{Random}, \emph{Turtles}, and \emph{Almost Sorted}, however, preliminary-step overhead outweighs benefits, yielding statistically relevant degradation.
+
+\emph{Quicksort}, implemented with three-way partitioning and median-of-three, shows systematic degradation under preprocessing. Loss is mild in most topologies ($-3\%$ to $-5\%$ in \emph{Random}, \emph{Turtles}, \emph{Zigzag}, \emph{Almost Sorted}), but sharp in \emph{Duplicates} ($-31.3\%$) and \emph{Reversed} ($-36.8\%$), always with non-overlapping CIs. This aligns with the implementation's weakly adaptive nature, whose cost is strongly influenced by partitioning scans little affected by inversion reduction.
+
+In \emph{Reversed}, transforming input into a strictly ordered sequence (49,995,000 to 0 inversions) removes structure exploited by median-of-three pivot selection, while adding preprocessing-scan cost. In \emph{Duplicates}, $-31.3\%$ degradation occurs despite 16,633,993 to 6,300,346 inversion reduction (62.1\%). The hypothesis is that reorganization perturbs equal-key distribution favoring three-way partitioning on the pure vector, whose time at $n=10{,}000$ was $44.92\,\mu s$. Since each \emph{Duplicates} position is independently generated as $\mathcal{U}\{0,1,2\}$, this grouping corresponds to equal keys exploited by DNF partitioning, not pre-existing contiguous blocks.\footnote{Times and inversion counts are direct measurements (Tables~\ref{tab:inversions} and~\ref{tab:times}); causal attribution to partitioning and branch prediction is an explanatory hypothesis, not direct \emph{branch-misprediction} measurement, unavailable on Windows (Section~3.6).}
+
+Thus for the $O(n\log n)$ class, the technique is not beneficial in the evaluated implementation, with few point exceptions such as \emph{Almost Sorted} at $n=10^6$ ($+11.1\%$, Table~\ref{tab:times1M}). These results delimit preprocessing applicability, indicating inversion reduction alone does not guarantee gains for this class.
+
+\emph{Selection Sort} behavior confirms its non-adaptive nature: since comparison count is fixed ($n(n-1)/2$) regardless of initial configuration, inversion reduction does not translate into algorithmic gain. Measurements remained statistically unchanged in most topologies ($-1.1\%$ to $+3.3\%$ with overlapping CIs), except consistent $\approx 12\%$ degradation in \emph{Reversed} at $n=10{,}000$ ($18{,}262.67\pm121.85\,\mu s$ vs.\ $20{,}515.49\pm49.68\,\mu s$; non-overlapping CIs), also reproduced at $n=100{,}000$ ($-12.8\%$, $1{,}849.65\pm9.39$~ms vs.\ $2{,}086.10\pm7.92$~ms).
+
+Since preprocessing transforms reversed input into an ordered sequence, minimum search per scan would find the smallest element at the first candidate; expected gain would be merely avoiding one swap per iteration, not justifying observed degradation. Divergence therefore seems to stem from microarchitectural factors---specifically CPU \emph{branch predictor} \cite{hennessy_computer_2019,edelkamp_blockquicksort_2016}.
+
+In pre-structured vectors, the central minimum-index-update condition becomes systematically false for ordered sequences, generating a branch pattern distinct from the original reversed sequence. This is a plausible hypothesis, not direct \emph{branch-misprediction} measurement (unavailable on Windows, Section~3.6). Importantly, variation magnitude is limited (at most $\sim$12\%) and shows no systematic gain trend---consistent with theoretical prediction that a non-adaptive algorithm does not exploit inversion reduction~\cite{estivill-castro_survey_1992}.
+
+By simultaneously accessing opposite vector ends, symmetric preprocessing introduces additional control dependencies and increases instructions per element. On random instances, internal swap conditions (\texttt{if A[i] > A[j]}) become hard for the branch predictor~\cite{edelkamp_blockquicksort_2016,kaligosi_branch_2006}. Consequently, where inversion reduction is modest, architectural penalties and extra instruction cost outweigh logical-restructuring benefits.
+
+Fig.~\ref{fig:times} synthesizes this dynamic: expressive exploitation in adaptive quadratic methods, mixed \emph{Merge Sort} response, systematic three-way-\emph{Quicksort} degradation, and neutral non-adaptive \emph{Selection Sort} (except Reversed). Table~\ref{tab:times1M} complements analysis for $n{=}10^6$ in quasilinear methods.
+
+\begin{figure*}[!t]%
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={group size=2 by 3, horizontal sep=45pt, vertical sep=65pt},
+    ylabel={Time ($\mu s$)},
+    width=0.42\textwidth,
+    height=4cm,
+    ymode=log,
+    ymin=1,
+    symbolic x coords={Random,Turtles,Zigzag,AlmostSorted,Duplicates,Reversed},
+    xtick=data,
+    ymajorgrids,
+    x tick label style={font=\scriptsize, rotate=35, anchor=north east, inner sep=1pt},
+    title style={font=\small\bfseries},
+    every axis/.append style={ybar, bar width=3.8pt},
+    legend style={at={(1.87,0)}, anchor=north, legend columns=1, font=\footnotesize},
+]
+\nextgroupplot[title=Insertion Sort]
+\addplot[draw=black, fill=black!55] table[x=tipo, y=puro_us] {resultados/fig_tempos_insertion.csv};
+\addplot[draw=black, fill=black!20] table[x=tipo, y=com_pre_us] {resultados/fig_tempos_insertion.csv};
+\nextgroupplot[title=Bubble Sort]
+\addplot[draw=black, fill=black!55] table[x=tipo, y=puro_us] {resultados/fig_tempos_bubble.csv};
+\addplot[draw=black, fill=black!20] table[x=tipo, y=com_pre_us] {resultados/fig_tempos_bubble.csv};
+\nextgroupplot[title=Selection Sort]
+\addplot[draw=black, fill=black!55] table[x=tipo, y=puro_us] {resultados/fig_tempos_selection.csv};
+\addplot[draw=black, fill=black!20] table[x=tipo, y=com_pre_us] {resultados/fig_tempos_selection.csv};
+\nextgroupplot[title=Merge Sort]
+\addplot[draw=black, fill=black!55] table[x=tipo, y=puro_us] {resultados/fig_tempos_merge.csv};
+\addplot[draw=black, fill=black!20] table[x=tipo, y=com_pre_us] {resultados/fig_tempos_merge.csv};
+\nextgroupplot[title=Quicksort]
+\addplot[draw=black, fill=black!55] table[x=tipo, y=puro_us] {resultados/fig_tempos_quick.csv};
+\addplot[draw=black, fill=black!20] table[x=tipo, y=com_pre_us] {resultados/fig_tempos_quick.csv};
+\legend{Pure, With preprocessing}
+\end{groupplot}
+\end{tikzpicture}
+\caption{Temporal comparison between pure and symmetric-preprocessed sorting ($n=10{,}000$), log scale.}\label{fig:times}
+\end{figure*}
+
+\begin{table*}[!t]
+\caption{Mean time (ms) and preprocessing gain for 1,000,000-element vectors---quasilinear methods only (quadratic omitted for temporal infeasibility). Source: Criterion, 50 samples, 95\% CI.\label{tab:times1M}}%
+\begin{tabular*}{\textwidth}{@{\extracolsep\fill}llrrr@{\extracolsep\fill}}
+\toprule
+Algorithm & Type & Pure (ms) & With pre (ms) & Gain\\
+\midrule
+Merge Sort & Random & 66.14 $\pm$ 0.75 & 67.12 $\pm$ 0.76 & -1.5\%\\
+Merge Sort & Turtles & 17.92 $\pm$ 0.30 & 20.03 $\pm$ 0.51 & -11.8\%\\
+Merge Sort & Zigzag & 19.39 $\pm$ 0.39 & 15.81 $\pm$ 0.26 & +18.5\%\\
+Merge Sort & Almost Sorted & 20.39 $\pm$ 0.39 & 21.34 $\pm$ 0.39 & -4.7\%\\
+Merge Sort & Duplicates & 25.85 $\pm$ 0.42 & 25.09 $\pm$ 0.26 & +2.9\%\\
+Merge Sort & Reversed & 18.46 $\pm$ 0.47 & 15.46 $\pm$ 0.19 & +16.2\%\\
+Quicksort & Random & 53.83 $\pm$ 0.18 & 55.75 $\pm$ 0.26 & -3.6\%\\
+Quicksort & Turtles & 151.34 $\pm$ 0.86 & 157.07 $\pm$ 3.10 & -3.8\%\\
+Quicksort & Zigzag & 458.73 $\pm$ 2.59 & 506.44 $\pm$ 3.06 & -10.4\%\\
+Quicksort & Almost Sorted & 42.61 $\pm$ 0.27 & 37.88 $\pm$ 0.27 & +11.1\%\\
+Quicksort & Duplicates & 4.39 $\pm$ 0.02 & 5.70 $\pm$ 0.03 & -29.9\%\\
+Quicksort & Reversed & 416.59 $\pm$ 2.02 & 591.80 $\pm$ 4.62 & -42.1\%\\
+\botrule
+\end{tabular*}
+\end{table*}
+Values at $n{=}10^6$ replicate the $n{=}10{,}000$ pattern: Merge Sort gains restricted to Zigzag ($+18.5\%$) and Reversed ($+16.2\%$), systematic Quicksort degradation except Almost Sorted ($+11.1\%$), confirming applicability delimitation to adaptive methods.
+
+\section{Conclusion}\label{sec:conclusion}
+This work presented and evaluated an $O(n)$ symmetric preprocessing for inversion-count reduction in sorting-algorithm input sequences. Results showed the approach can provide relevant gains in adaptive quadratic algorithms (Insertion Sort and Bubble Sort) when applied to inputs with structured disorder patterns or reverse order, with 13\%--100\% gains at $n{=}10{,}000$ and preprocessing costs of $\approx 1.2$~ns/element. This gain is expressive especially when sorting-cost reduction exceeds additional preliminary-step cost, satisfying $C_{\text{pre}} + C_{\text{sort}} < C_{\text{original}}$.
+
+For the evaluated non-adaptive quadratic algorithm, Selection Sort confirmed neutrality: $-1.1\%$ to $+3.3\%$ variations with overlapping CIs in most topologies, except consistent $\sim$12\% degradation on fully reversed input (non-overlapping 95\% CIs at $n{=}10{,}000$ and $n{=}100{,}000$), attributed to branch-prediction effects. This theoretically predicted result via comparison-count invariance ($n(n-1)/2$) clearly delimits that inversion reduction does not convert into gain for non-adaptive methods.
+
+In evaluated $O(n \log n)$ algorithms, the method revealed important limitations. With the used Quicksort implementation (three-way partitioning and median-of-three), preprocessing caused systematic degradation---3\%--5\% in most topologies and 31\%--42\% in \emph{Duplicates} and \emph{Reversed} (non-overlapping CIs)---since this method's cost is dominated by partitioning-scan count, little altered by inversion reduction.
+
+In Merge Sort effects were mixed, with gains restricted to topologies most structurally affected by symmetric scanning (Zigzag $+14.8\%$ at $n{=}10{,}000$ and $+18.5\%$ at $n{=}10^6$; Reversed $+13.1\%$ and $+16.2\%$) and degradation elsewhere. This indicates practical viability must be strictly conditioned on adaptive quadratic algorithms and highly structurally disordered inputs, not extending to quasilinear methods generally and particularly not benefiting non-adaptive algorithms like Selection Sort.
+
+As future work, we recommend (i) closed-form theoretical derivation of expected inversion reduction under random input in Hwang et al.'s framework~\cite{hwang_presorting_2000}; (ii) Linux-environment tests with \texttt{perf\_event} infrastructure, enabling direct \emph{cache-miss} and \emph{branch-misprediction} measurement to validate microarchitectural hypotheses qualified here as plausible; and (iii) exploration of alternative partitionings and recent adaptive techniques such as \emph{BlockQuicksort}~\cite{edelkamp_blockquicksort_2016} and \emph{Powersort/Timsort}~\cite{auger_timsort_2018} as comparative baselines.
+
+\bibliographystyle{TBench}
+\bibliography{reference}
+\end{document}
