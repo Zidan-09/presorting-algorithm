@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.14)  30 SEP 2026 15:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.14)  30 SEP 2026 15:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1010,23 +1010,23 @@ Package babel Info: Main language set to 'english'.
 <img/TBench.jpg, id=82, 2069.7325pt x 3017.2725pt>
 File: img/TBench.jpg Graphic file (type jpg)
 <use img/TBench.jpg>
-Package pdftex.def Info: img/TBench.jpg  used on input line 51.
+Package pdftex.def Info: img/TBench.jpg  used on input line 52.
 (pdftex.def)             Requested size: 44.97209pt x 54.97153pt.
-LaTeX Font Info:    Calculating math sizes for size <18.06749> on input line 51.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 51.
+LaTeX Font Info:    Calculating math sizes for size <18.06749> on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
 (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 51.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
  (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 51.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 52.
  (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Calculating math sizes for size <7.52812> on input line 51.
-LaTeX Font Info:    Calculating math sizes for size <9.03374> on input line 51.
+LaTeX Font Info:    Calculating math sizes for size <7.52812> on input line 52.
+LaTeX Font Info:    Calculating math sizes for size <9.03374> on input line 52.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1055,12 +1055,12 @@ Non-PDF special ignored!
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 7595) in paragraph at lines 146--147
+Underfull \hbox (badness 7595) in paragraph at lines 147--148
 []|\OT1/cmr/m/n/7.52812 Uniform per-mu-ta-tion of $[0\OML/cmm/m/it/7.52812 ; n[]\OT1/cmr/m/n/7.52812 1]$ via
  []
 
 
-Underfull \hbox (badness 2205) in paragraph at lines 151--152
+Underfull \hbox (badness 2205) in paragraph at lines 152--153
 []|\OT1/cmr/m/n/7.52812 Strictly de-creas-ing or-der; de-ter-min-is-tic
  []
 
@@ -1073,36 +1073,36 @@ Overfull \hbox (253.25pt too wide) has occurred while \output is active
 Non-PDF special ignored!
 <special> ps: [{ThisPage} << /CropBox [0 0 595.26013 782.33696] >> /PUT pdf...
 ]
-Underfull \hbox (badness 1540) in paragraph at lines 168--169
+Underfull \hbox (badness 1540) in paragraph at lines 169--170
 \OT1/cmr/m/n/7.52812 or-der-ing guar-an-tee. To elim-i-nate con-tin-u-ous dynamic-
  []
 
 
-Underfull \hbox (badness 1127) in paragraph at lines 174--175
+Underfull \hbox (badness 1127) in paragraph at lines 175--176
 \OT1/cmr/m/n/7.52812 Empirical mea-sure-ment iso-lated en-vi-ron-men-tal in-ter-fer-ence
  []
 
 
-Underfull \hbox (badness 2245) in paragraph at lines 174--175
+Underfull \hbox (badness 2245) in paragraph at lines 175--176
 \OT1/cmr/m/n/7.52812 cy-cles and sta-tis-ti-cal re-sam-pling (\OT1/cmr/m/it/7.52812 boot-strap-ping\OT1/cmr/m/n/7.52812 ) to mit-
  []
 
 
-Underfull \hbox (badness 2970) in paragraph at lines 174--175
+Underfull \hbox (badness 2970) in paragraph at lines 175--176
 \OT1/cmr/m/n/7.52812 i-gate hardware-interruption im-pact. For each algorithm-
  []
 
 
-Underfull \hbox (badness 1014) in paragraph at lines 174--175
+Underfull \hbox (badness 1014) in paragraph at lines 175--176
 \OT1/cmr/m/n/7.52812 topology-size com-bi-na-tion, mean time, me-dian, and 95%
  []
 
 
-Underfull \hbox (badness 3907) in paragraph at lines 182--183
+Underfull \hbox (badness 3907) in paragraph at lines 183--184
 []\OT1/cmr/m/n/7.52812 Exact inversion-count quan-tifi-ca-tion uses a modified-
  []
 
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 190.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 191.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1115,35 +1115,35 @@ Overfull \hbox (253.25pt too wide) has occurred while \output is active
 Non-PDF special ignored!
 <special> ps: [{ThisPage} << /CropBox [0 0 595.26013 782.33696] >> /PUT pdf...
 ]
-Underfull \hbox (badness 8000) in paragraph at lines 227--228
+Underfull \hbox (badness 8000) in paragraph at lines 228--229
 \OT1/cmr/m/n/7.52812 This sec-tion an-a-lyzes ex-per-i-men-tal re-sults, eval-u-at-ing
  []
 
-Package pgfplots info on input line 249: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
-Package pgfplots info on input line 249: Using 'lua backend=false' for axis: x coord trafo unsupported.
+Package pgfplots info on input line 250: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 250: Using 'lua backend=false' for axis: x coord trafo unsupported.
 PGFPlots: reading {resultados/fig_inversoes.csv}
 PGFPlots: reading {resultados/fig_inversoes.csv}
 NOTE: coordinate (Reversed,0) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
-LaTeX Font Info:    Calculating math sizes for size <6.02249> on input line 275.
+LaTeX Font Info:    Calculating math sizes for size <6.02249> on input line 276.
 
-Underfull \hbox (badness 1043) in paragraph at lines 286--287
+Underfull \hbox (badness 1043) in paragraph at lines 287--288
 \OT1/cmr/m/n/7.52812 to $16\OML/cmm/m/it/7.52812 :\OT1/cmr/m/n/7.52812 44 \OML/cmm/m/it/7.52812 ^^Vs$ \OT1/cmr/m/n/7.52812 ($+99\OML/cmm/m/it/7.52812 :\OT1/cmr/m/n/7.52812 7%$) and \OT1/cmr/m/it/7.52812 Bub-ble Sort \OT1/cmr/m/n/7.52812 from $19[]147\OML/cmm/m/it/7.52812 :\OT1/cmr/m/n/7.52812 42 \OML/cmm/m/it/7.52812 ^^Vs$
  []
 
 
-Underfull \hbox (badness 5862) in paragraph at lines 330--331
+Underfull \hbox (badness 5862) in paragraph at lines 331--332
 []\OT1/cmr/m/n/7.52812 Practical vi-a-bil-ity rests on low, highly pre-dictable
  []
 
-Package pgfplots info on input line 357: Using 'lua backend=false' for axis: xmode=log unsupported (yet).
-Package pgfplots info on input line 357: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 358: Using 'lua backend=false' for axis: xmode=log unsupported (yet).
+Package pgfplots info on input line 358: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
 
-Underfull \hbox (badness 3612) in paragraph at lines 384--385
+Underfull \hbox (badness 3612) in paragraph at lines 385--386
 \OT1/cmr/m/n/7.52812 Total-time eval-u-a-tion re-veals a di-chotomy: in adap-tive
  []
 
 
-Underfull \hbox (badness 1092) in paragraph at lines 384--385
+Underfull \hbox (badness 1092) in paragraph at lines 385--386
 \OT1/cmr/m/n/7.52812 quadratic al-go-rithms, no-tably \OT1/cmr/m/it/7.52812 In-ser-tion Sort \OT1/cmr/m/n/7.52812 and \OT1/cmr/m/it/7.52812 Bub-ble
  []
 
@@ -1171,32 +1171,32 @@ Overfull \hbox (253.25pt too wide) has occurred while \output is active
 Non-PDF special ignored!
 <special> ps: [{ThisPage} << /CropBox [0 0 595.26013 782.33696] >> /PUT pdf...
 ]
-Underfull \hbox (badness 1681) in paragraph at lines 398--399
+Underfull \hbox (badness 1681) in paragraph at lines 399--400
 []\OT1/cmr/m/n/7.52812 In pre-structured vec-tors, the cen-tral minimum-index-
  []
 
-Package pgfplots info on input line 424: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
-Package pgfplots info on input line 424: Using 'lua backend=false' for axis: x coord trafo unsupported.
+Package pgfplots info on input line 425: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 425: Using 'lua backend=false' for axis: x coord trafo unsupported.
 PGFPlots: reading {resultados/fig_tempos_insertion.csv}
 PGFPlots: reading {resultados/fig_tempos_insertion.csv}
-Package pgfplots info on input line 427: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
-Package pgfplots info on input line 427: Using 'lua backend=false' for axis: x coord trafo unsupported.
+Package pgfplots info on input line 428: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 428: Using 'lua backend=false' for axis: x coord trafo unsupported.
 PGFPlots: reading {resultados/fig_tempos_bubble.csv}
 PGFPlots: reading {resultados/fig_tempos_bubble.csv}
-Package pgfplots info on input line 430: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
-Package pgfplots info on input line 430: Using 'lua backend=false' for axis: x coord trafo unsupported.
+Package pgfplots info on input line 431: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 431: Using 'lua backend=false' for axis: x coord trafo unsupported.
 PGFPlots: reading {resultados/fig_tempos_selection.csv}
 PGFPlots: reading {resultados/fig_tempos_selection.csv}
-Package pgfplots info on input line 433: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
-Package pgfplots info on input line 433: Using 'lua backend=false' for axis: x coord trafo unsupported.
+Package pgfplots info on input line 434: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 434: Using 'lua backend=false' for axis: x coord trafo unsupported.
 PGFPlots: reading {resultados/fig_tempos_merge.csv}
 PGFPlots: reading {resultados/fig_tempos_merge.csv}
-Package pgfplots info on input line 436: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
-Package pgfplots info on input line 436: Using 'lua backend=false' for axis: x coord trafo unsupported.
+Package pgfplots info on input line 437: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 437: Using 'lua backend=false' for axis: x coord trafo unsupported.
 PGFPlots: reading {resultados/fig_tempos_quick.csv}
 PGFPlots: reading {resultados/fig_tempos_quick.csv}
 
-Underfull \hbox (badness 2772) in paragraph at lines 469--470
+Underfull \hbox (badness 2772) in paragraph at lines 470--471
 \OT1/cmr/m/n/7.52812 Sort gains re-stricted to Zigzag ($+18\OML/cmm/m/it/7.52812 :\OT1/cmr/m/n/7.52812 5%$) and Re-versed
  []
 
@@ -1204,7 +1204,7 @@ Underfull \hbox (badness 2772) in paragraph at lines 469--470
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 1314) in paragraph at lines 480--481
+Underfull \hbox (badness 1314) in paragraph at lines 481--482
 \OT1/cmr/m/n/7.52812 dom in-put in Hwang et al.'s frame-work [[]]; (ii) Linux-
  []
 
@@ -1282,13 +1282,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  39539 strings out of 467501
  904466 string characters out of 5408550
- 1465108 words of memory out of 5000000
+ 1466108 words of memory out of 5000000
  68055 multiletter control sequences out of 15000+600000
  658199 words of font info for 159 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  107i,19n,108p,17435b,2591s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\zidan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi650\tcrm0600.pk><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmb10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx6.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on main.pdf (9 pages, 586424 bytes).
+Output written on main.pdf (9 pages, 586256 bytes).
 PDF statistics:
  389 PDF objects out of 1000 (max. 8388607)
  58 named destinations out of 1000 (max. 500000)
