@@ -43,7 +43,7 @@
 \address{Coordenação do Curso de Sistemas de Computação, Universidade Estadual do Piauí \\ 
 Campus Prof. Alexandre Alves de Oliveira \\ 
 Parnaíba, Piauí - Brasil
-\email{samuelnascimento@aluno.uespi.br, rocha@phb.uespi.br}
+\email{samuelpnascimentodev@gmail.com, rocha@phb.uespi.br}
 }
 
 \begin{document}
@@ -97,28 +97,7 @@ Nesta seção, são apresentados os fundamentos teóricos necessários à compre
 
 \subsection{Inversões e Ordenação Adaptativa}
 
-A eficiência prática dos algoritmos de ordenação tradicionais frequentemente depende da disposição inicial dos elementos no conjunto de dados de entrada \cite{cormen_introduction_2022, estivill-castro_survey_1992}. Para formalizar e quantificar o grau de desordem de uma sequência, utiliza-se classicamente o conceito de \emph{inversão} \cite{knuth_art_1973}. Dado um vetor $a$ composto por $n$ elementos, uma inversão é definida formalmente como um par de índices $(i,j)$ tal que $i < j$ e $a[i] > a[j]$ \cite{knuth_art_1973, sedgewick_algorithms_2011}. O número total de inversões $I$ constitui uma medida do grau de desordem da entrada e está diretamente relacionado ao esforço necessário para ordená-la por meio de operações locais \cite{mannila_measures_1984}. A Figura~\ref{fig:inversoes} ilustra visualmente a identificação de inversões em um vetor arbitrário.
-
-\begin{figure}[htbp]
-  \centering
-  \begin{tikzpicture}[scale=1.7]
-    \node[draw, minimum size=1.5cm] (0) at (0,0) {3};
-    \node[draw, minimum size=1.5cm] (1) at (1,0) {1};
-    \node[draw, minimum size=1.5cm] (2) at (2,0) {4};
-    \node[draw, minimum size=1.5cm] (3) at (3,0) {2};
-
-    \node[below=1cm of 0, font=\small] {$i=0$};
-    \node[below=1cm of 1, font=\small] {$i=1$};
-    \node[below=1cm of 2, font=\small] {$i=2$};
-    \node[below=1cm of 3, font=\small] {$i=3$};
-
-    \draw[blue, thick, ->] (0.north) to[out=45,in=135] node[above, font=\small] {} (1.north);
-    \draw[blue, thick, ->] (0.north) to[out=60,in=120] node[above=0.3cm, font=\small] {Inversão (3,1) e (3,2)} (3.north);
-    \draw[teal, thick, ->] (2.south) to[out=-45,in=-135] node[below, font=\small] {Inversão (4,2)} (3.south);
-  \end{tikzpicture}
-  \caption{Representação visual do conceito de inversão em um vetor $a = [3, 1, 4, 2]$. O número total de inversões é $I=3$, correspondente aos pares ordenados onde elementos maiores antecedem elementos menores em posições anteriores.}
-  \label{fig:inversoes}
-\end{figure}
+A eficiência prática dos algoritmos de ordenação tradicionais frequentemente depende da disposição inicial dos elementos no conjunto de dados de entrada \cite{cormen_introduction_2022, estivill-castro_survey_1992}. Para formalizar e quantificar o grau de desordem de uma sequência, utiliza-se classicamente o conceito de \emph{inversão} \cite{knuth_art_1973}. Dado um vetor $a$ composto por $n$ elementos, uma inversão é definida formalmente como um par de índices $(i,j)$ tal que $i < j$ e $a[i] > a[j]$ \cite{knuth_art_1973, sedgewick_algorithms_2011}. O número total de inversões $I$ constitui uma medida do grau de desordem da entrada e está diretamente relacionado ao esforço necessário para ordená-la por meio de operações locais \cite{mannila_measures_1984}.
 
 A relação entre o volume de inversões $I$ e a complexidade de execução dá origem à propriedade de \emph{adaptabilidade} em algoritmos de ordenação \cite{estivill-castro_survey_1992}. Um algoritmo é considerado adaptativo quando sua complexidade temporal melhora sensivelmente na presença de um ordenamento prévio parcial na entrada \cite{mannila_measures_1984}. Um exemplo clássico é o \emph{Insertion Sort}, cuja execução consome $O(n + I)$ operações. Em um vetor estritamente ordenado ($I = 0$), o algoritmo atinge tempo linear $O(n)$, enquanto, no pior caso ($I = O(n^2)$), degrada para tempo quadrático \cite{cormen_introduction_2022, knuth_art_1973}.
 
@@ -152,13 +131,17 @@ A literatura mais recente reforça a relevância prática desses efeitos microar
 
 Diferenciando-se das abordagens mapeadas, a presente pesquisa avalia um algoritmo de Pré-processamento Simétrico que atua na mitigação direta de inversões em tempo linear, preenchendo a lacuna de otimização de baixo custo para algoritmos de ordenação.
 
-\section{Metodologia}\label{sec:met}
+\section{Métodos e Técnicas}\label{sec:met}
 
-Esta seção detalha a abordagem metodológica adotada para a realização deste trabalho, descrevendo a caracterização da pesquisa, a configuração do ambiente experimental e os procedimentos empregados no benchmarking dos algoritmos. A investigação foi conduzida por meio de um protocolo experimental controlado, utilizando execuções compiladas em linguagem Rust e métricas estatísticas rigorosas fornecidas pela biblioteca \emph{Criterion}. Para assegurar a abrangência dos testes e a replicabilidade dos resultados, foram projetadas seis topologias distintas de vetores sob controle de semente aleatória. A escolha desta metodologia visa garantir a precisão temporal e a validade interna da avaliação do pré-processamento simétrico, fornecendo um caminho metodológico transparente e totalmente reprodutível.
+A presente pesquisa é classificada, quanto à sua natureza, como aplicada. Segundo \cite{gil_metodos_2019}, a pesquisa aplicada caracteriza-se pela geração de conhecimentos voltados à aplicação prática e dirigidos à solução de problemas específicos. Nesse contexto, o estudo avalia um pré-processamento simétrico de baixo custo, capaz de reduzir o impacto das inversões presentes nas entradas e de melhorar o desempenho de algoritmos de ordenação, contribuindo diretamente para a eficiência de sistemas computacionais.
 
-\subsection{Tipo de Pesquisa e Configuração}
+Quanto à abordagem, a pesquisa é classificada como quantitativa. De acordo com \cite{sampieri_metodologia_2021}, a abordagem quantitativa fundamenta-se na coleta de dados baseada em medição numérica e em análise estatística, com o objetivo de testar hipóteses e estabelecer padrões de comportamento. Nesse sentido, o trabalho mensura o tempo de execução e a contagem de inversões de cada algoritmo, com e sem pré-processamento, por meio das métricas estatísticas fornecidas pela biblioteca \emph{Criterion}.
 
-O presente estudo caracteriza-se como uma pesquisa aplicada, quantitativa, explicativa e experimental \cite{gil_metodos_2019, sampieri_metodologia_2021}. A caracterização apoia-se no isolamento e na manipulação controlada da topologia das entradas para medir a variação no tempo de execução e na contagem de inversões.
+Quanto aos objetivos, a pesquisa é classificada como explicativa. Segundo \cite{gil_metodos_2019}, a pesquisa explicativa tem como preocupação central identificar os fatores que determinam ou contribuem para a ocorrência dos fenômenos, aprofundando o conhecimento da realidade ao explicar a razão das coisas. Desse modo, o estudo busca esclarecer como e por que a topologia da entrada (grau de desordem, presença de duplicados e padrões estruturais) e o pré-processamento simétrico influenciam o tempo de execução e a quantidade de inversões dos algoritmos avaliados.
+
+Quanto aos procedimentos, a pesquisa é classificada como experimental. Conforme \cite{gil_metodos_2019}, o delineamento experimental consiste em determinar um objeto de estudo, selecionar as variáveis capazes de influenciá-lo e definir as formas de controle e de observação dos efeitos produzidos. Assim, o trabalho manipula de forma controlada a topologia e o tamanho das entradas (variáveis independentes) e observa o tempo de execução e as inversões (variáveis dependentes), sob semente fixa, geração pareada de vetores e ambiente computacional padronizado.
+
+\subsection{Configuração}
 
 Os experimentos foram realizados em ambiente controlado, cujas especificações de hardware, sistema operacional e ferramentas são apresentadas na Tabela~\ref{tab:ambiente}. Para reduzir possíveis fontes de variabilidade, o plano de energia foi mantido em alto desempenho e os processos de segundo plano foram minimizados durante a execução dos testes. O código foi compilado em modo \emph{release}, com nível máximo de otimização (\texttt{opt-level = 3}). A geração das entradas empregou uma semente fixa, garantindo reprodutibilidade e correspondência entre os conjuntos submetidos às diferentes condições experimentais.
 
