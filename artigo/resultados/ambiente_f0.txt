@@ -1,0 +1,39 @@
+# Snapshot de ambiente — F0 (docs/plan2.md)
+# Gerado em 2026-09-30. Congelado até a submissão ao Bench 2026.
+
+[repo]
+branch = develop
+commit_base = 87d1862
+working_tree = limpo (git status --porcelain vazio em 2026-09-30)
+Cargo.lock = trackeado em presorting-algorithm/Cargo.lock e em sincronia
+             (cargo metadata --locked --offline OK)
+
+[toolchain]
+rust-toolchain.toml = presorting-algorithm/rust-toolchain.toml (channel 1.96.0)
+rustc = rustc 1.96.0 (ac68faa20 2026-05-25), host x86_64-pc-windows-msvc
+cargo = cargo 1.96.0 (30a34c682 2026-05-25)
+LLVM = 22.1.2
+override confirmado via `rustup show active-toolchain`
+
+[perfil]
+[profile.release] opt-level = 3 (explícito no Cargo.toml; era o default
+efetivo já documentado no artigo — nenhuma mudança de comportamento)
+lto / codegen-units / panic = defaults do Cargo 1.96.0 (não especificados)
+
+[hardware]
+cpu = AMD Ryzen 7 8700G w/ Radeon 780M Graphics
+cores_threads = 8 / 16
+max_clock_MHz = 4200
+L2_total_KB = 8192
+L3_total_KB = 16384
+RAM_bytes = 16233213952 (~16 GB DDR5)
+
+[os]
+caption = Microsoft Windows 11 Pro
+version = 10.0.26200 (build 26200)
+arch = 64 bits
+
+[notas]
+- Plano de energia em alto desempenho + 2º plano minimizado (protocolo do artigo).
+- Frequência/SMT/afinação não controlados além disso (ameaça registrada no artigo).
+- Contadores perf_event indisponíveis no Windows (ameaça registrada no artigo).

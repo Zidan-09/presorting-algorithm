@@ -22,3 +22,9 @@ serde_json = "1"
 [[bench]]
 name = "benchmark"
 harness = false
+
+# Perfil congelado em F0 (docs/plan2.md): opt-level = 3 é o status quo já
+# documentado no artigo. lto/codegen-units/panic intentionally seguem os
+# defaults do Cargo 1.96.0. NÃO alterar até a submissão ao Bench 2026.
+[profile.release]
+opt-level = 3

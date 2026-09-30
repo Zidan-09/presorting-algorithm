@@ -472,9 +472,25 @@ fn principal() {
         .filter(|o| o.status.success())
         .map(|o| String::from_utf8_lossy(&o.stdout).trim().to_string())
         .unwrap_or_else(|| "desconhecido".to_string());
+    // F0 (docs/plan2.md): o manifesto registra o ambiente congelado para
+    // reprodutibilidade. Como este example roda sob o toolchain pinado
+    // (rust-toolchain.toml), as versões capturadas aqui são as efetivas.
+    let versao = |prog: &str, arg: &str| {
+        std::process::Command::new(prog)
+            .arg(arg)
+            .output()
+            .ok()
+            .filter(|o| o.status.success())
+            .map(|o| String::from_utf8_lossy(&o.stdout).trim().to_string())
+            .unwrap_or_else(|| "desconhecido".to_string())
+    };
     let mut manifest = String::new();
     manifest.push_str(&format!("células executadas: {}\n", celulas_executadas.len()));
     manifest.push_str(&format!("commit: {commit}\n"));
+    manifest.push_str(&format!("rustc: {}\n", versao("rustc", "--version")));
+    manifest.push_str(&format!("cargo: {}\n", versao("cargo", "--version")));
+    manifest.push_str("toolchain: pinado em rust-toolchain.toml (channel 1.96.0)\n");
+    manifest.push_str("perfil release: opt-level=3 explícito no Cargo.toml; lto/codegen-units/panic = defaults do Cargo\n");
     manifest.push_str("matriz: O(n²) até n=100000; merge/quick até n=1000000\n");
     gravar(&format!("{RAIZ_SAIDA}/manifesto.txt"), &manifest);
 

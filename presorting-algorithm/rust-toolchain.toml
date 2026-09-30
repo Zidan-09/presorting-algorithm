@@ -1,0 +1,4 @@
+[toolchain]
+channel = "1.96.0"
+# Toolchain pinado para reprodutibilidade (F0 do docs/plan2.md).
+# Mesma versão documentada no artigo (rustc 1.96.0). Não alterar até a submissão.
