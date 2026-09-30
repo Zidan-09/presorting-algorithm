@@ -55,8 +55,8 @@ V.~Estivill-Castro and D.~Wood, ``\BIBforeignlanguage{en}{A survey of adaptive
 \BIBentryALTinterwordspacing
 H.~Mannila, ``Measures of presortedness and optimal sorting algorithms,''
   \emph{IEEE Transactions on Computers}, vol. C-34, no.~4, pp. 318--325, 1985,
-  extended version originally published as abstract at ICALP 1984 (LNCS 172,
-  pp. 324--336). doi: \url{https://doi.org/10.1109/TC.1985.5009382}.
+  preliminary version in Proc. 11th ICALP, LNCS 172, pp. 324--336, 1984. doi:
+  \url{https://doi.org/10.1109/TC.1985.5009382}.
 \BIBentrySTDinterwordspacing
 
 \bibitem{hwang_presorting_2000}
@@ -109,10 +109,10 @@ A.~LaMarca and R.~E. Ladner, ``\BIBforeignlanguage{en}{The influence of caches
 
 \bibitem{kaligosi_branch_2006}
 \BIBentryALTinterwordspacing
-K.~Kaligosi and P.~Sanders, ``How branch mispredictions affect quicksort,''
-  \emph{Journal of Experimental Algorithmics}, vol.~11, 2006, also presented at
-  ESA 2006. doi: \url{https://doi.org/10.1145/1187436.1216588}. [Online].
-  Available: \url{https://doi.org/10.1145/1187436.1216588}
+K.~Kaligosi and P.~Sanders, ``How branch mispredictions affect quicksort,'' in
+  \emph{Proceedings of the 14th Annual European Symposium on Algorithms (ESA
+  2006)}, ser. LNCS, vol. 4168.\hskip 1em plus 0.5em minus 0.4em\relax
+  Springer, 2006, pp. 780--791, doi: \url{https://doi.org/10.1007/11841036_69}.
 \BIBentrySTDinterwordspacing
 
 \bibitem{anonymous_repository_2026}
