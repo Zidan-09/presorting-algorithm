@@ -111,6 +111,8 @@ Procedures are experimental. According to \cite{gil_metodos_2019}, experimental 
 \subsection{Experimental Configuration}
 Experiments ran in a controlled environment whose hardware, OS, and tool specifications appear in Table~\ref{tab:environment}. To reduce variability, power plan was kept at high performance and background processes minimized. Code was compiled in \emph{release} mode with maximum optimization (\texttt{opt-level = 3}). Input generation used a fixed seed, ensuring reproducibility and correspondence across experimental conditions.
 
+% Tabela 1
+
 \begin{table}[!t]
 \caption{Experimental environment and tools.\label{tab:environment}}%
 \begin{tabular*}{\columnwidth}{@{\extracolsep\fill}ll@{\extracolsep\fill}}
@@ -118,8 +120,8 @@ Experiments ran in a controlled environment whose hardware, OS, and tool specifi
 Component & Configuration / Specification\\
 \midrule
 Operating system & Windows 11 Pro (build 10.0.26200)\\
-Processor & AMD Ryzen 7 8700G (8 cores / 16 threads)\\
-Memory & 16 GB DDR5 5600MT/s (dual channel)\\
+Processor & AMD Ryzen 7 8700G\\
+Memory & 16 GB DDR5 5600MT/s\\
 Language & Rust 1.96.0 (release profile)\\
 Measurement tools & Criterion 0.5 and Project CLI Tool\\
 Data generation & Seed 42 (\texttt{ChaCha8Rng}), paired inputs\\
@@ -133,9 +135,11 @@ Quasilinear algorithms (\emph{Merge Sort} and \emph{Quicksort}) were measured at
 
 Isolated preprocessing cost ($C_{\text{pre}}$) was additionally characterized at $n \in \{1{,}000, 5{,}000, 10{,}000, 20{,}000, 100{,}000, 1{,}000{,}000\}$ (Table~\ref{tab:precost} and Fig.~\ref{fig:precost}) to evidence linearity; the $n{=}20{,}000$ point was collected exclusively for this cost curve via CLI tool (\texttt{seed} 42), under the same paired-generation protocol, and is not part of the main sorting-time comparison matrix.
 
+% Tabela 2
+
 \begin{table}[!t]
 \caption{Datasets and input-topology characterization.\label{tab:datasets}}%
-\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}ll@{\extracolsep\fill}}
+\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}lp{0.68\columnwidth}@{}}
 \toprule
 Topology & Structural Pattern Description\\
 \midrule
@@ -167,7 +171,9 @@ To ensure internal validity, timing stability, and reproducibility, all sorting 
 In all implementations, preliminary boundary checks (\emph{early returns}) ensure slices with $n<2$ return immediately without function calls or unnecessary allocations.
 
 \subsection{Experimental Protocol and Inversion Counting}
-Empirical measurement isolated environmental interference and ensured statistical reproducibility. Timing used the \emph{Criterion.rs} framework, executing automated cache warm-up cycles and statistical resampling (\emph{bootstrapping}) to mitigate hardware-interruption impact. For each algorithm-topology-size combination, mean time, median, and 95\% confidence intervals were computed (\texttt{confidence\_level=0.95}, \texttt{significance\_level=0.05}). Measurement configuration was profile-adjusted: 50 samples with 2\,s warm-up and 5\,s measurement window for most scenarios; for quadratic algorithms at $n=100{,}000$ (each iteration lasting fractions of a second), 30 samples with 1\,s warm-up and 5\,s window; and for quasilinear methods at $n=10^6$, 50 samples with 2\,s warm-up and 10\,s window. Timing of preprocessed approaches rigorously included composite cost $C_{\text{total}} = C_{\text{pre}} + C_{\text{sort}}$, transparently assessing viability condition $C_{\text{pre}} + C_{\text{sort}} < C_{\text{original}}$.
+Empirical measurement isolated environmental interference and ensured statistical reproducibility. Timing used the \emph{Criterion.rs} framework, executing automated cache warm-up cycles and statistical resampling (\emph{bootstrapping}) to mitigate hardware-interruption impact. For each algorithm-topology-size combination, mean time, median, and 95\% confidence intervals were computed (\texttt{confidence\_level=0.95}, \texttt{significance\_level=0.05}).
+
+Measurement configuration was profile-adjusted: 50 samples with 2,s warm-up and 5,s measurement window for most scenarios; for quadratic algorithms at $n=100{,}000$ (each iteration lasting fractions of a second), 30 samples with 1,s warm-up and 5,s window; and for quasilinear methods at $n=10^6$, 50 samples with 2,s warm-up and 10,s window. Timing of preprocessed approaches rigorously included composite cost $C_{\text{total}} = C_{\text{pre}} + C_{\text{sort}}$, transparently assessing viability condition $C_{\text{pre}} + C_{\text{sort}} < C_{\text{original}}$.
 
 Statistical criterion: a variation was considered relevant when 95\% confidence intervals of the two conditions (pure vs.\ preprocessed) do not overlap. When CIs overlap, variation was treated as non-significant regardless of point percentage difference. This criterion was uniformly applied throughout Section~\ref{sec:results} to qualify expressions such as ``consistent gain,'' ``systematic degradation,'' and ``mixed results.''
 
@@ -177,6 +183,8 @@ Exact inversion-count quantification uses a modified-MergeSort-based $O(n \log n
 
 \subsection{Symmetric Preprocessing Formalization}
 The proposed symmetric preprocessing operates as a deterministic single-pass scan over input vector $A$ of size $n$. Its goal is restructuring via mirrored swaps and local adjustments before evaluated sorting algorithms. Procedural structure is formalized in Algorithm~\ref{alg:preproc}.
+
+% Algoritmo
 
 \begin{algorithm}[!t]
 \caption{Symmetric Preprocessing Algorithm}\label{alg:preproc}
@@ -221,6 +229,8 @@ This section analyzes experimental results, evaluating symmetric-preprocessing i
 \subsection{Inversion Reduction and Structural Bias}
 Fig.~\ref{fig:inversions} illustrates inversion variation on 10,000-element vectors, with exact quantitative values and reduction percentages in Table~\ref{tab:inversions}. Preprocessing expressively mitigates disorder in multiple scenarios. However, total elimination (100\%) in the \emph{Reversed} scenario requires theoretical sobriety.
 
+% Figura 1
+
 \begin{figure}[!t]%
 \centering
 \begin{tikzpicture}
@@ -244,6 +254,8 @@ Fig.~\ref{fig:inversions} illustrates inversion variation on 10,000-element vect
 \end{tikzpicture}
 \caption{Inversion counts before and after symmetric preprocessing for 10,000-element vectors (log scale; in Reversed scenario post value is zero and does not appear on log scale).}\label{fig:inversions}
 \end{figure}
+
+% Tabela 3
 
 \begin{table}[!t]
 \caption{Inversion reduction by symmetric preprocessing on 10,000-element vectors (mean of 50 paired-pool vectors; same seed as Table~\ref{tab:times}).\label{tab:inversions}}%
@@ -272,6 +284,8 @@ The result shows preprocessing efficacy is not restricted to complete reversal: 
 
 \subsection{Execution-Time Impact and Preprocessing Cost}
 Table~\ref{tab:times} presents mean execution time and relative gain per algorithm on 10,000-element vectors, showing how preprocessing efficiency is conditioned by native complexity and adaptivity. Order-sensitive quadratic algorithms (\emph{Insertion Sort} and \emph{Bubble Sort}) obtained largest practical benefits: in \emph{Zigzag}, preprocessing reduced \emph{Insertion Sort} time from $5{,}535.18\,\mu s$ to $16.44\,\mu s$ ($+99.7\%$) and \emph{Bubble Sort} from $19{,}147.42\,\mu s$ to $17.67\,\mu s$ ($+99.9\%$), reflecting drastic inversion elimination (24,997,500 to 2,501). In contrast, $O(n \log n)$ methods such as \emph{Merge Sort} showed mixed results (degradation up to 17.8\% and gains up to 14.8\% at $n{=}10{,}000$; gains up to $18.5\%$ at $n{=}10^6$, Table~\ref{tab:times1M}). Since divide-and-conquer already ensures high native efficiency, preliminary-step cost tends to outweigh benefits in low-structure distributions. Variations were judged relevant by non-overlapping 95\% CIs (Section~3.4).
+
+% Tabela 4
 
 \begin{table*}[!t]
 \caption{Mean time per execution (in $\mu$s, mean $\pm$ 95\% CI half-width) and preprocessing gain for 10,000-element vectors. Source: Criterion, seed 42. Relevance: non-overlapping 95\% CIs.\label{tab:times}}%
@@ -315,6 +329,8 @@ Selection Sort & Reversed & 18262.67 $\pm$ 121.85 & 20515.49 $\pm$ 49.68 & -12.3
 
 Practical viability rests on low, highly predictable symmetric-step cost. As shown in Table~\ref{tab:precost} and Fig.~\ref{fig:precost}, preprocessing execution time is strictly linear $O(n)$ in vector size, with unit time between $1.18$ and $1.36$~ns per element, decaying monotonically with $n$ and stabilizing at $\approx 1.18$~ns for $10^6$ elements, indicating no memory-locality bottlenecks at scale. The scan thus imposes negligible overhead---only $12.44\,\mu s$ for 10,000 elements---amply compensated by millisecond savings in adaptive sorting.
 
+% Figura 2
+
 \begin{figure}[!t]
 \centering
 \begin{tikzpicture}
@@ -345,6 +361,8 @@ coordinates {(1000,1.357) (10000,12.443) (100000,121.893) (1000000,1181.843)};
 \end{tikzpicture}
 \caption{Mean preprocessing execution time vs.\ vector size ($n$), log-log scale evidencing $O(n)$ linear behavior. Means over six input types, CLI tool seed 42.}\label{fig:precost}
 \end{figure}
+
+% Tabela 5
 
 \begin{table}[!t]
 \caption{Mean symmetric-preprocessing cost vs.\ vector size (mean over six types; CLI tool, seed 42). Point $n{=}20{,}000$ included exclusively for linearity characterization.\label{tab:precost}}%
@@ -382,6 +400,8 @@ In pre-structured vectors, the central minimum-index-update condition becomes sy
 By simultaneously accessing opposite vector ends, symmetric preprocessing introduces additional control dependencies and increases instructions per element. On random instances, internal swap conditions (\texttt{if A[i] > A[j]}) become hard for the branch predictor~\cite{edelkamp_blockquicksort_2016,kaligosi_branch_2006}. Consequently, where inversion reduction is modest, architectural penalties and extra instruction cost outweigh logical-restructuring benefits.
 
 Fig.~\ref{fig:times} synthesizes this dynamic: expressive exploitation in adaptive quadratic methods, mixed \emph{Merge Sort} response, systematic three-way-\emph{Quicksort} degradation, and neutral non-adaptive \emph{Selection Sort} (except Reversed). Table~\ref{tab:times1M} complements analysis for $n{=}10^6$ in quasilinear methods.
+
+% Figura 3
 
 \begin{figure*}[!t]%
 \centering
@@ -422,6 +442,8 @@ Fig.~\ref{fig:times} synthesizes this dynamic: expressive exploitation in adapti
 \caption{Temporal comparison between pure and symmetric-preprocessed sorting ($n=10{,}000$), log scale.}\label{fig:times}
 \end{figure*}
 
+% Tabela 6
+
 \begin{table*}[!t]
 \caption{Mean time (ms) and preprocessing gain for 1,000,000-element vectors---quasilinear methods only (quadratic omitted for temporal infeasibility). Source: Criterion, 50 samples, 95\% CI.\label{tab:times1M}}%
 \begin{tabular*}{\textwidth}{@{\extracolsep\fill}llrrr@{\extracolsep\fill}}
@@ -443,6 +465,7 @@ Quicksort & Reversed & 416.59 $\pm$ 2.02 & 591.80 $\pm$ 4.62 & -42.1\%\\
 \botrule
 \end{tabular*}
 \end{table*}
+
 Values at $n{=}10^6$ replicate the $n{=}10{,}000$ pattern: Merge Sort gains restricted to Zigzag ($+18.5\%$) and Reversed ($+16.2\%$), systematic Quicksort degradation except Almost Sorted ($+11.1\%$), confirming applicability delimitation to adaptive methods.
 
 \section{Conclusion}\label{sec:conclusion}
