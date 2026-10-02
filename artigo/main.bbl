@@ -44,11 +44,6 @@ Knuth, D.~E. (1973).
   Searching}.
 \newblock Addison-Wesley, Reading, MA.
 
-\bibitem[LaMarca and Ladner 1999]{lamarca_influence_1999}
-LaMarca, A. and Ladner, R.~E. (1999).
-\newblock The {Influence} of {Caches} on the {Performance} of {Sorting}.
-\newblock {\em Journal of Algorithms}, 31(1):66--104.
-
 \bibitem[Mannila 1985]{mannila_measures_1984}
 Mannila, H. (1985).
 \newblock Measures of presortedness and optimal sorting algorithms.
