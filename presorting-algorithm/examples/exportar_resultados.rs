@@ -389,6 +389,11 @@ fn principal() {
     let mut linhas_t5 = Vec::new();
     for tipo in TIPOS {
         for &tamanho in &TAMANHOS_CLI {
+            // Real não tem CLI acima do nativo (assert em generate_test_array;
+            // sem tiling) — espelha o gating do bench e da seção 2.
+            if tipo == "real" && tamanho > REAL_NATIVE_LEN {
+                continue;
+            }
             let arquivo = format!("{tipo}_{tamanho}.txt");
             let pre = ler_cli_serie(&arquivo, "CSV_PRE_SOZINHO,");
             if pre.is_empty() {

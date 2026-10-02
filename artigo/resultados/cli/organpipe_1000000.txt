@@ -1,0 +1,46 @@
+==================================================
+­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
+Tamanho do Vetor: 1000000
+Tipo de Array:    OrganPipe
+Algoritmo:        Merge
+Seed:             42 (reproduz├¡vel)
+Repeti├º├Áes:       7
+==================================================
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
+--------------------------------------------------
+  -> Invers├Áes Iniciais:            249999500000
+  -> Invers├Áes P├│s-Pr├®:             249998500004
+--------------------------------------------------
+Abordagem 1: Ordena├º├úo Pura (somente o sort)
+  -> Tempo m├®dio:                   16.2137ms
+  -> Tempo mediano:                 14.0658ms
+  -> Mem├│ria Alocada na Heap:       4000000 bytes
+  -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
+  -> Valida├º├úo:                     OK Ô£à
+--------------------------------------------------
+Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
+  -> Tempo do Pr├®-Processamento:   508.728┬Ás
+  -> Tempo Total (pr├® + sort):     15.063014ms
+  -> Tempo mediano:                14.703ms
+  -> Mem├│ria Alocada na Heap:      4000000 bytes
+  -> Valida├º├úo:                     OK Ô£à
+==================================================
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 7.10%
+==================================================
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
+rep	puro_ns	com_pre_ns	pre_ns
+1	13828600	15761900	547100
+2	14039200	14446900	498100
+3	14065800	14323500	500200
+4	28508200	14703000	501500
+5	14865700	15051500	507500
+6	13888600	16732900	503600
+7	14299800	14421400	503100
+==================================================
+CSV_PURO,13828600,14039200,14065800,28508200,14865700,13888600,14299800
+CSV_COM_PRE,15761900,14446900,14323500,14703000,15051500,16732900,14421400
+CSV_PRE_SOZINHO,547100,498100,500200,501500,507500,503600,503100
+CSV_MEMORIA_PURO,4000000
+CSV_MEMORIA_COM_PRE,4000000
+CSV_INVERSOES_INICIAIS,249999500000
+CSV_INVERSOES_POS_PRE,249998500004

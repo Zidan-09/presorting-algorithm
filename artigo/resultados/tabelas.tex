@@ -9,12 +9,16 @@
 \hline
 \textbf{Tipo} & \textbf{Inversões} & \textbf{Pós-pré} & \textbf{Redução} \\
 \hline
-Aleatório & 24.960.120 & 13.681.366 & 45,2\% \\
-Tartarugas & 30.613.750 & 18.133.750 & 40,8\% \\
-Zigue-zague & 24.997.500 & 2.501 & 100,0\% \\
-Quase ordenado & 654.922 & 377.149 & 42,4\% \\
-Duplicados & 16.633.993 & 6.300.346 & 62,1\% \\
-Invertido & 49.995.000 & 0 & 100,0\% \\
+Aleatório & 24.960.120 & 13.681.366 & 45,19\% \\
+Tartarugas & 30.613.750 & 18.133.750 & 40,77\% \\
+Zigue-zague & 24.997.500 & 2.501 & 99,99\% \\
+Quase ordenado & 654.922 & 377.149 & 42,41\% \\
+Duplicados & 16.633.993 & 6.300.346 & 62,12\% \\
+Invertido & 49.995.000 & 0 & 100,00\% \\
+Serra & 23.400.000 & 10.937.472 & 53,26\% \\
+Tubo & 24.995.000 & 24.985.004 & 0,04\% \\
+Runs & 3.122.500 & 3.117.505 & 0,16\% \\
+Real & 22.447.037 & 12.789.942 & 43,02\% \\
 \hline
 \end{tabular}
 \end{table}
@@ -30,36 +34,86 @@ Invertido & 49.995.000 & 0 & 100,0\% \\
 \hline
 \textbf{Algoritmo} & \textbf{Tipo} & \textbf{Puro} & \textbf{Com pré} & \textbf{Ganho} \\
 \hline
-Merge & Aleatório & 429,35 $\pm$ 1,95 & 444,49 $\pm$ 5,94 & -3,5\% \\
-Merge & Tartarugas & 125,17 $\pm$ 2,00 & 147,49 $\pm$ 4,30 & -17,8\% \\
-Merge & Zigue-zague & 136,82 $\pm$ 1,30 & 116,63 $\pm$ 1,30 & +14,8\% \\
-Merge & Quase ordenado & 135,04 $\pm$ 0,97 & 143,12 $\pm$ 1,31 & -6,0\% \\
-Merge & Duplicados & 199,19 $\pm$ 1,70 & 201,32 $\pm$ 1,47 & -1,1\% \\
-Merge & Invertido & 129,15 $\pm$ 2,41 & 112,21 $\pm$ 0,91 & +13,1\% \\
-Quicksort & Aleatório & 367,27 $\pm$ 2,03 & 382,50 $\pm$ 1,25 & -4,1\% \\
-Quicksort & Tartarugas & 197,67 $\pm$ 2,55 & 207,13 $\pm$ 2,41 & -4,8\% \\
-Quicksort & Zigue-zague & 540,28 $\pm$ 9,78 & 562,13 $\pm$ 8,28 & -4,0\% \\
-Quicksort & Quase ordenado & 306,46 $\pm$ 2,16 & 315,72 $\pm$ 2,55 & -3,0\% \\
-Quicksort & Duplicados & 44,92 $\pm$ 0,43 & 59,00 $\pm$ 0,47 & -31,3\% \\
-Quicksort & Invertido & 471,18 $\pm$ 3,96 & 644,59 $\pm$ 5,75 & -36,8\% \\
-Inserção & Aleatório & 5506,86 $\pm$ 73,84 & 3181,76 $\pm$ 63,63 & +42,2\% \\
-Inserção & Tartarugas & 6618,39 $\pm$ 79,22 & 4037,39 $\pm$ 76,08 & +39,0\% \\
-Inserção & Zigue-zague & 5535,18 $\pm$ 57,97 & 16,44 $\pm$ 0,73 & +99,7\% \\
-Inserção & Quase ordenado & 182,82 $\pm$ 3,93 & 130,58 $\pm$ 2,05 & +28,6\% \\
-Inserção & Duplicados & 3662,06 $\pm$ 39,36 & 1488,72 $\pm$ 26,80 & +59,3\% \\
-Inserção & Invertido & 10897,85 $\pm$ 160,40 & 13,04 $\pm$ 0,26 & +99,9\% \\
-Bubblesort & Aleatório & 23676,19 $\pm$ 117,13 & 20530,09 $\pm$ 203,74 & +13,3\% \\
-Bubblesort & Tartarugas & 19428,15 $\pm$ 133,43 & 14094,37 $\pm$ 94,62 & +27,5\% \\
-Bubblesort & Zigue-zague & 19147,42 $\pm$ 117,96 & 17,67 $\pm$ 0,43 & +99,9\% \\
-Bubblesort & Quase ordenado & 16466,39 $\pm$ 83,51 & 13943,78 $\pm$ 141,98 & +15,3\% \\
-Bubblesort & Duplicados & 20376,82 $\pm$ 100,35 & 17055,89 $\pm$ 97,02 & +16,3\% \\
-Bubblesort & Invertido & 21307,46 $\pm$ 255,90 & 10,28 $\pm$ 0,40 & +100,0\% \\
-Seleção & Aleatório & 21487,72 $\pm$ 137,81 & 21390,89 $\pm$ 106,85 & +0,5\% \\
-Seleção & Tartarugas & 21429,88 $\pm$ 171,35 & 20717,84 $\pm$ 122,11 & +3,3\% \\
-Seleção & Zigue-zague & 21382,51 $\pm$ 180,13 & 20975,92 $\pm$ 90,55 & +1,9\% \\
-Seleção & Quase ordenado & 21226,00 $\pm$ 116,05 & 21457,09 $\pm$ 279,79 & -1,1\% \\
-Seleção & Duplicados & 20626,01 $\pm$ 77,19 & 20788,64 $\pm$ 142,61 & -0,8\% \\
-Seleção & Invertido & 18262,67 $\pm$ 121,85 & 20515,49 $\pm$ 49,68 & -12,3\% \\
+Merge & Aleatório & 451,57 $\pm$ 1,66 & 463,03 $\pm$ 1,49 & -2,5\% \\
+Merge & Tartarugas & 122,36 $\pm$ 0,60 & 139,68 $\pm$ 1,82 & -14,2\% \\
+Merge & Zigue-zague & 135,37 $\pm$ 0,66 & 114,16 $\pm$ 0,51 & +15,7\% \\
+Merge & Quase ordenado & 137,14 $\pm$ 1,57 & 142,22 $\pm$ 0,93 & -3,7\% \\
+Merge & Duplicados & 201,45 $\pm$ 0,73 & 203,87 $\pm$ 1,66 & -1,2\% \\
+Merge & Invertido & 126,92 $\pm$ 0,96 & 122,77 $\pm$ 1,09 & +3,3\% \\
+Merge & Serra & 138,85 $\pm$ 0,69 & 143,46 $\pm$ 0,70 & -3,3\% \\
+Merge & Tubo & 119,53 $\pm$ 0,66 & 125,29 $\pm$ 0,81 & -4,8\% \\
+Merge & Runs & 115,81 $\pm$ 0,54 & 121,84 $\pm$ 0,41 & -5,2\% \\
+Merge & Real & 279,28 $\pm$ 1,11 & 279,26 $\pm$ 1,20 & +0,0\% \\
+Quicksort & Aleatório & 360,74 $\pm$ 1,18 & 378,06 $\pm$ 1,34 & -4,8\% \\
+Quicksort & Tartarugas & 140,18 $\pm$ 1,75 & 151,37 $\pm$ 1,47 & -8,0\% \\
+Quicksort & Zigue-zague & 381,21 $\pm$ 4,46 & 379,51 $\pm$ 4,31 & +0,4\% \\
+Quicksort & Quase ordenado & 217,15 $\pm$ 1,39 & 226,97 $\pm$ 1,35 & -4,5\% \\
+Quicksort & Duplicados & 41,45 $\pm$ 0,35 & 55,71 $\pm$ 0,56 & -34,4\% \\
+Quicksort & Invertido & 328,39 $\pm$ 4,70 & 454,47 $\pm$ 9,17 & -38,4\% \\
+Quicksort & Serra & 19,74 $\pm$ 0,19 & 26,48 $\pm$ 0,20 & -34,2\% \\
+Quicksort & Tubo & 295,87 $\pm$ 2,20 & 298,74 $\pm$ 2,06 & -1,0\% \\
+Quicksort & Runs & 300,73 $\pm$ 2,62 & 306,88 $\pm$ 2,83 & -2,0\% \\
+Quicksort & Real & 31,78 $\pm$ 0,21 & 39,17 $\pm$ 0,26 & -23,3\% \\
+Inserção & Aleatório & 5209,69 $\pm$ 40,87 & 2921,09 $\pm$ 18,70 & +43,9\% \\
+Inserção & Tartarugas & 6330,42 $\pm$ 40,35 & 3801,57 $\pm$ 15,96 & +39,9\% \\
+Inserção & Zigue-zague & 5249,97 $\pm$ 31,16 & 13,59 $\pm$ 0,16 & +99,7\% \\
+Inserção & Quase ordenado & 188,55 $\pm$ 4,27 & 134,69 $\pm$ 3,60 & +28,6\% \\
+Inserção & Duplicados & 3673,33 $\pm$ 32,52 & 1456,81 $\pm$ 19,69 & +60,3\% \\
+Inserção & Invertido & 10725,42 $\pm$ 98,39 & 12,81 $\pm$ 0,23 & +99,9\% \\
+Inserção & Serra & 4820,54 $\pm$ 21,14 & 2297,88 $\pm$ 13,80 & +52,3\% \\
+Inserção & Tubo & 5168,19 $\pm$ 25,43 & 5166,41 $\pm$ 29,37 & +0,0\% \\
+Inserção & Runs & 710,33 $\pm$ 10,82 & 692,84 $\pm$ 4,64 & +2,5\% \\
+Inserção & Real & 4691,36 $\pm$ 37,82 & 2710,84 $\pm$ 14,21 & +42,2\% \\
+Bubblesort & Aleatório & 23314,17 $\pm$ 91,56 & 19847,68 $\pm$ 62,53 & +14,9\% \\
+Bubblesort & Tartarugas & 18790,39 $\pm$ 62,61 & 13857,28 $\pm$ 72,47 & +26,3\% \\
+Bubblesort & Zigue-zague & 18469,42 $\pm$ 67,66 & 16,00 $\pm$ 0,18 & +99,9\% \\
+Bubblesort & Quase ordenado & 16513,40 $\pm$ 137,86 & 13788,51 $\pm$ 51,03 & +16,5\% \\
+Bubblesort & Duplicados & 20765,80 $\pm$ 84,41 & 16600,83 $\pm$ 97,35 & +20,1\% \\
+Bubblesort & Invertido & 21031,38 $\pm$ 140,17 & 9,22 $\pm$ 0,19 & +100,0\% \\
+Bubblesort & Serra & 18316,55 $\pm$ 110,17 & 12120,69 $\pm$ 67,03 & +33,8\% \\
+Bubblesort & Tubo & 17928,72 $\pm$ 51,51 & 18059,14 $\pm$ 49,91 & -0,7\% \\
+Bubblesort & Runs & 3977,62 $\pm$ 21,96 & 3965,26 $\pm$ 16,84 & +0,3\% \\
+Bubblesort & Real & 21779,73 $\pm$ 66,43 & 18826,61 $\pm$ 63,05 & +13,6\% \\
+Seleção & Aleatório & 21106,62 $\pm$ 176,37 & 21226,87 $\pm$ 113,10 & -0,6\% \\
+Seleção & Tartarugas & 20797,91 $\pm$ 86,62 & 20156,05 $\pm$ 106,47 & +3,1\% \\
+Seleção & Zigue-zague & 20470,58 $\pm$ 52,69 & 20447,90 $\pm$ 62,51 & +0,1\% \\
+Seleção & Quase ordenado & 20617,08 $\pm$ 87,96 & 20704,93 $\pm$ 119,86 & -0,4\% \\
+Seleção & Duplicados & 21299,72 $\pm$ 150,99 & 21516,23 $\pm$ 169,19 & -1,0\% \\
+Seleção & Invertido & 19150,38 $\pm$ 353,49 & 20900,45 $\pm$ 113,30 & -9,1\% \\
+Seleção & Serra & 20595,88 $\pm$ 66,65 & 20682,48 $\pm$ 82,46 & -0,4\% \\
+Seleção & Tubo & 20004,16 $\pm$ 71,15 & 19909,36 $\pm$ 65,78 & +0,5\% \\
+Seleção & Runs & 20419,03 $\pm$ 55,93 & 20175,78 $\pm$ 55,75 & +1,2\% \\
+Seleção & Real & 20810,97 $\pm$ 72,65 & 20823,25 $\pm$ 68,90 & -0,1\% \\
+StdInstável & Aleatório & 80,41 $\pm$ 2,35 & 107,55 $\pm$ 0,48 & -33,7\% \\
+StdInstável & Tartarugas & 47,26 $\pm$ 0,28 & 51,35 $\pm$ 0,28 & -8,7\% \\
+StdInstável & Zigue-zague & 70,63 $\pm$ 0,46 & 66,09 $\pm$ 0,29 & +6,4\% \\
+StdInstável & Quase ordenado & 76,10 $\pm$ 0,36 & 83,16 $\pm$ 0,43 & -9,3\% \\
+StdInstável & Duplicados & 15,08 $\pm$ 0,28 & 40,83 $\pm$ 0,19 & -170,8\% \\
+StdInstável & Invertido & 3,75 $\pm$ 0,12 & 7,86 $\pm$ 0,19 & -109,7\% \\
+StdInstável & Serra & 23,16 $\pm$ 0,22 & 28,98 $\pm$ 0,14 & -25,2\% \\
+StdInstável & Tubo & 71,66 $\pm$ 0,33 & 76,19 $\pm$ 0,46 & -6,3\% \\
+StdInstável & Runs & 61,31 $\pm$ 0,28 & 66,90 $\pm$ 0,35 & -9,1\% \\
+StdInstável & Real & 29,29 $\pm$ 0,21 & 37,13 $\pm$ 0,26 & -26,8\% \\
+StdEstável & Aleatório & 112,00 $\pm$ 0,69 & 140,99 $\pm$ 0,82 & -25,9\% \\
+StdEstável & Tartarugas & 23,44 $\pm$ 0,25 & 27,79 $\pm$ 0,17 & -18,5\% \\
+StdEstável & Zigue-zague & 93,45 $\pm$ 0,70 & 47,60 $\pm$ 0,29 & +49,1\% \\
+StdEstável & Quase ordenado & 124,33 $\pm$ 0,64 & 126,66 $\pm$ 0,47 & -1,9\% \\
+StdEstável & Duplicados & 17,85 $\pm$ 0,55 & 43,79 $\pm$ 0,27 & -145,3\% \\
+StdEstável & Invertido & 4,48 $\pm$ 0,17 & 8,43 $\pm$ 0,22 & -88,3\% \\
+StdEstável & Serra & 28,87 $\pm$ 0,40 & 32,55 $\pm$ 0,21 & -12,8\% \\
+StdEstável & Tubo & 20,00 $\pm$ 0,13 & 34,25 $\pm$ 0,14 & -71,3\% \\
+StdEstável & Runs & 29,62 $\pm$ 0,21 & 38,06 $\pm$ 0,19 & -28,5\% \\
+StdEstável & Real & 34,01 $\pm$ 0,41 & 39,27 $\pm$ 0,29 & -15,5\% \\
+DescReversão & Aleatório & 5297,50 $\pm$ 27,50 & 2966,86 $\pm$ 17,17 & +44,0\% \\
+DescReversão & Tartarugas & 6421,62 $\pm$ 30,47 & 3826,81 $\pm$ 19,40 & +40,4\% \\
+DescReversão & Zigue-zague & 5299,78 $\pm$ 31,93 & 13,42 $\pm$ 0,12 & +99,7\% \\
+DescReversão & Quase ordenado & 174,42 $\pm$ 3,28 & 126,71 $\pm$ 2,56 & +27,4\% \\
+DescReversão & Duplicados & 3569,31 $\pm$ 17,29 & 1414,40 $\pm$ 8,50 & +60,4\% \\
+DescReversão & Invertido & 11,03 $\pm$ 0,32 & 11,86 $\pm$ 0,21 & -7,5\% \\
+DescReversão & Serra & 4858,18 $\pm$ 36,03 & 2346,63 $\pm$ 33,87 & +51,7\% \\
+DescReversão & Tubo & 5172,80 $\pm$ 33,29 & 5221,97 $\pm$ 31,13 & -1,0\% \\
+DescReversão & Runs & 695,96 $\pm$ 4,87 & 698,58 $\pm$ 5,46 & -0,4\% \\
+DescReversão & Real & 4690,61 $\pm$ 28,75 & 2720,19 $\pm$ 21,05 & +42,0\% \\
 \hline
 \end{tabular}
 \end{table}
@@ -74,12 +128,12 @@ Seleção & Invertido & 18262,67 $\pm$ 121,85 & 20515,49 $\pm$ 49,68 & -12,3\% \
 \hline
 \textbf{Tamanho} & \textbf{Pré (\textmu{}s)} & \textbf{ns/elemento} \\
 \hline
-1.000 & 1,36 & 1,36 \\
-5.000 & 6,25 & 1,25 \\
-10.000 & 12,44 & 1,24 \\
-20.000 & 24,56 & 1,23 \\
-100.000 & 121,89 & 1,22 \\
-1.000.000 & 1181,84 & 1,18 \\
+1.000 & 1,13 & 1,13 \\
+5.000 & 5,50 & 1,10 \\
+10.000 & 11,51 & 1,15 \\
+20.000 & 23,09 & 1,15 \\
+100.000 & 113,58 & 1,14 \\
+1.000.000 & 946,36 & 0,95 \\
 \hline
 \end{tabular}
 \end{table}

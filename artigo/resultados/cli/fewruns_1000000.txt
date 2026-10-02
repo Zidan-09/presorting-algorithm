@@ -1,0 +1,46 @@
+==================================================
+­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
+Tamanho do Vetor: 1000000
+Tipo de Array:    FewRuns
+Algoritmo:        Merge
+Seed:             42 (reproduz├¡vel)
+Repeti├º├Áes:       7
+==================================================
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
+--------------------------------------------------
+  -> Invers├Áes Iniciais:            31249750000
+  -> Invers├Áes P├│s-Pr├®:             31249250005
+--------------------------------------------------
+Abordagem 1: Ordena├º├úo Pura (somente o sort)
+  -> Tempo m├®dio:                   14.806942ms
+  -> Tempo mediano:                 13.7763ms
+  -> Mem├│ria Alocada na Heap:       4000000 bytes
+  -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
+  -> Valida├º├úo:                     OK Ô£à
+--------------------------------------------------
+Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
+  -> Tempo do Pr├®-Processamento:   466.614┬Ás
+  -> Tempo Total (pr├® + sort):     14.011128ms
+  -> Tempo mediano:                14.0594ms
+  -> Mem├│ria Alocada na Heap:      4000000 bytes
+  -> Valida├º├úo:                     OK Ô£à
+==================================================
+­ƒÜÇ O algoritmo proposto reduziu o tempo em 5.37%
+==================================================
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
+rep	puro_ns	com_pre_ns	pre_ns
+1	13776300	14059400	469900
+2	13472100	14067000	466100
+3	13414100	14221600	465800
+4	20967100	13877200	465600
+5	13602100	13997100	470600
+6	14192700	14113500	465100
+7	14224200	13742100	463200
+==================================================
+CSV_PURO,13776300,13472100,13414100,20967100,13602100,14192700,14224200
+CSV_COM_PRE,14059400,14067000,14221600,13877200,13997100,14113500,13742100
+CSV_PRE_SOZINHO,469900,466100,465800,465600,470600,465100,463200
+CSV_MEMORIA_PURO,4000000
+CSV_MEMORIA_COM_PRE,4000000
+CSV_INVERSOES_INICIAIS,31249750000
+CSV_INVERSOES_POS_PRE,31249250005

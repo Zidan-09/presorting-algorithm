@@ -1,3 +1,7 @@
-células executadas: 132
-commit: 570ed17
+células executadas: 872
+commit: fac3af0
+rustc: rustc 1.96.0 (ac68faa20 2026-05-25)
+cargo: cargo 1.96.0 (30a34c682 2026-05-25)
+toolchain: pinado em rust-toolchain.toml (channel 1.96.0)
+perfil release: opt-level=3 explícito no Cargo.toml; lto/codegen-units/panic = defaults do Cargo
 matriz: O(n²) até n=100000; merge/quick até n=1000000

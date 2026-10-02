@@ -23,25 +23,40 @@ F1 são seed 42 em todos os snapshots). Para F4, ler sempre
 | F3f | 43 | stdunstable,stdstable × 9 tipos @10⁶ | 12 min | — | idem |
 | F3g | 44 | merge,quick × 5 tipos + 4 tipos @10⁶ | 7+20 min | `seed_44` re-arquivado (1264 est.: @10⁴-44 + @10⁶-44) | organpipe confirma patologia (~4,3 s/sort) |
 | F3h | 44 | stdunstable,stdstable × 9 tipos @10⁶ | 12 min | incluído no re-arquivo acima | |
+| F3i | 45 | merge,quick × 5 tipos + 4 tipos @10⁶; std × 9 tipos @10⁶ | ~40 min | `seed_45` re-arquivado (504 new-only: @10⁴-45 + @10⁶-45) | 02/10/2026 |
+| F3j | 46 | idem blocos com BN_SEED=46 | ~40 min | `seed_46` re-arquivado (504 new-only) | 02/10/2026 |
+| F3k | 43 | re-run F3e+F3f perdida: mesmos 3 blocos @10⁶ | ~40 min | `seed_43` re-arquivado como superset (504 new-only) — perda RESOLVIDA, 5 pools @10⁶ fechados (42–46) | 02/10/2026 |
+| F3l | 42 | restante seed 42 (3a: std/desc×6 tipos×1k–1M; 3b: tudo×4 novos tipos×16–1M em 6 sub-blocos; 3c: tudo×6 tipos antigos×16–512 em 2 blocos; 3d: merge/quick/std×7–8 tipos @10⁷, organpipe-quick ~7,5 s/sort, sem exclusão) | ~6 h | dir vivo = matriz seed 42 completa | 02/10/2026 |
+| F3m | 42 | export | — | `exportar_resultados` OK sem panic: 872 células, `benchmark_consolidado.csv` (1745 lin), `ganho.csv` (873), `cpre_consolidado.csv` (119), `inversoes.csv` (59); saída em `artigo/resultados/` | 02/10/2026 |
 
-## Mapa atual do diretório vivo (pós-F3h)
+## Mapa atual do diretório vivo (F3 CONCLUÍDA em 02/10/2026)
 
 | células | seed vigente |
 |---|---|
-| @10⁴ tudo (8 sorts × 10 tipos + Pre) | 46 |
-| @10⁶ merge,quick,stdunstable,stdstable × 9 tipos + Pre | 44 |
-| @16,@1000 novos sorts/tipos (F1) | 42, **exceto `merge_real_16` (= 43)** |
-| @10⁷ merge,quick × random + Pre (piloto) | 42 (keepers) |
-| matriz antiga (5×6×1k–1M, pré-F1) | 42 (intocada) |
-| companions `_companion/*` | 42 (gating BN_SEED; F1 + matriz antiga) |
+| matriz completa (8 sorts × 10 tipos × 12 tamanhos + Pre, c/ gating Real/celula_planejada) | 42 |
+| companions `_companion/*` | 42 (118 arquivos = 10×12 − real@1M/10M) |
+| archives `seed_43/44/45/46` | 504 new-only cada (@10⁴ + @10⁶; 5 pools p/ F4 c/ seed 42) |
 
-## Perda registrada
-Seed-43 @10⁶ (F3e+F3f, ~40 min de máquina) não foi arquivada antes da
-seed-44 sobrescrever os mesmos IDs. Opções: (a) re-rodar 43 @10⁶ no fim
-(~40 min) para fechar 5 pools; (b) seguir com pools {42,44,45,46} @10⁶
-(4 pools — suficiente p/ variância entre pools na F4). Decidir na F4.
+Notas de fechamento:
+- Export escreve/lê em `artigo/resultados/` (raiz do repo; RAIZ_SAIDA/RAIZ_CLI =
+  `../artigo/resultados[/cli]` a partir do crate). CLI: base copiada de
+  `artigo/resultados/cli/` (66 arqs) + 23 gerados p/ novos tipos
+  (`sawtooth/organpipe/fewruns × 1k–1M`, `real × 1k–100k`; seed 42, sort merge —
+  só `CSV_PRE_SOZINHO` é lido). Cuidado: redirect `>` do PS 5.1 gera UTF-16 e
+  quebra `read_to_string` do export — converter p/ UTF-8 sem BOM.
+- Patch F3 em `examples/exportar_resultados.rs` (seção 3): pular `real` acima do
+  nativo em TAMANHOS_CLI (gera assert no CLI; sem tiling).
+- `quick_organpipe @10⁷` medido (~7,5 s/sort; ganho +0,65%): nenhuma exclusão
+  necessária (orçamento de 30 min/célula respeitado).
+- `cargo test`: 4/4 OK. Segunda máquina/Linux (F3.3): pendente, lado usuário.
 
-## Fila de resume (comandos a partir da raiz do repo)
+## Perda registrada — RESOLVIDA em 02/10/2026 (F3k: seed 43 @10⁶ re-rodada,
+arquivada como superset; pools @10⁶ = {42,43,44,45,46}, @10⁴ = {42,43,44,45,46})
+
+## Fila de resume — CONCLUÍDA (02/10/2026). Próximo: F4 (bootstrap pareado;
+pools em `target/criterion_archive/seed_*/` + matriz seed 42 no dir vivo).
+
+Comandos executados (histórico, a partir da raiz do repo):
 
 ```powershell
 # 1. seeds 45, 46 @10⁶ (3 blocos cada, ~40 min/seed); arquivar ao fim de cada seed:

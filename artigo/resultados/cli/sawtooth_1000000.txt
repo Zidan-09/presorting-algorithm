@@ -1,0 +1,46 @@
+==================================================
+­ƒº¬ INICIANDO EXPERIMENTO CIENT├ìFICO COMPLETO
+Tamanho do Vetor: 1000000
+Tipo de Array:    Sawtooth
+Algoritmo:        Merge
+Seed:             42 (reproduz├¡vel)
+Repeti├º├Áes:       7
+==================================================
+­ƒôè METRICAS COLETADAS (m├®dia de 7 repeti├º├Áes):
+--------------------------------------------------
+  -> Invers├Áes Iniciais:            234371250000
+  -> Invers├Áes P├│s-Pr├®:             109375000000
+--------------------------------------------------
+Abordagem 1: Ordena├º├úo Pura (somente o sort)
+  -> Tempo m├®dio:                   17.883985ms
+  -> Tempo mediano:                 18.0068ms
+  -> Mem├│ria Alocada na Heap:       4000000 bytes
+  -> Cache Misses:                  [Dispon├¡vel apenas no Linux]
+  -> Valida├º├úo:                     OK Ô£à
+--------------------------------------------------
+Abordagem 2: Com Pr├®-processamento Sim├®trico (pr├® + sort)
+  -> Tempo do Pr├®-Processamento:   450.828┬Ás
+  -> Tempo Total (pr├® + sort):     18.237857ms
+  -> Tempo mediano:                18.4955ms
+  -> Mem├│ria Alocada na Heap:      4000000 bytes
+  -> Valida├º├úo:                     OK Ô£à
+==================================================
+ÔÜá´©Å O algoritmo proposto aumentou o tempo em 1.98%
+==================================================
+­ƒôê DADOS POR REPETI├ç├âO (seed=42, n=7):
+rep	puro_ns	com_pre_ns	pre_ns
+1	17020500	17288700	446600
+2	18006800	17363100	446600
+3	16752400	18930000	448700
+4	18369300	18812500	457400
+5	19098200	18029900	459400
+6	18448900	18745300	448300
+7	17491800	18495500	448800
+==================================================
+CSV_PURO,17020500,18006800,16752400,18369300,19098200,18448900,17491800
+CSV_COM_PRE,17288700,17363100,18930000,18812500,18029900,18745300,18495500
+CSV_PRE_SOZINHO,446600,446600,448700,457400,459400,448300,448800
+CSV_MEMORIA_PURO,4000000
+CSV_MEMORIA_COM_PRE,4000000
+CSV_INVERSOES_INICIAIS,234371250000
+CSV_INVERSOES_POS_PRE,109375000000
