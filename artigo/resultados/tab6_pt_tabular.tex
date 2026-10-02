@@ -1,0 +1,44 @@
+\small
+\begin{tabular}{llrrr}
+\hline
+\textbf{Algoritmo} & \textbf{Tipo} & \textbf{Puro (ms)} & \textbf{Com pré (ms)} & \textbf{Ganho} \\
+\hline
+Merge Sort & Aleatório & 68,44 $\pm$ 0,80 & 69,04 $\pm$ 0,59 & -0,9\% \\
+Merge Sort & Tartarugas & 16,66 $\pm$ 0,16 & 18,57 $\pm$ 0,38 & -11,5\%$^{\dagger}$ \\
+Merge Sort & Zigue-zague & 18,62 $\pm$ 0,30 & 15,15 $\pm$ 0,14 & +18,6\%$^{\dagger}$ \\
+Merge Sort & Quase ordenado & 20,15 $\pm$ 0,30 & 20,57 $\pm$ 0,28 & -2,1\%$^{*}$ \\
+Merge Sort & Duplicados & 26,57 $\pm$ 0,33 & 25,29 $\pm$ 0,27 & +4,8\%$^{*}$ \\
+Merge Sort & Invertido & 15,98 $\pm$ 0,32 & 15,02 $\pm$ 0,13 & +6,0\%$^{\dagger}$ \\
+Quicksort & Aleatório & 53,27 $\pm$ 0,14 & 54,67 $\pm$ 0,11 & -2,6\%$^{\dagger}$ \\
+Quicksort & Tartarugas & 101,17 $\pm$ 0,75 & 101,17 $\pm$ 0,77 & +0,0\%$^{*}$ \\
+Quicksort & Zigue-zague & 314,61 $\pm$ 2,36 & 328,79 $\pm$ 2,27 & -4,5\%$^{\dagger}$ \\
+Quicksort & Quase ordenado & 32,74 $\pm$ 0,30 & 30,94 $\pm$ 0,26 & +5,5\% \\
+Quicksort & Duplicados & 3,97 $\pm$ 0,02 & 5,21 $\pm$ 0,02 & -31,4\%$^{\dagger}$ \\
+Quicksort & Invertido & 267,65 $\pm$ 1,56 & 368,64 $\pm$ 1,04 & -37,7\%$^{\dagger}$ \\
+\texttt{sort\_unstable} & Aleatório & 10,81 $\pm$ 0,07 & 13,80 $\pm$ 0,06 & -27,6\%$^{\dagger}$ \\
+\texttt{sort\_unstable} & Tartarugas & 6,77 $\pm$ 0,02 & 7,02 $\pm$ 0,03 & -3,6\%$^{*}$ \\
+\texttt{sort\_unstable} & Zigue-zague & 12,07 $\pm$ 0,14 & 9,66 $\pm$ 0,04 & +20,0\%$^{\dagger}$ \\
+\texttt{sort\_unstable} & Quase ordenado & 10,99 $\pm$ 0,03 & 11,51 $\pm$ 0,03 & -4,8\%$^{\dagger}$ \\
+\texttt{sort\_unstable} & Duplicados & 1,39 $\pm$ 0,01 & 4,10 $\pm$ 0,02 & -194,3\%$^{\dagger}$ \\
+\texttt{sort\_unstable} & Invertido & 0,40 $\pm$ 0,01 & 0,76 $\pm$ 0,01 & -87,1\%$^{\dagger}$ \\
+\texttt{sort} & Aleatório & 15,10 $\pm$ 0,04 & 18,02 $\pm$ 0,10 & -19,4\%$^{\dagger}$ \\
+\texttt{sort} & Tartarugas & 3,02 $\pm$ 0,02 & 3,12 $\pm$ 0,02 & -3,4\%$^{*}$ \\
+\texttt{sort} & Zigue-zague & 15,54 $\pm$ 0,05 & 6,60 $\pm$ 0,03 & +57,5\%$^{\dagger}$ \\
+\texttt{sort} & Quase ordenado & 11,60 $\pm$ 0,16 & 12,06 $\pm$ 0,04 & -4,0\%$^{\dagger}$ \\
+\texttt{sort} & Duplicados & 2,53 $\pm$ 0,02 & 5,01 $\pm$ 0,03 & -98,0\%$^{\dagger}$ \\
+\texttt{sort} & Invertido & 0,42 $\pm$ 0,00 & 0,79 $\pm$ 0,01 & -88,6\%$^{\dagger}$ \\
+\hline
+Merge Sort & Serra & 18,86 $\pm$ 0,15 & 19,29 $\pm$ 0,20 & -2,3\% \\
+Merge Sort & Tubo & 15,56 $\pm$ 0,20 & 16,01 $\pm$ 0,15 & -2,9\% \\
+Merge Sort & Runs & 14,90 $\pm$ 0,26 & 15,56 $\pm$ 0,21 & -4,4\% \\
+Quicksort & Serra & 2,94 $\pm$ 0,01 & 3,22 $\pm$ 0,01 & -9,3\%$^{\dagger}$ \\
+Quicksort & Tubo & 4.070,08 $\pm$ 9,70 & 4.071,58 $\pm$ 10,51 & +0,0\%$^{*}$ \\
+Quicksort & Runs & 248,60 $\pm$ 0,97 & 248,97 $\pm$ 0,94 & -0,1\% \\
+\texttt{sort\_unstable} & Serra & 2,52 $\pm$ 0,01 & 2,77 $\pm$ 0,01 & -10,2\%$^{*}$ \\
+\texttt{sort\_unstable} & Tubo & 11,98 $\pm$ 0,03 & 12,53 $\pm$ 0,03 & -4,6\%$^{*}$ \\
+\texttt{sort\_unstable} & Runs & 9,35 $\pm$ 0,02 & 9,82 $\pm$ 0,02 & -5,0\%$^{\dagger}$ \\
+\texttt{sort} & Serra & 3,53 $\pm$ 0,01 & 3,53 $\pm$ 0,01 & +0,0\% \\
+\texttt{sort} & Tubo & 2,45 $\pm$ 0,06 & 3,88 $\pm$ 0,05 & -58,1\%$^{\dagger}$ \\
+\texttt{sort} & Runs & 3,25 $\pm$ 0,01 & 4,00 $\pm$ 0,01 & -22,9\%$^{\dagger}$ \\
+\hline
+\end{tabular}

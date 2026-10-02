@@ -302,3 +302,152 @@ print("precusto:", "; ".join(
 print("cpre10k:", "; ".join(
     f"{t}={us(cpre[(t,'10000')]['pre_only_ns']):.2f}us"
     for t in ordem_fig))
+
+# --- fragmentos PT p/ artigo/main.tex (SBC): tabular completo, \hline ---
+TIPOS_PT = {"random": "Aleatório", "turtles": "Tartarugas",
+            "zigzag": "Zigue-zague", "almostsorted": "Quase ordenado",
+            "duplicates": "Duplicados", "inverted": "Invertido",
+            "sawtooth": "Serra", "organpipe": "Tubo", "fewruns": "Runs",
+            "real": "Real"}
+SORTS_PT = {"merge": "Merge Sort", "quick": "Quicksort",
+            "insertion": "Insertion Sort", "bubble": "Bubble Sort",
+            "selection": "Selection Sort",
+            "stdunstable": "\\texttt{sort\\_unstable}",
+            "stdstable": "\\texttt{sort}",
+            "descreverse": "\\texttt{desc\\_reverse}"}
+
+
+def fmt_pt(x, casas=2):
+    s = f"{x:.{casas}f}"
+    ini, fra = s.split(".")
+    neg = ini.startswith("-")
+    if neg:
+        ini = ini[1:]
+    grp = ""
+    while len(ini) > 3:
+        grp = "." + ini[-3:] + grp
+        ini = ini[:-3]
+    return ("-" if neg else "") + ini + grp + "," + fra
+
+
+def ganho_pt(g):
+    return f"{'+' if g >= 0 else '-'}{abs(g):.1f}".replace(".", ",") + "\\%"
+
+
+def tabular_pt(spec, cabecalho, corpos, small=False):
+    out = []
+    if small:
+        out.append("\\small")
+    out.append(f"\\begin{{tabular}}{{{spec}}}")
+    out.append("\\hline")
+    out.append(cabecalho)
+    out.append("\\hline")
+    out.extend(corpos)
+    out.append("\\hline")
+    out.append("\\end{tabular}")
+    return "\n".join(out) + "\n"
+
+
+def gravar_raiz(nome, conteudo):
+    with open(os.path.join(RAIZ, nome), "w", encoding="utf-8",
+              newline="") as f:
+        f.write(conteudo)
+    print(f"OK -> {nome}")
+
+
+H_T_PT = ("\\textbf{Algoritmo} & \\textbf{Tipo} & \\textbf{Puro} & "
+          "\\textbf{Com pré} & \\textbf{Ganho} \\\\")
+
+
+def linha_pt_us(sort, tipo, tam):
+    mp, hp, cp, hc = celula_tempo(sort, tipo, tam)
+    g = ganho[(sort, tipo, str(tam))]
+    return (f"{SORTS_PT[sort]} & {TIPOS_PT[tipo]} & "
+            f"{fmt_pt(mp)} $\\pm$ {fmt_pt(hp)} & "
+            f"{fmt_pt(cp)} $\\pm$ {fmt_pt(hc)} & "
+            f"{ganho_pt(round(g, 1))}{marcador(sort, tipo, str(tam), g)} \\\\")
+
+
+linhas = []
+for t in ordem_fig:
+    r = inv[(t, "10000")]
+    ini, pos = float(r["inversoes_iniciais"]), float(r["inversoes_pos_pre"])
+    red = (ini - pos) / ini * 100.0 if ini > 0 else 0.0
+    mk = ("\\textsuperscript{*}" if t == "zigzag"
+          else ("\\textsuperscript{**}" if t == "inverted" else ""))
+    linhas.append(f"{TIPOS_PT[t]} & {mil(ini)} & {mil(pos)} & "
+                 f"{dec(red)}\\%{mk} \\\\")
+gravar_raiz("tab3_pt_tabular.tex", tabular_pt(
+    "lrrr",
+    ("\\textbf{Tipo} & \\textbf{Inversões} & \\textbf{Pós-pré} & "
+     "\\textbf{Redução} \\\\"),
+    linhas))
+
+gravar_raiz("tab4_pt_tabular.tex", tabular_pt(
+    "llrrr", H_T_PT,
+    [linha_pt_us(s, t, 10000) for s in SORTS5 for t in CLASSICOS],
+    small=True))
+
+gravar_raiz("tab4b_pt_tabular.tex", tabular_pt(
+    "llrrr", H_T_PT,
+    [linha_pt_us(s, t, 10000) for s in BASES for t in CLASSICOS],
+    small=True))
+
+gravar_raiz("tab4c_pt_tabular.tex", tabular_pt(
+    "llrrr", H_T_PT,
+    [linha_pt_us(s, t, 10000) for s in SORTS8 for t in NOVOS],
+    small=True))
+
+
+def linha_pt_ms(sort, tipo):
+    p = bench[(sort, tipo, "1000000", "puro")]
+    c = bench[(sort, tipo, "1000000", "com_pre")]
+    mp, cp = us(p["mean_ns"]) / 1000.0, us(c["mean_ns"]) / 1000.0
+    hp = (us(p["ci_hi_ns"]) - us(p["ci_lo_ns"])) / 2.0 / 1000.0
+    hc = (us(c["ci_hi_ns"]) - us(c["ci_lo_ns"])) / 2.0 / 1000.0
+    g = ganho[(sort, tipo, "1000000")]
+    return (f"{SORTS_PT[sort]} & {TIPOS_PT[tipo]} & "
+            f"{fmt_pt(mp)} $\\pm$ {fmt_pt(hp)} & "
+            f"{fmt_pt(cp)} $\\pm$ {fmt_pt(hc)} & "
+            f"{ganho_pt(round(g, 1))}"
+            f"{marcador(sort, tipo, '1000000', g)} \\\\")
+
+
+linhas = [linha_pt_ms(s, t) for s in LIN4 for t in CLASSICOS]
+linhas.append("\\hline")
+linhas += [linha_pt_ms(s, t) for s in LIN4
+           for t in ["sawtooth", "organpipe", "fewruns"]]
+gravar_raiz("tab6_pt_tabular.tex", tabular_pt(
+    "llrrr", H_T_PT.replace("Puro", "Puro (ms)").replace(
+        "Com pré", "Com pré (ms)"),
+    linhas, small=True))
+
+with open(os.path.join(RAIZ, "pre_custo.csv"), encoding="utf-8") as f:
+    rows = [(int(r["tamanho"]), float(r["pre_ns"])) for r in
+            csv.DictReader(f, fieldnames=["tamanho", "pre_ns"])]
+linhas = [f"{mil(t)} & {dec(v/1000.0)} & {dec(v/t)} \\\\"
+          for t, v in sorted(rows)]
+gravar_raiz("tab5_pt_tabular.tex", tabular_pt(
+    "rrr",
+    ("\\textbf{Tamanho} & \\textbf{Pré (\\textmu{}s)} & "
+     "\\textbf{ns/elemento} \\\\"),
+    linhas))
+
+linhas = []
+for t in ordem_fig:
+    r4 = cpre[(t, "10000")]
+    v4 = fmt_pt(us(r4["pre_only_ns"]))
+    v6 = (fmt_pt(us(cpre[(t, "1000000")]["pre_only_ns"]))
+          if (t, "1000000") in cpre else "{---}")
+    linhas.append(f"{TIPOS_PT[t]} & {v4} & {v6} \\\\")
+gravar_raiz("tabcpre_pt_tabular.tex", tabular_pt(
+    "lrr",
+    ("\\textbf{Tipo} & \\textbf{$C_{\\text{pre}}$ em $10^4$} & "
+     "\\textbf{$C_{\\text{pre}}$ em $10^6$} \\\\"),
+    linhas))
+
+# fig_gain_vs_n: colunas sao chaves (neutras a idioma) -> copiar p/ raiz.
+import shutil
+shutil.copy(os.path.join(DEST, "fig_gain_vs_n.csv"),
+            os.path.join(RAIZ, "fig_gain_vs_n.csv"))
+print("OK -> fig_gain_vs_n.csv (raiz)")
