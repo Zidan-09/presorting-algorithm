@@ -334,10 +334,10 @@ def ganho_pt(g):
     return f"{'+' if g >= 0 else '-'}{abs(g):.1f}".replace(".", ",") + "\\%"
 
 
-def tabular_pt(spec, cabecalho, corpos, small=False):
+def tabular_pt(spec, cabecalho, corpos, size=None):
     out = []
-    if small:
-        out.append("\\small")
+    if size in ("small", "footnotesize"):
+        out.append(f"\\{size}")
     out.append(f"\\begin{{tabular}}{{{spec}}}")
     out.append("\\hline")
     out.append(cabecalho)
@@ -386,17 +386,17 @@ gravar_raiz("tab3_pt_tabular.tex", tabular_pt(
 gravar_raiz("tab4_pt_tabular.tex", tabular_pt(
     "llrrr", H_T_PT,
     [linha_pt_us(s, t, 10000) for s in SORTS5 for t in CLASSICOS],
-    small=True))
+    size="footnotesize"))
 
 gravar_raiz("tab4b_pt_tabular.tex", tabular_pt(
     "llrrr", H_T_PT,
     [linha_pt_us(s, t, 10000) for s in BASES for t in CLASSICOS],
-    small=True))
+    size="footnotesize"))
 
 gravar_raiz("tab4c_pt_tabular.tex", tabular_pt(
     "llrrr", H_T_PT,
     [linha_pt_us(s, t, 10000) for s in SORTS8 for t in NOVOS],
-    small=True))
+    size="footnotesize"))
 
 
 def linha_pt_ms(sort, tipo):
@@ -420,7 +420,7 @@ linhas += [linha_pt_ms(s, t) for s in LIN4
 gravar_raiz("tab6_pt_tabular.tex", tabular_pt(
     "llrrr", H_T_PT.replace("Puro", "Puro (ms)").replace(
         "Com pré", "Com pré (ms)"),
-    linhas, small=True))
+    linhas, size="footnotesize"))
 
 with open(os.path.join(RAIZ, "pre_custo.csv"), encoding="utf-8") as f:
     rows = [(int(r["tamanho"]), float(r["pre_ns"])) for r in
