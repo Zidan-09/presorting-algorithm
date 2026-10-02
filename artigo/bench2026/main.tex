@@ -17,6 +17,10 @@
     \renewcommand*{\citenumfont}{\color{jnlclr}}
 }
 \makeatother
+% F7 (double-blind): esvazia metadados de autoria embutidos no PDF
+% (Author/Title/Subject/Keywords). Creator/Producer mantêm apenas a
+% toolchain (sem identificação); verificado via `pdfinfo`.
+\hypersetup{pdfauthor={},pdftitle={},pdfsubject={},pdfkeywords={}}
 
 \theoremstyle{thmstyleone}%
 \newtheorem{theorem}{Theorem}%

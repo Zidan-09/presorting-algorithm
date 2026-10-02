@@ -1,0 +1,6 @@
+target/
+presorting-algorithm/bench_logs/
+build_*.log
+bib_f*.log
+*.tmp
+*.pb
