@@ -120,9 +120,4 @@ K.~Kaligosi and P.~Sanders, ``How branch mispredictions affect quicksort,'' in
   repository for double-blind review, 2026, source code and experimental data
   available upon acceptance.
 
-\bibitem{hennessy_computer_2019}
-J.~L. Hennessy and D.~A. Patterson, \emph{Computer architecture: a quantitative
-  approach}, sixth edition~ed.\hskip 1em plus 0.5em minus 0.4em\relax
-  Cambridge, Massachusetts: Elsevier, 2019.
-
 \end{thebibliography}

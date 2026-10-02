@@ -13,13 +13,13 @@
 \citation{estivill-castro_survey_1992}
 \citation{mannila_measures_1984,estivill-castro_survey_1992}
 \citation{cormen_introduction_2022}
-\citation{estivill-castro_survey_1992,hwang_presorting_2000}
-\citation{mannila_measures_1984,hwang_presorting_2000}
 \oddpage@label{1}{1}
 \providecommand \oddpage@label [2]{}
 \babel@aux{english}{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
 \newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{estivill-castro_survey_1992,hwang_presorting_2000}
+\citation{mannila_measures_1984,hwang_presorting_2000}
 \citation{gil_metodos_2019,sampieri_metodologia_2021}
 \citation{cormen_introduction_2022,estivill-castro_survey_1992}
 \citation{knuth_art_1973}
@@ -52,13 +52,13 @@
 \citation{gil_metodos_2019,sampieri_metodologia_2021}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Methodology}{3}{section.3}\protected@file@percent }
 \newlabel{sec:method}{{3}{3}{Experimental Methodology}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {{3.1}}Experimental Configuration}{3}{subsection.3.1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Experimental environment and tools.}}{3}{table.caption.1}\protected@file@percent }
 \newlabel{tab:environment}{{1}{3}{Experimental environment and tools}{table.caption.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Input-topology generators ($n$ = size, 0-based index $i$).}}{3}{table.caption.2}\protected@file@percent }
 \newlabel{tab:datasets}{{2}{3}{Input-topology generators ($n$ = size, 0-based index $i$)}{table.caption.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {{3.2}}Evaluated Algorithm Specifications}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {{3.1}}Experimental Configuration}{3}{subsection.3.1}\protected@file@percent }
 \citation{cormen_introduction_2022}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{3.2}}Evaluated Algorithm Specifications}{4}{subsection.3.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{3.2}.1}}Quadratic Algorithms}{4}{subsubsection.3.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{3.2}.2}}Quasilinear Algorithms}{4}{subsubsection.3.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {{{3.2}.3}}Competitive Baselines}{4}{subsubsection.3.2.3}\protected@file@percent }
@@ -69,35 +69,36 @@
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{alg:preproc}{{1}{5}{Symmetric Preprocessing Algorithm}{algorithm.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {{3.5}}Threats to Validity}{5}{subsection.3.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Inversion counts before and after symmetric preprocessing for 10,000-element vectors (log scale; the Reversed post value is exactly 0---annotated above the axis floor---and has no bar on the log scale).}}{5}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:inversions}{{1}{5}{Inversion counts before and after symmetric preprocessing for 10,000-element vectors (log scale; the Reversed post value is exactly 0---annotated above the axis floor---and has no bar on the log scale)}{figure.caption.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Results and Discussion}{5}{section.4}\protected@file@percent }
 \newlabel{sec:results}{{4}{5}{Results and Discussion}{section.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {{4.1}}Inversion Reduction and Structural Bias}{5}{subsection.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Inversion counts before and after symmetric preprocessing for 10,000-element vectors (log scale; the Reversed post value is exactly 0---annotated above the axis floor---and has no bar on the log scale).}}{6}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:inversions}{{1}{6}{Inversion counts before and after symmetric preprocessing for 10,000-element vectors (log scale; the Reversed post value is exactly 0---annotated above the axis floor---and has no bar on the log scale)}{figure.caption.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Inversion reduction by symmetric preprocessing on 10,000-element vectors (mean of 50 paired-pool vectors; same seed as Table~\ref {tab:times}).}}{6}{table.caption.4}\protected@file@percent }
 \newlabel{tab:inversions}{{3}{6}{Inversion reduction by symmetric preprocessing on 10,000-element vectors (mean of 50 paired-pool vectors; same seed as Table~\ref {tab:times})}{table.caption.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {{4.2}}Execution-Time Impact and Preprocessing Cost}{6}{subsection.4.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Mean preprocessing execution time vs.\ vector size ($n$), log-log scale evidencing $O(n)$ linear behavior. Means over ten input types, CLI tool seed 42.}}{6}{figure.caption.8}\protected@file@percent }
 \newlabel{fig:precost}{{2}{6}{Mean preprocessing execution time vs.\ vector size ($n$), log-log scale evidencing $O(n)$ linear behavior. Means over ten input types, CLI tool seed 42}{figure.caption.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {{4.3}}Total Sorting Time and Per-Algorithm Analysis}{6}{subsection.4.3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Mean time per execution (in $\mu $s, mean $\pm $ 95\% CI half-width) and preprocessing gain for 10,000-element vectors. Source: Criterion, seed 42. Gain marked $^{*}$ when the paired bootstrap 95\% CI excludes zero (seed 42) and $^{\dagger }$ when additionally sign-stable across all five pools.}}{7}{table.caption.5}\protected@file@percent }
 \newlabel{tab:times}{{4}{7}{Mean time per execution (in $\mu $s, mean $\pm $ 95\% CI half-width) and preprocessing gain for 10,000-element vectors. Source: Criterion, seed 42. Gain marked $^{*}$ when the paired bootstrap 95\% CI excludes zero (seed 42) and $^{\dagger }$ when additionally sign-stable across all five pools}{table.caption.5}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Competitive baselines: mean time per execution (in $\mu $s, mean $\pm $ 95\% CI half-width) and preprocessing gain for 10,000-element vectors. \texttt  {sort\_unstable} and \texttt  {sort} are the Rust standard-library sorters; \texttt  {desc\_reverse} is Insertion Sort preceded by $O(n)$ descending-run detection with reversal. Same significance marks as Table~\ref {tab:times}.}}{7}{table.caption.6}\protected@file@percent }
 \newlabel{tab:baselines}{{5}{7}{Competitive baselines: mean time per execution (in $\mu $s, mean $\pm $ 95\% CI half-width) and preprocessing gain for 10,000-element vectors. \texttt {sort\_unstable} and \texttt {sort} are the Rust standard-library sorters; \texttt {desc\_reverse} is Insertion Sort preceded by $O(n)$ descending-run detection with reversal. Same significance marks as Table~\ref {tab:times}}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {{4.3}}Total Sorting Time and Per-Algorithm Analysis}{7}{subsection.4.3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces New topologies: mean time per execution (in $\mu $s, mean $\pm $ 95\% CI half-width) and preprocessing gain for 10,000-element vectors, all eight methods. Same significance marks as Table~\ref {tab:times}.}}{8}{table.caption.7}\protected@file@percent }
 \newlabel{tab:newtypes}{{6}{8}{New topologies: mean time per execution (in $\mu $s, mean $\pm $ 95\% CI half-width) and preprocessing gain for 10,000-element vectors, all eight methods. Same significance marks as Table~\ref {tab:times}}{table.caption.7}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Mean symmetric-preprocessing cost vs.\ vector size (mean over ten types; CLI tool, seed 42). Point $n{=}20{,}000$ included exclusively for linearity characterization.}}{8}{table.caption.9}\protected@file@percent }
 \newlabel{tab:precost}{{7}{8}{Mean symmetric-preprocessing cost vs.\ vector size (mean over ten types; CLI tool, seed 42). Point $n{=}20{,}000$ included exclusively for linearity characterization}{table.caption.9}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Isolated preprocessing cost $C_{\text  {pre}}$ per topology (same Criterion harness as the timing matrix; mean, $\mu $s). The CLI mean of Table~\ref {tab:precost} hides strong heterogeneity: unstructured inputs (Random, Duplicates) cost $\approx $5$\times $ more than structured ones at $n{=}10{,}000$. Real has no $10^6$ point (native asset cap).}}{8}{table.caption.10}\protected@file@percent }
 \newlabel{tab:cpre}{{8}{8}{Isolated preprocessing cost $C_{\text {pre}}$ per topology (same Criterion harness as the timing matrix; mean, $\mu $s). The CLI mean of Table~\ref {tab:precost} hides strong heterogeneity: unstructured inputs (Random, Duplicates) cost $\approx $5$\times $ more than structured ones at $n{=}10{,}000$. Real has no $10^6$ point (native asset cap)}{table.caption.10}{}}
-\citation{hennessy_computer_2019,edelkamp_blockquicksort_2016}
 \citation{estivill-castro_survey_1992}
 \citation{edelkamp_blockquicksort_2016,kaligosi_branch_2006}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Temporal comparison between pure and symmetric-preprocessed sorting ($n=10{,}000$) across all ten topologies, log scale.}}{10}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:times}{{3}{10}{Temporal comparison between pure and symmetric-preprocessed sorting ($n=10{,}000$) across all ten topologies, log scale}{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{10}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{10}{Conclusion}{section.5}{}}
 \citation{hwang_presorting_2000}
 \citation{edelkamp_blockquicksort_2016}
 \citation{auger_timsort_2018}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{9}{section.5}\protected@file@percent }
-\newlabel{sec:conclusion}{{5}{9}{Conclusion}{section.5}{}}
 \bibstyle{TBench}
 \bibdata{reference}
 \bibcite{knuth_art_1973}{{1}{}{{}}{{}}}
@@ -105,21 +106,18 @@
 \bibcite{cormen_introduction_2022}{{3}{}{{}}{{}}}
 \bibcite{ziviani_projeto_2021}{{4}{}{{}}{{}}}
 \bibcite{estivill-castro_survey_1992}{{5}{}{{}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Mean time (ms) and preprocessing gain for 1,000,000-element vectors---quasilinear methods and standard baselines (quadratic omitted for temporal infeasibility). Source: Criterion, 50 samples, 95\% CI. Same paired-significance marks as Table~\ref {tab:times}; rows below the rule are the new topologies (Real excluded by the native asset cap).}}{11}{table.caption.12}\protected@file@percent }
+\newlabel{tab:times1M}{{9}{11}{Mean time (ms) and preprocessing gain for 1,000,000-element vectors---quasilinear methods and standard baselines (quadratic omitted for temporal infeasibility). Source: Criterion, 50 samples, 95\% CI. Same paired-significance marks as Table~\ref {tab:times}; rows below the rule are the new topologies (Real excluded by the native asset cap)}{table.caption.12}{}}
 \bibcite{mannila_measures_1984}{{6}{}{{}}{{}}}
 \bibcite{hwang_presorting_2000}{{7}{}{{}}{{}}}
 \bibcite{gil_metodos_2019}{{8}{}{{}}{{}}}
 \bibcite{sampieri_metodologia_2021}{{9}{}{{}}{{}}}
 \bibcite{edelkamp_blockquicksort_2016}{{10}{}{{}}{{}}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Temporal comparison between pure and symmetric-preprocessed sorting ($n=10{,}000$) across all ten topologies, log scale.}}{10}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:times}{{3}{10}{Temporal comparison between pure and symmetric-preprocessed sorting ($n=10{,}000$) across all ten topologies, log scale}{figure.caption.11}{}}
 \bibcite{auger_timsort_2018}{{11}{}{{}}{{}}}
 \bibcite{lamarca_influence_1999}{{12}{}{{}}{{}}}
 \bibcite{kaligosi_branch_2006}{{13}{}{{}}{{}}}
 \bibcite{anonymous_repository_2026}{{14}{}{{}}{{}}}
-\bibcite{hennessy_computer_2019}{{15}{}{{}}{{}}}
-\global\@namedef{@lastpage@}{11}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Mean time (ms) and preprocessing gain for 1,000,000-element vectors---quasilinear methods and standard baselines (quadratic omitted for temporal infeasibility). Source: Criterion, 50 samples, 95\% CI. Same paired-significance marks as Table~\ref {tab:times}; rows below the rule are the new topologies (Real excluded by the native asset cap).}}{11}{table.caption.12}\protected@file@percent }
-\newlabel{tab:times1M}{{9}{11}{Mean time (ms) and preprocessing gain for 1,000,000-element vectors---quasilinear methods and standard baselines (quadratic omitted for temporal infeasibility). Source: Criterion, 50 samples, 95\% CI. Same paired-significance marks as Table~\ref {tab:times}; rows below the rule are the new topologies (Real excluded by the native asset cap)}{table.caption.12}{}}
+\global\@namedef{@lastpage@}{12}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Preprocessing gain vs.\ input size (Criterion means; quadratic methods capped at $n{=}10^5$; gaps are unplanned cells).}}{12}{figure.caption.13}\protected@file@percent }
 \newlabel{fig:gainn}{{4}{12}{Preprocessing gain vs.\ input size (Criterion means; quadratic methods capped at $n{=}10^5$; gaps are unplanned cells)}{figure.caption.13}{}}
 \expandafter\ifx\csname c@myauthcount@totc\endcsname\relax\newcounter{myauthcount@totc}\fi\setcounter{myauthcount@totc}{0}

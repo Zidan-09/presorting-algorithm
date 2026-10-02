@@ -10,46 +10,44 @@ Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'wiz_functions' (item size: 4) to 6000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: reference.bib
-Warning--edition ordinal word "Sixth edition" may be too high (or improper) for conversion in hennessy_computer_2019
-You've used 15 entries,
+You've used 14 entries,
             4040 wiz_defined-function locations,
-            909 strings with 9912 characters,
-and the built_in function-call counts, 10598 in all, are:
-= -- 858
-> -- 196
-< -- 83
-+ -- 100
-- -- 30
-* -- 564
-:= -- 1640
-add.period$ -- 32
-call.type$ -- 15
-change.case$ -- 14
-chr.to.int$ -- 195
-cite$ -- 16
-duplicate$ -- 746
-empty$ -- 955
-format.name$ -- 40
-if$ -- 2433
+            903 strings with 9758 characters,
+and the built_in function-call counts, 10129 in all, are:
+= -- 824
+> -- 185
+< -- 81
++ -- 96
+- -- 28
+* -- 540
+:= -- 1578
+add.period$ -- 30
+call.type$ -- 14
+change.case$ -- 12
+chr.to.int$ -- 189
+cite$ -- 14
+duplicate$ -- 708
+empty$ -- 901
+format.name$ -- 37
+if$ -- 2321
 int.to.chr$ -- 0
-int.to.str$ -- 15
-missing$ -- 125
-newline$ -- 83
-num.names$ -- 14
-pop$ -- 310
+int.to.str$ -- 14
+missing$ -- 119
+newline$ -- 80
+num.names$ -- 13
+pop$ -- 288
 preamble$ -- 1
 purify$ -- 0
-quote$ -- 2
-skip$ -- 839
+quote$ -- 0
+skip$ -- 796
 stack$ -- 0
-substring$ -- 426
-swap$ -- 587
+substring$ -- 424
+swap$ -- 568
 text.length$ -- 18
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 15
-warning$ -- 1
-while$ -- 44
-width$ -- 17
-write$ -- 184
-(There was 1 warning)
+type$ -- 14
+warning$ -- 0
+while$ -- 43
+width$ -- 16
+write$ -- 177
