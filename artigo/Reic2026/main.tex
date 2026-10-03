@@ -184,7 +184,7 @@ Geração de dados & Seeds 42--46 (\texttt{ChaCha8Rng}), entradas pareadas \\
 
 Para avaliar a resiliência e a adaptabilidade dos algoritmos sob diferentes graus de entropia, foram empregados dez padrões estruturais de vetores de entrada (Tabela~\ref{tab:datasets}). Invertido, Zigue-zague e Tubo foram desenhados pelos autores em torno da simetria da varredura proposta (Tartarugas e Serra são sintéticas), de modo que há viés de seleção embutido: entradas alinhadas à simetria tendem a favorecer a técnica. A aleatoriedade determinística foi assegurada pelo pareamento das sementes de geração: para cada combinação de topologia e tamanho, um conjunto fixo de 50 vetores é gerado com a semente $42 \oplus n \oplus \text{tipo}$ (via \texttt{ChaCha8Rng}) e compartilhado por todos os algoritmos e pelas duas variantes (pura e com pré-processamento), garantindo comparabilidade pareada. A mistura por XOR pode, em princípio, colidir entre combinações distintas; nenhuma colisão afeta o pareamento dentro de cada célula, pois o mesmo \emph{pool} é reusado pelos dois braços. Nas topologias determinísticas, as 50 réplicas (e os cinco \emph{pools}) são cópias idênticas: o tamanho inferencial $R{=}50$ vale apenas para as topologias estocásticas, e o \emph{bootstrap} nas determinísticas mede somente ruído temporal. A matriz central é replicada com cinco \emph{pools} independentes (seeds 42--46) para análise de estabilidade entre \emph{pools} (Seção~3.3). Topologias padrão da literatura (ex.: $k$-ordenado, perturbações locais, baterias de pdqsort/ipnsort) ficam como trabalho futuro.
 
-Os tamanhos medidos são $n \in \{16, 32, 64, 128, 256, 512, 1.000, 5.000, 10.000, 100.000, 1.000.000, 10.000.000\}$, com gating por célula: quadráticos (\emph{Insertion Sort}, \emph{Bubble Sort}, \emph{Selection Sort} e \emph{DescReverse}) vão até $n{=}100.000$ (em $n{=}10^6$ cada execução levaria minutos); $n{=}10^7$ cobre apenas \emph{Merge Sort}, \emph{Quicksort} e baselines da biblioteca padrão, no regime fora de cache ($\approx$40\,MB por vetor \texttt{i32}). A topologia Real é limitada ao tamanho nativo do asset ($N{=}477.104$, sem \emph{tiling}) e portanto participa até $n{=}100.000$.
+Os tamanhos medidos são $n \in \{16$, $32$, $64$, $128$, $256$, $512$, $1.000$, $5.000$, $10.000$, $100.000$, $1.000.000$, $10.000.000\}$, com gating por célula: quadráticos (\emph{Insertion Sort}, \emph{Bubble Sort}, \emph{Selection Sort} e \emph{DescReverse}) vão até $n{=}100.000$ (em $n{=}10^6$ cada execução levaria minutos); $n{=}10^7$ cobre apenas \emph{Merge Sort}, \emph{Quicksort} e baselines da biblioteca padrão, no regime fora de cache ($\approx$40\,MB por vetor \texttt{i32}). A topologia Real é limitada ao tamanho nativo do asset ($N{=}477.104$, sem \emph{tiling}) e portanto participa até $n{=}100.000$.
 
 O custo isolado do pré-processamento ($C_{\text{pre}}$) foi adicionalmente caracterizado em $n \in \{1.000, 5.000, 10.000, 20.000, 100.000, 1.000.000\}$ (Tabela~\ref{tab:precusto}) para melhor evidenciar a linearidade; o ponto $n{=}20{.}000$ foi coletado exclusivamente para essa curva de custo via ferramenta CLI (\texttt{seed} 42), sob mesmo protocolo de geração pareada, e não faz parte da matriz principal de comparação de tempos de ordenação.
 
@@ -436,6 +436,7 @@ Em contrapartida, algoritmos de complexidade $O(n \log n)$, como o \emph{Merge S
 \label{tab:tempos}
 \small
 \setlength{\tabcolsep}{3pt}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}p{0.15\columnwidth} p{0.43\columnwidth} p{0.37\columnwidth}@{}}
 \hline
 \textbf{Algoritmo} & \textbf{Ganho mínimo} & \textbf{Ganho máximo} \\
@@ -446,7 +447,7 @@ Insertion & $+28,6\%$ (Quase ordenado) & $+99,9\%$ (Invertido) \\
 Bubble & $+14,9\%$ (Aleatório) & $+100,0\%$ (Invertido) \\
 Selection & $-9,1\%$ (Invertido) & $+3,1\%$ (Tartarugas) \\
 \hline
-\end{tabular}
+\end{tabular}}%
 \end{table}
 
 \begin{table}[htbp]
@@ -658,6 +659,7 @@ TU (Tubo), RU (Runs) e RE (Real).}
 \label{tab:tempos1M}
 \small
 \setlength{\tabcolsep}{2pt}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}lrr@{}}
 \hline
 \textbf{Método} & \textbf{Mínimo} & \textbf{Máximo} \\
@@ -667,12 +669,12 @@ Quick & $-37,7\%$ (Invertido) & $+5,5\%$ (Quase ordenado) \\
 \texttt{sort\_unstable} & $-194,3\%$ (Duplicados) & $+20,0\%$ (Zigue-zague) \\
 \texttt{sort} & $-98,0\%$ (Duplicados) & $+57,5\%$ (Zigue-zague) \\
 \hline
-\end{tabular}
+\end{tabular}}%
 \end{table}
 
 Os valores de $n{=}10^6$ replicam o padrão de $n{=}10.000$: ganhos do Merge Sort restritos a Zigue-zague ($+18,6\%$), Invertido ($+6,0\%$) e Duplicados ($+4,8\%$, significativo na seed 42 mas instável entre \emph{pools}), degradação sistemática do Quicksort (até $-37,7\%$), com Tartarugas ($+0,0\%$) e Quase ordenado ($+5,5\%$) reprovados no teste pareado de robustez, confirmando a delimitação de aplicabilidade aos métodos adaptativos. Sob o critério pareado, as células não significativas em $n{=}10^6$ são Merge/Aleatório ($-0,9\%$) e Quicksort/Quase ordenado.
 
-A Figura~4 estende o quadro por todos os tamanhos coletados ($n{=}16$--$10^7$; $10^7$ apenas para quasilineares e baselines): \emph{Insertion Sort}/Aleatório sobe de $\approx0\%$ em $n{=}16$ a um platô estável de $\approx44\%$ desde $n{=}10^4$; \emph{Bubble Sort}/Aleatório é não monotônico em $n$ pequeno (pico de $+31,9\%$ em $n{=}64$); \emph{Merge Sort}/Zigue-zague cresce monotonicamente ($1,8$--$18,6\%$), enquanto \emph{Merge Sort}/Invertido é negativo em $n$ pequeno, positivo no meio e esvai-se para $-2,2\%$ em $10^7$; \emph{Quicksort}/Aleatório atenua com o tamanho ($-10,6$ a $-1,8\%$); \emph{Quicksort}/Quase ordenado é não monotônico e positivo apenas em $10^6$ ($+5,5\%$, não robusto entre \emph{pools}).
+A Figura~\ref{fig:ganho_n} estende o quadro por todos os tamanhos coletados ($n{=}16$--$10^7$; $10^7$ apenas para quasilineares e baselines): \emph{Insertion Sort}/Aleatório sobe de $\approx0\%$ em $n{=}16$ a um platô estável de $\approx44\%$ desde $n{=}10^4$; \emph{Bubble Sort}/Aleatório é não monotônico em $n$ pequeno (pico de $+31,9\%$ em $n{=}64$); \emph{Merge Sort}/Zigue-zague cresce monotonicamente ($1,8$--$18,6\%$), enquanto \emph{Merge Sort}/Invertido é negativo em $n$ pequeno, positivo no meio e esvai-se para $-2,2\%$ em $10^7$; \emph{Quicksort}/Aleatório atenua com o tamanho ($-10,6$ a $-1,8\%$); \emph{Quicksort}/Quase ordenado é não monotônico e positivo apenas em $10^6$ ($+5,5\%$, não robusto entre \emph{pools}).
 
 Contra a referência \texttt{sort\_unstable}, o método é profundamente negativo em todos os tamanhos (Padrão/Aleatório de $-0,9\%$ em $n{=}16$ até $-77,5\%$ em $n{=}1.000$), e \emph{Insertion Sort}/Serra só fica positivo acima de $n{=}128$ ($+17$--$+53\%$), com \emph{Insertion Sort}/Tubo plano próximo de zero. Esses resultados evidenciam que as tendências em função do tamanho não se estabilizam uniformemente entre as topologias, de modo que os efeitos devem ser relatados separadamente por topologia.
 
