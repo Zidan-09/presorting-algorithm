@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.14)  2 OCT 2026 21:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.14)  3 OCT 2026 11:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1224,104 +1224,104 @@ LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
-Package pgfplots info on input line 357: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
-Package pgfplots info on input line 357: Using 'lua backend=false' for axis: x coord trafo unsupported.
+Package pgfplots info on input line 384: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 384: Using 'lua backend=false' for axis: x coord trafo unsupported.
 PGFPlots: reading {resultados/fig_inversoes.csv}
 PGFPlots: reading {resultados/fig_inversoes.csv}
 
 NOTE: coordinate (Invertido,0) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
 
-Underfull \hbox (badness 3679) in paragraph at lines 369--369
+Underfull \hbox (badness 3679) in paragraph at lines 412--412
 []\T1/qtm/b/n/9 (+20) Tabela 3. |\T1/qtm/m/n/9 (+20) Re-du-ção de in-ver-sões pro-por-ci-o-nada pelo pré-
  []
 
 (resultados/tab3_pt_tabular.tex)
-Overfull \hbox (6.03008pt too wide) in paragraph at lines 1--372
+Overfull \hbox (6.03008pt too wide) in paragraph at lines 1--415
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 379--380
+Underfull \hbox (badness 10000) in paragraph at lines 422--423
 []\T1/qtm/m/n/10 (+20) O re-sul-tado evi-den-cia que a efi-cá-cia do pré-
  []
 
 
-Underfull \hbox (badness 1668) in paragraph at lines 379--380
+Underfull \hbox (badness 1668) in paragraph at lines 422--423
 \T1/qtm/m/n/10 (+20) ela tam-bém se ma-ni-festa em to-po-lo-gias cuja es-tru-tura
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 385--386
+Underfull \hbox (badness 10000) in paragraph at lines 428--429
 []\T1/qtm/m/n/10 (+20) Em con-tra-par-tida, al-go-rit-mos de com-ple-xi-dade
  []
 
 
-Underfull \hbox (badness 1931) in paragraph at lines 385--386
+Underfull \hbox (badness 1931) in paragraph at lines 428--429
 \OML/cmm/m/it/10 O\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n [] n\OT1/cmr/m/n/10 )$\T1/qtm/m/n/10 (+20) , como o \T1/qtm/m/it/10 (+20) Merge Sort\T1/qtm/m/n/10 (+20) , apre-sen-ta-ram re-sul-ta-
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 399--399
+Underfull \hbox (badness 10000) in paragraph at lines 442--442
 []|\T1/qtm/m/n/9 (+20) Insertion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 399--399
+Underfull \hbox (badness 10000) in paragraph at lines 442--442
 []|$\OT1/cmr/m/n/9 +28\OML/cmm/m/it/9 ; \OT1/cmr/m/n/9 6%$ \T1/qtm/m/n/9 (+20) (Quase or-de-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 401--401
+Underfull \hbox (badness 10000) in paragraph at lines 444--444
 []|\T1/qtm/m/n/9 (+20) Selection
  []
 
 
-Overfull \hbox (11.99634pt too wide) in paragraph at lines 393--404
+Overfull \hbox (11.99634pt too wide) in paragraph at lines 436--447
  [][] 
  []
 
 (resultados/tab4b_pt_tabular.tex) [8]
-Package pgfplots info on input line 463: Using 'lua backend=false' for axis: xmode=log unsupported (yet).
-Package pgfplots info on input line 463: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 506: Using 'lua backend=false' for axis: xmode=log unsupported (yet).
+Package pgfplots info on input line 506: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
  (resultados/tab5_pt_tabular.tex) (resultados/tabcpre_pt_tabular.tex)
-Underfull \vbox (badness 4940) has occurred while \output is active []
+Underfull \vbox (badness 5064) has occurred while \output is active []
 
  [9]
-Underfull \hbox (badness 1259) in paragraph at lines 513--514
+Underfull \hbox (badness 1259) in paragraph at lines 556--557
 \T1/qtm/m/n/10 (+20) (ex.: $\OT1/cmr/m/n/10 (100\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 000\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 50\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 000\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 49\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 999)$ \T1/qtm/m/n/10 (+20) em $\OML/cmm/m/it/10 n[]\OT1/cmr/m/n/10 10[]$\T1/qtm/m/n/10 (+20) ), a re-cur-são
  []
 
-Package pgfplots info on input line 576: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
-Package pgfplots info on input line 576: Using 'lua backend=false' for axis: x coord trafo unsupported.
+Package pgfplots info on input line 640: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 640: Using 'lua backend=false' for axis: x coord trafo unsupported.
 PGFPlots: reading {resultados/fig_tempos_insertion.csv}
 PGFPlots: reading {resultados/fig_tempos_insertion.csv}
-Package pgfplots info on input line 580: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
-Package pgfplots info on input line 580: Using 'lua backend=false' for axis: x coord trafo unsupported.
+Package pgfplots info on input line 650: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 650: Using 'lua backend=false' for axis: x coord trafo unsupported.
 PGFPlots: reading {resultados/fig_tempos_bubble.csv}
 PGFPlots: reading {resultados/fig_tempos_bubble.csv}
-Package pgfplots info on input line 584: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
-Package pgfplots info on input line 584: Using 'lua backend=false' for axis: x coord trafo unsupported.
+Package pgfplots info on input line 660: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 660: Using 'lua backend=false' for axis: x coord trafo unsupported.
 PGFPlots: reading {resultados/fig_tempos_selection.csv}
 PGFPlots: reading {resultados/fig_tempos_selection.csv}
-Package pgfplots info on input line 588: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
-Package pgfplots info on input line 588: Using 'lua backend=false' for axis: x coord trafo unsupported.
+Package pgfplots info on input line 670: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 670: Using 'lua backend=false' for axis: x coord trafo unsupported.
 PGFPlots: reading {resultados/fig_tempos_merge.csv}
 PGFPlots: reading {resultados/fig_tempos_merge.csv}
-Package pgfplots info on input line 592: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
-Package pgfplots info on input line 592: Using 'lua backend=false' for axis: x coord trafo unsupported.
+Package pgfplots info on input line 680: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 680: Using 'lua backend=false' for axis: x coord trafo unsupported.
 PGFPlots: reading {resultados/fig_tempos_quick.csv}
 PGFPlots: reading {resultados/fig_tempos_quick.csv}
-[10] [11]
-Underfull \hbox (badness 1210) in paragraph at lines 623--624
+[10]
+Underfull \hbox (badness 1210) in paragraph at lines 723--724
 \T1/qtm/m/n/10 (+20) em $\OML/cmm/m/it/10 n[]\OT1/cmr/m/n/10 16$ \T1/qtm/m/n/10 (+20) a um platô es-tá-vel de $\OMS/cmsy/m/n/10 ^^Y$\T1/qtm/m/n/10 (+20) 44% desde $\OML/cmm/m/it/10 n[]\OT1/cmr/m/n/10 10[]$\T1/qtm/m/n/10 (+20) ;
  []
 
 
-Underfull \hbox (badness 1205) in paragraph at lines 623--624
+Underfull \hbox (badness 1205) in paragraph at lines 723--724
 \T1/qtm/m/n/10 (+20) de $\OT1/cmr/m/n/10 +31\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 9%$ \T1/qtm/m/n/10 (+20) em $\OML/cmm/m/it/10 n[]\OT1/cmr/m/n/10 64$\T1/qtm/m/n/10 (+20) ) com alta em $\OT1/cmr/m/n/10 10[]$ \T1/qtm/m/n/10 (+20) (8,9--25,6%);
  []
 
-Package pgfplots info on input line 642: Using 'lua backend=false' for axis: xmode=log unsupported (yet).
+Package pgfplots info on input line 750: Using 'lua backend=false' for axis: xmode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_gain_vs_n.csv}
 NOTE: coordinate (1000000,nan) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
 NOTE: coordinate (10000000,nan) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
@@ -1339,15 +1339,12 @@ NOTE: coordinate (10000000,nan) has been dropped because it is unbounded (in y).
 PGFPlots: reading {resultados/fig_gain_vs_n.csv}
 NOTE: coordinate (1000000,nan) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
 NOTE: coordinate (10000000,nan) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
-
-Underfull \vbox (badness 2134) has occurred while \output is active []
-
- [12]
-Underfull \hbox (badness 3240) in paragraph at lines 665--666
+[11]
+Underfull \hbox (badness 3240) in paragraph at lines 773--774
 []\T1/qtm/m/n/10 (+20) Por ou-tro lado, nos al-go-rit-mos de com-ple-xi-dade
  []
 
-(resultados/tab4_pt_tabular.tex) (resultados/tab4c_pt_tabular.tex) (resultados/tab6_pt_tabular.tex) (main.bbl
+(resultados/tab4_pt_tabular.tex) (resultados/tab4c_pt_tabular.tex) (resultados/tab6_pt_tabular.tex) (main.bbl [12] [13] [14]
 Underfull \hbox (badness 3735) in paragraph at lines 59--64
 []\T1/qtm/m/n/10 (+20) Nascimento, S. d. P. (2026).  Pre-sor-ting al-go-rithm.
  []
@@ -1357,7 +1354,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--64
 \T1/qtm/m/n/10 (+20) Dis-po-ní-vel em: [][]$\T1/cmtt/b/n/10 https : / / github . com / Zidan-[]09 /
  []
 
-) [13] [14] [15] (main.aux)
+) [15
+
+] (main.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-07-20>
@@ -1374,15 +1373,15 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 9DC638D321F5EEAA4893B5AB63ECBED5;4730.
  ) 
 Here is how much of TeX's memory you used:
- 46592 strings out of 467501
- 1051539 string characters out of 5408550
- 1645033 words of memory out of 5000000
- 74609 multiletter control sequences out of 15000+600000
- 948293 words of font info for 336 fonts, out of 8000000 for 9000
+ 46585 strings out of 467501
+ 1051313 string characters out of 5408550
+ 1683621 words of memory out of 5000000
+ 74596 multiletter control sequences out of 15000+600000
+ 948608 words of font info for 339 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 132i,19n,135p,1661b,2736s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 132i,19n,135p,1661b,2744s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\zidan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\zidan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi525\ectt0800.pk> <C:\Users\zidan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\zidan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/fira/FiraSans-Bold.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/fira/FiraSans-BoldItalic.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/fira/FiraSans-Book.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/fira/FiraSans-BookItalic.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/fontawesome/FontAwesome.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmb.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmr.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmri.pfb>
-Output written on main.pdf (15 pages, 692409 bytes).
+Output written on main.pdf (15 pages, 692305 bytes).
 PDF statistics:
  633 PDF objects out of 1000 (max. 8388607)
  73 named destinations out of 1000 (max. 500000)
