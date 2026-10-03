@@ -19,6 +19,7 @@
 \usepackage[ruled,vlined,portuguese]{algorithm2e}
 \usepackage{tabularx}
 \usepackage{graphicx}
+\usepackage{dblfloatfix}
 
 \pgfplotsset{
     compat=1.18,
@@ -433,15 +434,15 @@ Em contrapartida, algoritmos de complexidade $O(n \log n)$, como o \emph{Merge S
 \label{tab:tempos}
 \small
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}p{0.20\columnwidth} p{0.4\columnwidth} p{0.4\columnwidth}@{}}
+\begin{tabular}{@{}p{0.15\columnwidth} p{0.43\columnwidth} p{0.37\columnwidth}@{}}
 \hline
 \textbf{Algoritmo} & \textbf{Ganho mínimo} & \textbf{Ganho máximo} \\
 \hline
-Merge Sort & $-14,2\%$ (Tartarugas) & $+15,7\%$ (Zigue-zague) \\
-Quicksort & $-38,4\%$ (Invertido) & $+0,5\%$ (Zigue-zague) \\
-Insertion Sort & $+28,6\%$ (Quase ordenado) & $+99,9\%$ (Invertido) \\
-Bubble Sort & $+14,9\%$ (Aleatório) & $+100,0\%$ (Invertido) \\
-Selection Sort & $-9,1\%$ (Invertido) & $+3,1\%$ (Tartarugas) \\
+Merge & $-14,2\%$ (Tartarugas) & $+15,7\%$ (Zigue-zague) \\
+Quick & $-38,4\%$ (Invertido) & $+0,5\%$ (Zigue-zague) \\
+Insertion & $+28,6\%$ (Quase ordenado) & $+99,9\%$ (Invertido) \\
+Bubble & $+14,9\%$ (Aleatório) & $+100,0\%$ (Invertido) \\
+Selection & $-9,1\%$ (Invertido) & $+3,1\%$ (Tartarugas) \\
 \hline
 \end{tabular}
 \end{table}
@@ -576,7 +577,7 @@ A Figura~\ref{fig:tempos} sintetiza essa dinâmica nas dez topologias: aproveita
     group style={
         group size=2 by 3,
         horizontal sep=35pt,
-        vertical sep=30pt
+        vertical sep=35pt
     },
     ylabel={Tempo ($\mu s$)},
     width=0.43\textwidth,
@@ -710,8 +711,8 @@ TU (Tubo), RU (Runs) e RE (Real).}
 \hline
 \textbf{Método} & \textbf{Mínimo} & \textbf{Máximo} \\
 \hline
-Merge Sort & $-11,5\%$ (Tartarugas) & $+18,6\%$ (Zigue-zague) \\
-Quicksort & $-37,7\%$ (Invertido) & $+5,5\%$ (Quase ordenado) \\
+Merge & $-11,5\%$ (Tartarugas) & $+18,6\%$ (Zigue-zague) \\
+Quick & $-37,7\%$ (Invertido) & $+5,5\%$ (Quase ordenado) \\
 \texttt{sort\_uns} & $-194,3\%$ (Duplicados) & $+20,0\%$ (Zigue-zague) \\
 \texttt{sort} & $-98,0\%$ (Duplicados) & $+57,5\%$ (Zigue-zague) \\
 \hline
@@ -720,7 +721,9 @@ Quicksort & $-37,7\%$ (Invertido) & $+5,5\%$ (Quase ordenado) \\
 
 Os valores de $n{=}10^6$ replicam o padrão de $n{=}10.000$: ganhos do Merge Sort restritos a Zigue-zague ($+18,6\%$), Invertido ($+6,0\%$) e Duplicados ($+4,8\%$, significativo na seed 42 mas instável entre \emph{pools}), degradação sistemática do Quicksort (até $-37,7\%$), com Tartarugas ($+0,0\%$) e Quase ordenado ($+5,5\%$) reprovados no teste pareado de robustez, confirmando a delimitação de aplicabilidade aos métodos adaptativos. Sob o critério pareado, as células não significativas em $n{=}10^6$ são Merge/Aleatório ($-0,9\%$) e Quicksort/Quase ordenado.
 
-A Figura~\ref{fig:ganho_n} estende o quadro por todos os tamanhos coletados ($n{=}16$--$10^7$): Insertion/Aleatório sobe de $\approx$0\% em $n{=}16$ a um platô estável de $\approx$44\% desde $n{=}10^4$; Bubble/Aleatório é não monotônico em $n$ pequeno (pico de $+31,9\%$ em $n{=}64$) com alta em $10^5$ (8,9--25,6\%); Merge/Zigue-zague cresce monotonicamente (1,8--18,6\%), enquanto Merge/Invertido é negativo em $n$ pequeno (até $-5,3\%$), positivo no meio ($+3,3$--$+11,5\%$) e esvai-se para $-2,2\%$ em $10^7$; Quicksort/Aleatório atenua com o tamanho ($-10,6$ a $-1,8\%$); Quicksort/Quase ordenado é não monotônico e positivo apenas em $10^6$ ($+5,5\%$, não robusto entre \emph{pools}). Contra a referência \texttt{sort\_unstable}, o método é profundamente negativo em todos os tamanhos (StdUnstable/Aleatório de $-0,9\%$ em $n{=}16$ até $-77,5\%$ em $n{=}1.000$), e Insertion/Serra só fica positivo acima de $n{=}128$ ($+17$--$+53\%$), com Insertion/Tubo plano próximo de zero --- evidência de que as tendências por tamanho não se estabilizam uniformemente e devem ser relatadas por topologia.
+A Figura 4 estende o quadro por todos os tamanhos coletados ($n=16$–$10^7$): Insertion/Aleatório sobe de $\approx0\%$ em $n=16$ a um platô estável de $\approx44\%$ desde $n=10^4$; Bubble/Aleatório é não monotônico em $n$ pequeno (pico de $+31,9\%$ em $n=64$), com alta em $10^5$ ($8,9$–$25,6\%$); Merge/Zigue-zague cresce monotonicamente ($1,8$-$18,6\%$), enquanto Merge/Invertido é negativo em $n$ pequeno (até $-5,3\%$), positivo no meio ($+3,3$–$+11,5\%$) e esvai-se para $-2,2\%$ em $10^7$; Quicksort/Aleatório atenua com o tamanho ($-10,6$ a $-1,8\%$); Quicksort/Quase ordenado é não monotônico e positivo apenas em $10^6$ ($+5,5\%$, não robusto entre pools).
+
+Contra a referência \texttt{sort\_unstable}, o método é profundamente negativo em todos os tamanhos (StdUnstable/Aleatório de $-0,9\%$ em $n=16$ até $-77,5\%$ em $n=1.000$), e Insertion/Serra só fica positivo acima de $n=128$ ($+17$-$+53\%$), com Insertion/Tubo plano próximo de zero. Esses resultados evidenciam que as tendências em função do tamanho não se estabilizam uniformemente entre as topologias, de modo que os efeitos devem ser relatados separadamente por topologia.
 
 \begin{figure}[htbp]
 \centering
@@ -745,7 +748,7 @@ A Figura~\ref{fig:ganho_n} estende o quadro por todos os tamanhos coletados ($n{
     ymajorgrids, xmajorgrids,
     grid style={dashed,gray!30},
     width=0.9\columnwidth, height=8.6cm,
-    legend style={at={(0.5,-0.45)}, anchor=north, legend columns=2, font=\scriptsize},
+    legend style={at={(0.5,-0.20)}, anchor=north, legend columns=2, font=\scriptsize},
     thick
 ]
 \addplot[color=black, mark=*, mark size=1.6pt, thick] table[x=n, y=insertion_random] {resultados/fig_gain_vs_n.csv};
@@ -781,21 +784,21 @@ Como trabalhos futuros, recomenda-se (i) a derivação da forma fechada incluind
 
 Este apêndice apresenta os valores por célula (média $\pm$ meia-largura do IC 95\%) que fundamentam as Tabelas~\ref{tab:tempos}, \ref{tab:novastopologias} e \ref{tab:tempos1M}, com as marcas de significância do delineamento pareado ($^{*}$ IC 95\% do \emph{bootstrap} exclui o zero na seed 42; $^{\dagger}$ adicionalmente estável em sinal nos cinco \emph{pools}).
 
-\begin{table*}[htbp]
+\begin{table*}[!t]
 \centering
 \caption{Tempo médio por execução (em \textmu{}s) e ganho do pré-processamento para vetores de 10.000 elementos: algoritmos clássicos nas seis topologias clássicas. Fonte: Criterion, seed 42.}
 \label{tab:apA}
 \input{resultados/tab4_pt_tabular}
 \end{table*}
 
-\begin{table*}[htbp]
+\begin{table*}[!t]
 \centering
 \caption{Tempo médio por execução (em \textmu{}s) e ganho do pré-processamento para vetores de 10.000 elementos: todos os oito métodos nas novas topologias.}
 \label{tab:apB}
 \input{resultados/tab4c_pt_tabular}
 \end{table*}
 
-\begin{table*}[htbp]
+\begin{table*}[!t]
 \centering
 \caption{Tempo médio (ms) e ganho do pré-processamento para vetores de $1.000.000$ de elementos: métodos quasilineares e baselines padrão (quadráticos omitidos por inviabilidade temporal). Fonte: Criterion, 50 amostras, IC 95\%. Linhas abaixo da regra são as novas topologias (Real excluído pelo teto do asset nativo).}
 \label{tab:apC}
