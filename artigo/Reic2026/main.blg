@@ -5,44 +5,46 @@ Reallocating 'name_of_file' (item size: 1) to 12 items.
 The style file: apalike-sol.bst
 Reallocating 'name_of_file' (item size: 1) to 12 items.
 Database file #1: referencias.bib
-You've used 13 entries,
+Warning--empty doi in Musser1997IntrospectiveSA
+You've used 17 entries,
             1961 wiz_defined-function locations,
-            562 strings with 5899 characters,
-and the built_in function-call counts, 4890 in all, are:
-= -- 480
-> -- 169
-< -- 13
-+ -- 58
-- -- 54
-* -- 386
-:= -- 844
-add.period$ -- 42
-call.type$ -- 13
-change.case$ -- 88
-chr.to.int$ -- 13
-cite$ -- 13
-duplicate$ -- 207
-empty$ -- 359
-format.name$ -- 75
-if$ -- 973
+            589 strings with 6467 characters,
+and the built_in function-call counts, 6200 in all, are:
+= -- 615
+> -- 203
+< -- 17
++ -- 68
+- -- 64
+* -- 490
+:= -- 1080
+add.period$ -- 55
+call.type$ -- 17
+change.case$ -- 113
+chr.to.int$ -- 17
+cite$ -- 18
+duplicate$ -- 258
+empty$ -- 457
+format.name$ -- 91
+if$ -- 1225
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 18
-newline$ -- 71
-num.names$ -- 39
-pop$ -- 90
+missing$ -- 21
+newline$ -- 92
+num.names$ -- 51
+pop$ -- 102
 preamble$ -- 1
-purify$ -- 92
+purify$ -- 117
 quote$ -- 0
-skip$ -- 158
+skip$ -- 201
 stack$ -- 0
-substring$ -- 307
-swap$ -- 36
+substring$ -- 405
+swap$ -- 39
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 66
-warning$ -- 0
-while$ -- 38
+type$ -- 90
+warning$ -- 1
+while$ -- 50
 width$ -- 0
-write$ -- 182
+write$ -- 237
+(There was 1 warning)

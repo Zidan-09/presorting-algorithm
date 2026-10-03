@@ -7,6 +7,12 @@ Auger, N., Jug{\'e}, V., Nicaud, C., and Pivoteau, C. (2018).
   Algorithms (ESA 2018)}, volume 112 of {\em LIPIcs}, pages 4:1--4:13. DOI:
   10.4230/LIPIcs.ESA.2018.4.
 
+\bibitem[Bentley and McIlroy, 1993]{bentley_engineering_1993}
+Bentley, J.~L. and McIlroy, M.~D. (1993).
+\newblock Engineering a sort function.
+\newblock {\em Software: Practice and Experience}, 23(11):1249--1265. DOI:
+  10.1002/spe.4380231105.
+
 \bibitem[Cormen {\em et~al}., 2022]{cormen_introduction_2022}
 Cormen, T.~H., Leiserson, C.~E., Rivest, R.~L., and Stein, C. (2022).
 \newblock {\em Introduction to Algorithms}.
@@ -30,6 +36,11 @@ Gil, A.~C. (2019).
 \newblock {\em Métodos e técnicas de pesquisa social}.
 \newblock Editora Atlas Ltda.
 
+\bibitem[Hoare, 1962]{hoare_quicksort_1962}
+Hoare, C. A.~R. (1962).
+\newblock Quicksort.
+\newblock {\em The Computer Journal}, 5(1):10--16. DOI: 10.1093/comjnl/5.1.10.
+
 \bibitem[Hwang {\em et~al}., 2000]{hwang_presorting_2000}
 Hwang, H.-K., Yang, B.-Y., and Yeh, Y.-N. (2000).
 \newblock Presorting algorithms: {An} average-case point of view.
@@ -52,8 +63,13 @@ Knuth, D.~E. (1973).
 Mannila, H. (1985).
 \newblock Measures of presortedness and optimal sorting algorithms.
 \newblock {\em IEEE Transactions on Computers}, C-34(4):318--325.
-\newblock Versão estendida publicada originalmente como resumo no ICALP~1984
-  (LNCS~172, pp.~324--336). DOI: 10.1109/TC.1985.5009382.
+\newblock Apresentado no ICALP~1984 (LNCS~172, pp.~324--336); versão estendida
+  no periódico. DOI: 10.1109/TC.1985.5009382.
+
+\bibitem[Musser, 1997]{Musser1997IntrospectiveSA}
+Musser, D.~R. (1997).
+\newblock Introspective sorting and selection algorithms.
+\newblock {\em Software: Practice and Experience}, 27.
 
 \bibitem[Nascimento, 2026]{nascimento_repositorio_2026}
 Nascimento, S. d.~P. (2026).
@@ -61,6 +77,14 @@ Nascimento, S. d.~P. (2026).
 \newblock Disponível em:
   \url{https://github.com/Zidan-09/presorting-algorithm}.
 \newblock Repositório de código-fonte e dados experimentais.
+
+\bibitem[{Rust Standard Library}, 2026]{rust_std_sort_unstable}
+{Rust Standard Library} (2026).
+\newblock Method \texttt{slice::sort\_unstable} (ipnsort) and
+  \texttt{slice::sort}.
+\newblock Disponível em:
+  \url{https://doc.rust-lang.org/std/primitive.slice.html}.
+\newblock Acesso em 2026.
 
 \bibitem[Sampieri {\em et~al}., 2021]{sampieri_metodologia_2021}
 Sampieri, R.~H., Collado, C.~F., and Lucio, M. d. P.~B. (2021).
