@@ -17,6 +17,8 @@
 \usepgfplotslibrary{groupplots}
 \usepackage{microtype}
 \usepackage[ruled,vlined,portuguese]{algorithm2e}
+\usepackage{tabularx}
+\usepackage{graphicx}
 
 \pgfplotsset{
     compat=1.18,
@@ -35,7 +37,7 @@
             anchorcolor=darkblue,citecolor=darkblue}
 
 \jid{REIC}
-\jtitle{Revista Eletrônica de Iniciação Científica em Computação, 202X, XX:1}
+\jtitle{Revista Eletrônica de Iniciação Científica em Computação, 2026, XX:1}
 \issn{3085-8461}
 \doi{10.5753/reic.202X.XXXXXX}
 \copyrightstatement{This work is licensed under a Creative Commons Attribution 4.0 International License}
@@ -163,7 +165,7 @@ Os experimentos foram realizados em ambiente controlado, cujas especificações 
 \centering
 \caption{Ambiente experimental e ferramentas utilizadas.}
 \label{tab:ambiente}
-\begin{tabular}{ll}
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
 \hline
 \textbf{Componente} & \textbf{Configuração / Especificação} \\
 \hline
@@ -174,7 +176,7 @@ Linguagem & Rust 1.96.0 (perfil \emph{release}) \\
 Ferramentas de Medição & Criterion 0.5 e Ferramenta CLI do Projeto \\
 Geração de dados & Seeds 42--46 (\texttt{ChaCha8Rng}), entradas pareadas \\
 \hline
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 Para avaliar a resiliência e a adaptabilidade dos algoritmos sob diferentes graus de entropia, foram projetados dez padrões estruturais de vetores de entrada (Tabela~\ref{tab:datasets}). A aleatoriedade determinística foi assegurada pelo pareamento rigoroso das sementes de geração entre as abordagens: para cada combinação de topologia e tamanho, um conjunto fixo de 50 vetores é gerado com a semente $42 \oplus n \oplus \text{tipo}$ (via \texttt{ChaCha8Rng}) e compartilhado por todos os algoritmos e pelas duas variantes (pura e com pré-processamento), garantindo a comparabilidade pareada das medições. Vetores determinísticos (Invertido, Zigue-zague e Tartarugas) são idênticos entre as 50 réplicas do \emph{pool}; vetores estocásticos (Aleatório, Duplicados e Quase ordenado) variam entre réplicas pela semente, mas são idênticos entre algoritmos para a mesma réplica. A matriz central é replicada com cinco \emph{pools} independentes (seeds 42--46) para análise de estabilidade entre \emph{pools} (Seção~3.3).
@@ -188,7 +190,7 @@ O custo isolado do pré-processamento ($C_{\text{pre}}$) foi adicionalmente cara
 \caption{Conjuntos de dados e caracterização das topologias de entrada.}
 \label{tab:datasets}
 \small
-\begin{tabular}{ll}
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
 \hline
 \textbf{Topologia} & \textbf{Descrição do Padrão Estrutural} \\
 \hline
@@ -203,7 +205,7 @@ Tubo & $a[i]=i$ se $i<n/2$, senão $a[i]=n-1-i$ \\
 Runs & 4 blocos invertidos disjuntos nos quartis do vetor \\
 Real & prefixo de $n$ bytes de asset congelado ($N{=}477.104$) \\
 \hline
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 \subsection{Especificação e Implementação dos Algoritmos Avaliados}
@@ -246,7 +248,7 @@ A configuração de medição foi ajustada por perfil de tamanho e complexidade 
 
 Critério estatístico: para cada célula e cada \emph{pool}, as variantes pura e com pré-processamento são comparadas nos \emph{mesmos} vetores (delineamento pareado, $R{=}50$ posições). A estatística de efeito é a média das log-razões por vetor $\overline{\log(T_{\text{pre}}/T_{\text{puro}})}$, com intervalo de confiança percentílico por \emph{bootstrap} de 95\% ($B{=}10.000$ reamostragens, RNG determinística por célula); a ordem dos braços é alternada entre repetições para controlar deriva temporal. Um efeito é relatado como significativo quando o IC pareado exclui o zero, marcado com $^{*}$ nas tabelas completas (Tabela~\ref{tab:baselines} e Apêndice); $^{\dagger}$ marca efeitos significativos \emph{e} estáveis em sinal nos cinco \emph{pools}. Células significativas no pareamento mas instáveis entre \emph{pools} (ex.\ Quicksort/Quase ordenado em $n{=}10^6$) são explicitamente sinalizadas como não robustas. Isso substitui a regra conservadora anterior de não sobreposição de ICs, que a análise pareada supera (notavelmente, Selection/Zigue-zague em $n{=}10.000$ é não significativo no pareamento).
 
-Além das métricas temporais, a corretude de cada cenário foi verificada fora da região cronometrada: para todo (algoritmo, topologia, tamanho), confirma-se que a saída é uma permutação ordenada da entrada (comparação com \texttt{sort\_unstable}) tanto na variante pura quanto na com pré-processamento. O número de inversões de cada vetor do conjunto compartilhado, antes e depois do pré-processamento, é registrado em arquivos auxiliares (\emph{companion}) do harness (\texttt{target/criterion/.../\_companion/inversoes\_\{tipo\}\_\{n\}.csv}), garantindo que as tabelas de inversões deste artigo derivam exatamente dos mesmos vetores cronometrados.
+Além das métricas temporais, a corretude de cada cenário foi verificada fora da região cronometrada: para todo (algoritmo, topologia, tamanho), confirma-se que a saída é uma permutação ordenada da entrada (comparação com \texttt{sort\_unstable}) tanto na variante pura quanto na com pré-processamento. O número de inversões de cada vetor do conjunto compartilhado, antes e depois do pré-processamento, é registrado em arquivos auxiliares (\emph{companion}) do harness, garantindo que as tabelas de inversões deste artigo derivam exatamente dos mesmos vetores cronometrados.
 
 A quantificação experimental do número exato de inversões $I$ utiliza uma implementação baseada no algoritmo MergeSort modificado, com complexidade temporal $O(n \log n)$ \citep{cormen_introduction_2022}. Durante a etapa de intercalação de dois subvetores ordenados $L$ e $R$, quando um elemento $R[j]$ é menor que $L[i]$, adiciona-se exatamente $|L| - i$ ao contador de inversões. Essa abordagem elimina o gargalo quadrático da contagem direta $O(n^2)$, permitindo a avaliação de vetores com ordens de grandeza de $10^5$ a $10^6$ elementos dentro do protocolo experimental.
 
@@ -387,7 +389,8 @@ Em contrapartida, algoritmos de complexidade $O(n \log n)$, como o \emph{Merge S
 \caption{Faixa de ganho do pré-processamento por algoritmo para vetores de 10.000 elementos (mínimo e máximo sobre as seis topologias clássicas; tipos entre parênteses). Os valores por célula, com marcas de significância, estão na Tabela~\ref{tab:apA} do Apêndice.}
 \label{tab:tempos}
 \small
-\begin{tabular}{lrr}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}p{0.20\columnwidth} p{0.4\columnwidth} p{0.4\columnwidth}@{}}
 \hline
 \textbf{Algoritmo} & \textbf{Ganho mínimo} & \textbf{Ganho máximo} \\
 \hline
@@ -602,17 +605,19 @@ A Figura~\ref{fig:tempos} sintetiza essa dinâmica nas dez topologias: aproveita
 \caption{Faixa de ganho do pré-processamento por método para vetores de $1.000.000$ de elementos (mínimo e máximo sobre as topologias medidas; Real excluído pelo teto do asset nativo). Os valores por célula, com marcas de significância, estão na Tabela~\ref{tab:apC} do Apêndice.}
 \label{tab:tempos1M}
 \small
-\begin{tabular}{lrr}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrr@{}}
 \hline
-\textbf{Método} & \textbf{Ganho mínimo} & \textbf{Ganho máximo} \\
+\textbf{Método} & \textbf{Mínimo} & \textbf{Máximo} \\
 \hline
 Merge Sort & $-11,5\%$ (Tartarugas) & $+18,6\%$ (Zigue-zague) \\
 Quicksort & $-37,7\%$ (Invertido) & $+5,5\%$ (Quase ordenado) \\
-\texttt{sort\_unstable} & $-194,3\%$ (Duplicados) & $+20,0\%$ (Zigue-zague) \\
+\texttt{sort\_uns} & $-194,3\%$ (Duplicados) & $+20,0\%$ (Zigue-zague) \\
 \texttt{sort} & $-98,0\%$ (Duplicados) & $+57,5\%$ (Zigue-zague) \\
 \hline
 \end{tabular}
 \end{table}
+
 Os valores de $n{=}10^6$ replicam o padrão de $n{=}10.000$: ganhos do Merge Sort restritos a Zigue-zague ($+18,6\%$), Invertido ($+6,0\%$) e Duplicados ($+4,8\%$, significativo na seed 42 mas instável entre \emph{pools}), degradação sistemática do Quicksort (até $-37,7\%$), com Tartarugas ($+0,0\%$) e Quase ordenado ($+5,5\%$) reprovados no teste pareado de robustez, confirmando a delimitação de aplicabilidade aos métodos adaptativos. Sob o critério pareado, as células não significativas em $n{=}10^6$ são Merge/Aleatório ($-0,9\%$) e Quicksort/Quase ordenado.
 
 A Figura~\ref{fig:ganho_n} estende o quadro por todos os tamanhos coletados ($n{=}16$--$10^7$): Insertion/Aleatório sobe de $\approx$0\% em $n{=}16$ a um platô estável de $\approx$44\% desde $n{=}10^4$; Bubble/Aleatório é não monotônico em $n$ pequeno (pico de $+31,9\%$ em $n{=}64$) com alta em $10^5$ (8,9--25,6\%); Merge/Zigue-zague cresce monotonicamente (1,8--18,6\%), enquanto Merge/Invertido é negativo em $n$ pequeno (até $-5,3\%$), positivo no meio ($+3,3$--$+11,5\%$) e esvai-se para $-2,2\%$ em $10^7$; Quicksort/Aleatório atenua com o tamanho ($-10,6$ a $-1,8\%$); Quicksort/Quase ordenado é não monotônico e positivo apenas em $10^6$ ($+5,5\%$, não robusto entre \emph{pools}). Contra a referência \texttt{sort\_unstable}, o método é profundamente negativo em todos os tamanhos (StdUnstable/Aleatório de $-0,9\%$ em $n{=}16$ até $-77,5\%$ em $n{=}1.000$), e Insertion/Serra só fica positivo acima de $n{=}128$ ($+17$--$+53\%$), com Insertion/Tubo plano próximo de zero --- evidência de que as tendências por tamanho não se estabilizam uniformemente e devem ser relatadas por topologia.

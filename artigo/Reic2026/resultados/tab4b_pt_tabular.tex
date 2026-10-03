@@ -1,25 +1,32 @@
-\footnotesize
-\begin{tabular}{llrrr}
+\scriptsize
+
+\setlength{\tabcolsep}{3.5pt}
+
+\begin{tabular}{@{}llrrr@{}}
 \hline
 \textbf{Algoritmo} & \textbf{Tipo} & \textbf{Puro} & \textbf{Com pré} & \textbf{Ganho} \\
 \hline
-\texttt{sort\_unstable} & Aleatório & 80,41 $\pm$ 2,35 & 107,55 $\pm$ 0,48 & -33,8\%$^{\dagger}$ \\
-\texttt{sort\_unstable} & Tartarugas & 47,26 $\pm$ 0,28 & 51,34 $\pm$ 0,28 & -8,7\%$^{\dagger}$ \\
-\texttt{sort\_unstable} & Zigue-zague & 70,63 $\pm$ 0,46 & 66,09 $\pm$ 0,29 & +6,4\%$^{\dagger}$ \\
-\texttt{sort\_unstable} & Quase ordenado & 76,10 $\pm$ 0,36 & 83,16 $\pm$ 0,43 & -9,3\%$^{\dagger}$ \\
-\texttt{sort\_unstable} & Duplicados & 15,08 $\pm$ 0,28 & 40,83 $\pm$ 0,19 & -170,8\%$^{\dagger}$ \\
-\texttt{sort\_unstable} & Invertido & 3,75 $\pm$ 0,12 & 7,86 $\pm$ 0,19 & -109,7\%$^{\dagger}$ \\
-\texttt{sort} & Aleatório & 112,00 $\pm$ 0,69 & 140,99 $\pm$ 0,82 & -25,9\%$^{\dagger}$ \\
-\texttt{sort} & Tartarugas & 23,44 $\pm$ 0,25 & 27,79 $\pm$ 0,17 & -18,5\%$^{\dagger}$ \\
-\texttt{sort} & Zigue-zague & 93,45 $\pm$ 0,70 & 47,60 $\pm$ 0,29 & +49,1\%$^{\dagger}$ \\
-\texttt{sort} & Quase ordenado & 124,33 $\pm$ 0,64 & 126,66 $\pm$ 0,47 & -1,9\% \\
-\texttt{sort} & Duplicados & 17,85 $\pm$ 0,55 & 43,79 $\pm$ 0,28 & -145,3\%$^{\dagger}$ \\
-\texttt{sort} & Invertido & 4,48 $\pm$ 0,17 & 8,43 $\pm$ 0,22 & -88,2\%$^{\dagger}$ \\
-\texttt{desc\_reverse} & Aleatório & 5.297,50 $\pm$ 27,50 & 2.966,86 $\pm$ 17,17 & +44,0\%$^{\dagger}$ \\
-\texttt{desc\_reverse} & Tartarugas & 6.421,62 $\pm$ 30,47 & 3.826,81 $\pm$ 19,40 & +40,4\%$^{\dagger}$ \\
-\texttt{desc\_reverse} & Zigue-zague & 5.299,78 $\pm$ 31,93 & 13,42 $\pm$ 0,12 & +99,8\%$^{\dagger}$ \\
-\texttt{desc\_reverse} & Quase ordenado & 174,43 $\pm$ 3,28 & 126,71 $\pm$ 2,56 & +27,4\%$^{\dagger}$ \\
-\texttt{desc\_reverse} & Duplicados & 3.569,32 $\pm$ 17,29 & 1.414,40 $\pm$ 8,50 & +60,4\%$^{\dagger}$ \\
-\texttt{desc\_reverse} & Invertido & 11,03 $\pm$ 0,32 & 11,86 $\pm$ 0,21 & -7,5\%$^{\dagger}$ \\
+
+\texttt{sort\_un} & Aleatório & 80,41 $\pm$ 2,35 & 107,55 $\pm$ 0,48 & $-33,8\%^{\dagger}$ \\
+\texttt{sort\_un} & Tartarugas & 47,26 $\pm$ 0,28 & 51,34 $\pm$ 0,28 & $-8,7\%^{\dagger}$ \\
+\texttt{sort\_un} & Zigue-zague & 70,63 $\pm$ 0,46 & 66,09 $\pm$ 0,29 & $+6,4\%^{\dagger}$ \\
+\texttt{sort\_un} & Quase ordenado & 76,10 $\pm$ 0,36 & 83,16 $\pm$ 0,43 & $-9,3\%^{\dagger}$ \\
+\texttt{sort\_un} & Duplicados & 15,08 $\pm$ 0,28 & 40,83 $\pm$ 0,19 & $-170,8\%^{\dagger}$ \\
+\texttt{sort\_un} & Invertido & 3,75 $\pm$ 0,12 & 7,86 $\pm$ 0,19 & $-109,7\%^{\dagger}$ \\
+
+\texttt{sort} & Aleatório & 112,00 $\pm$ 0,69 & 140,99 $\pm$ 0,82 & $-25,9\%^{\dagger}$ \\
+\texttt{sort} & Tartarugas & 23,44 $\pm$ 0,25 & 27,79 $\pm$ 0,17 & $-18,5\%^{\dagger}$ \\
+\texttt{sort} & Zigue-zague & 93,45 $\pm$ 0,70 & 47,60 $\pm$ 0,29 & $+49,1\%^{\dagger}$ \\
+\texttt{sort} & Quase ordenado & 124,33 $\pm$ 0,64 & 126,66 $\pm$ 0,47 & $-1,9\%$ \\
+\texttt{sort} & Duplicados & 17,85 $\pm$ 0,55 & 43,79 $\pm$ 0,28 & $-145,3\%^{\dagger}$ \\
+\texttt{sort} & Invertido & 4,48 $\pm$ 0,17 & 8,43 $\pm$ 0,22 & $-88,2\%^{\dagger}$ \\
+
+\texttt{desc\_rev} & Aleatório & 5.297,50 $\pm$ 27,50 & 2.966,86 $\pm$ 17,17 & $+44,0\%^{\dagger}$ \\
+\texttt{desc\_rev} & Tartarugas & 6.421,62 $\pm$ 30,47 & 3.826,81 $\pm$ 19,40 & $+40,4\%^{\dagger}$ \\
+\texttt{desc\_rev} & Zigue-zague & 5.299,78 $\pm$ 31,93 & 13,42 $\pm$ 0,12 & $+99,8\%^{\dagger}$ \\
+\texttt{desc\_rev} & Quase ordenado & 174,43 $\pm$ 3,28 & 126,71 $\pm$ 2,56 & $+27,4\%^{\dagger}$ \\
+\texttt{desc\_rev} & Duplicados & 3.569,32 $\pm$ 17,29 & 1.414,40 $\pm$ 8,50 & $+60,4\%^{\dagger}$ \\
+\texttt{desc\_rev} & Invertido & 11,03 $\pm$ 0,32 & 11,86 $\pm$ 0,21 & $-7,5\%^{\dagger}$ \\
+
 \hline
 \end{tabular}
