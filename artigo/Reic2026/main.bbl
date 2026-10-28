@@ -72,13 +72,6 @@ Musser, D.~R. (1997).
 \newblock {\em Software: Practice and Experience}, 27(8):983--993. DOI:
   10.1002/(SICI)1097-024X(199708)27:8<983::AID-SPE117>3.0.CO;2-\#.
 
-\bibitem[Nascimento, 2026]{nascimento_repositorio_2026}
-Nascimento, S. d.~P. (2026).
-\newblock Presorting algorithm.
-\newblock Disponível em:
-  \url{https://github.com/Zidan-09/presorting-algorithm}.
-\newblock Repositório de código-fonte e dados experimentais.
-
 \bibitem[{Rust Standard Library}, 2026]{rust_std_sort_unstable}
 {Rust Standard Library} (2026).
 \newblock Method \texttt{slice::sort\_unstable} (ipnsort) and
