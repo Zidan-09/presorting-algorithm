@@ -51,13 +51,6 @@ Mannila, H. (1985).
 \newblock Versão estendida publicada originalmente como resumo no ICALP~1984
   (LNCS~172, pp.~324--336).
 
-\bibitem[Nascimento 2026]{nascimento_repositorio_2026}
-Nascimento, S. d.~P. (2026).
-\newblock Presorting algorithm.
-\newblock Disponível em:
-  \url{https://github.com/Zidan-09/presorting-algorithm}.
-\newblock Repositório de código-fonte e dados experimentais.
-
 \bibitem[Sampieri et~al. 2021]{sampieri_metodologia_2021}
 Sampieri, R.~H., Collado, C.~F., and Lucio, M. d. P.~B. (2021).
 \newblock {\em Metodologia de pesquisa}.
