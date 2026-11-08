@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.14)  8 NOV 2026 19:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.14)  8 NOV 2026 19:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -853,7 +853,7 @@ File: l3backend-pdftex.def 2026-07-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count343
 ) (main.aux
 Package babel Info: 'brazilian' activates 'portuges' shorthands.
-(babel)             Reported on input line 15.
+(babel)             Reported on input line 6.
 )
 \openout1 = `main.aux'.
 
@@ -1033,7 +1033,7 @@ Overfull \hbox (24.70093pt too wide) in paragraph at lines 55--55
 n/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/zidan/Ap
 pData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/zidan/Ap
 pData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/zidan/AppDat
-a/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}] [2] [3]
+a/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}] [2] [3] [4]
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 1
 20.
 
@@ -1044,20 +1044,19 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [4]
+ [5]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 147.
-
-[5]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 72.
- (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+
+(C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-[6{C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}]
+) [6{C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc
+}]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 190.
-[7]
+ [7]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8]
@@ -1178,17 +1177,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-07-20>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 32683 strings out of 467501
- 791968 string characters out of 5408550
- 1370229 words of memory out of 5000000
+ 32697 strings out of 467501
+ 792122 string characters out of 5408550
+ 1370353 words of memory out of 5000000
  60969 multiletter control sequences out of 15000+600000
- 775058 words of font info for 319 fonts, out of 8000000 for 9000
+ 775877 words of font info for 326 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  92i,19n,104p,1961b,2610s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pf
@@ -1215,7 +1210,108 @@ Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/
 Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/m
 sam10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
 onts/symbols/msbm10.pfb>
-Output written on main.pdf (26 pages, 576272 bytes).
+Output written on main.pdf (26 pages, 577644 bytes).
+PDF statistics:
+ 230 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 86541 words of extra memory for PDF output out of 89155 (max. 10000000)
+
+os/fig_tempos_insertion.csv}
+Package pgfplots info on input line 529: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 529: Using 'lua backend=false' for axis: x coord trafo unsupported.
+PGFPlots: reading {resultados/fig_tempos_bubble.csv}
+PGFPlots: reading {resultados/fig_tempos_bubble.csv}
+Package pgfplots info on input line 533: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 533: Using 'lua backend=false' for axis: x coord trafo unsupported.
+PGFPlots: reading {resultados/fig_tempos_selection.csv}
+PGFPlots: reading {resultados/fig_tempos_selection.csv}
+Package pgfplots info on input line 537: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 537: Using 'lua backend=false' for axis: x coord trafo unsupported.
+PGFPlots: reading {resultados/fig_tempos_merge.csv}
+PGFPlots: reading {resultados/fig_tempos_merge.csv}
+Package pgfplots info on input line 541: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+Package pgfplots info on input line 541: Using 'lua backend=false' for axis: x coord trafo unsupported.
+PGFPlots: reading {resultados/fig_tempos_quick.csv}
+PGFPlots: reading {resultados/fig_tempos_quick.csv}
+
+LaTeX Warning: Reference `tab:apC' on page 18 undefined on input line 554.
+
+
+LaTeX Warning: Reference `tab:apC' on page 18 undefined on input line 554.
+
+[18]
+
+LaTeX Warning: Reference `fig:ganho_n' on page 19 undefined on input line 570.
+
+Package pgfplots info on input line 589: Using 'lua backend=false' for axis: xmode=log unsupported (yet).
+PGFPlots: reading {resultados/fig_gain_vs_n.csv}
+NOTE: coordinate (1000000,nan) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
+NOTE: coordinate (10000000,nan) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
+PGFPlots: reading {resultados/fig_gain_vs_n.csv}
+NOTE: coordinate (1000000,nan) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
+NOTE: coordinate (10000000,nan) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
+PGFPlots: reading {resultados/fig_gain_vs_n.csv}
+PGFPlots: reading {resultados/fig_gain_vs_n.csv}
+PGFPlots: reading {resultados/fig_gain_vs_n.csv}
+PGFPlots: reading {resultados/fig_gain_vs_n.csv}
+PGFPlots: reading {resultados/fig_gain_vs_n.csv}
+PGFPlots: reading {resultados/fig_gain_vs_n.csv}
+NOTE: coordinate (1000000,nan) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
+NOTE: coordinate (10000000,nan) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
+PGFPlots: reading {resultados/fig_gain_vs_n.csv}
+NOTE: coordinate (1000000,nan) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
+NOTE: coordinate (10000000,nan) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
+[19] [20]
+
+LaTeX Warning: Reference `tab:apA' on page 21 undefined on input line 614.
+
+
+LaTeX Warning: Reference `tab:apC' on page 21 undefined on input line 614.
+
+
+LaTeX Warning: Reference `fig:ganho_n' on page 21 undefined on input line 614.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21]
+
+LaTeX Warning: Citation `edelkamp_blockquicksort_2016' on page 22 undefined on input line 618.
+
+
+LaTeX Warning: Citation `auger_timsort_2018' on page 22 undefined on input line 618.
+
+[22]
+
+LaTeX Warning: Reference `tab:tempos1M' on page 23 undefined on input line 632.
+
+(resultados/tab4_pt_tabular.tex) (resultados/tab4c_pt_tabular.tex) (resultados/tab6_pt_tabular.tex) [23
+
+] [24] [25] (main.bbl) [26
+
+] (main.aux)
+ ***********
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-07-20>
+ ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 32699 strings out of 467501
+ 792275 string characters out of 5408550
+ 1369536 words of memory out of 5000000
+ 60969 multiletter control sequences out of 15000+600000
+ 775919 words of font info for 326 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 92i,19n,104p,2010b,2610s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbo10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (26 pages, 577769 bytes).
 PDF statistics:
  230 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
