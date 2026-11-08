@@ -189,10 +189,12 @@ Para assegurar a validade interna dos experimentos, a estabilidade das mediçõe
 \subsubsection{Baselines Competitivos}
 
 \begin{itemize}
-    \item \textbf{\texttt{sort\_unstable}:} a ordenação instável da biblioteca padrão do Rust, o ordenador geral mais rápido disponível e a referência que qualquer proposta precisa superar.
-    \item \textbf{\texttt{sort}:} a ordenação estável da biblioteca padrão, incluída como referência de pior caso estável.
+    \item \textbf{\texttt{sort\_unstable}:} ordenação instável da biblioteca padrão do Rust (toolchain 1.96.0, \texttt{rust-toolchain.toml}), o ordenador geral mais rápido disponível e a referência que qualquer proposta precisa superar. Garantias documentadas nessa versão: instável (pode reordenar iguais), \emph{in-place} (sem alocação) e $O(n \log n)$ no pior caso. A implementação corrente --- informada aqui apenas como contexto, pois pode mudar entre versões --- é baseada em \emph{ipnsort}, com tempo linear em entradas totalmente ordenadas e revertidas e tempo esperado $O(n \log k)$ com $k$ distintos; a documentação registra que ela é tipicamente mais rápida que a estável, exceto em poucos casos como fatias parcialmente ordenadas.
+    \item \textbf{\texttt{sort}:} ordenação estável da biblioteca padrão, incluída como referência estável. Garantias documentadas: estável (preserva iguais) e $O(n \log n)$ no pior caso. A implementação corrente é baseada em \emph{driftsort}, com detecção parcial de \emph{runs} e tempo linear em entradas totalmente ordenadas e revertidas; a alocação auxiliar depende do tamanho (sem alocação em fatias curtas). A própria documentação observa que fatias parcialmente ordenadas podem ser melhor atendidas por \texttt{sort} que por \texttt{sort\_unstable}.
     \item \textbf{\texttt{desc\_reverse}:} verificação $O(n)$ de run estritamente decrescente; se a entrada é estritamente decrescente, ela é revertida in-place e então executa-se o Insertion Sort (caso contrário, Insertion Sort direto). Testa se uma detecção trivial de run explica os ganhos no Invertido.
 \end{itemize}
+
+São baselines adequados porque representam o melhor desempenho geral disponível com garantia $O(n \log n)$ --- um instável sem alocação e um estável com alocação --- e porque ambos já incorporam adaptatividade a entradas ordenadas/revertidas (tempo linear documentado). Isso delimita o escopo prático: nessas entradas, o custo $O(n)$ do pré-processamento tende a somar-se sem benefício líquido, o que ajuda a explicar por que os ganhos medidos se restringem ao Zigue-zague (Seção~4.2).
 
 Em todas as implementações, verificações preliminares de contorno (\emph{early returns}) asseguram que fatias com tamanho $n < 2$ retornem imediatamente sem incorrer em chamadas de função ou alocações desnecessárias.
 
