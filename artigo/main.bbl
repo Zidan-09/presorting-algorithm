@@ -32,12 +32,6 @@ Hwang, H.-K., Yang, B.-Y., and Yeh, Y.-N. (2000).
 \newblock Presorting algorithms: {An} average-case point of view.
 \newblock {\em Theoretical Computer Science}, 242(1-2):29--40.
 
-\bibitem[Kaligosi and Sanders 2006]{kaligosi_branch_2006}
-Kaligosi, K. and Sanders, P. (2006).
-\newblock How branch mispredictions affect quicksort.
-\newblock {\em Journal of Experimental Algorithmics}, 11.
-\newblock Também apresentado em ESA 2006.
-
 \bibitem[Knuth 1973]{knuth_art_1973}
 Knuth, D.~E. (1973).
 \newblock {\em The Art of Computer Programming, Volume 3: Sorting and

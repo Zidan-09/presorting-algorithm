@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.14)  8 NOV 2026 19:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.14)  8 NOV 2026 19:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1104,42 +1104,39 @@ ode=log unsupported (yet).
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [17]
-Underfull \vbox (badness 1960) has occurred while \output is active []
-
- [18]
+Package pgfplots info on input line 525: Using 'lua backend=false' for axis: ym
+ode=log unsupported (yet).
+Package pgfplots info on input line 525: Using 'lua backend=false' for axis: x 
+coord trafo unsupported.
+PGFPlots: reading {resultados/fig_tempos_insertion.csv}
+PGFPlots: reading {resultados/fig_tempos_insertion.csv}
+Package pgfplots info on input line 529: Using 'lua backend=false' for axis: ym
+ode=log unsupported (yet).
+Package pgfplots info on input line 529: Using 'lua backend=false' for axis: x 
+coord trafo unsupported.
+PGFPlots: reading {resultados/fig_tempos_bubble.csv}
+PGFPlots: reading {resultados/fig_tempos_bubble.csv}
 Package pgfplots info on input line 533: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 Package pgfplots info on input line 533: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
-PGFPlots: reading {resultados/fig_tempos_insertion.csv}
-PGFPlots: reading {resultados/fig_tempos_insertion.csv}
+PGFPlots: reading {resultados/fig_tempos_selection.csv}
+PGFPlots: reading {resultados/fig_tempos_selection.csv}
 Package pgfplots info on input line 537: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 Package pgfplots info on input line 537: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
-PGFPlots: reading {resultados/fig_tempos_bubble.csv}
-PGFPlots: reading {resultados/fig_tempos_bubble.csv}
+PGFPlots: reading {resultados/fig_tempos_merge.csv}
+PGFPlots: reading {resultados/fig_tempos_merge.csv}
 Package pgfplots info on input line 541: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 Package pgfplots info on input line 541: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
-PGFPlots: reading {resultados/fig_tempos_selection.csv}
-PGFPlots: reading {resultados/fig_tempos_selection.csv}
-Package pgfplots info on input line 545: Using 'lua backend=false' for axis: ym
-ode=log unsupported (yet).
-Package pgfplots info on input line 545: Using 'lua backend=false' for axis: x 
-coord trafo unsupported.
-PGFPlots: reading {resultados/fig_tempos_merge.csv}
-PGFPlots: reading {resultados/fig_tempos_merge.csv}
-Package pgfplots info on input line 549: Using 'lua backend=false' for axis: ym
-ode=log unsupported (yet).
-Package pgfplots info on input line 549: Using 'lua backend=false' for axis: x 
-coord trafo unsupported.
 PGFPlots: reading {resultados/fig_tempos_quick.csv}
 PGFPlots: reading {resultados/fig_tempos_quick.csv}
 
-[19]
-Package pgfplots info on input line 597: Using 'lua backend=false' for axis: xm
+[18]
+Package pgfplots info on input line 589: Using 'lua backend=false' for axis: xm
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_gain_vs_n.csv}
 
@@ -1167,27 +1164,31 @@ NOTE: coordinate (1000000,nan) has been dropped because it is unbounded (in y).
  (see also unbounded coords=jump). 
 NOTE: coordinate (10000000,nan) has been dropped because it is unbounded (in y)
 . (see also unbounded coords=jump). 
-[20] [21]
+[19] [20]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [22]
-[23] (resultados/tab4_pt_tabular.tex) (resultados/tab4c_pt_tabular.tex)
-(resultados/tab6_pt_tabular.tex) [24
+ [21]
+[22] (resultados/tab4_pt_tabular.tex) (resultados/tab4c_pt_tabular.tex)
+(resultados/tab6_pt_tabular.tex) [23
 
-] [25] [26] (main.bbl) [27
+] [24] [25] (main.bbl) [26
 
 ] (main.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-07-20>
  ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 32707 strings out of 467501
- 792274 string characters out of 5408550
- 1370114 words of memory out of 5000000
- 60975 multiletter control sequences out of 15000+600000
- 783200 words of font info for 329 fonts, out of 8000000 for 9000
+ 32679 strings out of 467501
+ 791924 string characters out of 5408550
+ 1369128 words of memory out of 5000000
+ 60969 multiletter control sequences out of 15000+600000
+ 774884 words of font info for 317 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  92i,19n,104p,1961b,2610s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pf
@@ -1202,7 +1203,6 @@ b><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb
 C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C
 :/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/
 Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Us
-ers/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Us
 ers/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Us
 ers/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbo10.pfb><C:/
 Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C
@@ -1215,9 +1215,9 @@ Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/
 Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/m
 sam10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
 onts/symbols/msbm10.pfb>
-Output written on main.pdf (27 pages, 593791 bytes).
+Output written on main.pdf (26 pages, 574662 bytes).
 PDF statistics:
- 241 PDF objects out of 1000 (max. 8388607)
+ 230 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 90637 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 86541 words of extra memory for PDF output out of 89155 (max. 10000000)
 
