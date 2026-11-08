@@ -51,12 +51,12 @@
 \@writefile{toc}{\contentsline {section}{\numberline {3}Métodos e Técnicas da Pesquisa}{4}{}\protected@file@percent }
 \newlabel{sec:met}{{3}{4}{Métodos e Técnicas da Pesquisa}{section.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Configuração}{4}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Ambiente experimental e ferramentas utilizadas.}}{4}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Ambiente experimental e ferramentas utilizadas.}}{5}{}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:ambiente}{{1}{4}{Configuração}{table.1}{}}
+\newlabel{tab:ambiente}{{1}{5}{Configuração}{table.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Conjuntos de dados e caracterização das topologias de entrada.}}{5}{}\protected@file@percent }
 \newlabel{tab:datasets}{{2}{5}{Configuração}{table.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Especificação e Implementação dos Algoritmos Avaliados}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Especificação e Implementação dos Algoritmos Avaliados}{6}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Algoritmos Quadráticos}{6}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Algoritmos Quasilineares}{6}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Baselines Competitivos}{7}{}\protected@file@percent }
@@ -66,53 +66,52 @@
 \@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Algoritmo de Pré-Processamento Simétrico}}{9}{}\protected@file@percent }
 \newlabel{alg:preproc}{{1}{9}{Formalização do Pré-Processamento Simétrico}{algocf.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Ameaças à Validade}{10}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Resultados e Discussão}{10}{}\protected@file@percent }
-\newlabel{sec:res}{{4}{10}{Resultados e Discussão}{section.4}{}}
-\citation{hwang_presorting_2000}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Resultados e Discussão}{11}{}\protected@file@percent }
+\newlabel{sec:res}{{4}{11}{Resultados e Discussão}{section.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Redução de Inversões e Viés Estrutural das Entradas}{11}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Número de inversões antes e após o pré-processamento simétrico para vetores de 10.000 elementos (escala logarítmica; no cenário Invertido o valor pós-pré é zero e não aparece na escala log).}}{11}{}\protected@file@percent }
-\newlabel{fig:inversoespos}{{1}{11}{Redução de Inversões e Viés Estrutural das Entradas}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Número de inversões antes e após o pré-processamento simétrico para vetores de 10.000 elementos (escala logarítmica; no cenário Invertido o valor pós-pré é zero e não aparece na escala log).}}{12}{}\protected@file@percent }
+\newlabel{fig:inversoespos}{{1}{12}{Redução de Inversões e Viés Estrutural das Entradas}{figure.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Redução de inversões proporcionada pelo pré-processamento simétrico em vetores de 10.000 elementos (média dos 50 vetores do \emph  {pool} pareado; mesma semente dos tempos da Tabela~\ref {tab:apA}).}}{12}{}\protected@file@percent }
 \newlabel{tab:inversoes}{{3}{12}{Redução de Inversões e Viés Estrutural das Entradas}{table.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Impacto no Tempo de Execução e Custo do Pré-processamento}{12}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Impacto no Tempo de Execução e Custo do Pré-processamento}{13}{}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Faixa de ganho do pré-processamento por algoritmo para vetores de 10.000 elementos (mínimo e máximo sobre as seis topologias clássicas; tipos entre parênteses). Os valores por célula, com marcas de significância, estão na Tabela~\ref {tab:apA} do Apêndice.}}{13}{}\protected@file@percent }
 \newlabel{tab:tempos}{{4}{13}{Impacto no Tempo de Execução e Custo do Pré-processamento}{table.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Baselines competitivos: tempo médio por execução (em \textmu {}s, média $\pm $ meia-largura do IC 95\%) e ganho do pré-processamento para vetores de 10.000 elementos. \texttt  {sort\_unstable} e \texttt  {sort} são os ordenadores da biblioteca padrão do Rust; \texttt  {desc\_reverse} é o Insertion Sort precedido de detecção $O(n)$ de run descendente com reversão. Marcas de significância conforme a Seção~3.3.}}{13}{}\protected@file@percent }
-\newlabel{tab:baselines}{{5}{13}{Impacto no Tempo de Execução e Custo do Pré-processamento}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Baselines competitivos: tempo médio por execução (em \textmu {}s, média $\pm $ meia-largura do IC 95\%) e ganho do pré-processamento para vetores de 10.000 elementos. \texttt  {sort\_unstable} e \texttt  {sort} são os ordenadores da biblioteca padrão do Rust; \texttt  {desc\_reverse} é o Insertion Sort precedido de detecção $O(n)$ de run descendente com reversão. Marcas de significância conforme a Seção~3.3.}}{14}{}\protected@file@percent }
+\newlabel{tab:baselines}{{5}{14}{Impacto no Tempo de Execução e Custo do Pré-processamento}{table.5}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Faixa de ganho do pré-processamento por método nas novas topologias para vetores de 10.000 elementos (mínimo e máximo sobre Serra, Tubo, Runs e Real). Os valores por célula, com marcas de significância, estão na Tabela~\ref {tab:apB} do Apêndice.}}{14}{}\protected@file@percent }
 \newlabel{tab:novastopologias}{{6}{14}{Impacto no Tempo de Execução e Custo do Pré-processamento}{table.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Tempo Total de Ordenação e Análise Individual dos Algoritmos}{14}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Tempo médio de execução do pré-processamento em função do tamanho do vetor ($n$), apresentado em escala log-log para evidenciar o comportamento linear $O(n)$. Valores médios sobre os dez tipos de entrada, obtidos pela ferramenta CLI com seed 42.}}{15}{}\protected@file@percent }
 \newlabel{fig:precusto_linear}{{2}{15}{Impacto no Tempo de Execução e Custo do Pré-processamento}{figure.2}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Custo médio do pré-processamento simétrico em função do tamanho do vetor (média sobre os dez tipos; medido via ferramenta CLI, seed 42). O ponto $n{=}20{.}000$ foi incluído exclusivamente para caracterização da linearidade e não faz parte da matriz principal de tempos de ordenação.}}{15}{}\protected@file@percent }
 \newlabel{tab:precusto}{{7}{15}{Impacto no Tempo de Execução e Custo do Pré-processamento}{table.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Custo isolado do pré-processamento $C_{\text  {pre}}$ por topologia (mesmo harness Criterion da matriz de tempos; média, $\mu s$). A média CLI da Tabela~\ref {tab:precusto} esconde forte heterogeneidade: entradas não estruturadas (Aleatório, Duplicados) custam $\approx $5$\times $ mais que as estruturadas em $n{=}10.000$. Real não tem ponto em $10^6$ (teto do asset nativo).}}{15}{}\protected@file@percent }
-\newlabel{tab:cpre}{{8}{15}{Impacto no Tempo de Execução e Custo do Pré-processamento}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Custo isolado do pré-processamento $C_{\text  {pre}}$ por topologia (mesmo harness Criterion da matriz de tempos; média, $\mu s$). A média CLI da Tabela~\ref {tab:precusto} esconde forte heterogeneidade: entradas não estruturadas (Aleatório, Duplicados) custam $\approx $5$\times $ mais que as estruturadas em $n{=}10.000$. Real não tem ponto em $10^6$ (teto do asset nativo).}}{16}{}\protected@file@percent }
+\newlabel{tab:cpre}{{8}{16}{Impacto no Tempo de Execução e Custo do Pré-processamento}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Tempo Total de Ordenação e Análise Individual dos Algoritmos}{16}{}\protected@file@percent }
 \citation{edelkamp_blockquicksort_2016}
 \citation{kaligosi_branch_2006}
 \citation{estivill-castro_survey_1992}
 \citation{edelkamp_blockquicksort_2016}
 \citation{kaligosi_branch_2006}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Faixa de ganho do pré-processamento por método para vetores de $1.000.000$ de elementos (mínimo e máximo sobre as topologias medidas; Real excluído pelo teto do asset nativo). Os valores por célula, com marcas de significância, estão na Tabela~\ref {tab:apC} do Apêndice.}}{18}{}\protected@file@percent }
-\newlabel{tab:tempos1M}{{9}{18}{Tempo Total de Ordenação e Análise Individual dos Algoritmos}{table.9}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Comparação temporal entre a ordenação pura e com pré-processamento simétrico ($n=10.000$) nas dez topologias, em escala logarítmica.}}{19}{}\protected@file@percent }
 \newlabel{fig:tempos}{{3}{19}{Tempo Total de Ordenação e Análise Individual dos Algoritmos}{figure.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Ganho do pré-processamento em função do tamanho da entrada para pares algoritmo--topologia selecionados (mesmas médias do Criterion; métodos quadráticos limitados a $n{=}10^5$; lacunas são células não planejadas).}}{20}{}\protected@file@percent }
-\newlabel{fig:ganho_n}{{4}{20}{Tempo Total de Ordenação e Análise Individual dos Algoritmos}{figure.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Faixa de ganho do pré-processamento por método para vetores de $1.000.000$ de elementos (mínimo e máximo sobre as topologias medidas; Real excluído pelo teto do asset nativo). Os valores por célula, com marcas de significância, estão na Tabela~\ref {tab:apC} do Apêndice.}}{20}{}\protected@file@percent }
+\newlabel{tab:tempos1M}{{9}{20}{Tempo Total de Ordenação e Análise Individual dos Algoritmos}{table.9}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Considerações Finais}{20}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Ganho do pré-processamento em função do tamanho da entrada para pares algoritmo--topologia selecionados (mesmas médias do Criterion; métodos quadráticos limitados a $n{=}10^5$; lacunas são células não planejadas).}}{21}{}\protected@file@percent }
+\newlabel{fig:ganho_n}{{4}{21}{Tempo Total de Ordenação e Análise Individual dos Algoritmos}{figure.4}{}}
 \citation{edelkamp_blockquicksort_2016}
 \citation{auger_timsort_2018}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Uso de Inteligência Artificial}{22}{}\protected@file@percent }
-\newlabel{sec:ia}{{6}{22}{Uso de Inteligência Artificial}{section.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Repositório da Pesquisa}{22}{}\protected@file@percent }
-\newlabel{sec:repositorio}{{7}{22}{Repositório da Pesquisa}{section.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Tabelas completas de tempos de execução}{23}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Tempo médio por execução (em \textmu {}s) e ganho do pré-processamento para vetores de 10.000 elementos: algoritmos clássicos nas seis topologias clássicas. Fonte: Criterion, seed 42.}}{23}{}\protected@file@percent }
-\newlabel{tab:apA}{{10}{23}{Tabelas completas de tempos de execução}{table.10}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Tempo médio por execução (em \textmu {}s) e ganho do pré-processamento para vetores de 10.000 elementos: todos os oito métodos nas novas topologias.}}{24}{}\protected@file@percent }
-\newlabel{tab:apB}{{11}{24}{Tabelas completas de tempos de execução}{table.11}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Tempo médio (ms) e ganho do pré-processamento para vetores de $1.000.000$ de elementos: métodos quasilineares e baselines padrão (quadráticos omitidos por inviabilidade temporal). Fonte: Criterion, 50 amostras, IC 95\%. Linhas abaixo da regra são as novas topologias (Real excluído pelo teto do asset nativo).}}{25}{}\protected@file@percent }
-\newlabel{tab:apC}{{12}{25}{Tabelas completas de tempos de execução}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Uso de Inteligência Artificial}{23}{}\protected@file@percent }
+\newlabel{sec:ia}{{6}{23}{Uso de Inteligência Artificial}{section.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Repositório da Pesquisa}{23}{}\protected@file@percent }
+\newlabel{sec:repositorio}{{7}{23}{Repositório da Pesquisa}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Tabelas completas de tempos de execução}{24}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Tempo médio por execução (em \textmu {}s) e ganho do pré-processamento para vetores de 10.000 elementos: algoritmos clássicos nas seis topologias clássicas. Fonte: Criterion, seed 42.}}{24}{}\protected@file@percent }
+\newlabel{tab:apA}{{10}{24}{Tabelas completas de tempos de execução}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Tempo médio por execução (em \textmu {}s) e ganho do pré-processamento para vetores de 10.000 elementos: todos os oito métodos nas novas topologias.}}{25}{}\protected@file@percent }
+\newlabel{tab:apB}{{11}{25}{Tabelas completas de tempos de execução}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Tempo médio (ms) e ganho do pré-processamento para vetores de $1.000.000$ de elementos: métodos quasilineares e baselines padrão (quadráticos omitidos por inviabilidade temporal). Fonte: Criterion, 50 amostras, IC 95\%. Linhas abaixo da regra são as novas topologias (Real excluído pelo teto do asset nativo).}}{26}{}\protected@file@percent }
+\newlabel{tab:apC}{{12}{26}{Tabelas completas de tempos de execução}{table.12}{}}
 \bibstyle{sbc}
 \bibdata{referencias}
 \bibcite{auger_timsort_2018}{Auger et~al. 2018}
@@ -127,4 +126,4 @@
 \bibcite{sampieri_metodologia_2021}{Sampieri et~al. 2021}
 \bibcite{sedgewick_algorithms_2011}{Sedgewick and Wayne 2011}
 \bibcite{ziviani_projeto_2021}{Ziviani 2021}
-\gdef \@abspage@last{26}
+\gdef \@abspage@last{27}
