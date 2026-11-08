@@ -166,24 +166,24 @@ A topologia Real é um vetor operacional determinístico, sem pretensão de repr
 
 \subsection{Especificação e Implementação dos Algoritmos Avaliados}
 
-Para assegurar a validade interna dos experimentos, a estabilidade das medições de tempo e a reprodutibilidade dos resultados, todos os algoritmos de ordenação foram implementados na linguagem Rust (versão 1.96.0), operando diretamente sobre fatias mutáveis de inteiros de 32 bits (\texttt{\&mut [i32]}). As implementações evitaram dependências externas de abstrações de alto nível, padronizando a manipulação de memória e adotando otimizações idiomáticas no nível de instrução.
+Para assegurar a validade interna dos experimentos, a estabilidade das medições de tempo e a reprodutibilidade dos resultados, todos os algoritmos de ordenação foram implementados na linguagem Rust (versão 1.96.0), operando diretamente sobre fatias mutáveis de inteiros de 32 bits (\texttt{\&mut [i32]}), sem dependências externas de abstrações de alto nível.
 
 \subsubsection{Algoritmos Quadráticos}
 
 \begin{itemize}
     \item \textbf{Bubble Sort:} Instanciado em sua versão adaptativa otimizada. O algoritmo realiza varreduras sucessivas reduzindo o limite superior a cada iteração ($n - 1 - i$). A adaptabilidade é garantida por uma flag booleana de controle (\texttt{trocou}) que monitora a ocorrência de trocas em cada passada; caso uma varredura seja concluída sem nenhuma permuta de elementos, a execução é interrompida precocemente, garantindo complexidade linear $O(n)$ em vetores previamente ordenados.
     
-    \item \textbf{Insertion Sort:} Implementado conforme a mecânica tradicional de inserção direta por deslocamento. Para cada elemento da sub-fatia não ordenada, armazena-se o valor corrente em uma variável temporária (\texttt{valor\_atual}) e promovem-se deslocamentos à direita dos elementos antecedentes estritamente maiores. A busca e o deslocamento encerram-se assim que a posição correta é encontrada ou ao atingir o limite esquerdo ($j = 0$), momento em que o valor temporário é atribuído. Essa abordagem minimiza o \emph{overhead} de escrita em relação às implementações baseadas em trocas sucessivas (\emph{swaps}).
+    \item \textbf{Insertion Sort:} inserção direta por deslocamento, encerrando busca e deslocamentos ao encontrar a posição correta. Essa variante por deslocamento (em vez de trocas sucessivas) é a decisão que afeta o custo por inversão discutido na Seção~4.3.
 
-    \item \textbf{Selection Sort:} Implementado em sua forma clássica não adaptativa e \emph{in-place}. Em cada iteração $i$ do laço externo, o algoritmo varre o segmento não ordenado $[i + 1, n - 1]$ para identificar o índice do menor elemento (\texttt{indice\_minimo}). A troca (\texttt{swap}) com a posição $i$ é executada condicionalmente apenas se o menor elemento encontrado residir em um índice distinto (\texttt{indice\_minimo} $\neq i$). O algoritmo mantém um custo de comparações estrito de $O(n^2)$, independentemente da ordenação prévia da entrada.
+    \item \textbf{Selection Sort:} forma clássica não adaptativa e \emph{in-place}, com custo de comparações $O(n^2)$ independentemente da ordenação prévia da entrada.
 \end{itemize}
 
 \subsubsection{Algoritmos Quasilineares}
 
 \begin{itemize}
-    \item \textbf{Merge Sort:} Implementado segundo a estratégia *top-down* (divisão e conquista), com garantia de ordenação estável. Para evitar alocações dinâmicas recorrentes durante a recursão e reduzir interferências nas medições temporais, utiliza um único vetor auxiliar de tamanho $n$ (\texttt{vec![0; len]}), alocado na entrada da função e compartilhado entre as chamadas recursivas por referência mutável. Os pontos médios das sub-fatias são calculados por deslocamento de bits à direita ($(\text{fim} - \text{inicio}) \gg 1$), evitando a divisão inteira. Na etapa de intercalação (\texttt{intercalar}), os elementos do segmento atual são copiados para o *buffer* auxiliar e reorganizados no vetor original por meio de três índices.
+    \item \textbf{Merge Sort:} estratégia \emph{top-down} estável, com um único vetor auxiliar de tamanho $n$ compartilhado entre as chamadas recursivas para evitar alocações recorrentes durante a medição.
 
-    \item \textbf{Quicksort:} Implementado de forma recursiva utilizando particionamento de três vias (\emph{Dutch National Flag} / algoritmo de Dijkstra) aliado à seleção de pivô por mediana de três. O pivô é escolhido como a mediana entre os elementos nos índices inicial, central e final do subvetor. O particionamento de três vias rearranja o subvetor em três regiões contíguas: elementos menores que o pivô, elementos iguais ao pivô e elementos maiores que o pivô, mantendo índices para delimitar as fronteiras. Essa estratégia confere tempo médio $O(n \log n)$ e robustez a muitas chaves duplicadas (sem garantia de pior caso: a mediana de três não exclui entradas adversariais). A recursão é aplicada apenas às regiões de elementos menores e maiores que o pivô.
+    \item \textbf{Quicksort:} particionamento de três vias (\emph{Dutch National Flag}) com pivô por mediana de três (início, meio, fim). Essa combinação --- e não otimizações de baixo nível --- é a decisão metodológica relevante: confere tempo médio $O(n \log n)$ e robustez a duplicadas, sem excluir entradas adversariais.
 \end{itemize}
 
 \subsubsection{Baselines Competitivos}
@@ -195,8 +195,6 @@ Para assegurar a validade interna dos experimentos, a estabilidade das mediçõe
 \end{itemize}
 
 São baselines adequados porque representam o melhor desempenho geral disponível com garantia $O(n \log n)$ --- um instável sem alocação e um estável com alocação --- e porque ambos já incorporam adaptatividade a entradas ordenadas/revertidas (tempo linear documentado). Isso delimita o escopo prático: nessas entradas, o custo $O(n)$ do pré-processamento tende a somar-se sem benefício líquido, o que ajuda a explicar por que os ganhos medidos se restringem ao Zigue-zague (Seção~4.2).
-
-Em todas as implementações, verificações preliminares de contorno (\emph{early returns}) asseguram que fatias com tamanho $n < 2$ retornem imediatamente sem incorrer em chamadas de função ou alocações desnecessárias.
 
 \subsection{Protocolo Experimental e Raciocínio de Cálculo de Inversões}
 
