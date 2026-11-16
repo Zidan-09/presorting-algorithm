@@ -1,0 +1,48 @@
+﻿Counter({'para': 64, 'section': 22, 'table': 12, 'list': 4, 'figure': 4, 'pagebreak': 2, 'refs': 2, 'abstract_en': 1, 'abstract_pt': 1, 'algorithm': 1})
+2 section 1 IntroduþÒo
+9 section 1 Referencial Te¾rico
+11 section 2 Invers§es, OrdenaþÒo Adaptativa e Algoritmos Avaliados
+15 section 2 PrÚ-Processamento SimÚtrico
+18 section 2 Trabalhos Relacionados
+21 section 1 MÚtodos e TÚcnicas da Pesquisa
+23 section 2 ConfiguraþÒo
+25 table  tab:ambiente
+29 table  tab:datasets
+31 section 2 EspecificaþÒo e ImplementaþÒo dos Algoritmos Avaliados
+33 section 3 Algoritmos Quadrßticos
+34 list  
+35 section 3 Algoritmos Quasilineares
+36 list  
+37 section 3 Baselines Competitivos
+38 list  
+40 section 2 Protocolo Experimental e RaciocÝnio de Cßlculo de Invers§es
+48 section 2 FormalizaþÒo do PrÚ-Processamento SimÚtrico
+50 algorithm  alg:preproc
+52 list  
+56 section 2 Ameaþas Ó Validade
+58 section 1 Resultados e DiscussÒo
+60 section 2 ReduþÒo de Invers§es e ViÚs Estrutural das Entradas
+62 figure  fig:inversoespos
+63 table  tab:inversoes
+66 section 2 Impacto no Tempo de ExecuþÒo e Custo do PrÚ-processamento
+69 table  tab:tempos
+70 table  tab:baselines
+72 table  tab:novastopologias
+75 figure  fig:precusto_linear
+76 table  tab:precusto
+77 table  tab:cpre
+79 section 2 Tempo Total de OrdenaþÒo e Anßlise Individual dos Algoritmos
+88 figure  fig:tempos
+89 table  tab:tempos1M
+92 figure  fig:ganho_n
+93 section 1 Consideraþ§es Finais
+100 section 1 Uso de InteligÛncia Artificial
+102 section 1 Reposit¾rio da Pesquisa
+104 pagebreak  
+105 section 1 Tabelas completas de tempos de execuþÒo
+107 table  tab:apA
+108 table  tab:apB
+109 table  tab:apC
+110 pagebreak  
+111 refs  
+112 refs  

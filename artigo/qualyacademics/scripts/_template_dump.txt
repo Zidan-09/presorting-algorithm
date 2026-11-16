@@ -1,0 +1,260 @@
+﻿[0] {'jc': 'center', 'spacing': {'after': '120'}, 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'T═TULO DO ARTIGO EM L═NGUA PORTUGUESA E: SUBT═TULO SE TIVER '
+     RUN {'b': 'true', 'sz': '32', 'szCs': '32', 'color': '000000'} 'T═TULO DO ARTIGO EM L═NGUA PORTUGUESA'
+     RUN {'b': 'true', 'sz': '32', 'szCs': '32', 'color': '000000'} ' '
+     RUN {'b': 'true', 'sz': '32', 'szCs': '32', 'color': '000000'} 'E: '
+     RUN {'b': 'true', 'sz': '32', 'szCs': '32', 'color': '000000'} 'SUBT═TULO SE TIVER '
+[1] {'jc': 'center'}
+    TEXT: '(Fonte Times New Roman, em mai·sculo, negrito, tamanho 16, centralizado, com espaþo simples entre as linhas, limitado a 100 caracteres, incluindo os espaþos)'
+     RUN {'fonts': {'eastAsia': 'Arial'}, 'color': 'F79646'} '(Fonte Times New Roman, em mai·sculo, negrito, tamanho 1'
+     RUN {'fonts': {'eastAsia': 'Arial'}, 'color': 'F79646'} '6'
+     RUN {'fonts': {'eastAsia': 'Arial'}, 'color': 'F79646'} ', centralizado, com espaþo'
+     RUN {'fonts': {'eastAsia': 'Arial'}, 'color': 'F79646'} ' '
+     RUN {'fonts': {'eastAsia': 'Arial'}, 'color': 'F79646'} 'simples entre as linhas, limitado a '
+     RUN {'fonts': {'eastAsia': 'Arial'}, 'color': 'F79646'} '100 caracteres, incluindo os espaþos'
+     RUN {'fonts': {'eastAsia': 'Arial'}, 'color': 'F79646'} ')'
+[2] {'jc': 'center', 'spacing': {'after': '120'}, 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'T═TULO DO ARTIGO EM INGL╩S FONTE TIMES NEW ROMAN TAMANHO 16, IT┴LICO E: SUBT═TULO SE TIVER'
+     RUN {'i': 'true', 'sz': '32', 'szCs': '32'} 'T═TULO DO ARTIGO EM INGL╩S '
+     RUN {'i': 'true', 'sz': '32', 'szCs': '32'} 'FONTE TIMES NEW ROMAN TAMANHO 16, '
+     RUN {'i': 'true', 'sz': '32', 'szCs': '32'} 'IT┴LICO'
+     RUN {'i': 'true', 'sz': '32', 'szCs': '32'} ' '
+     RUN {'i': 'true', 'sz': '32', 'szCs': '32'} 'E: '
+     RUN {'i': 'true', 'sz': '32', 'szCs': '32'} 'SUBT═TULO SE TIVER'
+[3] {'jc': 'right', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+[4] {'jc': 'right', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'Nome completo do(a) autor(a)  '
+     RUN {'b': 'true'} 'Nome completo do(a) autor(a)'
+     RUN {'b': 'true'} ' '
+     RUN {'b': 'true'} ' '
+[5] {'jc': 'right', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: '(em fonte Times New Roman tamanho 12 e negrito, espaþamento simples) '
+     RUN {'color': 'F79646'} '('
+     RUN {'color': 'F79646'} 'em fonte Times New Roman tamanho 12 e negrito'
+     RUN {'color': 'F79646'} ', espaþamento simples'
+     RUN {'color': 'F79646'} ')'
+     RUN {'b': 'true', 'color': 'F79646'} ' '
+[6] {'jc': 'right', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'Nome do(a) segunda autor(a) se tiver '
+     RUN {'b': 'true'} 'Nome do(a) segunda autor(a) se tiver '
+[7] {'jc': 'right', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: '(Pode colocar atÚ 06 autores)'
+     RUN {'color': 'F79646'} '('
+     RUN {'color': 'F79646'} 'Pode colocar atÚ '
+     RUN {'color': 'F79646'} '06'
+     RUN {'color': 'F79646'} ' autores'
+     RUN {'color': 'F79646'} ')'
+[8] {'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+[9] {'jc': 'center', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'RESUMO '
+     RUN {'b': 'true', 'sz': '32', 'szCs': '32', 'color': '000000'} 'RESUMO'
+     RUN {'b': 'true', 'sz': '32', 'szCs': '32', 'color': '000000'} ' '
+[10] {'jc': 'center', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: '(Alinhado no centro, Times New Roman 16, Espaþamento 1,5 entre as Linhas)'
+     RUN {'sz': '20', 'szCs': '20', 'color': 'F79646'} '(Alinhado no centro, Times New Roman 16, Espaþamento 1,5 entre as Linhas)'
+[11] {'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+[12] {'jc': 'both', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: '(Tudo o que estß em laranja entre parÛnteses deverß ser excluÝdo do artigo û Se vocÛ nÒo souber fazer qualquer coisa que foi solicitada poderß solicitar o serviþo da editora UNISV û Que Ú a editora dessa revista) Aqui vocÛ escreverß o resumo em lÝngua portuguesa com no mÝnimo 100 e no mßximo 400 palavras. Deverß usar a fonte Times New Roman assim como em todo o restante do artigo, tamanho 12, totalmente justificado e o espaþamento entre as linhas deverß ser o espaþamento simples. Esforce-se para que no resumo, na sequÛncia que lhe parecer melhor, estejam descritos o objetivo do estudo, a metodologia, motivaþÒo ou justificativa que levou ao estudo e, no mÝnimo, a principal conclusÒo (Resultado) do estudo. (orientaþ§es gerais sobre a formataþÒo do artigo: o formato da pßgina Ú o popular A4 û 21x28cm), margens superior/esquerda 3,0 cm e inferior/direita 2,0 cm, com espaþamento de 1,5 entre linhas, salvo aqui no resumo, no abstract, nas notas de rodapÚ e nas citaþ§es diretas. O arquivo total deve conter no mÝnimo 12 e no mßximo 25 pßginas. Salvar o arquivo no formato word (Ex. .doc ou .docx).'
+     RUN {'color': 'F79646'} '(Tudo o que estß em laranja entre parÛnteses deverß ser excluÝdo do artigo'
+     RUN {'color': 'F79646'} ' û Se '
+     RUN {'color': 'F79646'} 'vocÛ'
+     RUN {'color': 'F79646'} ' nÒo souber fazer qualquer coisa que foi solicitada poderß solicitar o serviþo da editora UNISV û Qu'
+     RUN {'color': 'F79646'} ') '
+     RUN {'color': '000000'} 'Aqui vocÛ escreverß o resumo em lÝngua portuguesa'
+     RUN {'color': '000000'} ' com no mÝnimo 100 e no mßximo 400 palavras'
+     RUN {'color': '000000'} '. Deverß usar a fonte Times New Roman assim como em todo o restante do artigo, '
+     RUN {'color': '000000'} 'tamanho 12, '
+     RUN {'color': '000000'} 'totalmente justificado e o espaþamento entre as linhas deverß ser o espaþamento simples. '
+     RUN {'color': '000000'} 'Esforce-se para que no resumo, na sequÛncia que lhe parecer melhor, estejam descritos o objetivo do '
+     RUN {'color': '000000'} ', no mÝnimo, '
+     RUN {'color': '000000'} 'a principal conclusÒo (Resultado) do estudo.'
+     RUN {'color': '000000'} ' '
+     RUN {'color': 'F79646'} '('
+     RUN {'color': 'F79646'} 'orientaþ§es gerais sobre a formataþÒo do artigo: o '
+     RUN {'color': 'F79646'} 'formato'
+     RUN {'color': 'F79646'} ' da pßgina Ú o popular '
+     RUN {'color': 'F79646'} 'A4'
+     RUN {'color': 'F79646'} ' û 21x28cm)'
+     RUN {'color': 'F79646'} ', margens superior/esquerda 3,0 cm e inferior/direita 2,0 cm, com espaþamento '
+     RUN {'color': 'F79646'} 'de 1,5 '
+     RUN {'color': 'F79646'} 'entre linhas'
+     RUN {'color': 'F79646'} ', salvo aqui no resumo, no abstract, nas notas de rodapÚ e nas citaþ§es diretas.'
+     RUN {'color': 'F79646'} ' O arquivo total deve conter no mÝnimo 12 e no mßximo '
+     RUN {'color': 'F79646'} '25'
+     RUN {'color': 'F79646'} ' pßginas. Salvar o arquivo no formato'
+     RUN {'color': 'F79646'} ' word (Ex. .'
+     RUN {'color': 'F79646'} 'doc'
+     RUN {'color': 'F79646'} ' ou .'
+     RUN {'color': 'F79646'} 'docx'
+     RUN {'color': 'F79646'} ').'
+[13] {'jc': 'both', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+[14] {'jc': 'both', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'Palavras-chave: Palavrachave1; Palavrachave2; Palavrachave3. (escrever, no mÝnimo 3 e no mßximo 5, com letra inicial mai·scula, separadas entre si por ponto e vÝrgula e finalizadas por ponto final, Times New Roman, espaþamento entre linhas simples. Um espaþo simples entre o resumo e as palavras chaves, um espaþamento simples ou 1,5 entre as palavras e o ABSTRACT).'
+     RUN {'b': 'true', 'color': '000000'} 'Palavras-chave'
+     RUN {'color': '000000'} ': '
+     RUN {'color': '000000'} 'Palavrachave1'
+     RUN {'color': '000000'} ';'
+     RUN {'color': '000000'} ' '
+     RUN {'color': '000000'} 'Palavrachave'
+     RUN {'color': '000000'} '2'
+     RUN {'color': '000000'} ';'
+     RUN {'color': '000000'} ' '
+     RUN {'color': '000000'} 'Palavrachave'
+     RUN {'color': '000000'} '3'
+     RUN {'color': '000000'} '. '
+     RUN {'fonts': {'eastAsia': 'Calibri'}, 'color': 'F79646'} '(escrever, no mÝnimo 3 e no mßximo 5, com'
+     RUN {'fonts': {'eastAsia': 'Calibri'}, 'color': 'F79646'} ' '
+     RUN {'fonts': {'eastAsia': 'Calibri'}, 'color': 'F79646'} 'letra inicial mai·scula, separadas entre si '
+     RUN {'fonts': {'eastAsia': 'Calibri'}, 'color': 'F79646'} 'por ponto e vÝrgula '
+     RUN {'fonts': {'eastAsia': 'Calibri'}, 'color': 'F79646'} 'e finalizadas por ponto final'
+     RUN {'fonts': {'eastAsia': 'Calibri'}, 'color': 'F79646'} ', Times New Roman, espaþamento entre linhas simples. Um espaþo simples entre o resumo e as palavras '
+     RUN {'fonts': {'eastAsia': 'Calibri'}, 'color': 'F79646'} ').'
+[15] {'spacing': {'line': '360', 'lineRule': 'auto'}, 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+[16] {'jc': 'center', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'ABSTRACT'
+     RUN {'b': 'true', 'sz': '32', 'szCs': '32', 'color': '000000'} 'ABSTRACT'
+[17] {'jc': 'center', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: '(Alinhado no centro, Times New Roman 16, Espaþamento 1,5 entre as Linhas)'
+     RUN {'sz': '20', 'szCs': '20', 'color': 'F79646'} '(Alinhado no centro, Times New Roman 16, Espaþamento 1,5 entre as Linhas)'
+[18] {'spacing': {'line': '360', 'lineRule': 'auto'}, 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+[19] {'jc': 'both', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'Mesmo texto do resumo, traduzido para o inglÛs nas mesmas especificaþ§es.    '
+     RUN {'color': '000000'} 'Mesmo texto do resumo, traduzido para o inglÛs nas mesmas especificaþ§es.    '
+[20] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+[21] {'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'Keywords: Palavrachave1eminglÛs; Palavrachave2; Palavrachave3. (mesmas especificaþ§es das palavras chaves em portuguÛs).'
+     RUN {'b': 'true', 'color': '000000'} 'Keywords'
+     RUN {'color': '000000'} ': '
+     RUN {'color': '000000'} 'Palavrachave1'
+     RUN {'color': '000000'} 'eminglÛs'
+     RUN {'color': '000000'} '; Palavrachave2; Palavrachave3. ('
+     RUN {'color': '000000'} 'mesmas especificaþ§es das palavras chaves em portuguÛs'
+     RUN {'color': '000000'} ').'
+[22] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+[23] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: '1. INTRODUÃ├O '
+     RUN {'b': 'true', 'sz': '32', 'szCs': '32', 'color': '000000'} '1. '
+     RUN {'b': 'true', 'sz': '32', 'szCs': '32', 'color': '000000'} 'INTRODUÃ├O '
+[24] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: '(Fonte do tÝtulo INTRODUÃ├O Times new Roman, tamanho 16, alinhado Ó esquerda, negrito, comeþando com o n·mero 1 seguido de um ponto, espaþamento entre ilhas de 1,5)'
+     RUN {'color': 'F79646'} '(Fonte do tÝtulo INTRODUÃ├O Times new Roman, tamanho 16, '
+     RUN {'color': 'F79646'} 'alinhado Ó esquerda, '
+     RUN {'color': 'F79646'} 'negrito, comeþando com o n·mero 1 seguido de um ponto'
+     RUN {'color': 'F79646'} ', espaþamento entre ilhas de 1,5)'
+[25] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+[26] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'ind': {'firstLine': '709'}, 'shd': 'FFFFFF', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'Importante. Leia toda essa introduþÒo para vocÛ nÒo errar no desenvolvimento de todo o artigo. A introduþÒo Ú parte inicial do texto e Ú imprescindÝvel para chamar a atenþÒo do leitor. Costuma-se colocar na introduþÒo, textos e citaþ§es indiretas que falem sobre a justificativa, a delimitaþÒo do assunto tratado, problemßtica, e os objetivos. Fonte 12, espaþamento 1,5. Parßgrafo de 1,25 usando a tecla tab ou automßtico (Nunca usar a tecla espaþo para definir o espaþamento no comeþo do parßgrafo.'
+     RUN {'color': 'F79646'} 'Importante. Leia toda essa introduþÒo para vocÛ nÒo errar no desenvolvimento de todo o artigo.'
+     RUN {'color': '000000'} ' '
+     RUN {'color': '000000'} 'A introduþÒo Ú parte inicial do texto e Ú imprescindÝvel para chamar a atenþÒo do leitor. '
+     RUN {'color': '000000'} 'Costuma-se colocar na introduþÒo, textos e citaþ§es indiretas que falem sobre a '
+     RUN {'b': 'true', 'color': '000000'} 'justificativa, '
+     RUN {'color': '000000'} 'a '
+     RUN {'b': 'true', 'color': '000000'} 'delimitaþÒo do assunto'
+     RUN {'color': '000000'} ' tratado, '
+     RUN {'b': 'true', 'color': '000000'} 'problemßtica,'
+     RUN {'color': '000000'} ' e os '
+     RUN {'b': 'true', 'color': '000000'} 'objetivos'
+     RUN {'color': '000000'} '. Fonte 12, espaþamento 1,5.'
+     RUN {'color': '000000'} ' Parßgrafo de 1,25 usando a tecla '
+     RUN {'color': '000000'} 'tab'
+     RUN {'color': '000000'} ' ou automßtico (Nunca usar a tecla espaþo para definir o espaþamento no comeþo do parßgrafo.'
+[27] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'ind': {'firstLine': '709'}, 'shd': 'FFFFFF', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'Existem, basicamente, 2 tipos de citaþ§es que sÒo feitas dentro de um artigo e voc~e poderß usar tanto da introduþÒo como nos demais itens do artigo, menos no resumo e nas conclus§es / ou consideraþ§es finais. A citaþÒo direta e a citaþÒo indireta. A citaþÒo indireta Ú quela que vocÛ reescreve dentro de seus parßgrafos para contextualizar ou subsidiar alguma parte que vocÛ deseje do texto. Nesses casos vocÛ deverß colocar no final do parßgrafo (SOUSA, 2023).'
+     RUN {'color': '000000'} 'Existem, basicamente, 2 tipos de citaþ§es que sÒo feitas dentro de um artigo'
+     RUN {'color': '000000'} ' e '
+     RUN {'color': '000000'} 'voc~e'
+     RUN {'color': '000000'} ' poderß usar tanto da introduþÒo como nos demais itens do artigo, menos no resumo e nas conclus§es /'
+     RUN {'color': '000000'} '. A '
+     RUN {'b': 'true', 'color': '000000'} 'citaþÒo direta'
+     RUN {'color': '000000'} ' e a '
+     RUN {'b': 'true', 'color': '000000'} 'citaþÒo indireta'
+     RUN {'color': '000000'} '. A citaþÒo indireta Ú quela que vocÛ reescreve dentro de seus parßgrafos para contextualizar ou sub'
+     RUN {'color': '000000'} '(SOUSA, 2023).'
+[28] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'ind': {'firstLine': '709'}, 'shd': 'FFFFFF', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'Opcionalmente vocÛ pode usar, no final do parßgrafo a referÛncia numÚrica. Veja o exemplo, pressupondo que essas palavras estejam no final do parßgrafo, observe a referÛncia numÚrica aqui. Observe o n·mero 3 no final desse parßgrafo e no rodapÚ da mesma pßgina.'
+     RUN {'color': '000000'} 'Opcionalmente vocÛ pode usar, no final do parßgrafo a referÛncia numÚrica. Veja o exemplo, pressupon'
+     RUN {'color': '000000'} '. Observe o n·mero 3 no final desse parßgrafo e no rodapÚ da mesma pßgina'
+     RUN {'color': '000000'} '.'
+[29] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'ind': {'firstLine': '709'}, 'shd': 'FFFFFF', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'Veja que nos dois exemplos o ponto final veio depois da referÛncia da citaþÒo indireta, seja ela numÚrica ou textual. O outro tipo de citaþÒo Ú a citaþÒo direta, quando vocÛ copia e cola algum trecho de texto de outro autor para subsidiar os seus argumentos. Quando a citaþÒo direta tiver menos de 3 linhas elas deverÒo estar dentro do parßgrafo e ser colocado entre aspas. Veja o exemplo: conforme Sousa (2023) ôO outro tipo de citaþÒo Ú a citaþÒo direta, quando vocÛ copia e cola algum trecho de texto de outro autor para subsidiar os seus argumentos. Quando a citaþÒo direta tiver menos de 3 linhas elas deverÒo estar dentro do parßgrafo e ser colocado entre aspas.ö'
+     RUN {'color': '000000'} 'Veja que nos dois exemplos o ponto final veio depois da referÛncia da citaþÒo indireta, seja ela num'
+     RUN {'color': '000000'} 'Quando a citaþÒo direta tiver menos de 3 linhas elas deverÒo estar dentro do parßgrafo e ser colocad'
+     RUN {'color': '000000'} 'Veja o exemplo: conforme Sousa (2023)'
+     RUN {'color': '000000'} ' ô'
+     RUN {'color': '000000'} 'O outro tipo de citaþÒo Ú a citaþÒo direta, quando vocÛ copia e cola algum trecho de texto de outro '
+     RUN {'color': '000000'} '. '
+     RUN {'color': '000000'} 'Quando a citaþÒo '
+     RUN {'color': '000000'} 'direta tiver menos de 3 linhas elas deverÒo estar dentro do parßgrafo e ser colocado entre aspas.'
+     RUN {'color': '000000'} 'ö'
+[30] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'ind': {'firstLine': '709'}, 'shd': 'FFFFFF', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'PorÚm, se a citaþÒo tiver mais de 3 linhas elas deverÒo ser feitas em fonte tamanho 10 com espaþamento simples e recuos de 4cm. Veja o exemplo:'
+     RUN {'color': '000000'} 'PorÚm, se a citaþÒo tiver mais de 3 linhas elas deverÒo ser feitas em fonte tamanho 10 com espaþamen'
+[31] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'ind': {'firstLine': '709'}, 'shd': 'FFFFFF', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+[32] {'jc': 'both', 'ind': {'left': '2268'}, 'shd': 'FFFFFF', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'Veja que nos dois exemplos o ponto final veio depois da referÛncia da citaþÒo indireta, seja ela numÚrica ou textual. O outro tipo de citaþÒo Ú a citaþÒo direta, quando vocÛ copia e cola algum trecho de texto de outro autor para subsidiar os seus argumentos. Quando a citaþÒo direta tiver menos de 3 linhas elas deverÒo estar dentro do parßgrafo e ser colocado entre aspas. Veja o exemplo: conforme (SOUSA, 2023).'
+     RUN {'sz': '20', 'szCs': '20', 'color': '000000'} 'Veja que nos dois exemplos o ponto final veio depois da referÛncia da citaþÒo indireta, seja ela num'
+     RUN {'sz': '20', 'szCs': '20', 'color': '000000'} '(SOUSA, '
+     RUN {'sz': '20', 'szCs': '20', 'color': '000000'} '2023)'
+     RUN {'sz': '20', 'szCs': '20', 'color': '000000'} '.'
+[33] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'ind': {'firstLine': '709'}, 'shd': 'FFFFFF', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+[34] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'ind': {'firstLine': '709'}, 'shd': 'FFFFFF', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: 'Aqui vocÛ continua o parßgrafo seguinte...'
+     RUN {} 'Aqui vocÛ continua o parßgrafo seguinte...'
+[35] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'ind': {'firstLine': '709'}, 'shd': 'FFFFFF', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+[36] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'shd': 'FFFFFF', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+    TEXT: '2. DESENVOLVIMENTO DO TRABALHO'
+     RUN {'b': 'true', 'sz': '32', 'szCs': '32'} '2. '
+     RUN {'b': 'true', 'sz': '32', 'szCs': '32'} 'DESENVOLVIMENTO DO TRABALHO'
+[37] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'shd': 'FFFFFF', 'pBdr': [('top', 'nil'), ('left', 'nil'), ('bottom', 'nil'), ('right', 'nil'), ('between', 'nil')]}
+[38] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'ind': {'firstLine': '709'}}
+    TEXT: 'O tÝtulo acima, como em todo o artigo Ú feito em Times tam. 16 e negrito. Aqui vocÛ darß continuidade ao artigo conforme vocÛ fez em seu estudo, se por exemplo, depois da introduþÒo, veio ôrevisÒo bibliogrßficaö Ú isso que vocÛ deve colocar. NÒo existem regras fixas da revista Qualyacademics, geralmente seguimos a mesma regra da faculdade que vocÛ fez o trabalho original. Somente observe as quest§es referentes Ós citaþ§es como colocamos explicadamente na introduþÒo.'
+     RUN {'color': '000000', 'highlight': 'white'} 'O tÝtulo acima, como em todo o artigo Ú feito em Times tam. 16 e negrito. '
+     RUN {'color': '000000', 'highlight': 'white'} 'Aqui vocÛ darß continuidade ao artigo conforme vocÛ fez em seu estudo, se por exemplo'
+     RUN {'color': '000000', 'highlight': 'white'} ', depois da introduþÒo, veio ôrevisÒo bibliogrßficaö Ú isso que vocÛ deve colocar. NÒo existem regra'
+     RUN {'color': '000000', 'highlight': 'white'} 'Qualyacademics'
+     RUN {'color': '000000', 'highlight': 'white'} ', geralmente seguimos a mesma regra da faculdade que vocÛ fez o trabalho original. Somente observe a'
+[39] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'ind': {'firstLine': '851'}}
+[40] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'ind': {'right': '-568'}}
+    TEXT: '8. CONCLUS├O'
+     RUN {'b': 'true', 'sz': '32', 'szCs': '32'} '8. CONCLUS├O'
+[41] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'ind': {'right': '-142', 'firstLine': '720'}}
+[42] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}, 'ind': {'firstLine': '709'}}
+    TEXT: 'A numeraþÒo acima Ú fictÝcia. Ela deverß seguir a sequÛncia ╔ recomendßvel que o autor expresse sua contribuiþÒo reflexiva (de cunho pessoal) e/ou verse sobre as perspectivas acerca do estudo realizado. Evitar usar referÛncias, pois Ú fundamental expressar a opiniÒo dos autores, com o devido embasamento cientÝfico.'
+     RUN {} 'A numeraþÒo acima Ú fictÝcia. Ela deverß seguir a '
+     RUN {} 'sequÛncia '
+     RUN {} '╔'
+     RUN {} ' recomendßvel que o autor '
+     RUN {} 'express'
+     RUN {} 'e'
+     RUN {} ' sua contribuiþÒo reflexiva (de cunho pessoal)'
+     RUN {} ' '
+     RUN {} 'e/ou vers'
+     RUN {} 'e'
+     RUN {} ' sobre as perspectivas acerca do estudo realizado.'
+     RUN {} ' Evitar usar referÛncias, pois Ú fundamental expressar a opiniÒo dos autores, com o devido embasamen'
+[43] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}}
+[44] {'jc': 'both', 'spacing': {'line': '360', 'lineRule': 'auto'}}
+    TEXT: '9. REFER╩NCIAS (Use de preferÛncia as referÛncias conforme ABNT ou APA)'
+     RUN {'b': 'true', 'sz': '32', 'szCs': '32'} '9. REFER╩NCIAS'
+     RUN {'b': 'true', 'sz': '32', 'szCs': '32'} ' '
+     RUN {'color': 'F79646'} '(Use de preferÛncia as referÛncias conforme ABNT ou APA)'
+[45] {'jc': 'both', 'spacing': {'before': '360', 'after': '360'}}
+    TEXT: 'SOUSA, Jociandre Barbosa de. Template para artigos da revista Qualyacademics. Senador Pompeu: Editora UNISV, 2023.'
+     RUN {} 'SOUSA, Jociandre Barbosa de. '
+     RUN {'b': 'true'} 'Template'
+     RUN {'b': 'true'} ' para artigos da revista '
+     RUN {'b': 'true'} 'Qualyacademics'
+     RUN {} '. Senador Pompeu: Editora UNISV, 2023.'
+SECTPR:
+   headerReference {'type': 'even', 'id': 'rId8'}
+   headerReference {'type': 'default', 'id': 'rId9'}
+   footerReference {'type': 'even', 'id': 'rId10'}
+   footerReference {'type': 'default', 'id': 'rId11'}
+   headerReference {'type': 'first', 'id': 'rId12'}
+   footerReference {'type': 'first', 'id': 'rId13'}
+   pgSz {'w': '11909', 'h': '16834'}
+   pgMar {'top': '1843', 'right': '1279', 'bottom': '1260', 'left': '1416', 'header': '850', 'footer': '785', 'gutter': '0'}
+   pgNumType {'start': '204'}
+   cols {'space': '720'}
+   titlePg {}

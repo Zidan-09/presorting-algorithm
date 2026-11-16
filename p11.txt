@@ -1,0 +1,19 @@
+214
+ARTIGO - Revista QUALYACADEMICS. Editora UNISV; n.( ), v ( ), 2023; p. 000-14300
+DESEJA VER UM ARTIGO PRONTO? Baixe um artigo completo em PDF, o link está disponível na seguin￾te página: https://www.editoraunisv.com.br/post/politica-publica-de-educacao-em-prisoes-do￾tocantins-marcos-historicos-fundamentais (procure o link baixar o artigo completo em PDF)
+e as ordenações operam in-place, nenhum vetor do pool é reutilizado entre iterações sem res￾tauração: a cada iteração do Criterion (iter_batched), a rotina de setup — fora da região
+cronometrada — clona o próximo vetor do pool em rotação (pool[i].clone(), índice circu￾lar) e entrega o clone à rotina medida. A região cronometrada contém somente a chamada a
+BenchmarkServiceBench::medir_* sobre esse clone: no braço puro, apenas a ordenação
+(medir_puro); no braço com pré, o pré-processamento seguido da ordenação sobre o mesmo
+clone (medir_com_pre, com um único Instant::now() cobrindo as duas etapas); no braço
+isolado, apenas o pré-processamento (medir_pre). O custo do clone/da restauração não integra
+a região cronometrada. Assim, cada braço inicia cada uma de suas iterações a partir de um clone
+fresco de um vetor do pool (rotação circular), de modo que os braços amostram o mesmo pool e
+o vetor original não é modificado; o pareamento estrito por vetor (mesmo índice do pool nos dois
+braços, mesma repetição) é garantido apenas no teste de efeito abaixo, não dentro do Criterion,
+cujos braços são executados como benchmarks separados.
+Critério estatístico (inferência pareada, fora do Criterion): para cada célula e cada pool, o
+exemplo efeito_pareado (FP_R=50 vetores, FP_BOOT=10.000, cinco pools com seeds 42–
+46) reconstrói o mesmo pool do bench, clona cada vetor e cronometra os dois braços sobre clo￾nes do mesmo vetor (ordem dos braços alternada por repetição para controlar deriva), obtendo
+um par (T puro ,T pre ) por vetor (cada T é a média de repetições internas calibradas para ≈50 μs
+por medição, com 
