@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.14)  18 NOV 2026 13:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.14)  18 NOV 2026 13:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1052,12 +1052,13 @@ Package microtype Info: Loading generic protrusion settings for font family
  [5]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 156.
+
+[6]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 83.
-
-(C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+ (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [6]
+)
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 201.
 
@@ -1100,6 +1101,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 342.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 342.
+ [13]
 LaTeX Font Info:    Trying to load font information for TS1+lmss on input line 
 376.
 
@@ -1113,17 +1115,13 @@ Package microtype Info: Loading generic protrusion settings for font family
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 376.
 
-(resultados/tab4b_pt_tabular.tex) [13] [14]
+(resultados/tab4b_pt_tabular.tex) [14] [15]
 Package pgfplots info on input line 432: Using 'lua backend=false' for axis: xm
 ode=log unsupported (yet).
 Package pgfplots info on input line 432: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15]
-(resultados/tab5_pt_tabular.tex) (resultados/tabcpre_pt_tabular.tex) [16]
-[17]
+ (resultados/tab5_pt_tabular.tex)
+(resultados/tabcpre_pt_tabular.tex) [16] [17]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [18]
@@ -1157,11 +1155,6 @@ Package pgfplots info on input line 553: Using 'lua backend=false' for axis: x
 coord trafo unsupported.
 PGFPlots: reading {resultados/fig_tempos_quick.csv}
 PGFPlots: reading {resultados/fig_tempos_quick.csv}
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [19]
-[20]
 Package pgfplots info on input line 601: Using 'lua backend=false' for axis: xm
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_gain_vs_n.csv}
@@ -1190,31 +1183,31 @@ NOTE: coordinate (1000000,nan) has been dropped because it is unbounded (in y).
  (see also unbounded coords=jump). 
 NOTE: coordinate (10000000,nan) has been dropped because it is unbounded (in y)
 . (see also unbounded coords=jump). 
-[21]
+
+Underfull \vbox (badness 1540) has occurred while \output is active []
+
+ [19]
+[20] [21] [22]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [22]
-[23] (resultados/tab4_pt_tabular.tex) (resultados/tab4c_pt_tabular.tex)
-(resultados/tab6_pt_tabular.tex) [24
+ [23]
+[24] (resultados/tab4_pt_tabular.tex) (resultados/tab4c_pt_tabular.tex)
+(resultados/tab6_pt_tabular.tex) [25
 
-] [25] [26] (main.bbl) [27
+] [26] [27] (main.bbl) [28
 
 ] (main.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-07-20>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 32780 strings out of 467501
- 793386 string characters out of 5408550
- 1369852 words of memory out of 5000000
+ 32782 strings out of 467501
+ 793408 string characters out of 5408550
+ 1403225 words of memory out of 5000000
  61050 multiletter control sequences out of 15000+600000
- 783081 words of font info for 327 fonts, out of 8000000 for 9000
+ 783210 words of font info for 328 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  92i,19n,104p,1995b,2610s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pf
@@ -1242,9 +1235,9 @@ Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/
 Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/m
 sam10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
 onts/symbols/msbm10.pfb>
-Output written on main.pdf (27 pages, 597235 bytes).
+Output written on main.pdf (28 pages, 597736 bytes).
 PDF statistics:
- 241 PDF objects out of 1000 (max. 8388607)
+ 244 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  90637 words of extra memory for PDF output out of 106986 (max. 10000000)
 

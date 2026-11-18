@@ -64,7 +64,7 @@ Quadratic algorithms are useful in resource-constrained systems but are sensitiv
 
 \begin{resumo}
 
-Algoritmos quadráticos são úteis em sistemas com recursos restritos, porém sensíveis às inversões na entrada. Este artigo avalia um pré-processamento simétrico de inversões, de complexidade $O(n)$, em algoritmos adaptativos e não adaptativos. Em entradas não alinhadas, o pré-processamento remove de 40\% a 62\% das inversões, com ganhos de 14\% a 60\% em métodos quadráticos adaptativos em $n{}=10{,}000$. As topologias Invertido e Zigue-zague alcancam eliminação quase total com speedups de $\times$386--2.280; mas esses ganhos não se estendem a entradas aleatórias ou quase ordenadas. Nenhum híbrido supera o ordenador padrão em dados Aleatórios.
+Algoritmos quadráticos são úteis em sistemas com recursos restritos, porém sensíveis às inversões na entrada. Este artigo avalia um pré-processamento simétrico de inversões, de complexidade $O(n)$, em algoritmos adaptativos e não adaptativos. Em entradas não alinhadas, o pré-processamento remove de 40\% a 62\% das inversões, com ganhos de 14\% a 60\% em métodos quadráticos adaptativos em $n{}=10{.}000$. As topologias Invertido e Zigue-zague alcançam eliminação quase total com \emph{speedups} de $\times$386--2.280; mas esses ganhos não se estendem a entradas aleatórias ou quase ordenadas. Nenhum híbrido supera o ordenador padrão em dados Aleatórios.
 
 \end{resumo}
 
@@ -122,7 +122,7 @@ Quanto aos procedimentos técnicos, a pesquisa é experimental. Para Gil~\cite{g
 
 \subsection{Configuração}\label{sec:config}
 
-Os experimentos foram realizados em ambiente controlado. O plano de energia foi mantido em alto desempenho e os processos em segundo plano minimizados. O código foi compilado com \texttt{opt-level = 3}. A geração de dados empregou semente fixa e entradas pareadas para garantir reprodutibilidade, com 50 amostras por combinação de topologia e tamanho, e 5 \emph{pools} independentes para análise de estabilidade.
+Os experimentos foram realizados em ambiente controlado, resumido na Tabela~\ref{tab:ambiente}. O plano de energia foi mantido em alto desempenho e os processos em segundo plano minimizados. O código foi compilado com \texttt{opt-level = 3}. A geração de dados empregou semente fixa e entradas pareadas para garantir reprodutibilidade, com 50 amostras por combinação de topologia e tamanho, e 5 \emph{pools} independentes para análise de estabilidade.
 
 \begin{table}[htbp]
 \centering
@@ -338,8 +338,8 @@ A Figura~\ref{fig:inversoespos} ilustra a variação das inversões observadas n
 \caption{Redução de inversões proporcionada pelo pré-processamento simétrico em vetores de 10.000 elementos (média dos 50 vetores do \emph{pool} pareado; mesma semente dos tempos da Tabela~\ref{tab:apA}).}
 \label{tab:inversoes}
 \input{resultados/tab3_pt_tabular}
-\vspace{2pt}
-{\footnotesize\textsuperscript{*}~99,99\% (2.501 inversões restantes); \textsuperscript{**}~100,00\% exato (zero inversões restantes). A diferença de arredondamento impede interpretação de equivalência entre os dois casos. Nota: \textsuperscript{*}/\textsuperscript{**} aqui distinguem apenas essas duas linhas de redução e não denotam o teste pareado ($^{*}$/$^{\dagger}$) usado nas tabelas de tempos.}
+\par\vspace{2pt}
+{\footnotesize\raggedright\textsuperscript{*}~99,99\% (2.501 inversões restantes); \textsuperscript{**}~100,00\% exato (zero inversões restantes). A diferença de arredondamento impede interpretação de equivalência entre os dois casos. Nota: \textsuperscript{*}/\textsuperscript{**} aqui distinguem apenas essas duas linhas de redução e não denotam o teste pareado ($^{*}$/$^{\dagger}$) usado nas tabelas de tempos.\par}
 \end{table}
 
 Como o Algoritmo~\ref{alg:preproc} executa a troca direta entre $a[i]$ e $a[n-1-i]$, um vetor estritamente invertido (onde $a[i] > a[n-1-i]$ para todo $i < n/2$) tem sua sequência revertida em $O(n)$ operações. No caso Invertido, a topologia da desordem coincide com a simetria aplicada.
