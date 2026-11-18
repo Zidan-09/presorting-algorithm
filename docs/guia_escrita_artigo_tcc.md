@@ -181,7 +181,12 @@ Estrutura de cada parágrafo de classificação:
 
 ---
 
-## 9. Checklist de Verificação Final
+## 9. Seções Extras
+
+Algumas informações devem estar presentes e cabem a seções novas apenas para elas.
+Esse é o caso de uso de IA e repositório do github.
+
+## 10. Checklist de Verificação Final
 
 - [ ] Título, autores e filiação corretos no cabeçalho
 - [ ] Resumo: parágrafo único, ≤ 10 linhas, sem citações, 5 orações na ordem obrigatória
@@ -194,14 +199,10 @@ Estrutura de cada parágrafo de classificação:
 
 ---
 
-## 10. Observações Importantes
+## 11. Observações Importantes
 
 1. **Consistência**: Mantenha terminologia uniforme entre Introdução, Métodos, Resultados e Considerações Finais.
 2. **Rastreabilidade**: Cada objetivo na Introdução deve ter correspondência em Resultados.
 3. **Referencial**: Cite autores clássicos e atuais da área de Sistemas de Computação/Engenharia de Software.
 4. **Validação**: Se houver validação com usuários (UEQ, SUS), apresente dados quantitativos e qualitativos.
 5. **Ética**: Se envolver participantes humanos, mencione aprovação do Comitê de Ética (se aplicável).
-
----
-
-*Documento consolidado a partir dos arquivos: `inicio.docx`, `métodos.docx` e `resultados.docx`*
