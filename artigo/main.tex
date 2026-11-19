@@ -174,13 +174,13 @@ Real & prefixo $[0..n)$ de bytes crus concatenados de 40 arquivos-fonte do próp
 \end{tabular}
 \end{table}
 
-A topologia Real utiliza o asset versionado \texttt{real\_bytes\_v1.bin}, composto por bytes de 40 arquivos-fonte do repositório, convertidos individualmente em valores \texttt{i32}. Trata-se de um conjunto operacional determinístico, sem pretensão de representatividade geral, cuja composição é documentada no repositório.
+A topologia Real constitui um conjunto operacional determinístico, utilizado para avaliar o comportamento do pré-processamento em dados provenientes de arquivos-fonte reais, sem pretensão de representatividade geral. Sua composição e disponibilização são documentadas no repositório.
 
 O custo isolado do pré-processamento ($C_{\text{pre}}$) foi medido adicionalmente em $n \in \{1.000, 5.000, 10.000, 20.000, 100.000, 1.000.000\}$ (Tabela~\ref{tab:precusto} e Figura~\ref{fig:precusto_linear}), permitindo caracterizar seu comportamento linear. O ponto $n=20.000$ foi coletado exclusivamente para essa análise, por meio da ferramenta CLI, com \texttt{seed} 42, sete repetições e duas iterações de aquecimento. A ordem dos braços foi alternada entre repetições, e os resultados foram agregados pela média dos dez padrões de entrada. Essa coleta não integra a matriz principal de comparação dos tempos de ordenação. A topologia Real não possui medição em $n=10^6$, devido ao limite do conjunto de dados nativo.
 
 \subsection{Especificação e Implementação dos Algoritmos Avaliados}
 
-Os algoritmos foram implementados em Rust 1.96.0, operando diretamente sobre fatias mutáveis de inteiros de 32 bits (\texttt{\&mut [i32]}), sem abstrações externas de alto nível. As implementações foram agrupadas conforme sua complexidade e finalidade experimental.
+As implementações operaram diretamente sobre fatias mutáveis de inteiros de 32 bits (\texttt{\&mut [i32]}), sem abstrações externas de alto nível. Os algoritmos foram agrupados conforme sua complexidade e finalidade experimental.
 
 \subsubsection{Algoritmos Quadráticos}
 
@@ -300,9 +300,9 @@ Experimentalmente, observou-se redução de $45{,}19\%$ na topologia Aleatório 
 
 \subsection{Ameaças à Validade}\label{sec:ameacas}
 
-\emph{Limitações internas e de construção:} os experimentos foram executados no Windows 11, com Rust 1.96.0 (\emph{release}, \texttt{opt-level=3}) e dados \texttt{i32} únicos. O escalonamento de frequência da CPU, a afinidade SMT e a resolução do temporizador não foram controlados, além do uso do plano de alto desempenho e da minimização de processos em segundo plano. O custo $C_{\text{pre}}$ foi medido por topologia no mesmo \emph{harness} Criterion (Tabela~\ref{tab:cpre}), restringindo a decomposição $C_{\text{pre}}$ vs.\ $\Delta C_{\text{sort}}$ à matriz avaliada. Além disso, foram utilizadas apenas chaves \texttt{i32} e uma implementação por algoritmo.
+\emph{Limitações internas e de construção:} apesar do uso do plano de alto desempenho e da minimização de processos em segundo plano, não foram controlados o escalonamento de frequência da CPU, a afinidade SMT e a resolução do temporizador. O custo ($C_{\text{pre}}$) foi medido por topologia no mesmo ambiente de medição (Tabela 8), restringindo a decomposição ($C_{\text{pre}}$) vs. ($\Delta C_{\text{sort}}$) à matriz avaliada. Além disso, a avaliação limitou-se a chaves (\texttt{i32}) únicas e uma implementação por algoritmo.
 
-\emph{Limitações externas, estatísticas e de medição:} foram avaliadas nove topologias sintéticas e um vetor operacional de bytes (``Real''), sem pretensão de representatividade geral, com cinco \emph{pools} independentes por célula. Os métodos quadráticos foram limitados a $n\leq10^5$, enquanto os demais alcançaram $n=10^7$ ($\approx$40\,MB por vetor \texttt{i32}) (Figura~\ref{fig:ganho_n}); a distribuição Duplicados utilizou três valores fixos ($k{=}3$). A inferência pareada por \emph{bootstrap}, com estabilidade entre \emph{pools}, foi aplicada às tabelas publicadas ($n{=}10^4$ e $n{=}10^6$), enquanto os demais tamanhos se apoiam nos intervalos de confiança do Criterion. Não foram utilizados contadores de hardware (\texttt{perf\_event\_open}, específico do Linux); portanto, atribuições ao preditor de desvios e à cache constituem hipóteses, não medições. A reprodução dos experimentos é possível por meio de \texttt{cargo bench}, conforme a Seção~\ref{sec:repositorio}.
+\emph{Limitações externas, estatísticas e de medição:} foram avaliadas topologias sintéticas e um vetor operacional de bytes (Real), sem pretensão de representatividade geral, com cinco \emph{pools} independentes por célula. Os métodos quadráticos foram limitados a ($n\leq10^5$), enquanto os demais alcançaram ($n=10^7$) ($\approx$40 MB por vetor (\texttt{i32})) (Figura~\ref{fig:ganho_n}). A distribuição Duplicados restringiu-se a três valores ((k=3)). A inferência pareada por \emph{bootstrap}, com estabilidade entre pools, foi aplicada às tabelas publicadas ($n{=}10^4$ e $n{=}10^6$); os demais tamanhos foram avaliados pelos intervalos de confiança do Criterion. Sem contadores de hardware (\texttt{perf\_event\_open}, específico do Linux), atribuições ao preditor de desvios e à cache permanecem hipóteses, não medições. A reprodução é possível por meio de \texttt{cargo bench} (Seção~\ref{sec:repositorio}).
 
 \section{Resultados e Discussão}\label{sec:res}
 

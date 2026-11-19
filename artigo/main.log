@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.14)  19 NOV 2026 08:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.14)  19 NOV 2026 10:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -804,7 +804,10 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 188.
  (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [5]
+)
+Underfull \vbox (badness 2237) has occurred while \output is active []
+
+ [5]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 206.
  [6{C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}]
@@ -837,11 +840,11 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 400.
- (resultados/tab4b_pt_tabular.tex) [12] [13]
+ (resultados/tab4b_pt_tabular.tex) [12]
 Package pgfplots info on input line 456: Using 'lua backend=false' for axis: xmode=log unsupported (yet).
 Package pgfplots info on input line 456: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
- (resultados/tab5_pt_tabular.tex) (resultados/tabcpre_pt_tabular.tex) [14]
-Underfull \vbox (badness 2600) has occurred while \output is active []
+ (resultados/tab5_pt_tabular.tex) (resultados/tabcpre_pt_tabular.tex) [13] [14]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15]
 Package pgfplots info on input line 561: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
@@ -864,7 +867,6 @@ Package pgfplots info on input line 577: Using 'lua backend=false' for axis: ymo
 Package pgfplots info on input line 577: Using 'lua backend=false' for axis: x coord trafo unsupported.
 PGFPlots: reading {resultados/fig_tempos_quick.csv}
 PGFPlots: reading {resultados/fig_tempos_quick.csv}
- [16]
 Package pgfplots info on input line 626: Using 'lua backend=false' for axis: xmode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_gain_vs_n.csv}
 
@@ -884,8 +886,8 @@ NOTE: coordinate (10000000,nan) has been dropped because it is unbounded (in y).
 PGFPlots: reading {resultados/fig_gain_vs_n.csv}
 NOTE: coordinate (1000000,nan) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
 NOTE: coordinate (10000000,nan) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
-[17]
-Underfull \vbox (badness 2529) has occurred while \output is active []
+[16] [17]
+Underfull \vbox (badness 1320) has occurred while \output is active []
 
  [18] [19] (resultados/tab4_pt_tabular.tex) (resultados/tab4c_pt_tabular.tex) (resultados/tab6_pt_tabular.tex) [20
 
@@ -898,15 +900,15 @@ L3 programming layer <2026-07-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 33795 strings out of 467501
- 812437 string characters out of 5408550
- 1395063 words of memory out of 5000000
+ 33793 strings out of 467501
+ 812415 string characters out of 5408550
+ 1422733 words of memory out of 5000000
  62093 multiletter control sequences out of 15000+600000
- 759620 words of font info for 291 fonts, out of 8000000 for 9000
+ 759533 words of font info for 290 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  92i,19n,104p,1234b,2610s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx7.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbo10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (23 pages, 567527 bytes).
+Output written on main.pdf (23 pages, 566292 bytes).
 PDF statistics:
  220 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
