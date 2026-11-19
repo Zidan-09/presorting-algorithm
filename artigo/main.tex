@@ -118,7 +118,7 @@ Diferentemente desses estudos, este trabalho não propõe novas medidas de desor
 
 Quanto à natureza, a pesquisa é aplicada, pois propõe, implementa e avalia uma heurística de pré-processamento voltada à melhoria do desempenho de algoritmos de ordenação em entradas com muitas inversões. Essa classificação corresponde à definição de Gil~\cite{gil_metodos_2019}, segundo a qual a pesquisa aplicada busca gerar conhecimentos direcionados à solução de problemas específicos.
 
-Quanto à abordagem, a pesquisa é quantitativa, uma vez que utiliza medições numéricas de tempos de execução e contagens de inversões para comparar algoritmos com e sem pré-processamento. Conforme Sampieri, Collado e Lucio~\cite{sampieri_metodologia_2021}, essa abordagem emprega dados numéricos e procedimentos estatísticos para analisar padrões e efeitos, como as médias, os intervalos de confiança e a inferência pareada por \emph{bootstrap} utilizados neste estudo.
+Quanto à abordagem, a pesquisa é quantitativa, pois compara algoritmos com e sem pré-processamento por meio de tempos de execução e contagens de inversões. Essa abordagem utiliza dados numéricos e procedimentos estatísticos para analisar padrões e efeitos, conforme Sampieri, Collado e Lucio~\cite{sampieri_metodologia_2021}.
 
 Quanto aos objetivos, a pesquisa possui caráter exploratório e descritivo. É exploratória por investigar uma heurística ainda não caracterizada teoricamente em todas as topologias avaliadas e descritiva por mapear seu comportamento em dez padrões de entrada, identificando as condições em que os ganhos superam os custos, sem pretensão de estabelecer causalidade geral. A classificação fundamenta-se em Gil~\cite{gil_metodos_2019}.
 
@@ -160,15 +160,15 @@ Os algoritmos quasilineares (\emph{Merge Sort} e \emph{Quicksort}) e os baseline
 \hline
 \textbf{Topologia} & \textbf{Descrição do Padrão Estrutural} \\
 \hline
-Aleatório & permutação uniforme de $[0,n{-}1]$ via \texttt{shuffle} com \texttt{ChaCha8Rng} \\
+Aleatório & permutação uniforme de $[0,n{-}1]$ \\
 Tartarugas & $a[i]=i+n$ se $i<n/2$, senão $a[i]=i \bmod 10$ \\
 Zigue-zague & $a[i]=i$ se $i$ par, senão $a[i]=n-i$; determinístico \\
-Quase ordenado & $[0,n{-}1]$ ordenado com $n/100$ trocas de pares aleatórios \\
+Quase ordenado & Vetor ordenado com $n/100$ trocas aleatórias \\
 Duplicados & $a[i]\sim\mathcal{U}\{0,1,2\}$ i.i.d. \\
 Invertido & $a[i]=n-i$ (estritamente decrescente); determinístico \\
 Serra & $a[i]=i \bmod 16$ \\
 Tubo & $a[i]=i$ se $i<n/2$, senão $a[i]=n-1-i$ \\
-Runs & 4 blocos invertidos disjuntos nos quartis do vetor \\
+Runs & Quatro blocos invertidos, um por quartil \\
 Real & prefixo $[0..n)$ de bytes crus concatenados de 40 arquivos-fonte do próprio repositório (1 byte $\to$ 1 \texttt{i32}, 0--255; sem \emph{tiling}; $n$ acima do nativo excluído) \\
 \hline
 \end{tabular}
@@ -185,32 +185,30 @@ As implementações operaram diretamente sobre fatias mutáveis de inteiros de 3
 \subsubsection{Algoritmos Quadráticos}
 
 \begin{itemize}
-    \item \textbf{Bubble Sort:} versão adaptativa, com limite superior decrescente e flag \texttt{trocou}, que encerra a execução quando uma passada não realiza permutas. Assim, apresenta custo $O(n)$ em vetores ordenados.
+    \item \textbf{Bubble Sort:} versão adaptativa, com limite decrescente e interrupção antecipada quando uma passada não realiza trocas, alcançando O(n) em entradas ordenadas.
 
-    \item \textbf{Insertion Sort:} utiliza inserção por deslocamento, interrompendo a busca ao encontrar a posição adequada. Essa implementação, em vez de realizar trocas sucessivas, é relevante para a análise do custo por inversão apresentada na Seção~\ref{sec:analise}.
+    \item \textbf{Insertion Sort:} realiza inserção por deslocamento, encerrando a busca ao encontrar a posição adequada. Essa estratégia evita trocas sucessivas e fundamenta a análise do custo por inversão apresentada na Seção~\ref{sec:analise}.
 
-    \item \textbf{Selection Sort:} implementação clássica, não adaptativa e \emph{in-place}, com custo de comparações $O(n^2)$ independentemente da ordenação inicial.
+    \item \textbf{Selection Sort:} Implementação clássica, não adaptativa e \emph, com custo de comparações $O(n^2)$ independentemente da ordenação inicial.
 \end{itemize}
 
 \subsubsection{Algoritmos Quasilineares}
 
 \begin{itemize}
-    \item \textbf{Merge Sort:} implementação estável e recursiva (\emph{top-down}), que utiliza um único vetor auxiliar de tamanho $n$, compartilhado entre as chamadas, evitando alocações recorrentes.
+    \item \textbf{Merge Sort:} Implementação estável e recursiva (\emph{top-down}), com vetor auxiliar único de tamanho $n$, compartilhado entre as chamadas para evitar alocações recorrentes.
 
-    \item \textbf{Quicksort:} utiliza particionamento de três vias (\emph{Dutch National Flag}) e pivô selecionado pela mediana entre o primeiro, o central e o último elemento. Essa configuração apresenta tempo médio $O(n\log n)$ e trata explicitamente elementos duplicados, sem eliminar a possibilidade de entradas adversariais.
+    \item \textbf{Quicksort:} Utiliza particionamento de três vias (\emph{Dutch National Flag}) e pivô pela mediana entre o primeiro, o central e o último elemento. Apresenta tempo médio $O(n\log n)$ e trata elementos duplicados, sem eliminar a possibilidade de casos adversariais.
 \end{itemize}
 
 \subsubsection{Baselines Competitivos}
 
 \begin{itemize}
-    \item \textbf{\texttt{sort\_unstable}:} ordenação instável da biblioteca padrão do Rust, com garantia de $O(n\log n)$ no pior caso e sem alocação auxiliar. Na versão avaliada, sua implementação é baseada em \emph{ipnsort}, com adaptatividade para entradas totalmente ordenadas ou revertidas.
+    \item \textbf{\texttt{sort\_unstable}:} Ordenação instável da biblioteca padrão do Rust, com garantia de $O(n\log n)$ no pior caso e sem alocação auxiliar. Baseada em \emph{ipnsort}, apresenta adaptatividade para entradas totalmente ordenadas ou revertidas.
 
-    \item \textbf{\texttt{sort}:} ordenação estável da biblioteca padrão, também com garantia de $O(n\log n)$ no pior caso. Sua implementação é baseada em \emph{driftsort}, com detecção parcial de \emph{runs} e comportamento linear em entradas totalmente ordenadas ou revertidas.
+    \item \textbf{\texttt{sort}:} Ordenação estável da biblioteca padrão, com garantia de $O(n\log n)$ no pior caso. Baseada em \emph{driftsort}, detecta parcialmente \emph{runs} e apresenta comportamento linear em entradas totalmente ordenadas ou revertidas.
 
-    \item \textbf{\texttt{desc\_reverse}:} verifica em $O(n)$ se a entrada é estritamente decrescente. Nesse caso, reverte o vetor \emph{in-place} antes de executar o Insertion Sort; caso contrário, aplica diretamente esse algoritmo. Esse baseline permite avaliar se a detecção de sequências estritamente decrescentes explica os ganhos na topologia Invertido.
+    \item \textbf{\texttt{desc\_reverse}:} Verifica em $O(n)$ se a entrada é estritamente decrescente e, nesse caso, reverte o vetor \emph{in-place} antes de aplicar Insertion Sort. Caso contrário, executa o algoritmo diretamente. Esse baseline avalia o impacto da detecção de sequências decrescentes na topologia Invertido.
 \end{itemize}
-
-Os métodos da biblioteca padrão representam referências competitivas com garantias de complexidade e propriedades distintas de estabilidade e alocação. Sua adaptatividade em entradas ordenadas ou revertidas também permite avaliar situações nas quais o custo adicional de $O(n)$ do pré-processamento pode não resultar em ganho líquido, conforme discutido na Seção~\ref{sec:custo}.
 
 \subsection{Protocolo Experimental e Raciocínio de Cálculo de Inversões}
 \label{sec:protocolo}
@@ -280,9 +278,7 @@ $meio \gets \lfloor n/2 \rfloor$\;
 
 \end{algorithm}
 
-Em cada iteração, o algoritmo compara os elementos das posições simétricas $i$ e $j=n-1-i$, realizando a troca quando estão invertidos. Em seguida, verifica a ordem dos elementos adjacentes nas metades esquerda e direita, efetuando ajustes locais quando necessário. As condições de contorno impedem que essas operações ultrapassem o ponto médio do vetor.
-
-O laço executa exatamente $\lfloor n/2 \rfloor$ iterações, com até cinco comparações e três trocas por iteração. Como cada operação possui custo constante, a complexidade temporal é $O(n)$. As alterações ocorrem diretamente em $A$, sem estrutura auxiliar, resultando em complexidade espacial $O(1)$.
+A cada iteração, o algoritmo compara e, quando necessário, troca os elementos em posições simétricas. Em seguida, realiza ajustes locais nas posições adjacentes de ambas as metades, respeitando os limites definidos pelo ponto médio. O laço executa $\lfloor n/2 \rfloor$ iterações, com até três comparações entre elementos e três trocas por iteração. Como todas as operações têm custo constante, a complexidade temporal é $O(n)$ e a espacial, $O(1)$.
 
 Para analisar a redução de inversões, considere inicialmente apenas as trocas espelhadas, desconsiderando os ajustes adjacentes. Seja $I$ o número de inversões e considere um par de posições $(i,j)$ com $i<j$. Quando $A[i]>A[j]$, a troca elimina a inversão entre as extremidades. Além disso, para cada posição intermediária $k$, a contribuição das inversões envolvendo os pares $(i,k)$ e $(k,j)$ diminui em duas unidades quando $A[j]<A[k]<A[i]$; nos demais casos, essa contribuição permanece inalterada.
 
