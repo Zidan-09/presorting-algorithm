@@ -33,9 +33,13 @@
 \usepackage{amssymb}
 \usepackage{icomma}
 \usepackage{adjustbox}
-\newcommand{\tabajustada}[1]{{\footnotesize\setlength{\tabcolsep}{3pt}%
-  \begin{adjustbox}{max width=\textwidth}\input{#1}\end{adjustbox}}}
+\usepackage{float}
 \usepackage[ruled,vlined,portuguese]{algorithm2e}
+
+% Tabelas longas do apêndice: fonte reduzida, colunas justas, largura máxima
+\newcommand{\tabajustada}[1]{{\setlength{\tabcolsep}{3pt}%
+  \let\footnotesize\scriptsize
+  \begin{adjustbox}{max width=\textwidth}\input{#1}\end{adjustbox}}}
 
 \pgfplotsset{
     compat=1.18,
@@ -639,32 +643,40 @@ Durante o desenvolvimento deste trabalho, os autores utilizaram ferramentas de i
 
 O código-fonte em Rust, o \emph{harness} de \emph{benchmark}, os scripts de geração e de análise dos dados, o \emph{asset} de bytes utilizado na topologia Real e os arquivos CSV que fundamentam as tabelas e figuras deste artigo estão disponíveis publicamente no repositório \url{https://github.com/Zidan-09/presorting-algorithm}. O repositório reúne a implementação dos algoritmos de ordenação avaliados, do pré-processamento simétrico e os procedimentos experimentais necessários à reprodução dos resultados, que pode ser realizada por meio do comando \texttt{cargo bench}.
 
-\clearpage
 \appendix
 \section{Tabelas completas de tempos de execução}
+\label{sec:aptabelas}
 
-Este apêndice apresenta os valores por célula (média $\pm$ meia-largura do IC 95\%) que fundamentam as Tabelas~\ref{tab:tempos}, \ref{tab:novastopologias} e \ref{tab:tempos1M}, com as marcas de significância do delineamento pareado ($^{*}$ IC 95\% do \emph{bootstrap} exclui o zero na seed 42, mas o efeito não é significativo e de mesmo sinal nos cinco \emph{pools}; $^{\dagger}$ efeito significativo e de mesmo sinal nos cinco \emph{pools}).
+Valores por célula (média $\pm$ meia-largura do IC 95\% do Criterion) que fundamentam as Tabelas~\ref{tab:tempos}, \ref{tab:novastopologias} e \ref{tab:tempos1M}. As marcas $^{*}$ e $^{\dagger}$ seguem o critério de estabilidade entre \emph{pools} descrito na Seção~\ref{sec:protocolo}.
 
-\begin{table}[htbp]
+\begingroup
+\renewcommand{\arraystretch}{0.9}
+
+\begin{table}[H]
+\raggedbottom
 \centering
-\caption{Tempo médio por execução (em \textmu{}s) e ganho do pré-processamento para vetores de 10.000 elementos: algoritmos clássicos nas seis topologias clássicas. Fonte: Criterion, seed 42.}
+\caption{Tempo médio por execução (\textmu{}s) e ganho do pré-processamento, $n=10.000$, topologias clássicas (Criterion, seed 42).}
 \label{tab:apA}
 \tabajustada{resultados/tab4_pt_tabular}
 \end{table}
 
-\begin{table}[htbp]
+\begin{table}[H]
+\raggedbottom
 \centering
-\caption{Tempo médio por execução (em \textmu{}s) e ganho do pré-processamento para vetores de 10.000 elementos: todos os oito métodos nas novas topologias.}
+\caption{Tempo médio por execução (\textmu{}s) e ganho do pré-processamento, $n=10.000$, novas topologias (Criterion, seed 42).}
 \label{tab:apB}
 \tabajustada{resultados/tab4c_pt_tabular}
 \end{table}
 
-\begin{table}[htbp]
+\begin{table}[H]
+\raggedbottom
 \centering
-\caption{Tempo médio (ms) e ganho do pré-processamento para vetores de $1.000.000$ de elementos: métodos quasilineares e baselines padrão (quadráticos omitidos por inviabilidade temporal). Fonte: Criterion, 50 amostras, IC 95\%. Linhas abaixo da regra são as novas topologias (Real excluído pelo teto do asset nativo).}
+\caption{Tempo médio (ms) e ganho do pré-processamento, $n=10^6$: métodos quasilineares e \emph{baselines} (quadráticos omitidos por inviabilidade temporal; Real excluído pelo teto do \emph{asset}). Abaixo da regra, novas topologias.}
 \label{tab:apC}
 \tabajustada{resultados/tab6_pt_tabular}
 \end{table}
+
+\endgroup
 
 \clearpage
 \bibliographystyle{sbc}
