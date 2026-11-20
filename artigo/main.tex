@@ -300,15 +300,13 @@ Experimentalmente, observou-se redução de $45{,}19\%$ na topologia Aleatório 
 
 \section{Resultados e Discussão}\label{sec:res}
 
-Esta seção apresenta os resultados experimentais e discute seu alcance à luz da literatura. Retomando o objetivo formulado na introdução --- propor, implementar e avaliar o pré-processamento e mapear as topologias e tamanhos em que o híbrido supera a ordenação direta ---, após quantificar a redução de inversões e o viés geométrico no Invertido, mede-se o tempo total em algoritmos quadráticos e quasilineares. Identificam-se as topologias e tamanhos avaliados em que o híbrido foi mais rápido e delimitam-se suas condições de aplicabilidade, em especial a condição $C_{\text{pre}} + C_{\text{sort}} < C_{\text{original}}$.
+Esta seção quantifica a redução de inversões (Seção~\ref{sec:reducao}), o ganho total por classe de algoritmo (Seção~\ref{sec:ganho}), o custo da varredura (Seção~\ref{sec:custo}) e o comportamento individual de cada método (Seção~\ref{sec:analise}), delimitando as topologias e os tamanhos em que $C_{\text{pre}}+C_{\text{sort}}<C_{\text{original}}$. Em todas as tabelas, o ganho é definido como $1-T_{\text{pre}}/T_{\text{puro}}$: valores positivos indicam redução de tempo; negativos, degradação.
 
 \subsection{Redução de Inversões e Viés Estrutural das Entradas}\label{sec:reducao}
 
-A Figura~\ref{fig:inversoespos} e a Tabela~\ref{tab:inversoes} apresentam a redução de inversões em vetores de 10.000 elementos. Nas entradas não alinhadas com desordem não estruturada (Aleatório, Tartarugas, Quase ordenado, Duplicados, Real e Serra), o pré-processamento removeu entre 40\% e 62\% das inversões no \emph{pool} pareado. A utilização de $I$ como métrica fundamenta-se em Mannila~\cite{mannila_measures_1984}, que a estabelece como medida formal de pré-ordenação. Essa redução, entretanto, não implica necessariamente ganhos de desempenho, pois depende da sensibilidade do algoritmo à distribuição das inversões.
+A Figura~\ref{fig:inversoespos} e a Tabela~\ref{tab:inversoes} apresentam a redução de inversões em vetores de $n=10.000$. Nas topologias de desordem não estruturada (Aleatório, Tartarugas, Quase ordenado, Duplicados, Serra e Real), a varredura removeu entre 40\% e 62\% das inversões do \emph{pool} pareado. Esse percentual supera o termo de primeira ordem $n^2/12$ derivado para as trocas espelhadas isoladas (Seção~\ref{sec:formal}); a diferença é atribuída, como hipótese, à interação sequencial entre trocas espelhadas e ajustes adjacentes, sem demonstração por decomposição experimental ou forma fechada. A redução de $I$, contudo, não implica ganho de tempo: o efeito depende da sensibilidade de cada algoritmo à distribuição das inversões residuais (Seção~\ref{sec:analise}).
 
-O percentual observado supera o termo de primeira ordem $n^2/12$, derivado na Seção~\ref{sec:formal} para trocas espelhadas isoladas, cuja estimativa não se estende à passada completa. Os autores atribuem essa diferença, como hipótese, à interação sequencial entre as trocas espelhadas e os ajustes adjacentes. Essa interpretação não foi validada por decomposição experimental nem por formulação matemática fechada.
-
-Em contraste, Tubo e Runs apresentaram reduções praticamente nulas (0,04\% e 0,16\%, respectivamente), pois a desordem dessas entradas não coincide com os pares examinados pela varredura. No cenário Invertido, a eliminação exata das inversões decorre do alinhamento entre a topologia e a operação: as trocas entre posições simétricas revertem a sequência em $O(n)$ operações. Já a redução de 99,99\% em Zigue-zague é um resultado empírico da passada completa, sem caracterização teórica fechada para essa topologia.
+Em contraste, Tubo e Runs apresentaram reduções praticamente nulas (0,04\% e 0,16\%), pois sua desordem não incide sobre os pares examinados pela varredura. No Invertido, a eliminação é exata porque a topologia coincide com a operação: como $A[i] > A[n-1-i]$ para todo $i < n/2$, as trocas espelhadas revertem a sequência em $O(n)$ operações. Em Zigue-zague, a redução de 99,99\% é resultado empírico da passada completa, sem caracterização teórica fechada; não se reivindica, para esse caso, explicação baseada apenas nas trocas espelhadas isoladas.
 
 \begin{figure}[htbp]
 \centering
@@ -360,16 +358,9 @@ Em contraste, Tubo e Runs apresentaram reduções praticamente nulas (0,04\% e 0
 {\footnotesize\raggedright\textsuperscript{a}~99,99\% (2.501 inversões restantes); \textsuperscript{b}~100,00\% exato (zero inversões restantes). A diferença de arredondamento impede interpretação de equivalência entre os dois casos. Nota: \textsuperscript{a}/\textsuperscript{b} aqui distinguem apenas essas duas linhas de redução e não denotam o teste pareado ($^{*}$/$^{\dagger}$) usado nas tabelas de tempos.\par}
 \end{table}
 
-Como o Algoritmo~\ref{alg:preproc} executa a troca direta entre $a[i]$ e $a[n-1-i]$, um vetor estritamente invertido (onde $a[i] > a[n-1-i]$ para todo $i < n/2$) tem sua sequência revertida em $O(n)$ operações. No caso Invertido, a topologia da desordem coincide com a simetria aplicada.
+\subsection{Ganho por Classe de Algoritmo}\label{sec:ganho}
 
-O comportamento no cenário \emph{Zigue-zague} é relatado como resultado empírico próprio da passada completa (Tabela~\ref{tab:inversoes}), e não como consequência demonstrada das trocas espelhadas isoladas: este artigo não reporta medição por componente isolado nessa topologia, de modo que nenhuma explicação baseada apenas na simetria das comparações espelhadas é reivindicada, e o caso permanece sem uma caracterização teórica fechada.
-
-
-\subsection{Impacto no Tempo de Execução e Custo do Pré-processamento}\label{sec:custo}
-
-A Tabela~\ref{tab:tempos} resume as faixas de ganho em $n{=}10.000$ (valores por célula na Tabela~\ref{tab:apA}), evidenciando a dependência da adaptabilidade de cada algoritmo: ganhos nos quadráticos adaptativos em entradas não alinhadas e \emph{speedups} de $386\times$ a $2.280\times$ restritos às entradas alinhadas (Zigue-zague e Invertido).
-
-Em contrapartida, algoritmos de complexidade $O(n \log n)$ apresentaram resultados mistos em $n=10.000$ (Tabela~\ref{tab:apA}), uma vez que o custo da etapa prévia tende a superar eventuais ganhos em distribuições sem estrutura favorável. Sob a validação por \emph{bootstrap} pareado (Seção~\ref{sec:protocolo}), não apresentaram diferença estatística significativa em $n=10.000$ as combinações Merge/Duplicados e Selection para a maioria das entradas não alinhadas; Selection/Tartarugas mostrou-se instável entre \emph{pools} e Quicksort/Quase ordenado não atingiu significância no pareamento.
+A Tabela~\ref{tab:tempos} resume as faixas de ganho em $n=10.000$ (valores por célula na Tabela~\ref{tab:apA}). Os quadráticos adaptativos ganham nas entradas não alinhadas --- aquelas cuja desordem não coincide com o pareamento simétrico da varredura ---, com ganhos de 14,9\% a 60,3\%, e concentram nas alinhadas (Zigue-zague e Invertido) os \emph{speedups} de $386\times$ a $2.280\times$, equivalentes a ganhos de 99,7\% a 100,0\%. Os métodos $O(n \log n)$ apresentam resposta mista, porque o custo da etapa prévia tende a superar eventuais ganhos em distribuições sem estrutura favorável.
 
 \begin{table}[htbp]
 \centering
@@ -396,7 +387,7 @@ Selection Sort & $-9,1\%$ (Invertido) & $+3,1\%$ (Tartarugas) \\
 \tabajustada{resultados/tab4b_pt_tabular}
 \end{table}
 
-O Insertion Sort com pré-processamento em entrada Aleatória (2.921,09\,$\mu s$) permanece $\approx$8,1$\times$ mais lento que o Quicksort puro (360,74\,$\mu s$), e o próprio \texttt{sort\_unstable} (80,41\,$\mu s$) é $\approx$36$\times$ mais rápido que o melhor híbrido na mesma entrada --- de modo que nenhum ganho contra o mesmo algoritmo se traduz em competitividade contra o ordenador padrão. No Invertido, porém, o \texttt{desc\_reverse} puro (11,03\,$\mu s$) iguala o Insertion Sort com pré-processamento (12,81\,$\mu s$): a detecção trivial de run obtém sozinha ganho equivalente ao do híbrido nas medições, indicando que os \emph{speedups} extremos decorrem da geometria da entrada, não de vantagem do pré-processamento. De modo mais geral, esse contraste é coerente com a classificação de Estivill-Castro e Wood~\cite{estivill-castro_survey_1992}: os ordenadores padrão são adaptativos e já exploram runs ordenadas ou revertidas em tempo linear, de modo que a varredura não encontra trabalho pendente proporcional a $I$ para eliminar e seu custo $O(n)$ tende a se somar ao tempo de ordenação.
+Os baselines delimitam o alcance dos ganhos (Tabela~\ref{tab:baselines}). Em Aleatório, o Insertion Sort com pré-processamento (2.921,09\,$\mu s$) é $\approx$8,1$\times$ mais lento que o Quicksort puro (360,74\,$\mu s$) e $\approx$36$\times$ mais lento que \texttt{sort\_unstable} (80,41\,$\mu s$): o ganho obtido contra o próprio algoritmo não se converte em competitividade contra o ordenador padrão. No Invertido, \texttt{desc\_reverse} puro (11,03\,$\mu s$) iguala o Insertion Sort pré-processado (12,81\,$\mu s$), o que indica que os \emph{speedups} extremos decorrem da geometria da entrada, não do pré-processamento. Coerentemente com Estivill-Castro e Wood~\cite{estivill-castro_survey_1992}, os ordenadores padrão já exploram runs em tempo linear; a varredura não encontra, portanto, trabalho proporcional a $I$ a eliminar, e seu custo $O(n)$ soma-se ao tempo de ordenação.
 
 \begin{table}[htbp]
 \centering
@@ -419,9 +410,11 @@ Selection Sort & $-0,4\%$ (Serra) & $+1,2\%$ (Runs) \\
 \end{tabular}
 \end{table}
 
-A Serra comporta-se como as topologias não estruturadas e o Real acompanha de perto o Aleatório, enquanto Tubo e Runs são neutros para os métodos clássicos (Tabela~\ref{tab:novastopologias}) --- consistente com sua redução de inversões de $\approx$0\%. Os ordenadores padrão degradam sob pré-processamento nas novas topologias, pois o custo $O(n)$ do pré-processamento não lhes traz benefício líquido.
+Nas novas topologias (Tabela~\ref{tab:novastopologias}), Serra aproxima-se das topologias não estruturadas e Real, do Aleatório; Tubo e Runs são neutros para os métodos clássicos, e os ordenadores padrão degradam em todas elas, pois o custo $O(n)$ da varredura não lhes traz benefício líquido.
 
-A etapa simétrica custa entre $0,95$ e $1,15\text{ ns}$ por elemento, com mínimo de $\approx0{,}95\text{ ns}$ em $10^6$ elementos (Tabela~\ref{tab:precusto} e Figura~\ref{fig:precusto_linear}). Para 10.000 elementos, a varredura adiciona $11,51\,\mu s$, menos que a economia de milissegundos nos cenários adaptativos com redução de inversões de 40\% a 62\%.
+\subsection{Custo do Pré-processamento}\label{sec:custo}
+
+O custo da etapa simétrica é linear: de 0,95 a 1,15\,ns por elemento, com mínimo de $\approx$0,95\,ns em $n=10^6$ (Tabela~\ref{tab:precusto} e Figura~\ref{fig:precusto_linear}), o que corresponde a 11,5\,$\mu$s em $n=10.000$ na medição por CLI --- abaixo das economias de milissegundos obtidas nos cenários adaptativos. Esse custo, porém, é heterogêneo (Tabela~\ref{tab:cpre}): em $n=10.000$, Aleatório e Duplicados custam 30,36 e 27,63\,$\mu$s, contra $\approx$5--7\,$\mu$s nas entradas estruturadas. Por isso o \emph{overhead} deve ser lido por célula, não pela média: em Merge/Aleatório, a perda líquida de 11,46\,$\mu$s decorre de $C_{\text{pre}}=30,36\,\mu$s, embora a ordenação em si tenha melhorado.
 
 \begin{figure}[htbp]
 \centering
@@ -480,30 +473,24 @@ coordinates {
 
 \begin{table}[htbp]
 \centering
-\caption{Custo isolado do pré-processamento $C_{\text{pre}}$ por topologia (mesmo harness Criterion da matriz de tempos; média, $\mu s$). A média CLI da Tabela~\ref{tab:precusto} esconde forte heterogeneidade: entradas não estruturadas (Aleatório, Duplicados) custam $\approx$5$\times$ mais que as estruturadas em $n{=}10.000$. Real não tem ponto em $10^6$ (teto do asset nativo).}
+\caption{Custo isolado do pré-processamento $C_{\text{pre}}$ por topologia (mesmo \emph{harness} Criterion da matriz de tempos; média, $\mu s$; Real não tem ponto em $10^6$).}
 \label{tab:cpre}
 \tabajustada{resultados/tabcpre_pt_tabular}
 \end{table}
 
-O custo da varredura depende dos dados: Aleatório e Duplicados custam cerca de 30 e 28\,$\mu s$ em $n{=}10.000$, contra $\approx$5--7\,$\mu s$ nas entradas estruturadas. Assim, o \emph{overhead} deve ser lido por célula (Tabela~\ref{tab:cpre}), não pela média: em Merge/Aleatório, a perda líquida de $11,46\,\mu s$ decorre de $C_{\text{pre}}=30,36\,\mu s$, embora a ordenação em si tenha melhorado ligeiramente.
+\subsection{Análise Individual dos Algoritmos e Efeito de Escala}\label{sec:analise}
 
-\subsection{Tempo Total de Ordenação e Análise Individual dos Algoritmos}\label{sec:analise}
+Entre os quadráticos adaptativos, os ganhos em $n=10.000$ variaram de 14,9\% a 60,3\% nas topologias não alinhadas e atingiram 99,7\% a 100,0\% em Zigue-zague e Invertido (Tabela~\ref{tab:tempos}). No Insertion Sort, o tempo de ordenação equivaleu a $\approx$0,21\,ns por inversão na maioria das entradas e a 0,29\,ns nas quase ordenadas, em que predominam custos fixos. Como a varredura custa $\approx$1,0\,ns por elemento, o ganho é esperado quando $\Delta I \gtrsim 5n$, condição satisfeita por todas as topologias não alinhadas. Esse comportamento converge com Mannila~\cite{mannila_measures_1984}: a redução de $I$ favorece métodos adaptativos, sem garantir benefício a toda implementação.
 
-Nos algoritmos quadráticos adaptativos, a redução de inversões entre 14,9\% e 100,0\% em $n=10.000$ proporcionou ganhos quando o custo da varredura foi inferior ao trabalho de ordenação eliminado. No Insertion Sort, o custo foi de aproximadamente 0,21\,ns por inversão na maioria das entradas, chegando a 0,29\,ns nas quase ordenadas, em que predominam custos fixos. Esse comportamento converge qualitativamente com Mannila~\cite{mannila_measures_1984}: a redução de $I$ favorece métodos adaptativos, mas não garante benefícios para todas as implementações.
+O Bubble Sort, por sua vez, apresentou tempos semelhantes em entradas com volumes de inversões distintos (Figura~\ref{fig:tempos}), indicando que seu desempenho depende também do deslocamento máximo dos elementos, e não apenas de $I$. Daí os ganhos mais modestos nas distribuições aleatórias e a redução a uma única passada nas entradas alinhadas.
 
-O Bubble Sort, por sua vez, apresentou tempos semelhantes em entradas com volumes de inversões distintos, indicando que seu desempenho depende também do deslocamento máximo dos elementos, e não apenas de $I$. Isso explica os ganhos mais modestos nas distribuições aleatórias e a redução para uma única passada nas entradas alinhadas. Nas novas topologias, Serra também apresentou ganhos, enquanto Tubo e Runs permaneceram neutros.
+O Merge Sort ganhou apenas em Zigue-zague (+15,7\% em $n=10^4$; +18,6\% em $n=10^6$) e em Invertido (+3,3\%; +6,0\%); em Aleatório, Tartarugas e Quase ordenado houve degradação, explicada pelo custo adicional da varredura (Tabela~\ref{tab:cpre}).
 
-O Merge Sort apresentou resultados dependentes da topologia e do critério pareado. Os ganhos concentraram-se em Zigue-zague (+15,7\%) e Invertido (+3,3\%) em $n=10.000$, alcançando +18,6\% e +6,0\%, respectivamente, em $n=10^6$ (Tabela~\ref{tab:tempos1M}). Em Aleatório, Tartarugas e Quase ordenado, houve degradações significativas, explicadas principalmente pelo custo adicional do pré-processamento (Tabela~\ref{tab:cpre}).
+O Quicksort degradou em quase todas as topologias: de 4,5\% a 8,0\% em Aleatório, Tartarugas e Quase ordenado, 34,4\% em Duplicados e 38,4\% em Invertido; Zigue-zague foi neutro (+0,5\%). Em Duplicados, a perda líquida (14,25\,$\mu s$ em $n=10^4$; 1,24\,ms em $n=10^6$) é compatível com $C_{\text{pre}}$ (27,63\,$\mu s$; 2,67\,ms). A maior perda ocorre em Invertido: a ordenação pura consome 328,39\,$\mu s$ ($n=10^4$) e 267,65\,ms ($n=10^6$), contra 454,47\,$\mu s$ e 368,64\,ms do híbrido, que recebe a entrada já ordenada --- indício de limitação da implementação avaliada, não da técnica. O caso Tubo (\emph{OrganPipe}) reforça a observação: o tempo puro passa de 295,87\,$\mu s$ a 4.070,08\,ms entre os dois tamanhos.
 
-O Quicksort, implementado com particionamento de três vias e mediana de três, apresentou degradação na maioria das topologias: entre 4,5\% e 8,0\% em Aleatório, Tartarugas e Quase ordenado, além de 34,4\% em Duplicados e 38,4\% em Invertido. Zigue-zague foi praticamente neutro (+0,5\%). Em Duplicados, a perda líquida de 14,25\,$\mu s$ em $n=10.000$ e 1,24\,ms em $n=10^6$ é compatível com o custo adicional da varredura, de 27,63\,$\mu s$ e 2,67\,ms, respectivamente.
+Não foram coletados contadores de partições, comparações ou profundidade de recursão; o módulo \texttt{quick\_stats} é externo à matriz e não fundamenta as tabelas. Por isso, a degradação não é atribuída a mecanismos internos específicos, e a comparação com uma implementação de referência permanece como trabalho futuro.
 
-O cenário Invertido também evidencia uma limitação da implementação avaliada: a ordenação pura consumiu 328,39\,$\mu s$ em $n=10.000$ e 267,65\,ms em $n=10^6$, enquanto o híbrido, que produz uma entrada ordenada, consumiu 454,47\,$\mu s$ e 368,64\,ms. Em Aleatório, os tempos foram 360,74 e 378,06\,$\mu s$, respectivamente. O crescimento observado também merece atenção em Tubo (\emph{OrganPipe}), cujo tempo puro passou de 295,87\,$\mu s$ em $n=10.000$ para 4.070,08\,ms em $n=10^6$.
-
-Não foram coletados contadores internos de partições, comparações ou profundidade de recursão para a matriz experimental. O módulo instrumentado \texttt{quick\_stats} corresponde a uma cópia externa à matriz, portanto não fundamenta as tabelas apresentadas. A compatibilidade dos resultados com a implementação foi verificada por inspeção do código e reprodução qualitativa em simulação avulsa, sem validação contra uma implementação de referência. Assim, não se atribui a degradação a mecanismos internos específicos, permanecendo a comparação com uma implementação como pdqsort para trabalhos futuros.
-
-O Selection Sort, por manter $n(n-1)/2$ comparações independentemente da entrada, não apresentou ganhos sistemáticos, em concordância com a classificação de Estivill-Castro e Wood~\cite{estivill-castro_survey_1992}. A maioria das combinações não foi significativa no critério pareado; Tartarugas apresentou significância na seed 42, mas instabilidade entre \emph{pools}. Em Invertido, houve degradação consistente de 9,1\% em $n=10.000$ e 12,8\% em $n=100.000$. Sua causa não foi investigada, pois não foram coletados contadores de hardware (Seção~\ref{sec:ameacas}).
-
-A Figura~\ref{fig:tempos} sintetiza os resultados nas dez topologias, destacando os ganhos dos métodos quadráticos adaptativos, a resposta mista do Merge Sort, a degradação do Quicksort avaliado e a neutralidade do Selection Sort.
+O Selection Sort, por manter $n(n-1)/2$ comparações independentemente da entrada, não apresentou ganhos sistemáticos, em concordância com Estivill-Castro e Wood~\cite{estivill-castro_survey_1992}; a maioria das combinações não foi significativa no critério pareado, e Tartarugas foi significativa na seed 42, porém instável entre \emph{pools}. Em Invertido, houve degradação consistente de 9,1\% em $n=10.000$ e 12,8\% em $n=100.000$, não investigada por ausência de contadores de hardware (Seção~\ref{sec:ameacas}).
 
 \begin{figure}[htbp]
 \centering
@@ -598,7 +585,7 @@ Quicksort & $-37,7\%$ (Invertido) & $+5,5\%$ (Quase ordenado) \\
 \end{tabular}
 \end{table}
 
-A evolução dos ganhos com o tamanho da entrada (Figura~\ref{fig:ganho_n}) evidencia que o efeito do pré-processamento não cresce necessariamente com $n$. Merge/Zigue-zague manteve ganhos positivos, enquanto Merge/Invertido apresentou comportamento não monotônico, atingindo $-2,2\%$ em $10^7$. Entre os métodos quadráticos, Insertion/Serra tornou-se vantajoso acima de $n=128$, ao passo que Insertion/Tubo permaneceu próximo da neutralidade. Quicksort e \texttt{sort\_unstable} apresentaram predominantemente degradações, reforçando que a redução de inversões, isoladamente, não determina o ganho temporal.
+A evolução dos ganhos com o tamanho da entrada (Figura~\ref{fig:ganho_n}) evidencia que o efeito do pré-processamento não cresce necessariamente com $n$. Merge/Zigue-zague manteve ganhos positivos, enquanto Merge/Invertido apresentou comportamento não monotônico, com o ganho caindo a $-2,2\%$ em $10^7$. Entre os métodos quadráticos, Insertion/Serra tornou-se vantajoso acima de $n=128$, ao passo que Insertion/Tubo permaneceu próximo da neutralidade. Quicksort e \texttt{sort\_unstable} apresentaram predominantemente degradações.
 
 \begin{figure}[htbp]
 \centering
@@ -634,11 +621,11 @@ A evolução dos ganhos com o tamanho da entrada (Figura~\ref{fig:ganho_n}) evid
 \label{fig:ganho_n}
 \end{figure}
 
-Em conjunto, os resultados respondem ao objetivo da pesquisa: o pré-processamento foi proposto, implementado e avaliado, e sua eficácia depende da topologia, do tamanho da entrada e da adaptabilidade do algoritmo. O híbrido apresenta vantagem quando $C_{\text{pre}} + C_{\text{sort}} < C_{\text{original}}$, condição observada principalmente nos métodos quadráticos adaptativos e em exceções pontuais dos quasilineares.
+Em termos de aplicação, os resultados indicam que o pré-processamento só compensa quando a topologia concentra inversões nos pares simétricos e o algoritmo é sensível a inversões; para uso geral --- sobretudo com os ordenadores padrão ---, o custo fixo $O(n)$ torna o híbrido desvantajoso.
 
 \section{Considerações Finais}
 
-Este trabalho propôs, implementou e avaliou um pré-processamento simétrico $O(n)$ para reduzir inversões e identificar as condições em que sua aplicação beneficia algoritmos de ordenação. Nas entradas não alinhadas, a técnica reduziu de 40\% a 62\% das inversões, com custo de aproximadamente $1,0$\,ns/elemento, proporcionando ganhos de 14\% a 60\% para Insertion Sort e Bubble Sort em $n{=}10.000$. Os \emph{speedups} extremos, de $386\times$ a $2.280\times$, restringiram-se às entradas Invertido e Zigue-zague, não representando uma vantagem generalizável. O benefício depende de $C_{\text{pre}}+C_{\text{sort}}<C_{\text{original}}$ e, para métodos adaptativos, a regra prática $\Delta I\gtrsim5n$ (Seção~\ref{sec:formal}). Na entrada Aleatória, o melhor híbrido permaneceu aproximadamente $36\times$ mais lento que o ordenador padrão, evidenciando que a redução de inversões, isoladamente, não garante melhor desempenho.
+Este trabalho propôs, implementou e avaliou um pré-processamento simétrico $O(n)$ para reduzir inversões e identificar as condições em que sua aplicação beneficia algoritmos de ordenação. Nas entradas não alinhadas, a técnica reduziu de 40\% a 62\% das inversões, com custo de aproximadamente $1,0$\,ns/elemento, proporcionando ganhos de 14\% a 60\% para Insertion Sort e Bubble Sort em $n{=}10.000$. Os \emph{speedups} extremos, de $386\times$ a $2.280\times$, restringiram-se às entradas Invertido e Zigue-zague, não representando uma vantagem generalizável. O benefício depende de $C_{\text{pre}}+C_{\text{sort}}<C_{\text{original}}$ e, para métodos adaptativos, a regra prática $\Delta I\gtrsim5n$ (Seção~\ref{sec:analise}). Na entrada Aleatória, o melhor híbrido permaneceu aproximadamente $36\times$ mais lento que o ordenador padrão, evidenciando que a redução de inversões, isoladamente, não garante melhor desempenho.
 
 Os resultados também evidenciaram comportamentos distintos entre as classes de algoritmos. O Selection Sort apresentou neutralidade na maioria das topologias, mas degradação consistente de aproximadamente 9\% a 13\% no Invertido, cuja causa não foi investigada. Para o Quicksort avaliado, o pré-processamento provocou degradação sistemática, especialmente em Duplicados e Invertido, sem que os experimentos permitissem atribuir uma causa interna ao comportamento observado. O Merge Sort e os ordenadores da biblioteca padrão apresentaram ganhos restritos principalmente ao Zigue-zague, com resultados dependentes da topologia e da escala. Assim, os benefícios mais consistentes permaneceram concentrados nos algoritmos quadráticos adaptativos, enquanto não se observou vantagem sistemática para os algoritmos não adaptativos ou para os métodos quasilineares avaliados.
 
