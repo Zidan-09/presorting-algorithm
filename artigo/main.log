@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.14)  21 NOV 2026 15:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.14)  21 NOV 2026 17:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -912,7 +912,7 @@ Package: relsize 2013/03/29 ver 4.1
 \algocf@algoframe=\box81
 \algocf@algobox=\box82
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 83
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 84
 .
 
 (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
@@ -924,24 +924,24 @@ File: l3backend-pdftex.def 2026-07-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count346
 ) (main.aux
 Package babel Info: 'brazilian' activates 'portuges' shorthands.
-(babel)             Reported on input line 10.
+(babel)             Reported on input line 16.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1012,13 +1012,13 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 Package microtype Info: Patching varwidth to enable character protrusion.
 \MT@vwid@leftmargin=\dimen333
 \MT@vwid@rightmargin=\dimen334
-LaTeX Info: Redefining \microtypecontext on input line 83.
-Package microtype Info: Applying patch `item' on input line 83.
-Package microtype Info: Applying patch `toc' on input line 83.
-Package microtype Info: Applying patch `eqnum' on input line 83.
-Package microtype Info: Applying patch `footnote' on input line 83.
-Package microtype Info: Applying patch `verbatim' on input line 83.
-LaTeX Info: Redefining \microtypesetup on input line 83.
+LaTeX Info: Redefining \microtypecontext on input line 84.
+Package microtype Info: Applying patch `item' on input line 84.
+Package microtype Info: Applying patch `toc' on input line 84.
+Package microtype Info: Applying patch `eqnum' on input line 84.
+Package microtype Info: Applying patch `footnote' on input line 84.
+Package microtype Info: Applying patch `verbatim' on input line 84.
+LaTeX Info: Redefining \microtypesetup on input line 84.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1034,38 +1034,38 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 (RS)
 )
 Package babel Info: Main language set to 'brazilian'.
-LaTeX Font Info:    Calculating math sizes for size <16> on input line 85.
+LaTeX Font Info:    Calculating math sizes for size <16> on input line 86.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8
-5.
+6.
 
 (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 8
-5.
+6.
 
 (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-85.
+86.
 
 (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-85.
+86.
 
 (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <16> on input line 85.
+(Font)              <16> on input line 86.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <11.19995> on input line 85.
+(Font)              <11.19995> on input line 86.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 85.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 85.
+(Font)              <8> on input line 86.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 86.
 
 
 (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -1074,7 +1074,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 85.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 86.
 
 
 (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1084,11 +1084,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 85.
+(Font)              <12> on input line 86.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 85.
+(Font)              <6> on input line 86.
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 8
-5.
+6.
 
 (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -1098,7 +1098,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \hbox (badness 2644) in paragraph at lines 89--90
+Underfull \hbox (badness 2644) in paragraph at lines 90--91
 []\T1/lmr/m/it/12 (+20) Quadratic sor-ting al-go-rithms re-main use-ful in reso
 urce-
  []
@@ -1108,17 +1108,18 @@ urce-
 {C:/Users/zidan/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/zida
 n/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/zidan/Ap
 pData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/zidan/Ap
-pData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}] [2]
-Underfull \hbox (badness 4378) in paragraph at lines 121--122
+pData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}]
+Underfull \hbox (badness 4378) in paragraph at lines 120--121
 \T1/lmr/m/n/12 (+20) A efi-ci-ên-cia da or-de-na-ção de-pende da dis-po-si-ção 
 ini-cial dos ele-men-tos
  []
 
-[3{C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.en
-c}] [4]
+[2] [3{C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-maths
+y.enc}] [4]
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 1
-53.
- (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmss.fd
+58.
+
+(C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
@@ -1126,68 +1127,69 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 176.
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-99.
+(Font)              <10.95> on input line 181.
+ [5]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
+04.
 
 (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [5]
-[6{C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}]
-
+) [6{C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc
+}]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [8]
-[9]
-Package pgfplots info on input line 323: Using 'lua backend=false' for axis: ym
+[8] [9]
+Package pgfplots info on input line 328: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_inversoes.csv}
 PGFPlots: reading {resultados/fig_inversoes.csv}
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <10> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 337.
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 342.
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 340.
+(Font)              <10> on input line 345.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 340.
+(Font)              <7> on input line 345.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 340.
+(Font)              <5> on input line 345.
  [10]
 LaTeX Font Info:    Trying to load font information for TS1+lmss on input line 
-366.
- (C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmss.fd
+371.
+
+(C:\Users\zidan\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmss.fd
 File: ts1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-[11]
-Package pgfplots info on input line 443: Using 'lua backend=false' for axis: ym
+Package pgfplots info on input line 448: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_tempos_insertion.csv}
 PGFPlots: reading {resultados/fig_tempos_insertion.csv}
-Package pgfplots info on input line 447: Using 'lua backend=false' for axis: ym
+Package pgfplots info on input line 452: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_tempos_bubble.csv}
 PGFPlots: reading {resultados/fig_tempos_bubble.csv}
-Package pgfplots info on input line 451: Using 'lua backend=false' for axis: ym
+Package pgfplots info on input line 456: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_tempos_selection.csv}
 PGFPlots: reading {resultados/fig_tempos_selection.csv}
-Package pgfplots info on input line 455: Using 'lua backend=false' for axis: ym
+Package pgfplots info on input line 460: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_tempos_merge.csv}
 PGFPlots: reading {resultados/fig_tempos_merge.csv}
-Package pgfplots info on input line 459: Using 'lua backend=false' for axis: ym
+Package pgfplots info on input line 464: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_tempos_quick.csv}
 PGFPlots: reading {resultados/fig_tempos_quick.csv}
- [12] [13]
-Package pgfplots info on input line 520: Using 'lua backend=false' for axis: xm
+ [11]
+[12]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [13]
+Package pgfplots info on input line 525: Using 'lua backend=false' for axis: xm
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_gain_vs_n.csv}
 
@@ -1204,7 +1206,11 @@ PGFPlots: reading {resultados/fig_gain_vs_n.csv}
 PGFPlots: reading {resultados/fig_gain_vs_n.csv}
 PGFPlots: reading {resultados/fig_gain_vs_n.csv}
 PGFPlots: reading {resultados/fig_gain_vs_n.csv}
-[14] [15] (resultados/tab4_pt_tabular.tex) [16] (main.bbl) [17
+[14] [15] (resultados/tab4_pt_tabular.tex)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16]
+[17] (main.bbl) [18
 
 ] (main.aux)
  ***********
@@ -1213,13 +1219,13 @@ L3 programming layer <2026-07-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 33757 strings out of 467501
- 809867 string characters out of 5408550
- 1371534 words of memory out of 5000000
+ 33755 strings out of 467501
+ 809832 string characters out of 5408550
+ 1375423 words of memory out of 5000000
  62072 multiletter control sequences out of 15000+600000
- 776245 words of font info for 294 fonts, out of 8000000 for 9000
+ 767633 words of font info for 292 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 92i,19n,104p,1205b,2593s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 92i,19n,104p,1629b,2593s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pf
 b><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pf
 b><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx7.pfb
@@ -1234,21 +1240,20 @@ b><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb
 C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:
 /Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/U
 sers/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/U
-sers/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri8.pfb><C:/Us
-ers/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbo10.pfb><C:/
-Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C
-:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C
-:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:
-/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/
-Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/U
-sers/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/U
-sers/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/U
-sers/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/ms
-am10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/symbols/msbm10.pfb>
-Output written on main.pdf (17 pages, 554438 bytes).
+sers/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbo10.pfb><C:
+/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><
+C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><
+C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C
+:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:
+/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/
+Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/
+Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/
+Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/m
+sam10.pfb><C:/Users/zidan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
+onts/symbols/msbm10.pfb>
+Output written on main.pdf (18 pages, 543931 bytes).
 PDF statistics:
- 211 PDF objects out of 1000 (max. 8388607)
+ 209 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 82957 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 78861 words of extra memory for PDF output out of 89155 (max. 10000000)
 
