@@ -26,11 +26,12 @@ O artigo deve seguir a seguinte organização de seções:
 ### Autores
 - Nome do aluno (discente)
 - Nome do orientador (professor)
-- Seguir padrão exigido pelo repositório da UESPI.
+- Nomes na mesma linha
+- Não deve ter cargo, denominação, apenas os nomes completos
 
 ### Filiação
 - Universidade Estadual do Piauí (UESPI) - Campus Prof. Alexandre Alves Oliveira
-- E-mails de contato (do aluno e do orientador)
+- E-mails de contato (do aluno e do orientador) na mesma linha
 
 ---
 
@@ -196,6 +197,7 @@ Esse é o caso de uso de IA e repositório do github.
 - [ ] Resultados: dados discutidos com literatura, não apenas descritos
 - [ ] Considerações Finais: todos os 5 itens obrigatórios presentes
 - [ ] Formatação conforme normas da UESPI / repositório / revista alvo
+- [ ] Todos os parágrafos estão na faixa de 6 a 10 linhas
 
 ---
 
