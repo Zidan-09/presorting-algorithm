@@ -57,12 +57,16 @@
 % As listas são escritas literalmente (e não em macros) porque o
 % pgfplots separa os itens por vírgula antes de expandir o valor.
 % Descarta do gráfico as linhas dos CSV que correspondem às
-% topologias fora do escopo (índices 6 a 9: Serra, Tubo, Runs, Real)
-\newcommand{\filtratopos}{restrict expr to domain={x}{-0.5:5.5}}
-
+% topologias fora do escopo (índices 6 a 9: Serra, Tubo, Runs, Real).
+% É um estilo do pgfplots (e não uma macro \newcommand): uma macro que
+% expande para "chave=valor" não é expandida pelo pgfkeys antes da
+% divisão chave/valor quando usada dentro de every axis/.append style,
+% e o pgfplots a descarta em silêncio. Sem este formato, a Figura 2
+% voltaria a exibir as barras das topologias removidas.
 \pgfplotsset{
     compat=1.18,
-    table/col sep=comma
+    table/col sep=comma,
+    filtratopos/.style={restrict expr to domain={x}{-0.5:5.5}}
 }
 
 \sloppy
@@ -323,7 +327,7 @@ Em contraste, as topologias alinhadas alcançaram eliminação quase total: no Z
     xtick={0,1,2,3,4,5},
     xticklabels={Aleatório,Tartarugas,Zigue-zague,Quase ordenado,Duplicados,Invertido},
     x tick label style={font=\scriptsize, rotate=30, anchor=east},
-    \filtratopos,
+    filtratopos,
     legend style={
         at={(0.5,-0.35)},
         anchor=north,
@@ -440,7 +444,7 @@ Os ganhos do Insertion Sort com pré-processamento, contudo, não se convertem a
     every axis/.append style={
         ybar,
         bar width=2.6pt,
-        \filtratopos
+        filtratopos
     },
     legend style={
         at={(1.87,-0)},
