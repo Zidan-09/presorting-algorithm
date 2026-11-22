@@ -197,7 +197,7 @@ Esse é o caso de uso de IA e repositório do github.
 - [ ] Resultados: dados discutidos com literatura, não apenas descritos
 - [ ] Considerações Finais: todos os 5 itens obrigatórios presentes
 - [ ] Formatação conforme normas da UESPI / repositório / revista alvo
-- [ ] Todos os parágrafos estão na faixa de 6 a 10 linhas
+- [ ] Todos os parágrafos estão na faixa de 7 a 11 linhas
 
 ---
 
