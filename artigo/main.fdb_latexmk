@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1795379941.19445 "main.aux" "main.bbl" "main" 1795383125.30044 0
+["bibtex main"] 1795434250.81789 "main.aux" "main.bbl" "main" 1795434260.75635 0
   "./referencias.bib" 1795357381 5096 4872731dd6d5941753b187855cb4f8bb ""
   "./sbc.bst" 1794834960 22967 a668496cca21cfdd211f7fb5f0d57565 ""
-  "main.aux" 1795383122 10299 ad20bbc1d600b0bc1e953da656c579d9 "pdflatex"
+  "main.aux" 1795434258 10299 70cf2c873eda6afdc31d6fcb83547d14 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1795383115.85834 "c:/Users/acemilton/Documents/presorting-algorithm/artigo/main.tex" "main.pdf" "main" 1795383125.30325 0
+["pdflatex"] 1795434252.33728 "c:/Users/acemilton/Documents/presorting-algorithm/artigo/main.tex" "main.pdf" "main" 1795434260.75837 0
   "C:/Users/acemilton/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1795374857 82507 a9eef8696c92627b87e9975edea03b2a ""
   "C:/Users/acemilton/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1795012173 13335424 6229e64afec8b308c305bebd5fe58ef5 ""
   "C:/Users/acemilton/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc" 1256929440 2375 baa924870cfb487815765f9094cf3728 ""
@@ -279,10 +279,10 @@
   "C:/Users/acemilton/AppData/Local/Programs/MiKTeX/tex/latex/was/icomma.sty" 1665850770 1018 df058db1896806f044e2233bb506d425 ""
   "C:/Users/acemilton/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "C:/Users/acemilton/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
-  "c:/Users/acemilton/Documents/presorting-algorithm/artigo/main.tex" 1795383111 57645 6d87ff7bc5bfbb4973d86515b83e8705 ""
-  "main.aux" 1795383122 10299 ad20bbc1d600b0bc1e953da656c579d9 "pdflatex"
-  "main.bbl" 1795379941 2831 15f79d7aed851b1f360e731ffc06eefd "bibtex main"
-  "main.tex" 1795383111 57645 6d87ff7bc5bfbb4973d86515b83e8705 ""
+  "c:/Users/acemilton/Documents/presorting-algorithm/artigo/main.tex" 1795434228 57340 4fda993702807a296ef1f320ed426b9a ""
+  "main.aux" 1795434258 10299 70cf2c873eda6afdc31d6fcb83547d14 "pdflatex"
+  "main.bbl" 1795434251 2831 15f79d7aed851b1f360e731ffc06eefd "bibtex main"
+  "main.tex" 1795434228 57340 4fda993702807a296ef1f320ed426b9a ""
   "resultados/fig_gain_vs_n.csv" 1794834960 858 d8ab1d9be239bfe57cd4b1c600b97d49 ""
   "resultados/fig_inversoes.csv" 1794834960 285 261752fa03b793bcd814d0bc6c4a33a5 ""
   "resultados/fig_tempos_bubble.csv" 1794834960 317 84356e0bcac57e48dc28eae26267e0bd ""
