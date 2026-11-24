@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.11.18)  24 NOV 2026 10:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.11.18)  24 NOV 2026 11:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1194,32 +1194,34 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-Package pgfplots info on input line 459: Using 'lua backend=false' for axis: ym
+
+[11]
+Package pgfplots info on input line 464: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_tempos_insertion.csv}
 PGFPlots: reading {resultados/fig_tempos_insertion.csv}
-Package pgfplots info on input line 463: Using 'lua backend=false' for axis: ym
+Package pgfplots info on input line 468: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_tempos_bubble.csv}
 PGFPlots: reading {resultados/fig_tempos_bubble.csv}
-Package pgfplots info on input line 467: Using 'lua backend=false' for axis: ym
+Package pgfplots info on input line 472: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_tempos_selection.csv}
 PGFPlots: reading {resultados/fig_tempos_selection.csv}
-Package pgfplots info on input line 471: Using 'lua backend=false' for axis: ym
+Package pgfplots info on input line 476: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_tempos_merge.csv}
 PGFPlots: reading {resultados/fig_tempos_merge.csv}
-Package pgfplots info on input line 475: Using 'lua backend=false' for axis: ym
+Package pgfplots info on input line 480: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_tempos_quick.csv}
 PGFPlots: reading {resultados/fig_tempos_quick.csv}
 
-[11] [12]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 3826) has occurred while \output is active []
 
- [13]
-Package pgfplots info on input line 537: Using 'lua backend=false' for axis: xm
+ [12]
+[13]
+Package pgfplots info on input line 541: Using 'lua backend=false' for axis: xm
 ode=log unsupported (yet).
 PGFPlots: reading {resultados/fig_gain_vs_n.csv}
 
@@ -1236,15 +1238,7 @@ PGFPlots: reading {resultados/fig_gain_vs_n.csv}
 PGFPlots: reading {resultados/fig_gain_vs_n.csv}
 PGFPlots: reading {resultados/fig_gain_vs_n.csv}
 PGFPlots: reading {resultados/fig_gain_vs_n.csv}
-[14]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15]
-(resultados/tab4_pt_tabular.tex)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [16]
-[17] (main.bbl) [18
+[14] [15] (resultados/tab4_pt_tabular.tex) [16] [17] (main.bbl) [18
 
 ] (main.aux)
  ***********
@@ -1253,13 +1247,13 @@ L3 programming layer <2025-12-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 33599 strings out of 467871
- 805286 string characters out of 5416439
- 1361916 words of memory out of 5000000
- 61543 multiletter control sequences out of 15000+600000
+ 33600 strings out of 467871
+ 805296 string characters out of 5416439
+ 1362435 words of memory out of 5000000
+ 61544 multiletter control sequences out of 15000+600000
  767765 words of font info for 294 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,19n,104p,1120b,2590s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,19n,104p,1120b,2586s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/acemilton/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
 0.pfb><C:/Users/acemilton/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mbx12.pfb><C:/Users/acemilton/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -1286,7 +1280,7 @@ ers/acemilton/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:
 .pfb><C:/Users/acemilton/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
 nts/symbols/msam10.pfb><C:/Users/acemilton/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (18 pages, 541977 bytes).
+Output written on main.pdf (18 pages, 542223 bytes).
 PDF statistics:
  209 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
