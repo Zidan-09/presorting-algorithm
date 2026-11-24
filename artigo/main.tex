@@ -344,9 +344,17 @@ Em contraste, as topologias alinhadas alcançaram eliminação quase total: no Z
 \label{fig:inversoespos}
 \end{figure}
 
+\subsection{Custo do Pré-Processamento}\label{sec:custo}
+
+O custo da etapa simétrica, isolado da ordenação, é heterogêneo entre topologias (Tabela~\ref{tab:cpre}). Em $n=10.000$, as entradas Aleatório e Duplicados custam 30,36 e 27,63\,$\mu$s, contra 5,66 a 7,31\,$\mu$s nas demais; em termos por elemento, isso corresponde a 3,04 e 2,76\,ns contra 0,57 a 0,73\,ns. Por isso o \emph{overhead} deve ser lido por célula, não por média global: em Merge/Aleatório, a perda líquida de 11,46\,$\mu$s decorre de $C_{\text{pre}}=30,36\,\mu$s, embora a etapa de ordenação em si tenha sido mais rápida com a entrada pré-processada (451,57\,$\mu$s puros contra 463,03\,$\mu$s do híbrido, dos quais 30,36\,$\mu$s são de pré-processamento).
+
+A leitura comparativa entre $n=10.000$ e $n=1.000.000$ indica crescimento compatível com a complexidade $O(n)$ derivada na Seção~\ref{sec:formal}: para um aumento de 100 vezes no tamanho do vetor, o custo cresceu entre 90,9 vezes (Invertido) e 100,4 vezes (Aleatório), e o custo por elemento manteve-se praticamente constante em cada topologia --- por exemplo, 3,04\,ns em Aleatório e 0,57\,ns em Tartarugas para $n=10.000$, contra 3,05\,ns e 0,54\,ns para $n=1.000.000$. A diferença de cerca de cinco vezes entre topologias não é explicada pelo número de trocas espelhadas isoladamente e não foi investigada mecanisticamente, dada a ausência de contadores de hardware (Seção~\ref{sec:ameacas}).
+
 % Fonte: resultados/tab3_pt_tabular.tex -- apenas as seis linhas do
 % escopo atual; valores transcritos sem alteração.
-\begin{table}[htbp]
+% Posicionada [H] após o parágrafo da Seção 4.2 para manter o fluxo
+% de leitura e ocupar a região intermediária da página.
+\begin{table}[H]
 \centering
 \caption{Redução de inversões proporcionada pelo pré-processamento simétrico em vetores de 10.000 elementos (média dos 50 vetores do \emph{pool} pareado; mesma semente dos tempos da Tabela~\ref{tab:apA}).}
 \label{tab:inversoes}
@@ -366,12 +374,6 @@ Invertido & 49.995.000 & 0 & 100,00\%\textsuperscript{b} \\
 \par\vspace{2pt}
 {\footnotesize\raggedright\textsuperscript{a}~99,99\% (2.501 inversões restantes); \textsuperscript{b}~100,00\% exato (zero inversões restantes). A diferença de arredondamento impede interpretação de equivalência entre os dois casos. Nota: \textsuperscript{a}/\textsuperscript{b} aqui distinguem apenas essas duas linhas de redução e não denotam o teste pareado ($^{*}$/$^{\dagger}$) usado nas tabelas de tempos.\par}
 \end{table}
-
-\subsection{Custo do Pré-Processamento}\label{sec:custo}
-
-O custo da etapa simétrica, isolado da ordenação, é heterogêneo entre topologias (Tabela~\ref{tab:cpre}). Em $n=10.000$, as entradas Aleatório e Duplicados custam 30,36 e 27,63\,$\mu$s, contra 5,66 a 7,31\,$\mu$s nas demais; em termos por elemento, isso corresponde a 3,04 e 2,76\,ns contra 0,57 a 0,73\,ns. Por isso o \emph{overhead} deve ser lido por célula, não por média global: em Merge/Aleatório, a perda líquida de 11,46\,$\mu$s decorre de $C_{\text{pre}}=30,36\,\mu$s, embora a etapa de ordenação em si tenha sido mais rápida com a entrada pré-processada (451,57\,$\mu$s puros contra 463,03\,$\mu$s do híbrido, dos quais 30,36\,$\mu$s são de pré-processamento).
-
-A leitura comparativa entre $n=10.000$ e $n=1.000.000$ indica crescimento compatível com a complexidade $O(n)$ derivada na Seção~\ref{sec:formal}: para um aumento de 100 vezes no tamanho do vetor, o custo cresceu entre 90,9 vezes (Invertido) e 100,4 vezes (Aleatório), e o custo por elemento manteve-se praticamente constante em cada topologia --- por exemplo, 3,04\,ns em Aleatório e 0,57\,ns em Tartarugas para $n=10.000$, contra 3,05\,ns e 0,54\,ns para $n=1.000.000$. A diferença de cerca de cinco vezes entre topologias não é explicada pelo número de trocas espelhadas isoladamente e não foi investigada mecanisticamente, dada a ausência de contadores de hardware (Seção~\ref{sec:ameacas}).
 
 % Fonte: resultados/tabcpre_pt_tabular.tex -- apenas as seis linhas do
 % escopo atual; valores transcritos sem alteração.
@@ -425,7 +427,7 @@ Os ganhos do Insertion Sort com pré-processamento, contudo, não se convertem a
     group style={
         group size=2 by 3,
         horizontal sep=45pt,
-        vertical sep=65pt
+        vertical sep=70pt
     },
     ylabel={Tempo ($\mu s$)},
     width=0.46\textwidth,

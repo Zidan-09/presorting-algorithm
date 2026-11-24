@@ -1,6 +1,6 @@
-PWD c:\Users\acemilton\Documents\presorting-algorithm\artigo
+PWD C:\Users\acemilton\Documents\presorting-algorithm\artigo
 INPUT C:\Users\acemilton\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\acemilton\Documents\presorting-algorithm\artigo\main.tex
+INPUT main.tex
 OUTPUT main.log
 INPUT C:\Users\acemilton\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\acemilton\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
